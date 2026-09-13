@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.clientcore</groupId>
-  <artifactId>uigf-checkin</artifactId>
+  <artifactId>uigf-mihoyo-checkin</artifactId>
   <version>1.0.0-beta.1</version>
   <packaging>jar</packaging>
 

@@ -15,7 +15,7 @@ This package contains Passport client library.
 ```xml
 <dependency>
     <groupId>io.clientcore</groupId>
-    <artifactId>uigf-checkin</artifactId>
+    <artifactId>uigf-mihoyo-checkin</artifactId>
     <version>1.0.0-beta.1</version>
 </dependency>
 ```

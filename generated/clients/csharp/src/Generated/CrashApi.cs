@@ -7,10 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Api.Request;
 
-namespace UIGF.Uncategorized.Telemetry.Crash
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Crash
 {
     /// <summary> The CrashApi sub-client. </summary>
     public partial class CrashApi
@@ -81,7 +81,7 @@ namespace UIGF.Uncategorized.Telemetry.Crash
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult Upload(JsonObject body, CancellationToken cancellationToken = default)
+        public virtual ClientResult Upload(LegacyCrashReport body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -93,7 +93,7 @@ namespace UIGF.Uncategorized.Telemetry.Crash
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult> UploadAsync(JsonObject body, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult> UploadAsync(LegacyCrashReport body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 

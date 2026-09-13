@@ -1,5 +1,5 @@
 /** Dynamic Secret signing input. The caller owns salt retrieval and rotation. */
-namespace UIGF.Security;
+namespace UIGF.Mihoyo.Security;
 
 /**
  * `@requiresDs("v1" | "v2")` is supplied by the local `@uigf/typespec-ds`

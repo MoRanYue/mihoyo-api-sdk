@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary> The FavoritePostRequest. </summary>
     public partial class FavoritePostRequest

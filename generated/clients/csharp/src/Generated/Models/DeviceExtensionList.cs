@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UIGF.Mihoyo;
 
-namespace UIGF.Utility.Device
+namespace UIGF.Mihoyo.Utility.Device
 {
     /// <summary> The DeviceExtensionList. </summary>
     public partial class DeviceExtensionList

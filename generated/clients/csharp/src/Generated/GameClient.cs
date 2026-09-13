@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.Telemetry.Game
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Game
 {
     /// <summary> Game SDK diagnostics, crash reports, and performance configuration. </summary>
     public partial class GameClient

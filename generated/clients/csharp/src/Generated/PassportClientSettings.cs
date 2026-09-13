@@ -7,7 +7,7 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> Represents the settings used to configure a <see cref="PassportClient"/> that can be loaded from an <see cref="IConfigurationSection"/>. </summary>
     [Experimental("SCME0002")]

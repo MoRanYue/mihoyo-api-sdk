@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary></summary>
     public enum ListRequestPlatform

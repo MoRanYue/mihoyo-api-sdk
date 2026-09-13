@@ -3,7 +3,7 @@ import { $lib, $requiresDs } from "./index.js";
 export { $lib };
 
 export const $decorators = {
-  "UIGF.Security": {
+  "UIGF.Mihoyo.Security": {
     requiresDs: $requiresDs,
   },
 };

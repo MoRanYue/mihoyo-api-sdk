@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.SDK.Secure
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Secure
 {
     /// <summary></summary>
     public partial class GenshinSdkSecureApi

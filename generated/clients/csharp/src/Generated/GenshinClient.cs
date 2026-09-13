@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Global.Genshin
+namespace UIGF.Mihoyo.Game.Global.Genshin
 {
     /// <summary> Global Genshin announcement and Traveller's Diary APIs. </summary>
     public partial class GenshinClient

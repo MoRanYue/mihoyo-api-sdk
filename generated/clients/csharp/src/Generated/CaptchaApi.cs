@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The CaptchaApi sub-client. </summary>
     public partial class CaptchaApi
@@ -81,12 +80,12 @@ namespace UIGF.Passport
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> Create(LoginCaptchaRequest body, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseLoginCaptchaData> Create(LoginCaptchaRequest body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = Create(body, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseLoginCaptchaData)result, result.GetRawResponse());
         }
 
         /// <summary> Starts the vendor login-captcha challenge. Solve it through the official flow. </summary>
@@ -94,12 +93,12 @@ namespace UIGF.Passport
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> CreateAsync(LoginCaptchaRequest body, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseLoginCaptchaData>> CreateAsync(LoginCaptchaRequest body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await CreateAsync(body, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseLoginCaptchaData)result, result.GetRawResponse());
         }
     }
 }

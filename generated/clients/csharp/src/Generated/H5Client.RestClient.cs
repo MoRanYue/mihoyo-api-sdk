@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Uncategorized.Telemetry.H5
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.H5
 {
     /// <summary></summary>
     public partial class H5Client

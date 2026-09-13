@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Launcher.Global
+namespace UIGF.Mihoyo.Launcher.Global
 {
     /// <summary></summary>
     public partial class GlobalLauncherClient

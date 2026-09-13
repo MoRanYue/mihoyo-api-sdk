@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Utility.LiveStream
+namespace UIGF.Mihoyo.Utility.LiveStream
 {
     /// <summary></summary>
     public partial class LiveStreamClient

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Dispatch.RegionList
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.RegionList
 {
     /// <summary></summary>
     public partial class RegionListClient

@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Account
+namespace UIGF.Mihoyo.Game.Account
 {
     /// <summary> CN game-account binding, Gacha auth-key, OBC, and cultivation calculator APIs. </summary>
     public partial class GameAccountClient

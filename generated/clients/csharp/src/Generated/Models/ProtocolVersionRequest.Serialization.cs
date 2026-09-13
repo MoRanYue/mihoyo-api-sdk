@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.SDK
+namespace UIGF.Mihoyo.Game.Genshin.SDK
 {
     /// <summary> The ProtocolVersionRequest. </summary>
     public partial class ProtocolVersionRequest : IJsonModel<ProtocolVersionRequest>

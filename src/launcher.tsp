@@ -2,7 +2,7 @@ import "@typespec/http";
 
 using TypeSpec.Http;
 
-namespace UIGF.Launcher {
+namespace UIGF.Mihoyo.Launcher {
   model LauncherQuery {
     @query("launcher_id")
     launcherId: string;
@@ -64,146 +64,146 @@ namespace UIGF.Launcher {
 /** HoYoPlay launcher metadata for CN official and Bilibili launcher IDs. */
 @service(#{ title: "UIGF HoYoPlay CN API" })
 @server("https://hyp-api.mihoyo.com", "CN HoYoPlay API")
-namespace UIGF.Launcher.CN {
+namespace UIGF.Mihoyo.Launcher.CN {
   @route("/hyp/hyp-connect/api")
   interface MetadataApi {
     @get
     @route("/getAllGameBasicInfo")
     getAllGameBasicInfo(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.Launcher.GameBasicInfo>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.Launcher.GameBasicInfo>;
 
     @get
     @route("/getGamePackages")
     getGamePackages(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameChannelSDKs")
     getGameChannelSdks(
-      ...UIGF.Launcher.ChannelQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.ChannelQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameDeprecatedFileConfigs")
     getDeprecatedFileConfigs(
-      ...UIGF.Launcher.ChannelQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.ChannelQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameConfigs")
     getGameConfigs(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameScanInfo")
     getGameScanInfo(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameBranches")
     getGameBranches(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getWPFPackages")
     getWpfPackages(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @post
     @route("/getDXConfigs")
     getDxConfigs(
-      ...UIGF.Launcher.LauncherQuery,
-      @body body: UIGF.Launcher.DxConfigRequest,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+      @body body: UIGF.Mihoyo.Launcher.DxConfigRequest,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
   }
 }
 
 /** HoYoPlay launcher metadata for the global launcher. */
 @service(#{ title: "UIGF HoYoPlay Global API" })
 @server("https://sg-hyp-api.hoyoverse.com", "Global HoYoPlay API")
-namespace UIGF.Launcher.Global {
+namespace UIGF.Mihoyo.Launcher.Global {
   @route("/hyp/hyp-connect/api")
   interface MetadataApi {
     @get
     @route("/getAllGameBasicInfo")
     getAllGameBasicInfo(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.Launcher.GameBasicInfo>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.Launcher.GameBasicInfo>;
 
     @get
     @route("/getGamePackages")
     getGamePackages(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameChannelSDKs")
     getGameChannelSdks(
-      ...UIGF.Launcher.ChannelQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.ChannelQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameDeprecatedFileConfigs")
     getDeprecatedFileConfigs(
-      ...UIGF.Launcher.ChannelQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.ChannelQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameConfigs")
     getGameConfigs(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameScanInfo")
     getGameScanInfo(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getGameBranches")
     getGameBranches(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @get
     @route("/getWPFPackages")
     getWpfPackages(
-      ...UIGF.Launcher.LauncherQuery,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
 
     @post
     @route("/getDXConfigs")
     getDxConfigs(
-      ...UIGF.Launcher.LauncherQuery,
-      @body body: UIGF.Launcher.DxConfigRequest,
-    ): UIGF.LauncherResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.LauncherQuery,
+      @body body: UIGF.Mihoyo.Launcher.DxConfigRequest,
+    ): UIGF.Mihoyo.LauncherResponse<UIGF.Mihoyo.JsonObject>;
   }
 }
 
 /** CN Sophon chunk and incremental-patch manifests. */
 @service(#{ title: "UIGF Sophon CN API" })
 @server("https://downloader-api.mihoyo.com", "CN Sophon Downloader API")
-namespace UIGF.Launcher.Sophon.CN {
+namespace UIGF.Mihoyo.Launcher.Sophon.CN {
   @route("/downloader/sophon_chunk/api")
   interface BuildApi {
     @get
     @route("/getBuild")
     getBuild(
-      ...UIGF.Launcher.SophonBuildQuery,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.SophonBuildQuery,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.JsonObject>;
 
     @post
     @route("/getPatchBuild")
     getPatchBuild(
-      ...UIGF.Launcher.SophonBuildQuery,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.SophonBuildQuery,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.JsonObject>;
   }
 }
 
@@ -213,19 +213,19 @@ namespace UIGF.Launcher.Sophon.CN {
   "https://sg-downloader-api.hoyoverse.com",
   "Global Sophon Downloader API"
 )
-namespace UIGF.Launcher.Sophon.Global {
+namespace UIGF.Mihoyo.Launcher.Sophon.Global {
   @route("/downloader/sophon_chunk/api")
   interface BuildApi {
     @get
     @route("/getBuild")
     getBuild(
-      ...UIGF.Launcher.SophonBuildQuery,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.SophonBuildQuery,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.JsonObject>;
 
     @post
     @route("/getPatchBuild")
     getPatchBuild(
-      ...UIGF.Launcher.SophonBuildQuery,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Launcher.SophonBuildQuery,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.JsonObject>;
   }
 }

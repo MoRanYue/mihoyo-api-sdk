@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The MobileCaptchaLoginRequest. </summary>
-    public partial class MobileCaptchaLoginRequest : DeviceContext, IJsonModel<MobileCaptchaLoginRequest>
+    public partial class MobileCaptchaLoginRequest : IJsonModel<MobileCaptchaLoginRequest>
     {
         /// <summary> Initializes a new instance of <see cref="MobileCaptchaLoginRequest"/> for deserialization. </summary>
         internal MobileCaptchaLoginRequest()
@@ -21,7 +21,7 @@ namespace UIGF.Passport
 
         /// <param name="data"> The data to parse. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override DeviceContext PersistableModelCreateCore(BinaryData data, ModelReaderWriterOptions options)
+        protected virtual MobileCaptchaLoginRequest PersistableModelCreateCore(BinaryData data, ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<MobileCaptchaLoginRequest>)this).GetFormatFromOptions(options) : options.Format;
             switch (format)
@@ -37,7 +37,7 @@ namespace UIGF.Passport
         }
 
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override BinaryData PersistableModelWriteCore(ModelReaderWriterOptions options)
+        protected virtual BinaryData PersistableModelWriteCore(ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<MobileCaptchaLoginRequest>)this).GetFormatFromOptions(options) : options.Format;
             switch (format)
@@ -54,7 +54,7 @@ namespace UIGF.Passport
 
         /// <param name="data"> The data to parse. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        MobileCaptchaLoginRequest IPersistableModel<MobileCaptchaLoginRequest>.Create(BinaryData data, ModelReaderWriterOptions options) => (MobileCaptchaLoginRequest)PersistableModelCreateCore(data, options);
+        MobileCaptchaLoginRequest IPersistableModel<MobileCaptchaLoginRequest>.Create(BinaryData data, ModelReaderWriterOptions options) => PersistableModelCreateCore(data, options);
 
         /// <param name="options"> The client options for reading and writing models. </param>
         string IPersistableModel<MobileCaptchaLoginRequest>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
@@ -80,37 +80,42 @@ namespace UIGF.Passport
 
         /// <param name="writer"> The JSON writer. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        protected virtual void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<MobileCaptchaLoginRequest>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
                 throw new FormatException($"The model {nameof(MobileCaptchaLoginRequest)} does not support writing '{format}' format.");
             }
-            base.JsonModelWriteCore(writer, options);
+            writer.WritePropertyName("action_type"u8);
+            writer.WriteStringValue(ActionType);
+            writer.WritePropertyName("area_code"u8);
+            writer.WriteStringValue(AreaCode);
+            writer.WritePropertyName("captcha"u8);
+            writer.WriteStringValue(Captcha);
             writer.WritePropertyName("mobile"u8);
             writer.WriteStringValue(Mobile);
-            writer.WritePropertyName("mobile_captcha"u8);
-            writer.WriteStringValue(MobileCaptcha);
-            if (Optional.IsDefined(ActionTicket))
+            foreach (var item in AdditionalProperties)
             {
-                writer.WritePropertyName("action_ticket"u8);
-                writer.WriteStringValue(ActionTicket);
-            }
-            if (Optional.IsDefined(GameBiz))
-            {
-                writer.WritePropertyName("game_biz"u8);
-                writer.WriteStringValue(GameBiz);
+                writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+                writer.WriteRawValue(item.Value);
+#else
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
+#endif
             }
         }
 
         /// <param name="reader"> The JSON reader. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        MobileCaptchaLoginRequest IJsonModel<MobileCaptchaLoginRequest>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options) => (MobileCaptchaLoginRequest)JsonModelCreateCore(ref reader, options);
+        MobileCaptchaLoginRequest IJsonModel<MobileCaptchaLoginRequest>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options) => JsonModelCreateCore(ref reader, options);
 
         /// <param name="reader"> The JSON reader. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override DeviceContext JsonModelCreateCore(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        protected virtual MobileCaptchaLoginRequest JsonModelCreateCore(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<MobileCaptchaLoginRequest>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
@@ -129,47 +134,26 @@ namespace UIGF.Passport
             {
                 return null;
             }
-            string device = default;
-            string deviceFp = default;
-            string deviceName = default;
-            string deviceModel = default;
-            string deviceId = default;
-            string appId = default;
-            IDictionary<string, BinaryData> additionalProperties = new ChangeTrackingDictionary<string, BinaryData>();
+            string actionType = default;
+            string areaCode = default;
+            string captcha = default;
             string mobile = default;
-            string mobileCaptcha = default;
-            string actionTicket = default;
-            string gameBiz = default;
+            IDictionary<string, BinaryData> additionalProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
-                if (prop.NameEquals("device"u8))
+                if (prop.NameEquals("action_type"u8))
                 {
-                    device = prop.Value.GetString();
+                    actionType = prop.Value.GetString();
                     continue;
                 }
-                if (prop.NameEquals("device_fp"u8))
+                if (prop.NameEquals("area_code"u8))
                 {
-                    deviceFp = prop.Value.GetString();
+                    areaCode = prop.Value.GetString();
                     continue;
                 }
-                if (prop.NameEquals("device_name"u8))
+                if (prop.NameEquals("captcha"u8))
                 {
-                    deviceName = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("device_model"u8))
-                {
-                    deviceModel = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("device_id"u8))
-                {
-                    deviceId = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("app_id"u8))
-                {
-                    appId = prop.Value.GetString();
+                    captcha = prop.Value.GetString();
                     continue;
                 }
                 if (prop.NameEquals("mobile"u8))
@@ -177,35 +161,9 @@ namespace UIGF.Passport
                     mobile = prop.Value.GetString();
                     continue;
                 }
-                if (prop.NameEquals("mobile_captcha"u8))
-                {
-                    mobileCaptcha = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("action_ticket"u8))
-                {
-                    actionTicket = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("game_biz"u8))
-                {
-                    gameBiz = prop.Value.GetString();
-                    continue;
-                }
                 additionalProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
             }
-            return new MobileCaptchaLoginRequest(
-                device,
-                deviceFp,
-                deviceName,
-                deviceModel,
-                deviceId,
-                appId,
-                additionalProperties,
-                mobile,
-                mobileCaptcha,
-                actionTicket,
-                gameBiz);
+            return new MobileCaptchaLoginRequest(actionType, areaCode, captcha, mobile, additionalProperties);
         }
     }
 }

@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
-using UIGF.Uncategorized;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF.Uncategorized.ComboToken
+namespace UIGF.Mihoyo.Uncategorized.ComboToken
 {
     /// <summary> The ComboTokenApi sub-client. </summary>
     public partial class ComboTokenApi
@@ -82,12 +81,12 @@ namespace UIGF.Uncategorized.ComboToken
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> Exchange(ComboTokenRequest body, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseComboTokenUploadCredentials> Exchange(ComboTokenRequest body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = Exchange(body, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseComboTokenUploadCredentials)result, result.GetRawResponse());
         }
 
         /// <summary> Exchange. </summary>
@@ -95,12 +94,12 @@ namespace UIGF.Uncategorized.ComboToken
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> ExchangeAsync(ComboTokenRequest body, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseComboTokenUploadCredentials>> ExchangeAsync(ComboTokenRequest body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await ExchangeAsync(body, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseComboTokenUploadCredentials)result, result.GetRawResponse());
         }
     }
 }

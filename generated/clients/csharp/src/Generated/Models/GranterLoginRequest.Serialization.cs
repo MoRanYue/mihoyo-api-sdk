@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.SDK
+namespace UIGF.Mihoyo.Game.Genshin.SDK
 {
     /// <summary> The GranterLoginRequest. </summary>
     public partial class GranterLoginRequest : IJsonModel<GranterLoginRequest>
@@ -88,9 +88,9 @@ namespace UIGF.Game.Genshin.SDK
                 throw new FormatException($"The model {nameof(GranterLoginRequest)} does not support writing '{format}' format.");
             }
             writer.WritePropertyName("app_id"u8);
-            writer.WriteStringValue(AppId);
+            writer.WriteNumberValue(AppId);
             writer.WritePropertyName("channel_id"u8);
-            writer.WriteStringValue(ChannelId);
+            writer.WriteNumberValue(ChannelId);
             writer.WritePropertyName("data"u8);
             writer.WriteStringValue(Data);
             writer.WritePropertyName("device"u8);
@@ -139,8 +139,8 @@ namespace UIGF.Game.Genshin.SDK
             {
                 return null;
             }
-            string appId = default;
-            string channelId = default;
+            int appId = default;
+            int channelId = default;
             string data = default;
             string device = default;
             string sign = default;
@@ -149,12 +149,12 @@ namespace UIGF.Game.Genshin.SDK
             {
                 if (prop.NameEquals("app_id"u8))
                 {
-                    appId = prop.Value.GetString();
+                    appId = prop.Value.GetInt32();
                     continue;
                 }
                 if (prop.NameEquals("channel_id"u8))
                 {
-                    channelId = prop.Value.GetString();
+                    channelId = prop.Value.GetInt32();
                     continue;
                 }
                 if (prop.NameEquals("data"u8))

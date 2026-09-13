@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The PandaQrRequest. </summary>
     public partial class PandaQrRequest : IJsonModel<PandaQrRequest>

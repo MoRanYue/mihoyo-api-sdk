@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.SDK
+namespace UIGF.Mihoyo.Game.Genshin.SDK
 {
     /// <summary> The GranterLoginRequest. </summary>
     public partial class GranterLoginRequest
@@ -20,11 +20,9 @@ namespace UIGF.Game.Genshin.SDK
         /// <param name="data"></param>
         /// <param name="device"></param>
         /// <param name="sign"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="appId"/>, <paramref name="channelId"/>, <paramref name="data"/>, <paramref name="device"/> or <paramref name="sign"/> is null. </exception>
-        public GranterLoginRequest(string appId, string channelId, string data, string device, string sign)
+        /// <exception cref="ArgumentNullException"> <paramref name="data"/>, <paramref name="device"/> or <paramref name="sign"/> is null. </exception>
+        public GranterLoginRequest(int appId, int channelId, string data, string device, string sign)
         {
-            Argument.AssertNotNull(appId, nameof(appId));
-            Argument.AssertNotNull(channelId, nameof(channelId));
             Argument.AssertNotNull(data, nameof(data));
             Argument.AssertNotNull(device, nameof(device));
             Argument.AssertNotNull(sign, nameof(sign));
@@ -43,7 +41,7 @@ namespace UIGF.Game.Genshin.SDK
         /// <param name="device"></param>
         /// <param name="sign"></param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal GranterLoginRequest(string appId, string channelId, string data, string device, string sign, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal GranterLoginRequest(int appId, int channelId, string data, string device, string sign, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             AppId = appId;
             ChannelId = channelId;
@@ -54,10 +52,10 @@ namespace UIGF.Game.Genshin.SDK
         }
 
         /// <summary> Gets the AppId. </summary>
-        public string AppId { get; }
+        public int AppId { get; }
 
         /// <summary> Gets the ChannelId. </summary>
-        public string ChannelId { get; }
+        public int ChannelId { get; }
 
         /// <summary> Gets the Data. </summary>
         public string Data { get; }

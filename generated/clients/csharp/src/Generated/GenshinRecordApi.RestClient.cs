@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Record
+namespace UIGF.Mihoyo.Game.Genshin.Record
 {
     /// <summary></summary>
     public partial class GenshinRecordApi
@@ -261,6 +261,65 @@ namespace UIGF.Game.Genshin.Record
             if (ds != null)
             {
                 request.Headers.Set("DS", ds);
+            }
+            request.Headers.Set("Accept", "application/json");
+            message.Apply(options);
+            return message;
+        }
+
+        internal PipelineMessage CreateGetExternalContentRequest(string cookie, long itemId, int itemType, string ds, RequestOptions options)
+        {
+            ClientUriBuilder uri = new ClientUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/game_record/app/genshin/api/external_content", false);
+            uri.AppendQuery("item_id", TypeFormatters.ConvertToString(itemId), true);
+            uri.AppendQuery("item_type", TypeFormatters.ConvertToString(itemType), true);
+            PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
+            PipelineRequest request = message.Request;
+            request.Headers.Set("Cookie", cookie);
+            if (ds != null)
+            {
+                request.Headers.Set("DS", ds);
+            }
+            request.Headers.Set("Accept", "application/json");
+            message.Apply(options);
+            return message;
+        }
+
+        internal PipelineMessage CreateGetRoleBasicInfoRequest(string cookie, string roleId, string server, string ds, RequestOptions options)
+        {
+            ClientUriBuilder uri = new ClientUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/game_record/app/genshin/api/roleBasicInfo", false);
+            uri.AppendQuery("role_id", roleId, true);
+            uri.AppendQuery("server", server, true);
+            PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
+            PipelineRequest request = message.Request;
+            request.Headers.Set("Cookie", cookie);
+            if (ds != null)
+            {
+                request.Headers.Set("DS", ds);
+            }
+            request.Headers.Set("Accept", "application/json");
+            message.Apply(options);
+            return message;
+        }
+
+        internal PipelineMessage CreateGetToolRequest(string cookie, string ds, string challenge, RequestOptions options)
+        {
+            ClientUriBuilder uri = new ClientUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/game_record/app/genshin/api/tool", false);
+            PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
+            PipelineRequest request = message.Request;
+            request.Headers.Set("Cookie", cookie);
+            if (ds != null)
+            {
+                request.Headers.Set("DS", ds);
+            }
+            if (challenge != null)
+            {
+                request.Headers.Set("x-rpc-challenge", challenge);
             }
             request.Headers.Set("Accept", "application/json");
             message.Apply(options);

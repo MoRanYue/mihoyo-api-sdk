@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce
+namespace UIGF.Mihoyo.Commerce
 {
     /// <summary> The ShopGoodsRequest. </summary>
     public partial class ShopGoodsRequest

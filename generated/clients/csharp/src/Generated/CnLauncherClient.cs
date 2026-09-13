@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Launcher.CN
+namespace UIGF.Mihoyo.Launcher.CN
 {
     /// <summary> HoYoPlay launcher metadata for CN official and Bilibili launcher IDs. </summary>
     public partial class CnLauncherClient

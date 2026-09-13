@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.CN.Records
+namespace UIGF.Mihoyo.Game.CN.Records
 {
     /// <summary></summary>
     public partial class StarRailApi

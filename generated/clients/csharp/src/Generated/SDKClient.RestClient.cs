@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Uncategorized.Telemetry.SDK
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.SDK
 {
     /// <summary></summary>
     public partial class SDKClient

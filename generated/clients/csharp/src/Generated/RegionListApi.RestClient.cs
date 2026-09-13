@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Dispatch.RegionList
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.RegionList
 {
     /// <summary></summary>
     public partial class RegionListApi

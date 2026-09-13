@@ -7,10 +7,9 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary> The Post. </summary>
     public partial class Post : IJsonModel<Post>

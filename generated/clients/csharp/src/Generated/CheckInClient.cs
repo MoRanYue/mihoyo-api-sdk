@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.CheckIn
+namespace UIGF.Mihoyo.CheckIn
 {
     /// <summary> Daily game check-in endpoints. The selected game is carried in `x-rpc-signgame`. </summary>
     public partial class CheckInClient

@@ -3,7 +3,7 @@ import "../dist/tsp-index.js";
 
 using TypeSpec.Reflection;
 
-namespace UIGF.Security;
+namespace UIGF.Mihoyo.Security;
 
 /**
  * Declares the Dynamic Secret generation required by an operation or interface.

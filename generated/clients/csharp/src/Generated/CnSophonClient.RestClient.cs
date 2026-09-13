@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Launcher.Sophon.CN
+namespace UIGF.Mihoyo.Launcher.Sophon.CN
 {
     /// <summary></summary>
     public partial class CnSophonClient

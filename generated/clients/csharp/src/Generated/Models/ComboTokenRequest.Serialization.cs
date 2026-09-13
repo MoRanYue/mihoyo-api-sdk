@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The ComboTokenRequest. </summary>
     public partial class ComboTokenRequest : IJsonModel<ComboTokenRequest>

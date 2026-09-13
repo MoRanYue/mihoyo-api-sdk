@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Launcher.Sophon.Global
+namespace UIGF.Mihoyo.Launcher.Sophon.Global
 {
     /// <summary></summary>
     public partial class GlobalSophonClient

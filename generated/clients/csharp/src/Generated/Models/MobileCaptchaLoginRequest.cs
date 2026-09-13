@@ -6,56 +6,62 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The MobileCaptchaLoginRequest. </summary>
-    public partial class MobileCaptchaLoginRequest : DeviceContext
+    public partial class MobileCaptchaLoginRequest
     {
+        /// <summary> Keeps track of any properties unknown to the library. </summary>
+        private protected readonly IDictionary<string, BinaryData> _additionalBinaryDataProperties;
+
         /// <summary> Initializes a new instance of <see cref="MobileCaptchaLoginRequest"/>. </summary>
-        /// <param name="device"></param>
+        /// <param name="actionType"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="captcha"></param>
         /// <param name="mobile"></param>
-        /// <param name="mobileCaptcha"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="device"/>, <paramref name="mobile"/> or <paramref name="mobileCaptcha"/> is null. </exception>
-        public MobileCaptchaLoginRequest(string device, string mobile, string mobileCaptcha) : base(device)
+        /// <exception cref="ArgumentNullException"> <paramref name="actionType"/>, <paramref name="areaCode"/>, <paramref name="captcha"/> or <paramref name="mobile"/> is null. </exception>
+        public MobileCaptchaLoginRequest(string actionType, string areaCode, string captcha, string mobile)
         {
-            Argument.AssertNotNull(device, nameof(device));
+            Argument.AssertNotNull(actionType, nameof(actionType));
+            Argument.AssertNotNull(areaCode, nameof(areaCode));
+            Argument.AssertNotNull(captcha, nameof(captcha));
             Argument.AssertNotNull(mobile, nameof(mobile));
-            Argument.AssertNotNull(mobileCaptcha, nameof(mobileCaptcha));
 
+            ActionType = actionType;
+            AreaCode = areaCode;
+            Captcha = captcha;
             Mobile = mobile;
-            MobileCaptcha = mobileCaptcha;
+            _additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
         }
 
         /// <summary> Initializes a new instance of <see cref="MobileCaptchaLoginRequest"/>. </summary>
-        /// <param name="device"></param>
-        /// <param name="deviceFp"></param>
-        /// <param name="deviceName"></param>
-        /// <param name="deviceModel"></param>
-        /// <param name="deviceId"></param>
-        /// <param name="appId"></param>
-        /// <param name="additionalProperties"></param>
+        /// <param name="actionType"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="captcha"></param>
         /// <param name="mobile"></param>
-        /// <param name="mobileCaptcha"></param>
-        /// <param name="actionTicket"></param>
-        /// <param name="gameBiz"></param>
-        internal MobileCaptchaLoginRequest(string device, string deviceFp, string deviceName, string deviceModel, string deviceId, string appId, IDictionary<string, BinaryData> additionalProperties, string mobile, string mobileCaptcha, string actionTicket, string gameBiz) : base(device, deviceFp, deviceName, deviceModel, deviceId, appId, additionalProperties)
+        /// <param name="additionalProperties"></param>
+        internal MobileCaptchaLoginRequest(string actionType, string areaCode, string captcha, string mobile, IDictionary<string, BinaryData> additionalProperties)
         {
+            ActionType = actionType;
+            AreaCode = areaCode;
+            Captcha = captcha;
             Mobile = mobile;
-            MobileCaptcha = mobileCaptcha;
-            ActionTicket = actionTicket;
-            GameBiz = gameBiz;
+            _additionalBinaryDataProperties = additionalProperties;
         }
+
+        /// <summary> Gets the ActionType. </summary>
+        public string ActionType { get; }
+
+        /// <summary> Gets the AreaCode. </summary>
+        public string AreaCode { get; }
+
+        /// <summary> Gets the Captcha. </summary>
+        public string Captcha { get; }
 
         /// <summary> Gets the Mobile. </summary>
         public string Mobile { get; }
 
-        /// <summary> Gets the MobileCaptcha. </summary>
-        public string MobileCaptcha { get; }
-
-        /// <summary> Gets or sets the ActionTicket. </summary>
-        public string ActionTicket { get; set; }
-
-        /// <summary> Gets or sets the GameBiz. </summary>
-        public string GameBiz { get; set; }
+        /// <summary> Gets the AdditionalProperties. </summary>
+        public IDictionary<string, BinaryData> AdditionalProperties => _additionalBinaryDataProperties;
     }
 }

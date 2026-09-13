@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Announcements
+namespace UIGF.Mihoyo.Game.Genshin.Announcements
 {
     /// <summary> CN Genshin announcement endpoints. </summary>
     public partial class AnnouncementsClient

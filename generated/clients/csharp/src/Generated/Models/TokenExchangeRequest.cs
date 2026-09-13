@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The TokenExchangeRequest. </summary>
     public partial class TokenExchangeRequest
@@ -18,10 +18,9 @@ namespace UIGF.Passport
         /// <param name="dstTokenType"></param>
         /// <param name="mid"></param>
         /// <param name="srcToken"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="dstTokenType"/>, <paramref name="mid"/> or <paramref name="srcToken"/> is null. </exception>
-        public TokenExchangeRequest(string dstTokenType, string mid, string srcToken)
+        /// <exception cref="ArgumentNullException"> <paramref name="mid"/> or <paramref name="srcToken"/> is null. </exception>
+        public TokenExchangeRequest(int dstTokenType, string mid, LoginToken srcToken)
         {
-            Argument.AssertNotNull(dstTokenType, nameof(dstTokenType));
             Argument.AssertNotNull(mid, nameof(mid));
             Argument.AssertNotNull(srcToken, nameof(srcToken));
 
@@ -35,7 +34,7 @@ namespace UIGF.Passport
         /// <param name="mid"></param>
         /// <param name="srcToken"></param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal TokenExchangeRequest(string dstTokenType, string mid, string srcToken, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal TokenExchangeRequest(int dstTokenType, string mid, LoginToken srcToken, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             DstTokenType = dstTokenType;
             Mid = mid;
@@ -44,12 +43,12 @@ namespace UIGF.Passport
         }
 
         /// <summary> Gets the DstTokenType. </summary>
-        public string DstTokenType { get; }
+        public int DstTokenType { get; }
 
         /// <summary> Gets the Mid. </summary>
         public string Mid { get; }
 
         /// <summary> Gets the SrcToken. </summary>
-        public string SrcToken { get; }
+        public LoginToken SrcToken { get; }
     }
 }

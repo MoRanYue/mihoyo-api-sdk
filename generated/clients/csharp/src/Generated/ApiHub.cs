@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary> The ApiHub sub-client. </summary>
     public partial class ApiHub
@@ -126,20 +125,20 @@ namespace UIGF.Community
         /// <param name="gid"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetAppConfig(string gid = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseCommunityAppConfigData> GetAppConfig(string gid = default, CancellationToken cancellationToken = default)
         {
             ClientResult result = GetAppConfig(gid, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseCommunityAppConfigData)result, result.GetRawResponse());
         }
 
         /// <summary> GetAppConfig. </summary>
         /// <param name="gid"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetAppConfigAsync(string gid = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseCommunityAppConfigData>> GetAppConfigAsync(string gid = default, CancellationToken cancellationToken = default)
         {
             ClientResult result = await GetAppConfigAsync(gid, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseCommunityAppConfigData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -619,12 +618,18 @@ namespace UIGF.Community
         /// </list>
         /// </summary>
         /// <param name="gids"></param>
+        /// <param name="cpu"></param>
+        /// <param name="device"></param>
+        /// <param name="exposedResourceTickets"></param>
+        /// <param name="isTriggeredByResource"></param>
+        /// <param name="parts"></param>
+        /// <param name="version"></param>
         /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual ClientResult GetHome(int gids, RequestOptions options)
+        public virtual ClientResult GetHome(int gids, string cpu, string device, string exposedResourceTickets, bool? isTriggeredByResource, string parts, string version, RequestOptions options)
         {
-            using PipelineMessage message = CreateGetHomeRequest(gids, options);
+            using PipelineMessage message = CreateGetHomeRequest(gids, cpu, device, exposedResourceTickets, isTriggeredByResource, parts, version, options);
             return ClientResult.FromResponse(Pipeline.ProcessMessage(message, options));
         }
 
@@ -637,33 +642,51 @@ namespace UIGF.Community
         /// </list>
         /// </summary>
         /// <param name="gids"></param>
+        /// <param name="cpu"></param>
+        /// <param name="device"></param>
+        /// <param name="exposedResourceTickets"></param>
+        /// <param name="isTriggeredByResource"></param>
+        /// <param name="parts"></param>
+        /// <param name="version"></param>
         /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual async Task<ClientResult> GetHomeAsync(int gids, RequestOptions options)
+        public virtual async Task<ClientResult> GetHomeAsync(int gids, string cpu, string device, string exposedResourceTickets, bool? isTriggeredByResource, string parts, string version, RequestOptions options)
         {
-            using PipelineMessage message = CreateGetHomeRequest(gids, options);
+            using PipelineMessage message = CreateGetHomeRequest(gids, cpu, device, exposedResourceTickets, isTriggeredByResource, parts, version, options);
             return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
         }
 
         /// <summary> GetHome. </summary>
         /// <param name="gids"></param>
+        /// <param name="cpu"></param>
+        /// <param name="device"></param>
+        /// <param name="exposedResourceTickets"></param>
+        /// <param name="isTriggeredByResource"></param>
+        /// <param name="parts"></param>
+        /// <param name="version"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetHome(int gids, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseCommunityHomeData> GetHome(int gids, string cpu = default, string device = default, string exposedResourceTickets = default, bool? isTriggeredByResource = default, string parts = default, string version = default, CancellationToken cancellationToken = default)
         {
-            ClientResult result = GetHome(gids, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            ClientResult result = GetHome(gids, cpu, device, exposedResourceTickets, isTriggeredByResource, parts, version, cancellationToken.ToRequestOptions());
+            return ClientResult.FromValue((ApiResponseCommunityHomeData)result, result.GetRawResponse());
         }
 
         /// <summary> GetHome. </summary>
         /// <param name="gids"></param>
+        /// <param name="cpu"></param>
+        /// <param name="device"></param>
+        /// <param name="exposedResourceTickets"></param>
+        /// <param name="isTriggeredByResource"></param>
+        /// <param name="parts"></param>
+        /// <param name="version"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetHomeAsync(int gids, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseCommunityHomeData>> GetHomeAsync(int gids, string cpu = default, string device = default, string exposedResourceTickets = default, bool? isTriggeredByResource = default, string parts = default, string version = default, CancellationToken cancellationToken = default)
         {
-            ClientResult result = await GetHomeAsync(gids, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            ClientResult result = await GetHomeAsync(gids, cpu, device, exposedResourceTickets, isTriggeredByResource, parts, version, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
+            return ClientResult.FromValue((ApiResponseCommunityHomeData)result, result.GetRawResponse());
         }
 
         /// <summary>

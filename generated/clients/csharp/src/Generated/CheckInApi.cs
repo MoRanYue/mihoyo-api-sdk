@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Community;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Community;
 
-namespace UIGF.CheckIn
+namespace UIGF.Mihoyo.CheckIn
 {
     /// <summary> The CheckInApi sub-client. </summary>
     public partial class CheckInApi

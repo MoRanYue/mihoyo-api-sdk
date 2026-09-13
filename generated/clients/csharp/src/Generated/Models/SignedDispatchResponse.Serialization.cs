@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Dispatch
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch
 {
     /// <summary> The SignedDispatchResponse. </summary>
     public partial class SignedDispatchResponse : IJsonModel<SignedDispatchResponse>

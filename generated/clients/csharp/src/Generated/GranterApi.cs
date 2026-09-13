@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Game.Genshin.SDK;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Game.Genshin.SDK;
 
-namespace UIGF.Game.Genshin.Login
+namespace UIGF.Mihoyo.Game.Genshin.Login
 {
     /// <summary> The GranterApi sub-client. </summary>
     public partial class GranterApi
@@ -136,12 +135,12 @@ namespace UIGF.Game.Genshin.Login
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> Login(GranterLoginRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGranterLoginData> Login(GranterLoginRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = Login(body, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGranterLoginData)result, result.GetRawResponse());
         }
 
         /// <summary> Submits the caller-provided official granter login payload. </summary>
@@ -167,12 +166,12 @@ namespace UIGF.Game.Genshin.Login
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> LoginAsync(GranterLoginRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGranterLoginData>> LoginAsync(GranterLoginRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await LoginAsync(body, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGranterLoginData)result, result.GetRawResponse());
         }
     }
 }

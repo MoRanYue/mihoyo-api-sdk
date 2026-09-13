@@ -1,6 +1,6 @@
 import { createHash, randomBytes, randomInt } from "node:crypto";
 
-/** The two Dynamic Secret payload layouts observed in the reference clients. */
+/** The two supported Dynamic Secret payload layouts. */
 export type DsGeneration = 1 | 2;
 
 /** A scalar query value accepted by the canonical query helper. */

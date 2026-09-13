@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Login
+namespace UIGF.Mihoyo.Game.Genshin.Login
 {
     /// <summary></summary>
     public partial class PandaQrApi

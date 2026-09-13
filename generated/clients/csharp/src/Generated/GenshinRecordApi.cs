@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Game;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Game;
 
-namespace UIGF.Game.Genshin.Record
+namespace UIGF.Mihoyo.Game.Genshin.Record
 {
     /// <summary> The GenshinRecordApi sub-client. </summary>
     public partial class GenshinRecordApi
@@ -101,14 +100,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetIndex(string cookie, string server, string roleId, string ds = default, int? avatarListType = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinRecordIndexData> GetIndex(string cookie, string server, string roleId, string ds = default, int? avatarListType = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetIndex(cookie, server, roleId, ds, avatarListType, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinRecordIndexData)result, result.GetRawResponse());
         }
 
         /// <summary> GetIndex. </summary>
@@ -121,14 +120,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetIndexAsync(string cookie, string server, string roleId, string ds = default, int? avatarListType = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinRecordIndexData>> GetIndexAsync(string cookie, string server, string roleId, string ds = default, int? avatarListType = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetIndexAsync(cookie, server, roleId, ds, avatarListType, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinRecordIndexData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -362,14 +361,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetDailyNote(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinDailyNoteData> GetDailyNote(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetDailyNote(cookie, server, roleId, ds, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinDailyNoteData)result, result.GetRawResponse());
         }
 
         /// <summary> GetDailyNote. </summary>
@@ -381,14 +380,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetDailyNoteAsync(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinDailyNoteData>> GetDailyNoteAsync(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetDailyNoteAsync(cookie, server, roleId, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinDailyNoteData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -463,14 +462,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetSpiralAbyss(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinSpiralAbyssData> GetSpiralAbyss(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetSpiralAbyss(cookie, server, roleId, ds, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinSpiralAbyssData)result, result.GetRawResponse());
         }
 
         /// <summary> GetSpiralAbyss. </summary>
@@ -485,14 +484,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetSpiralAbyssAsync(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinSpiralAbyssData>> GetSpiralAbyssAsync(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetSpiralAbyssAsync(cookie, server, roleId, ds, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinSpiralAbyssData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -570,14 +569,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetImaginariumTheater(string cookie, string server, string roleId, string ds = default, int? active = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinTheaterData> GetImaginariumTheater(string cookie, string server, string roleId, string ds = default, int? active = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetImaginariumTheater(cookie, server, roleId, ds, active, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinTheaterData)result, result.GetRawResponse());
         }
 
         /// <summary> GetImaginariumTheater. </summary>
@@ -593,14 +592,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetImaginariumTheaterAsync(string cookie, string server, string roleId, string ds = default, int? active = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinTheaterData>> GetImaginariumTheaterAsync(string cookie, string server, string roleId, string ds = default, int? active = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetImaginariumTheaterAsync(cookie, server, roleId, ds, active, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinTheaterData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -666,14 +665,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetCharacterMaster(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinCharacterMasterData> GetCharacterMaster(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetCharacterMaster(cookie, server, roleId, ds, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinCharacterMasterData)result, result.GetRawResponse());
         }
 
         /// <summary> GetCharacterMaster. </summary>
@@ -685,14 +684,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetCharacterMasterAsync(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinCharacterMasterData>> GetCharacterMasterAsync(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetCharacterMasterAsync(cookie, server, roleId, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinCharacterMasterData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -767,14 +766,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetStygianOnslaught(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinStygianData> GetStygianOnslaught(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetStygianOnslaught(cookie, server, roleId, ds, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinStygianData)result, result.GetRawResponse());
         }
 
         /// <summary> GetStygianOnslaught. </summary>
@@ -789,14 +788,14 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetStygianOnslaughtAsync(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinStygianData>> GetStygianOnslaughtAsync(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetStygianOnslaughtAsync(cookie, server, roleId, ds, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinStygianData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -852,12 +851,12 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="server"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="server"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetStygianPopularity(string server, long roleId, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinStygianPopularityData> GetStygianPopularity(string server, long roleId, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(server, nameof(server));
 
             ClientResult result = GetStygianPopularity(server, roleId, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinStygianPopularityData)result, result.GetRawResponse());
         }
 
         /// <summary> GetStygianPopularity. </summary>
@@ -867,12 +866,12 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="server"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="server"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetStygianPopularityAsync(string server, long roleId, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinStygianPopularityData>> GetStygianPopularityAsync(string server, long roleId, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(server, nameof(server));
 
             ClientResult result = await GetStygianPopularityAsync(server, roleId, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinStygianPopularityData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -936,13 +935,13 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetActivityCalendar(string cookie, CharacterListRequest body, string ds = default, string challenge = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinActivityCalendarData> GetActivityCalendar(string cookie, CharacterListRequest body, string ds = default, string challenge = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = GetActivityCalendar(cookie, body, ds, challenge, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinActivityCalendarData)result, result.GetRawResponse());
         }
 
         /// <summary> GetActivityCalendar. </summary>
@@ -954,13 +953,13 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetActivityCalendarAsync(string cookie, CharacterListRequest body, string ds = default, string challenge = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinActivityCalendarData>> GetActivityCalendarAsync(string cookie, CharacterListRequest body, string ds = default, string challenge = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await GetActivityCalendarAsync(cookie, body, ds, challenge, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinActivityCalendarData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -1053,6 +1052,262 @@ namespace UIGF.Game.Genshin.Record
 
             ClientResult result = await GetCharacterTpsAsync(cookie, server, roleId, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
             return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+        }
+
+        /// <summary>
+        /// [Protocol Method] GetExternalContent
+        /// <list type="bullet">
+        /// <item>
+        /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <param name="itemId"></param>
+        /// <param name="itemType"></param>
+        /// <param name="ds"></param>
+        /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        public virtual ClientResult GetExternalContent(string cookie, long itemId, int itemType, string ds, RequestOptions options)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            using PipelineMessage message = CreateGetExternalContentRequest(cookie, itemId, itemType, ds, options);
+            return ClientResult.FromResponse(Pipeline.ProcessMessage(message, options));
+        }
+
+        /// <summary>
+        /// [Protocol Method] GetExternalContent
+        /// <list type="bullet">
+        /// <item>
+        /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <param name="itemId"></param>
+        /// <param name="itemType"></param>
+        /// <param name="ds"></param>
+        /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        public virtual async Task<ClientResult> GetExternalContentAsync(string cookie, long itemId, int itemType, string ds, RequestOptions options)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            using PipelineMessage message = CreateGetExternalContentRequest(cookie, itemId, itemType, ds, options);
+            return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
+        }
+
+        /// <summary> GetExternalContent. </summary>
+        /// <param name="cookie"></param>
+        /// <param name="itemId"></param>
+        /// <param name="itemType"></param>
+        /// <param name="ds"></param>
+        /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        public virtual ClientResult<ApiResponseGenshinExternalContentData> GetExternalContent(string cookie, long itemId, int itemType, string ds = default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            ClientResult result = GetExternalContent(cookie, itemId, itemType, ds, cancellationToken.ToRequestOptions());
+            return ClientResult.FromValue((ApiResponseGenshinExternalContentData)result, result.GetRawResponse());
+        }
+
+        /// <summary> GetExternalContent. </summary>
+        /// <param name="cookie"></param>
+        /// <param name="itemId"></param>
+        /// <param name="itemType"></param>
+        /// <param name="ds"></param>
+        /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        public virtual async Task<ClientResult<ApiResponseGenshinExternalContentData>> GetExternalContentAsync(string cookie, long itemId, int itemType, string ds = default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            ClientResult result = await GetExternalContentAsync(cookie, itemId, itemType, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
+            return ClientResult.FromValue((ApiResponseGenshinExternalContentData)result, result.GetRawResponse());
+        }
+
+        /// <summary>
+        /// [Protocol Method] GetRoleBasicInfo
+        /// <list type="bullet">
+        /// <item>
+        /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <param name="roleId"></param>
+        /// <param name="server"></param>
+        /// <param name="ds"></param>
+        /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        public virtual ClientResult GetRoleBasicInfo(string cookie, string roleId, string server, string ds, RequestOptions options)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+            Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
+            Argument.AssertNotNullOrEmpty(server, nameof(server));
+
+            using PipelineMessage message = CreateGetRoleBasicInfoRequest(cookie, roleId, server, ds, options);
+            return ClientResult.FromResponse(Pipeline.ProcessMessage(message, options));
+        }
+
+        /// <summary>
+        /// [Protocol Method] GetRoleBasicInfo
+        /// <list type="bullet">
+        /// <item>
+        /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <param name="roleId"></param>
+        /// <param name="server"></param>
+        /// <param name="ds"></param>
+        /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        public virtual async Task<ClientResult> GetRoleBasicInfoAsync(string cookie, string roleId, string server, string ds, RequestOptions options)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+            Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
+            Argument.AssertNotNullOrEmpty(server, nameof(server));
+
+            using PipelineMessage message = CreateGetRoleBasicInfoRequest(cookie, roleId, server, ds, options);
+            return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
+        }
+
+        /// <summary> GetRoleBasicInfo. </summary>
+        /// <param name="cookie"></param>
+        /// <param name="roleId"></param>
+        /// <param name="server"></param>
+        /// <param name="ds"></param>
+        /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        public virtual ClientResult<ApiResponseGenshinRoleBasicInfoData> GetRoleBasicInfo(string cookie, string roleId, string server, string ds = default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+            Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
+            Argument.AssertNotNullOrEmpty(server, nameof(server));
+
+            ClientResult result = GetRoleBasicInfo(cookie, roleId, server, ds, cancellationToken.ToRequestOptions());
+            return ClientResult.FromValue((ApiResponseGenshinRoleBasicInfoData)result, result.GetRawResponse());
+        }
+
+        /// <summary> GetRoleBasicInfo. </summary>
+        /// <param name="cookie"></param>
+        /// <param name="roleId"></param>
+        /// <param name="server"></param>
+        /// <param name="ds"></param>
+        /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="roleId"/> or <paramref name="server"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        public virtual async Task<ClientResult<ApiResponseGenshinRoleBasicInfoData>> GetRoleBasicInfoAsync(string cookie, string roleId, string server, string ds = default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+            Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
+            Argument.AssertNotNullOrEmpty(server, nameof(server));
+
+            ClientResult result = await GetRoleBasicInfoAsync(cookie, roleId, server, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
+            return ClientResult.FromValue((ApiResponseGenshinRoleBasicInfoData)result, result.GetRawResponse());
+        }
+
+        /// <summary>
+        /// [Protocol Method] GetTool
+        /// <list type="bullet">
+        /// <item>
+        /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <param name="ds"></param>
+        /// <param name="challenge"></param>
+        /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        public virtual ClientResult GetTool(string cookie, string ds, string challenge, RequestOptions options)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            using PipelineMessage message = CreateGetToolRequest(cookie, ds, challenge, options);
+            return ClientResult.FromResponse(Pipeline.ProcessMessage(message, options));
+        }
+
+        /// <summary>
+        /// [Protocol Method] GetTool
+        /// <list type="bullet">
+        /// <item>
+        /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cookie"></param>
+        /// <param name="ds"></param>
+        /// <param name="challenge"></param>
+        /// <param name="options"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        public virtual async Task<ClientResult> GetToolAsync(string cookie, string ds, string challenge, RequestOptions options)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            using PipelineMessage message = CreateGetToolRequest(cookie, ds, challenge, options);
+            return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
+        }
+
+        /// <summary> GetTool. </summary>
+        /// <param name="cookie"></param>
+        /// <param name="ds"></param>
+        /// <param name="challenge"></param>
+        /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        public virtual ClientResult<ApiResponseGenshinToolData> GetTool(string cookie, string ds = default, string challenge = default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            ClientResult result = GetTool(cookie, ds, challenge, cancellationToken.ToRequestOptions());
+            return ClientResult.FromValue((ApiResponseGenshinToolData)result, result.GetRawResponse());
+        }
+
+        /// <summary> GetTool. </summary>
+        /// <param name="cookie"></param>
+        /// <param name="ds"></param>
+        /// <param name="challenge"></param>
+        /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="cookie"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
+        public virtual async Task<ClientResult<ApiResponseGenshinToolData>> GetToolAsync(string cookie, string ds = default, string challenge = default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
+
+            ClientResult result = await GetToolAsync(cookie, ds, challenge, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
+            return ClientResult.FromValue((ApiResponseGenshinToolData)result, result.GetRawResponse());
         }
     }
 }

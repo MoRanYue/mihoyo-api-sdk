@@ -11,6 +11,7 @@ import "./src/luna.tsp";
 import "./src/game.tsp";
 import "./src/game-account.tsp";
 import "./src/game-genshin.tsp";
+import "./src/game-genshin-record-legacy.tsp";
 import "./src/game-genshin-dispatch.tsp";
 import "./src/game-genshin-sdk.tsp";
 import "./src/game-global.tsp";
@@ -19,11 +20,15 @@ import "./src/launcher.tsp";
 import "./src/utility.tsp";
 import "./src/commerce.tsp";
 import "./src/uncategorized.tsp";
+import "./src/api-surface.tsp";
+import "./src/api-response-models.tsp";
+import "./src/api-request-models.tsp";
+import "./src/game-response-models.tsp";
 
 using TypeSpec.Http;
 
 /**
- * Unified contracts for the MiHoYo/miHoYo, MiYouShe, HoYoLAB and HoYoverse APIs
- * found in the reference projects. This is an unofficial community SDK contract.
+ * Unified contracts for the MiHoYo/miHoYo, MiYouShe, HoYoLAB and HoYoverse APIs.
+ * This is an unofficial community SDK contract.
  */
-namespace UIGF;
+namespace UIGF.Mihoyo;

@@ -7,11 +7,11 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.Telemetry.SDK
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.SDK
 {
-    /// <summary> SDK telemetry upload endpoint with the same observed event-array payload shape. </summary>
+    /// <summary> SDK telemetry upload endpoint with an event-array payload. </summary>
     public partial class SDKClient
     {
         private readonly Uri _endpoint;

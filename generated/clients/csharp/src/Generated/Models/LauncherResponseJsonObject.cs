@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Common envelope used by the HoYoPlay and Sophon APIs. </summary>
     public partial class LauncherResponseJsonObject

@@ -7,15 +7,16 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Record
+namespace UIGF.Mihoyo.Game.Genshin.Record
 {
     /// <summary> CN Genshin game-record APIs used by TeyvatGuide, Snap Hutao, and Starward. </summary>
     public partial class RecordClient
     {
         private readonly Uri _endpoint;
         private GenshinRecordApi _cachedGenshinRecordApi;
+        private GcgApi _cachedGcgApi;
         private CardApi _cachedCardApi;
 
         /// <summary> Initializes a new instance of RecordClient. </summary>
@@ -66,6 +67,12 @@ namespace UIGF.Game.Genshin.Record
         public virtual GenshinRecordApi GetGenshinRecordApiClient()
         {
             return Volatile.Read(ref _cachedGenshinRecordApi) ?? Interlocked.CompareExchange(ref _cachedGenshinRecordApi, new GenshinRecordApi(Pipeline, _endpoint), null) ?? _cachedGenshinRecordApi;
+        }
+
+        /// <summary> Initializes a new instance of GcgApi. </summary>
+        public virtual GcgApi GetGcgApiClient()
+        {
+            return Volatile.Read(ref _cachedGcgApi) ?? Interlocked.CompareExchange(ref _cachedGcgApi, new GcgApi(Pipeline, _endpoint), null) ?? _cachedGcgApi;
         }
 
         /// <summary> Initializes a new instance of CardApi. </summary>

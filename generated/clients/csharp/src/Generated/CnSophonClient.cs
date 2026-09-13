@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Launcher.Sophon.CN
+namespace UIGF.Mihoyo.Launcher.Sophon.CN
 {
     /// <summary> CN Sophon chunk and incremental-patch manifests. </summary>
     public partial class CnSophonClient

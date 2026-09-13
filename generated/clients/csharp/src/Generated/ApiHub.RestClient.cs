@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary></summary>
     public partial class ApiHub
@@ -138,12 +138,36 @@ namespace UIGF.Community
             return message;
         }
 
-        internal PipelineMessage CreateGetHomeRequest(int gids, RequestOptions options)
+        internal PipelineMessage CreateGetHomeRequest(int gids, string cpu, string device, string exposedResourceTickets, bool? isTriggeredByResource, string parts, string version, RequestOptions options)
         {
             ClientUriBuilder uri = new ClientUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/apihub/api/home/new", false);
             uri.AppendQuery("gids", TypeFormatters.ConvertToString(gids), true);
+            if (cpu != null)
+            {
+                uri.AppendQuery("cpu", cpu, true);
+            }
+            if (device != null)
+            {
+                uri.AppendQuery("device", device, true);
+            }
+            if (exposedResourceTickets != null)
+            {
+                uri.AppendQuery("exposed_resource_tickets", exposedResourceTickets, true);
+            }
+            if (isTriggeredByResource != null)
+            {
+                uri.AppendQuery("is_triggered_by_resource", TypeFormatters.ConvertToString(isTriggeredByResource), true);
+            }
+            if (parts != null)
+            {
+                uri.AppendQuery("parts", parts, true);
+            }
+            if (version != null)
+            {
+                uri.AppendQuery("version", version, true);
+            }
             PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
             PipelineRequest request = message.Request;
             request.Headers.Set("Accept", "application/json");

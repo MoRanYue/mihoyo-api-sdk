@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Dispatch.Gate
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.Gate
 {
     /// <summary> The GateApi sub-client. </summary>
     public partial class GateApi
@@ -89,13 +88,13 @@ namespace UIGF.Game.Genshin.Dispatch.Gate
         /// <exception cref="ArgumentNullException"> <paramref name="game"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetAddress(string game, string region, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGateAddressData> GetAddress(string game, string region, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = GetAddress(game, region, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGateAddressData)result, result.GetRawResponse());
         }
 
         /// <summary> GetAddress. </summary>
@@ -105,13 +104,13 @@ namespace UIGF.Game.Genshin.Dispatch.Gate
         /// <exception cref="ArgumentNullException"> <paramref name="game"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetAddressAsync(string game, string region, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGateAddressData>> GetAddressAsync(string game, string region, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = await GetAddressAsync(game, region, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGateAddressData)result, result.GetRawResponse());
         }
     }
 }

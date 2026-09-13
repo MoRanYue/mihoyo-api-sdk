@@ -2,7 +2,7 @@ import "@typespec/http";
 
 using TypeSpec.Http;
 
-namespace UIGF;
+namespace UIGF.Mihoyo;
 
 /** A JSON object whose vendor-defined properties are preserved by generated clients. */
 model JsonObject extends Record<unknown> {}
@@ -158,14 +158,16 @@ model GachaItem extends Record<unknown> {
   time?: string;
   name?: string;
   item_type?: string;
+  lang?: string;
+  op_gacha_type?: string;
   rank_type?: string;
   id: string;
 }
 
 model GachaLogPage extends Record<unknown> {
-  page?: int32;
-  size?: int32;
-  total?: int32;
+  page?: string;
+  size?: string;
+  total?: string;
   region?: string;
   list: GachaItem[];
 }

@@ -8,9 +8,9 @@ using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
 using UIGF.Mihoyo;
-using UIGF.Uncategorized;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF.Uncategorized.Telemetry.Game
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Game
 {
     /// <summary> The PerformanceApi sub-client. </summary>
     public partial class PerformanceApi

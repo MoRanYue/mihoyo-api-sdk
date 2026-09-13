@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The AuthTicketRequest. </summary>
     public partial class AuthTicketRequest : DeviceContext

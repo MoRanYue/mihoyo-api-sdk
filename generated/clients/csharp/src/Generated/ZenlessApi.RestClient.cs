@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.CN.Records
+namespace UIGF.Mihoyo.Game.CN.Records
 {
     /// <summary></summary>
     public partial class ZenlessApi
@@ -72,11 +72,15 @@ namespace UIGF.Game.CN.Records
             return message;
         }
 
-        internal PipelineMessage CreateGetShiyuDefenseRequest(string cookie, string server, string roleId, string ds, int? scheduleType, bool? needDetail, bool? needAll, RequestOptions options)
+        internal PipelineMessage CreateGetShiyuDefenseRequest(string cookie, string server, string roleId, string ds, bool? withoutV2Detail, int? scheduleType, bool? needDetail, bool? needAll, RequestOptions options)
         {
             ClientUriBuilder uri = new ClientUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/event/game_record_zzz/api/zzz/hadal_info_v2", false);
+            if (withoutV2Detail != null)
+            {
+                uri.AppendQuery("without_v2_detail", TypeFormatters.ConvertToString(withoutV2Detail), true);
+            }
             if (scheduleType != null)
             {
                 uri.AppendQuery("schedule_type", TypeFormatters.ConvertToString(scheduleType), true);

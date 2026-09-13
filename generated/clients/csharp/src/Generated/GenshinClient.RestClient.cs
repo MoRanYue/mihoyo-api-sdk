@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Global.Genshin
+namespace UIGF.Mihoyo.Game.Global.Genshin
 {
     /// <summary></summary>
     public partial class GenshinClient

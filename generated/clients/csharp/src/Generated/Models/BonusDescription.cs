@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce
+namespace UIGF.Mihoyo.Commerce
 {
     /// <summary> The BonusDescription. </summary>
     public partial class BonusDescription

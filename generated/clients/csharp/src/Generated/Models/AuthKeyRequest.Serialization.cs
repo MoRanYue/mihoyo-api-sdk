@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The AuthKeyRequest. </summary>
     public partial class AuthKeyRequest : IJsonModel<AuthKeyRequest>
@@ -92,7 +92,7 @@ namespace UIGF.Game
             writer.WritePropertyName("game_biz"u8);
             writer.WriteStringValue(GameBiz);
             writer.WritePropertyName("game_uid"u8);
-            writer.WriteStringValue(GameUid);
+            writer.WriteNumberValue(GameUid);
             writer.WritePropertyName("region"u8);
             writer.WriteStringValue(Region);
             if (options.Format != "W" && _additionalBinaryDataProperties != null)
@@ -139,7 +139,7 @@ namespace UIGF.Game
             }
             string authAppid = default;
             string gameBiz = default;
-            string gameUid = default;
+            long gameUid = default;
             string region = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
@@ -156,7 +156,7 @@ namespace UIGF.Game
                 }
                 if (prop.NameEquals("game_uid"u8))
                 {
-                    gameUid = prop.Value.GetString();
+                    gameUid = prop.Value.GetInt64();
                     continue;
                 }
                 if (prop.NameEquals("region"u8))

@@ -7,11 +7,11 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.Telemetry.Crash
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Crash
 {
-    /// <summary> Raw game crash-report endpoint observed on the Yuanshen service host. </summary>
+    /// <summary> Raw game crash-report endpoint on the Yuanshen service host. </summary>
     public partial class CrashClient
     {
         private readonly Uri _endpoint;

@@ -1,0 +1,362 @@
+# coding=utf-8
+from collections.abc import MutableMapping
+from typing import Any, Callable, Optional, TypeVar
+
+from corehttp.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
+    map_error,
+)
+from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
+from corehttp.runtime.pipeline import PipelineResponse
+
+from ..... import models as _models4
+from .....passport._utils.model_base import _deserialize
+from .....passport._utils.serialization import Deserializer, Serializer
+from ...operations._operations import (
+    build_static_api_hub_get_static_resource_request,
+    build_static_misc_api_get_all_resource_versions_request,
+    build_static_preload_api_get_latest_version_request,
+    build_static_search_api_get_pre_keyword_request,
+)
+from .._configuration import StaticClientConfiguration
+
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+List = list
+
+
+class StaticApiHubOperations:  # pylint: disable=docstring-missing-param
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~uigf.mihoyo.passport.aio.StaticClient`'s
+        :attr:`static_api_hub` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: StaticClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    async def get_static_resource(
+        self, *, ds: str, client_type: int, cookie: Optional[str] = None, **kwargs: Any
+    ) -> _models4.ApiResponseStaticResourceData:
+        """get_static_resource.
+
+        :keyword ds: Required.
+        :paramtype ds: str
+        :keyword client_type: Required.
+        :paramtype client_type: int
+        :keyword cookie: Default value is None.
+        :paramtype cookie: str
+        :return: ApiResponseStaticResourceData. The ApiResponseStaticResourceData is compatible with
+         MutableMapping
+        :rtype: ~uigf.mihoyo.models.ApiResponseStaticResourceData
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models4.ApiResponseStaticResourceData] = kwargs.pop("cls", None)
+
+        _request = build_static_api_hub_get_static_resource_request(
+            ds=ds,
+            client_type=client_type,
+            cookie=cookie,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _decompress = kwargs.pop("decompress", True)
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
+        else:
+            deserialized = _deserialize(_models4.ApiResponseStaticResourceData, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+
+class StaticMiscApiOperations:  # pylint: disable=docstring-missing-param
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~uigf.mihoyo.passport.aio.StaticClient`'s
+        :attr:`static_misc_api` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: StaticClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    async def get_all_resource_versions(
+        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    ) -> _models4.ApiResponseStaticResourceVersionsData:
+        """get_all_resource_versions.
+
+        :keyword ds: Required.
+        :paramtype ds: str
+        :keyword cookie: Default value is None.
+        :paramtype cookie: str
+        :return: ApiResponseStaticResourceVersionsData. The ApiResponseStaticResourceVersionsData is
+         compatible with MutableMapping
+        :rtype: ~uigf.mihoyo.models.ApiResponseStaticResourceVersionsData
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models4.ApiResponseStaticResourceVersionsData] = kwargs.pop("cls", None)
+
+        _request = build_static_misc_api_get_all_resource_versions_request(
+            ds=ds,
+            cookie=cookie,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _decompress = kwargs.pop("decompress", True)
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
+        else:
+            deserialized = _deserialize(_models4.ApiResponseStaticResourceVersionsData, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+
+class StaticPreloadApiOperations:  # pylint: disable=docstring-missing-param
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~uigf.mihoyo.passport.aio.StaticClient`'s
+        :attr:`static_preload_api` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: StaticClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    async def get_latest_version(
+        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    ) -> _models4.ApiResponseStaticLatestVersionData:
+        """get_latest_version.
+
+        :keyword ds: Required.
+        :paramtype ds: str
+        :keyword cookie: Default value is None.
+        :paramtype cookie: str
+        :return: ApiResponseStaticLatestVersionData. The ApiResponseStaticLatestVersionData is
+         compatible with MutableMapping
+        :rtype: ~uigf.mihoyo.models.ApiResponseStaticLatestVersionData
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models4.ApiResponseStaticLatestVersionData] = kwargs.pop("cls", None)
+
+        _request = build_static_preload_api_get_latest_version_request(
+            ds=ds,
+            cookie=cookie,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _decompress = kwargs.pop("decompress", True)
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
+        else:
+            deserialized = _deserialize(_models4.ApiResponseStaticLatestVersionData, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+
+class StaticSearchApiOperations:  # pylint: disable=docstring-missing-param
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~uigf.mihoyo.passport.aio.StaticClient`'s
+        :attr:`static_search_api` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: StaticClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    async def get_pre_keyword(
+        self, *, ds: str, game_id: int, cookie: Optional[str] = None, **kwargs: Any
+    ) -> _models4.ApiResponseStaticPreKeywordData:
+        """get_pre_keyword.
+
+        :keyword ds: Required.
+        :paramtype ds: str
+        :keyword game_id: Required.
+        :paramtype game_id: int
+        :keyword cookie: Default value is None.
+        :paramtype cookie: str
+        :return: ApiResponseStaticPreKeywordData. The ApiResponseStaticPreKeywordData is compatible
+         with MutableMapping
+        :rtype: ~uigf.mihoyo.models.ApiResponseStaticPreKeywordData
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models4.ApiResponseStaticPreKeywordData] = kwargs.pop("cls", None)
+
+        _request = build_static_search_api_get_pre_keyword_request(
+            ds=ds,
+            game_id=game_id,
+            cookie=cookie,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _decompress = kwargs.pop("decompress", True)
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
+        else:
+            deserialized = _deserialize(_models4.ApiResponseStaticPreKeywordData, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore

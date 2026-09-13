@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.CN.Events
+namespace UIGF.Mihoyo.Game.CN.Events
 {
     /// <summary></summary>
     public partial class CnZenlessLedgerApi
@@ -14,11 +14,27 @@ namespace UIGF.Game.CN.Events
 
         private static PipelineMessageClassifier PipelineMessageClassifier200 => _pipelineMessageClassifier200 ??= PipelineMessageClassifier.Create(stackalloc ushort[] { 200 });
 
-        internal PipelineMessage CreateGetMonthInfoRequest(string cookie, string roleId, string server, string month, string lang, RequestOptions options)
+        internal PipelineMessage CreateGetMonthInfoRequest(string cookie, string uid, string region, string roleId, string server, string month, string lang, RequestOptions options)
         {
             ClientUriBuilder uri = new ClientUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/event/nap_ledger/month_info", false);
+            if (uid != null)
+            {
+                uri.AppendQuery("uid", uid, true);
+            }
+            if (region != null)
+            {
+                uri.AppendQuery("region", region, true);
+            }
+            if (roleId != null)
+            {
+                uri.AppendQuery("role_id", roleId, true);
+            }
+            if (server != null)
+            {
+                uri.AppendQuery("server", server, true);
+            }
             if (month != null)
             {
                 uri.AppendQuery("month", month, true);
@@ -27,8 +43,6 @@ namespace UIGF.Game.CN.Events
             {
                 uri.AppendQuery("lang", lang, true);
             }
-            uri.AppendQuery("role_id", roleId, true);
-            uri.AppendQuery("server", server, true);
             PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
             PipelineRequest request = message.Request;
             request.Headers.Set("Cookie", cookie);
@@ -37,7 +51,7 @@ namespace UIGF.Game.CN.Events
             return message;
         }
 
-        internal PipelineMessage CreateGetMonthDetailRequest(string cookie, string @type, int currentPage, string roleId, string server, int? pageSize, string month, string lang, RequestOptions options)
+        internal PipelineMessage CreateGetMonthDetailRequest(string cookie, string @type, int currentPage, int? pageSize, string uid, string region, string roleId, string server, string month, string lang, RequestOptions options)
         {
             ClientUriBuilder uri = new ClientUriBuilder();
             uri.Reset(_endpoint);
@@ -48,6 +62,22 @@ namespace UIGF.Game.CN.Events
             {
                 uri.AppendQuery("page_size", TypeFormatters.ConvertToString(pageSize), true);
             }
+            if (uid != null)
+            {
+                uri.AppendQuery("uid", uid, true);
+            }
+            if (region != null)
+            {
+                uri.AppendQuery("region", region, true);
+            }
+            if (roleId != null)
+            {
+                uri.AppendQuery("role_id", roleId, true);
+            }
+            if (server != null)
+            {
+                uri.AppendQuery("server", server, true);
+            }
             if (month != null)
             {
                 uri.AppendQuery("month", month, true);
@@ -56,8 +86,6 @@ namespace UIGF.Game.CN.Events
             {
                 uri.AppendQuery("lang", lang, true);
             }
-            uri.AppendQuery("role_id", roleId, true);
-            uri.AppendQuery("server", server, true);
             PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
             PipelineRequest request = message.Request;
             request.Headers.Set("Cookie", cookie);

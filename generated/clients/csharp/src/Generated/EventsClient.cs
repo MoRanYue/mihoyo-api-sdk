@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.CN.Events
+namespace UIGF.Mihoyo.Game.CN.Events
 {
     /// <summary> CN ledger and Zenless cultivation-tool APIs. </summary>
     public partial class EventsClient

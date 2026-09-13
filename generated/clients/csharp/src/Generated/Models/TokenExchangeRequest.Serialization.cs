@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The TokenExchangeRequest. </summary>
     public partial class TokenExchangeRequest : IJsonModel<TokenExchangeRequest>
@@ -88,11 +88,11 @@ namespace UIGF.Passport
                 throw new FormatException($"The model {nameof(TokenExchangeRequest)} does not support writing '{format}' format.");
             }
             writer.WritePropertyName("dst_token_type"u8);
-            writer.WriteStringValue(DstTokenType);
+            writer.WriteNumberValue(DstTokenType);
             writer.WritePropertyName("mid"u8);
             writer.WriteStringValue(Mid);
             writer.WritePropertyName("src_token"u8);
-            writer.WriteStringValue(SrcToken);
+            writer.WriteObjectValue(SrcToken, options);
             if (options.Format != "W" && _additionalBinaryDataProperties != null)
             {
                 foreach (var item in _additionalBinaryDataProperties)
@@ -135,15 +135,15 @@ namespace UIGF.Passport
             {
                 return null;
             }
-            string dstTokenType = default;
+            int dstTokenType = default;
             string mid = default;
-            string srcToken = default;
+            LoginToken srcToken = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
                 if (prop.NameEquals("dst_token_type"u8))
                 {
-                    dstTokenType = prop.Value.GetString();
+                    dstTokenType = prop.Value.GetInt32();
                     continue;
                 }
                 if (prop.NameEquals("mid"u8))
@@ -153,7 +153,7 @@ namespace UIGF.Passport
                 }
                 if (prop.NameEquals("src_token"u8))
                 {
-                    srcToken = prop.Value.GetString();
+                    srcToken = LoginToken.DeserializeLoginToken(prop.Value, options);
                     continue;
                 }
                 if (options.Format != "W")

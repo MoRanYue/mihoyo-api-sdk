@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Utility.LiveStream
+namespace UIGF.Mihoyo.Utility.LiveStream
 {
     /// <summary></summary>
     public partial class RedemptionCodeApi

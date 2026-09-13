@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Global.Genshin
+namespace UIGF.Mihoyo.Game.Global.Genshin
 {
     /// <summary></summary>
     public partial class GlobalGenshinLedgerApi

@@ -19,7 +19,7 @@ pip install -e .
 ### Examples
 
 ```python
->>> from uigf.passport import PassportClient
+>>> from uigf.mihoyo.passport import PassportClient
 >>> from corehttp.exceptions import HttpResponseError
 
 >>> client = PassportClient(endpoint='<endpoint>')

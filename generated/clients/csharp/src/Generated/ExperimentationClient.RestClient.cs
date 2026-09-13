@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Uncategorized.Experimentation
+namespace UIGF.Mihoyo.Uncategorized.Experimentation
 {
     /// <summary></summary>
     public partial class ExperimentationClient

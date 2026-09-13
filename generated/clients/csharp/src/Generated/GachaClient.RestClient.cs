@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Gacha
+namespace UIGF.Mihoyo.Game.Genshin.Gacha
 {
     /// <summary></summary>
     public partial class GachaClient

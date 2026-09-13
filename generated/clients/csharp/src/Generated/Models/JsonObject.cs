@@ -4,9 +4,8 @@
 
 using System;
 using System.Collections.Generic;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> A JSON object whose vendor-defined properties are preserved by generated clients. </summary>
     public partial class JsonObject

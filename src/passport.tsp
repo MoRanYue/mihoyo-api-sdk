@@ -5,7 +5,7 @@ using TypeSpec.Http;
 /** Passport, login-ticket, QR login, and account-token APIs for CN services. */
 @service(#{ title: "UIGF MiHoYo Passport API" })
 @server("https://passport-api.mihoyo.com", "CN Passport API")
-namespace UIGF.Passport;
+namespace UIGF.Mihoyo.Passport;
 
 model DeviceContext extends Record<unknown> {
   device: string;
@@ -25,16 +25,16 @@ model QrLoginStatusRequest extends DeviceContext {
   app_id: string;
 }
 
-model MobileCaptchaLoginRequest extends DeviceContext {
+model MobileCaptchaLoginRequest extends Record<unknown> {
+  action_type: string;
+  area_code: string;
+  captcha: string;
   mobile: string;
-  mobile_captcha: string;
-  action_ticket?: string;
-  game_biz?: string;
 }
 
-model LoginCaptchaRequest extends DeviceContext {
-  action_type: string;
-  game_biz?: string;
+model LoginCaptchaRequest extends Record<unknown> {
+  area_code: string;
+  mobile: string;
 }
 
 model AuthTicketRequest extends DeviceContext {
@@ -51,9 +51,61 @@ model AuthTicketLoginRequest {
 }
 
 model TokenExchangeRequest {
-  dst_token_type: string;
+  dst_token_type: int32;
   mid: string;
-  src_token: string;
+  src_token: LoginToken;
+}
+
+model LoginToken extends Record<unknown> {
+  token?: string;
+  token_type?: int32;
+}
+
+model ReactivateInfo extends Record<unknown> {
+  delete_after_days?: string;
+  deleting_biz_account?: boolean;
+  reactivate_biz?: string;
+  required?: boolean;
+  ticket?: string;
+}
+
+model RealnameInfo extends Record<unknown> {
+  action_ticket?: string;
+  action_type?: string;
+  required?: boolean;
+}
+
+model LoginUserInfo extends Record<unknown> {
+  account_name?: string;
+  aid?: string;
+  area_code?: string;
+  country?: string;
+  email?: string;
+  identity_code?: string;
+  is_adult?: int32;
+  is_email_verify?: int32;
+  links?: unknown[];
+  mid?: string;
+  mobile?: string;
+  password_time?: string;
+  realname?: string;
+  rebind_area_code?: string;
+  rebind_mobile?: string;
+  rebind_mobile_time?: string;
+  safe_area_code?: string;
+  safe_mobile?: string;
+  unmasked_email?: string;
+  unmasked_email_type?: int32;
+}
+
+model AuthTicketLoginData extends Record<unknown> {
+  login_ticket?: string;
+  need_realperson?: boolean;
+  oauth_hw_open_id?: string;
+  reactivate_info?: ReactivateInfo;
+  realname_info?: RealnameInfo;
+  token?: LoginToken;
+  user_info?: LoginUserInfo;
 }
 
 model STokenTokenRequest {
@@ -97,7 +149,7 @@ interface AuthTicketApi {
 interface CaptchaApi {
   /** Starts the vendor login-captcha challenge. Solve it through the official flow. */
   @post
-  create(@body body: LoginCaptchaRequest): ApiResponse<JsonObject>;
+  create(@body body: LoginCaptchaRequest): ApiResponse<UIGF.Mihoyo.Api.Response.LoginCaptchaData>;
 }
 
 @route("/account/ma-cn-passport/app")
@@ -122,7 +174,7 @@ interface QrLoginApi {
   /** Exchanges an official auth ticket for the associated login-session payload. */
   @post
   @route("/loginByAuthTicket")
-  loginByAuthTicket(@body body: AuthTicketLoginRequest): ApiResponse<TokenInfo>;
+  loginByAuthTicket(@body body: AuthTicketLoginRequest): ApiResponse<AuthTicketLoginData>;
 }
 
 @route("/account/ma-cn-session/app")
@@ -136,6 +188,16 @@ interface SessionApi {
   @post
   @route("/exchange")
   exchange(@body body: TokenExchangeRequest): ApiResponse<TokenInfo>;
+}
+
+@route("/account/ma-cn-session/web")
+interface WebSessionApi {
+  /** Verifies a caller-provided browser session cookie. */
+  @post
+  @route("/verifyCookieToken")
+  verifyCookieToken(
+    @header("Cookie") cookie: string,
+  ): ApiResponse<unknown>;
 }
 
 @route("/account/auth/api")

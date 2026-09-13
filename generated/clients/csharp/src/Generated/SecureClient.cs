@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.SDK.Secure
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Secure
 {
     /// <summary> Genshin SDK secure protocol-version and red-dot APIs. </summary>
     public partial class SecureClient

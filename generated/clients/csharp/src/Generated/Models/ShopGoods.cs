@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce
+namespace UIGF.Mihoyo.Commerce
 {
     /// <summary> The ShopGoods. </summary>
     public partial class ShopGoods

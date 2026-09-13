@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Launcher.CN
+namespace UIGF.Mihoyo.Launcher.CN
 {
     /// <summary></summary>
     public partial class CnLauncherClient

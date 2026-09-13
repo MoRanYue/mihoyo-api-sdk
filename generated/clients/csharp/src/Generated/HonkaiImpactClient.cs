@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.CN.HonkaiImpact
+namespace UIGF.Mihoyo.Game.CN.HonkaiImpact
 {
     /// <summary> CN Honkai Impact 3rd real-time note uses a dedicated activity host. </summary>
     public partial class HonkaiImpactClient

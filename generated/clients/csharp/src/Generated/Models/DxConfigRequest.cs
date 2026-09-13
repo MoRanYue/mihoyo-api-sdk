@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher
+namespace UIGF.Mihoyo.Launcher
 {
     /// <summary> The DxConfigRequest. </summary>
     public partial class DxConfigRequest

@@ -7,7 +7,7 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher.CN
+namespace UIGF.Mihoyo.Launcher.CN
 {
     /// <summary></summary>
     public partial class CnLauncherMetadataApi

@@ -6,43 +6,46 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The LoginCaptchaRequest. </summary>
-    public partial class LoginCaptchaRequest : DeviceContext
+    public partial class LoginCaptchaRequest
     {
-        /// <summary> Initializes a new instance of <see cref="LoginCaptchaRequest"/>. </summary>
-        /// <param name="device"></param>
-        /// <param name="actionType"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="device"/> or <paramref name="actionType"/> is null. </exception>
-        public LoginCaptchaRequest(string device, string actionType) : base(device)
-        {
-            Argument.AssertNotNull(device, nameof(device));
-            Argument.AssertNotNull(actionType, nameof(actionType));
+        /// <summary> Keeps track of any properties unknown to the library. </summary>
+        private protected readonly IDictionary<string, BinaryData> _additionalBinaryDataProperties;
 
-            ActionType = actionType;
+        /// <summary> Initializes a new instance of <see cref="LoginCaptchaRequest"/>. </summary>
+        /// <param name="areaCode"></param>
+        /// <param name="mobile"></param>
+        /// <exception cref="ArgumentNullException"> <paramref name="areaCode"/> or <paramref name="mobile"/> is null. </exception>
+        public LoginCaptchaRequest(string areaCode, string mobile)
+        {
+            Argument.AssertNotNull(areaCode, nameof(areaCode));
+            Argument.AssertNotNull(mobile, nameof(mobile));
+
+            AreaCode = areaCode;
+            Mobile = mobile;
+            _additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
         }
 
         /// <summary> Initializes a new instance of <see cref="LoginCaptchaRequest"/>. </summary>
-        /// <param name="device"></param>
-        /// <param name="deviceFp"></param>
-        /// <param name="deviceName"></param>
-        /// <param name="deviceModel"></param>
-        /// <param name="deviceId"></param>
-        /// <param name="appId"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="mobile"></param>
         /// <param name="additionalProperties"></param>
-        /// <param name="actionType"></param>
-        /// <param name="gameBiz"></param>
-        internal LoginCaptchaRequest(string device, string deviceFp, string deviceName, string deviceModel, string deviceId, string appId, IDictionary<string, BinaryData> additionalProperties, string actionType, string gameBiz) : base(device, deviceFp, deviceName, deviceModel, deviceId, appId, additionalProperties)
+        internal LoginCaptchaRequest(string areaCode, string mobile, IDictionary<string, BinaryData> additionalProperties)
         {
-            ActionType = actionType;
-            GameBiz = gameBiz;
+            AreaCode = areaCode;
+            Mobile = mobile;
+            _additionalBinaryDataProperties = additionalProperties;
         }
 
-        /// <summary> Gets the ActionType. </summary>
-        public string ActionType { get; }
+        /// <summary> Gets the AreaCode. </summary>
+        public string AreaCode { get; }
 
-        /// <summary> Gets or sets the GameBiz. </summary>
-        public string GameBiz { get; set; }
+        /// <summary> Gets the Mobile. </summary>
+        public string Mobile { get; }
+
+        /// <summary> Gets the AdditionalProperties. </summary>
+        public IDictionary<string, BinaryData> AdditionalProperties => _additionalBinaryDataProperties;
     }
 }

@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.CN.HonkaiImpact
+namespace UIGF.Mihoyo.Game.CN.HonkaiImpact
 {
     /// <summary></summary>
     public partial class DailyNoteApi

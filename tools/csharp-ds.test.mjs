@@ -33,9 +33,9 @@ test("C# client automatically signs V1 and V2 business requests", async () => {
 `);
     await writeFile(join(directory, "Program.cs"), `
 using UIGF.Mihoyo;
-using UIGF.Game.Genshin.Record;
-using UIGF.Game.Account;
-using UIGF.Game;
+using UIGF.Mihoyo.Game.Genshin.Record;
+using UIGF.Mihoyo.Game.Account;
+using UIGF.Mihoyo.Game;
 using System;
 using System.ClientModel.Primitives;
 using System.Net.Http;
@@ -74,7 +74,7 @@ accountOptions.Transport = new HttpClientPipelineTransport(new HttpClient(new Ht
 var accountClient = new GameAccountClient(new Uri("${endpoint}"), accountOptions);
 await accountClient.GetGameBindingApiClient().GenerateAuthKeyAsync(
     "ltuid=123",
-    new AuthKeyRequest("hk4e_cn", "hk4e_cn", "100000001", "cn_gf01"));
+    new AuthKeyRequest("hk4e_cn", "hk4e_cn", 100000001L, "cn_gf01"));
 `);
     const result = await run("dotnet", ["run", "--project", join(directory, "DsSignerVectors.csproj"), "--configuration", "Release", "--nologo"], {
       cwd: root,

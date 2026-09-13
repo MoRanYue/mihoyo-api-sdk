@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Global.CommunityRecords
+namespace UIGF.Mihoyo.Game.Global.CommunityRecords
 {
     /// <summary> Global community user, non-Genshin record, and Genshin challenge APIs on bbs-api-os. </summary>
     public partial class CommunityRecordsClient

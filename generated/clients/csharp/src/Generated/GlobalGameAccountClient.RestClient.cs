@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Global.Account
+namespace UIGF.Mihoyo.Game.Global.Account
 {
     /// <summary></summary>
     public partial class GlobalGameAccountClient

@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Standard game account identity reused by record APIs. </summary>
     public partial class GameRole

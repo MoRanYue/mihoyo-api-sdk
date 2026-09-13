@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The H5LogRequest. </summary>
     public partial class H5LogRequest : IJsonModel<H5LogRequest>

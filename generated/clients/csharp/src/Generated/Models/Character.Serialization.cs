@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The Character. </summary>
     public partial class Character : IJsonModel<Character>

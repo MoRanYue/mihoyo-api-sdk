@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Ledger
+namespace UIGF.Mihoyo.Game.Genshin.Ledger
 {
     /// <summary> CN Genshin Traveller's Diary ledger APIs. </summary>
     public partial class LedgerClient

@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.UgcAnnouncements
+namespace UIGF.Mihoyo.Game.Genshin.UgcAnnouncements
 {
     /// <summary></summary>
     public partial class UgcApi

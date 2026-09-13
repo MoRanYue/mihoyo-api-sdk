@@ -5,9 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The GachaItem. </summary>
     public partial class GachaItem
@@ -31,10 +30,12 @@ namespace UIGF
         /// <param name="time"></param>
         /// <param name="name"></param>
         /// <param name="itemType"></param>
+        /// <param name="lang"></param>
+        /// <param name="opGachaType"></param>
         /// <param name="rankType"></param>
         /// <param name="id"></param>
         /// <param name="additionalProperties"></param>
-        internal GachaItem(string uid, string gachaType, string itemId, string count, string time, string name, string itemType, string rankType, string id, IReadOnlyDictionary<string, BinaryData> additionalProperties)
+        internal GachaItem(string uid, string gachaType, string itemId, string count, string time, string name, string itemType, string lang, string opGachaType, string rankType, string id, IReadOnlyDictionary<string, BinaryData> additionalProperties)
         {
             Uid = uid;
             GachaType = gachaType;
@@ -43,6 +44,8 @@ namespace UIGF
             Time = time;
             Name = name;
             ItemType = itemType;
+            Lang = lang;
+            OpGachaType = opGachaType;
             RankType = rankType;
             Id = id;
             _additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>(additionalProperties);
@@ -68,6 +71,12 @@ namespace UIGF
 
         /// <summary> Gets the ItemType. </summary>
         public string ItemType { get; }
+
+        /// <summary> Gets the Lang. </summary>
+        public string Lang { get; }
+
+        /// <summary> Gets the OpGachaType. </summary>
+        public string OpGachaType { get; }
 
         /// <summary> Gets the RankType. </summary>
         public string RankType { get; }

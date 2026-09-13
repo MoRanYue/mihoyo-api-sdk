@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Ledger
+namespace UIGF.Mihoyo.Game.Genshin.Ledger
 {
     /// <summary> The GenshinLedgerApi sub-client. </summary>
     public partial class GenshinLedgerApi

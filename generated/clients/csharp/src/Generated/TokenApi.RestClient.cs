@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.UGC
+namespace UIGF.Mihoyo.Uncategorized.UGC
 {
     /// <summary></summary>
     public partial class TokenApi

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The GameTokenRequest. </summary>
     public partial class GameTokenRequest : IJsonModel<GameTokenRequest>

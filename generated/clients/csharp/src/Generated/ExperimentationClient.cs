@@ -7,18 +7,22 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.Experimentation
+namespace UIGF.Mihoyo.Uncategorized.Experimentation
 {
-    /// <summary> Feature-experiment assignments returned to the official game client. </summary>
+    /// <summary>
+    /// Feature-experiment assignments returned to the official game client.
+    /// The older `data-abtest-api.mihoyo.com` host is an alias of this API; callers
+    /// needing it can override the generated client's endpoint.
+    /// </summary>
     public partial class ExperimentationClient
     {
         private readonly Uri _endpoint;
         private ExperimentApi _cachedExperimentApi;
 
         /// <summary> Initializes a new instance of ExperimentationClient. </summary>
-        public ExperimentationClient() : this(new Uri("https://data-abtest-api.mihoyo.com"), new UIGFMihoyoClientOptions())
+        public ExperimentationClient() : this(new Uri("https://abtest-api-data.mihoyo.com"), new UIGFMihoyoClientOptions())
         {
         }
 

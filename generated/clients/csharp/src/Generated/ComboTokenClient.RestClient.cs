@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Uncategorized.ComboToken
+namespace UIGF.Mihoyo.Uncategorized.ComboToken
 {
     /// <summary></summary>
     public partial class ComboTokenClient

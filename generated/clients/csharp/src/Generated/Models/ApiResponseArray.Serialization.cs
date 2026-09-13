@@ -6,9 +6,9 @@ using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
-using UIGF.Mihoyo;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
     public partial class ApiResponseArray : IJsonModel<ApiResponseArray>
@@ -82,7 +82,7 @@ namespace UIGF
             writer.WriteStringValue(Message);
             writer.WritePropertyName("data"u8);
             writer.WriteStartArray();
-            foreach (JsonObject item in Data)
+            foreach (ExperimentAssignment item in Data)
             {
                 writer.WriteObjectValue(item, options);
             }
@@ -131,7 +131,7 @@ namespace UIGF
             }
             int retcode = default;
             string message = default;
-            IList<JsonObject> data = default;
+            IList<ExperimentAssignment> data = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
@@ -147,10 +147,10 @@ namespace UIGF
                 }
                 if (prop.NameEquals("data"u8))
                 {
-                    List<JsonObject> array = new List<JsonObject>();
+                    List<ExperimentAssignment> array = new List<ExperimentAssignment>();
                     foreach (var item in prop.Value.EnumerateArray())
                     {
-                        array.Add(JsonObject.DeserializeJsonObject(item, options));
+                        array.Add(ExperimentAssignment.DeserializeExperimentAssignment(item, options));
                     }
                     data = array;
                     continue;

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Ledger
+namespace UIGF.Mihoyo.Game.Genshin.Ledger
 {
     /// <summary></summary>
     public partial class LedgerClient

@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The UploadResponse. </summary>
     public partial class UploadResponse

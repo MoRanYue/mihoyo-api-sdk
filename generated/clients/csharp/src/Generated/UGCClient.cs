@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.UGC
+namespace UIGF.Mihoyo.Uncategorized.UGC
 {
     /// <summary> UGC token and binary level-gateway endpoints. </summary>
     public partial class UGCClient

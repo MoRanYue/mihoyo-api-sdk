@@ -5,9 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The Announcement. </summary>
     public partial class Announcement

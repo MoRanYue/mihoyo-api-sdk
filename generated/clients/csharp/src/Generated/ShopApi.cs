@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Commerce;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Commerce;
 
-namespace UIGF.Commerce.CN
+namespace UIGF.Mihoyo.Commerce.CN
 {
     /// <summary> The ShopApi sub-client. </summary>
     public partial class ShopApi
@@ -120,7 +119,7 @@ namespace UIGF.Commerce.CN
         }
 
         /// <summary>
-        /// [Protocol Method] Returns the storefront currency and country inferred by the SDK host.
+        /// [Protocol Method] Returns the storefront currency and country.
         /// <list type="bullet">
         /// <item>
         /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
@@ -143,7 +142,7 @@ namespace UIGF.Commerce.CN
         }
 
         /// <summary>
-        /// [Protocol Method] Returns the storefront currency and country inferred by the SDK host.
+        /// [Protocol Method] Returns the storefront currency and country.
         /// <list type="bullet">
         /// <item>
         /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
@@ -165,34 +164,34 @@ namespace UIGF.Commerce.CN
             return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
         }
 
-        /// <summary> Returns the storefront currency and country inferred by the SDK host. </summary>
+        /// <summary> Returns the storefront currency and country. </summary>
         /// <param name="gameBiz"></param>
         /// <param name="body"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="gameBiz"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="gameBiz"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetCurrencyAndCountryByIp(string gameBiz, JsonObject body = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseCurrencyAndCountry> GetCurrencyAndCountryByIp(string gameBiz, JsonObject body = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
 
             ClientResult result = GetCurrencyAndCountryByIp(gameBiz, body, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseCurrencyAndCountry)result, result.GetRawResponse());
         }
 
-        /// <summary> Returns the storefront currency and country inferred by the SDK host. </summary>
+        /// <summary> Returns the storefront currency and country. </summary>
         /// <param name="gameBiz"></param>
         /// <param name="body"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="gameBiz"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="gameBiz"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetCurrencyAndCountryByIpAsync(string gameBiz, JsonObject body = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseCurrencyAndCountry>> GetCurrencyAndCountryByIpAsync(string gameBiz, JsonObject body = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
 
             ClientResult result = await GetCurrencyAndCountryByIpAsync(gameBiz, body, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseCurrencyAndCountry)result, result.GetRawResponse());
         }
 
         /// <summary>

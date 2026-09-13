@@ -6,9 +6,9 @@ using System;
 using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Launcher.CN
+namespace UIGF.Mihoyo.Launcher.CN
 {
     /// <summary> Represents the settings used to configure a <see cref="CnLauncherClient"/> that can be loaded from an <see cref="IConfigurationSection"/>. </summary>
     [Experimental("SCME0002")]

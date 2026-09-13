@@ -4,9 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using UIGF.Commerce;
+using UIGF.Mihoyo.Commerce;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
     public partial class ApiResponseOrderStatus

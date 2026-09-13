@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The ExperimentListResponse. </summary>
     public partial class ExperimentListResponse : ApiResponseArray, IJsonModel<ExperimentListResponse>
@@ -121,7 +120,7 @@ namespace UIGF.Uncategorized
             }
             int retcode = default;
             string message = default;
-            IList<JsonObject> data = default;
+            IList<ExperimentAssignment> data = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             bool? success = default;
             foreach (var prop in element.EnumerateObject())
@@ -138,10 +137,10 @@ namespace UIGF.Uncategorized
                 }
                 if (prop.NameEquals("data"u8))
                 {
-                    List<JsonObject> array = new List<JsonObject>();
+                    List<ExperimentAssignment> array = new List<ExperimentAssignment>();
                     foreach (var item in prop.Value.EnumerateArray())
                     {
-                        array.Add(JsonObject.DeserializeJsonObject(item, options));
+                        array.Add(ExperimentAssignment.DeserializeExperimentAssignment(item, options));
                     }
                     data = array;
                     continue;

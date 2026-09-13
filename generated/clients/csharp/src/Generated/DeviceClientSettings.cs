@@ -6,9 +6,9 @@ using System;
 using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Utility.Device
+namespace UIGF.Mihoyo.Utility.Device
 {
     /// <summary> Represents the settings used to configure a <see cref="DeviceClient"/> that can be loaded from an <see cref="IConfigurationSection"/>. </summary>
     [Experimental("SCME0002")]

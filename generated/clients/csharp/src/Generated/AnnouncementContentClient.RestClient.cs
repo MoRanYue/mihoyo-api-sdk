@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.AnnouncementContent
+namespace UIGF.Mihoyo.Game.Genshin.AnnouncementContent
 {
     /// <summary></summary>
     public partial class AnnouncementContentClient

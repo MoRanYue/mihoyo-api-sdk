@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Gacha
+namespace UIGF.Mihoyo.Game.Genshin.Gacha
 {
     /// <summary> The GachaLogApi sub-client. </summary>
     public partial class GachaLogApi

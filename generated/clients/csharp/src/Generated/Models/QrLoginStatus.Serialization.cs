@@ -6,10 +6,9 @@ using System;
 using System.ClientModel.Primitives;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The QrLoginStatus. </summary>
     public partial class QrLoginStatus : IJsonModel<QrLoginStatus>

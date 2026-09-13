@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Dispatch.Gate
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.Gate
 {
     /// <summary></summary>
     public partial class GateApi

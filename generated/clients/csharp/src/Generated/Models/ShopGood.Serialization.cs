@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce
+namespace UIGF.Mihoyo.Commerce
 {
     /// <summary> The ShopGood. </summary>
     public partial class ShopGood : IJsonModel<ShopGood>

@@ -5,16 +5,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UIGF;
-using UIGF.Commerce;
-using UIGF.Community;
-using UIGF.Game;
-using UIGF.Game.Genshin.Dispatch;
-using UIGF.Game.Genshin.SDK;
-using UIGF.Launcher;
-using UIGF.Passport;
-using UIGF.Uncategorized;
-using UIGF.Utility.Device;
+using UIGF.Mihoyo.Api.Request;
+using UIGF.Mihoyo.Api.Response;
+using UIGF.Mihoyo.Commerce;
+using UIGF.Mihoyo.Community;
+using UIGF.Mihoyo.Game;
+using UIGF.Mihoyo.Game.Genshin.Dispatch;
+using UIGF.Mihoyo.Game.Genshin.SDK;
+using UIGF.Mihoyo.Game.Response;
+using UIGF.Mihoyo.Launcher;
+using UIGF.Mihoyo.Passport;
+using UIGF.Mihoyo.Uncategorized;
+using UIGF.Mihoyo.Utility.Device;
 
 namespace UIGF.Mihoyo
 {
@@ -73,7 +75,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseTokenInfo"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseTokenInfo"/> instance for mocking. </returns>
         public static ApiResponseTokenInfo ApiResponseTokenInfo(int retcode = default, string message = default, TokenInfo data = default)
         {
             return new ApiResponseTokenInfo(retcode, message, data, additionalBinaryDataProperties: null);
@@ -107,50 +109,38 @@ namespace UIGF.Mihoyo
         }
 
         /// <summary> The LoginCaptchaRequest. </summary>
-        /// <param name="device"></param>
-        /// <param name="deviceFp"></param>
-        /// <param name="deviceName"></param>
-        /// <param name="deviceModel"></param>
-        /// <param name="deviceId"></param>
-        /// <param name="appId"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="mobile"></param>
         /// <param name="additionalProperties"></param>
-        /// <param name="actionType"></param>
-        /// <param name="gameBiz"></param>
         /// <returns> A new <see cref="Passport.LoginCaptchaRequest"/> instance for mocking. </returns>
-        public static LoginCaptchaRequest LoginCaptchaRequest(string device = default, string deviceFp = default, string deviceName = default, string deviceModel = default, string deviceId = default, string appId = default, IDictionary<string, BinaryData> additionalProperties = default, string actionType = default, string gameBiz = default)
+        public static LoginCaptchaRequest LoginCaptchaRequest(string areaCode = default, string mobile = default, IDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
-            return new LoginCaptchaRequest(
-                device,
-                deviceFp,
-                deviceName,
-                deviceModel,
-                deviceId,
-                appId,
-                additionalProperties,
-                actionType,
-                gameBiz);
+            return new LoginCaptchaRequest(areaCode, mobile, additionalProperties);
         }
 
         /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseJsonObject"/> instance for mocking. </returns>
-        public static ApiResponseJsonObject ApiResponseJsonObject(int retcode = default, string message = default, JsonObject data = default)
+        /// <returns> A new <see cref="Mihoyo.ApiResponseLoginCaptchaData"/> instance for mocking. </returns>
+        public static ApiResponseLoginCaptchaData ApiResponseLoginCaptchaData(int retcode = default, string message = default, LoginCaptchaData data = default)
         {
-            return new ApiResponseJsonObject(retcode, message, data, additionalBinaryDataProperties: null);
+            return new ApiResponseLoginCaptchaData(retcode, message, data, additionalBinaryDataProperties: null);
         }
 
-        /// <summary> A JSON object whose vendor-defined properties are preserved by generated clients. </summary>
+        /// <summary> The LoginCaptchaData. </summary>
+        /// <param name="actionType"></param>
+        /// <param name="countdown"></param>
+        /// <param name="sentNew"></param>
         /// <param name="additionalProperties"></param>
-        /// <returns> A new <see cref="UIGF.JsonObject"/> instance for mocking. </returns>
-        public static JsonObject JsonObject(IDictionary<string, BinaryData> additionalProperties = default)
+        /// <returns> A new <see cref="Api.Response.LoginCaptchaData"/> instance for mocking. </returns>
+        public static LoginCaptchaData LoginCaptchaData(string actionType = default, int? countdown = default, bool? sentNew = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
-            return new JsonObject(additionalProperties);
+            return new LoginCaptchaData(actionType, countdown, sentNew, additionalProperties);
         }
 
         /// <summary> The QrLoginCreateRequest. </summary>
@@ -180,7 +170,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseQrLoginTicket"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseQrLoginTicket"/> instance for mocking. </returns>
         public static ApiResponseQrLoginTicket ApiResponseQrLoginTicket(int retcode = default, string message = default, QrLoginTicket data = default)
         {
             return new ApiResponseQrLoginTicket(retcode, message, data, additionalBinaryDataProperties: null);
@@ -228,7 +218,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseQrLoginStatus"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseQrLoginStatus"/> instance for mocking. </returns>
         public static ApiResponseQrLoginStatus ApiResponseQrLoginStatus(int retcode = default, string message = default, QrLoginStatus data = default)
         {
             return new ApiResponseQrLoginStatus(retcode, message, data, additionalBinaryDataProperties: null);
@@ -247,35 +237,28 @@ namespace UIGF.Mihoyo
             return new QrLoginStatus(stat, status, payload, additionalProperties);
         }
 
-        /// <summary> The MobileCaptchaLoginRequest. </summary>
-        /// <param name="device"></param>
-        /// <param name="deviceFp"></param>
-        /// <param name="deviceName"></param>
-        /// <param name="deviceModel"></param>
-        /// <param name="deviceId"></param>
-        /// <param name="appId"></param>
+        /// <summary> A JSON object whose vendor-defined properties are preserved by generated clients. </summary>
         /// <param name="additionalProperties"></param>
-        /// <param name="mobile"></param>
-        /// <param name="mobileCaptcha"></param>
-        /// <param name="actionTicket"></param>
-        /// <param name="gameBiz"></param>
-        /// <returns> A new <see cref="Passport.MobileCaptchaLoginRequest"/> instance for mocking. </returns>
-        public static MobileCaptchaLoginRequest MobileCaptchaLoginRequest(string device = default, string deviceFp = default, string deviceName = default, string deviceModel = default, string deviceId = default, string appId = default, IDictionary<string, BinaryData> additionalProperties = default, string mobile = default, string mobileCaptcha = default, string actionTicket = default, string gameBiz = default)
+        /// <returns> A new <see cref="Mihoyo.JsonObject"/> instance for mocking. </returns>
+        public static JsonObject JsonObject(IDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
-            return new MobileCaptchaLoginRequest(
-                device,
-                deviceFp,
-                deviceName,
-                deviceModel,
-                deviceId,
-                appId,
-                additionalProperties,
-                mobile,
-                mobileCaptcha,
-                actionTicket,
-                gameBiz);
+            return new JsonObject(additionalProperties);
+        }
+
+        /// <summary> The MobileCaptchaLoginRequest. </summary>
+        /// <param name="actionType"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="captcha"></param>
+        /// <param name="mobile"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Passport.MobileCaptchaLoginRequest"/> instance for mocking. </returns>
+        public static MobileCaptchaLoginRequest MobileCaptchaLoginRequest(string actionType = default, string areaCode = default, string captcha = default, string mobile = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileCaptchaLoginRequest(actionType, areaCode, captcha, mobile, additionalProperties);
         }
 
         /// <summary> The AuthTicketLoginRequest. </summary>
@@ -284,6 +267,139 @@ namespace UIGF.Mihoyo
         public static AuthTicketLoginRequest AuthTicketLoginRequest(string ticket = default)
         {
             return new AuthTicketLoginRequest(ticket, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAuthTicketLoginData"/> instance for mocking. </returns>
+        public static ApiResponseAuthTicketLoginData ApiResponseAuthTicketLoginData(int retcode = default, string message = default, AuthTicketLoginData data = default)
+        {
+            return new ApiResponseAuthTicketLoginData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The AuthTicketLoginData. </summary>
+        /// <param name="loginTicket"></param>
+        /// <param name="needRealperson"></param>
+        /// <param name="oauthHwOpenId"></param>
+        /// <param name="reactivateInfo"></param>
+        /// <param name="realnameInfo"></param>
+        /// <param name="token"></param>
+        /// <param name="userInfo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Passport.AuthTicketLoginData"/> instance for mocking. </returns>
+        public static AuthTicketLoginData AuthTicketLoginData(string loginTicket = default, bool? needRealperson = default, string oauthHwOpenId = default, ReactivateInfo reactivateInfo = default, RealnameInfo realnameInfo = default, LoginToken token = default, LoginUserInfo userInfo = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AuthTicketLoginData(
+                loginTicket,
+                needRealperson,
+                oauthHwOpenId,
+                reactivateInfo,
+                realnameInfo,
+                token,
+                userInfo,
+                additionalProperties);
+        }
+
+        /// <summary> The ReactivateInfo. </summary>
+        /// <param name="deleteAfterDays"></param>
+        /// <param name="deletingBizAccount"></param>
+        /// <param name="reactivateBiz"></param>
+        /// <param name="required"></param>
+        /// <param name="ticket"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Passport.ReactivateInfo"/> instance for mocking. </returns>
+        public static ReactivateInfo ReactivateInfo(string deleteAfterDays = default, bool? deletingBizAccount = default, string reactivateBiz = default, bool? @required = default, string ticket = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ReactivateInfo(
+                deleteAfterDays,
+                deletingBizAccount,
+                reactivateBiz,
+                @required,
+                ticket,
+                additionalProperties);
+        }
+
+        /// <summary> The RealnameInfo. </summary>
+        /// <param name="actionTicket"></param>
+        /// <param name="actionType"></param>
+        /// <param name="required"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Passport.RealnameInfo"/> instance for mocking. </returns>
+        public static RealnameInfo RealnameInfo(string actionTicket = default, string actionType = default, bool? @required = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new RealnameInfo(actionTicket, actionType, @required, additionalProperties);
+        }
+
+        /// <summary> The LoginToken. </summary>
+        /// <param name="token"></param>
+        /// <param name="tokenType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Passport.LoginToken"/> instance for mocking. </returns>
+        public static LoginToken LoginToken(string token = default, int? tokenType = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginToken(token, tokenType, additionalProperties);
+        }
+
+        /// <summary> The LoginUserInfo. </summary>
+        /// <param name="accountName"></param>
+        /// <param name="aid"></param>
+        /// <param name="areaCode"></param>
+        /// <param name="country"></param>
+        /// <param name="email"></param>
+        /// <param name="identityCode"></param>
+        /// <param name="isAdult"></param>
+        /// <param name="isEmailVerify"></param>
+        /// <param name="links"></param>
+        /// <param name="mid"></param>
+        /// <param name="mobile"></param>
+        /// <param name="passwordTime"></param>
+        /// <param name="realname"></param>
+        /// <param name="rebindAreaCode"></param>
+        /// <param name="rebindMobile"></param>
+        /// <param name="rebindMobileTime"></param>
+        /// <param name="safeAreaCode"></param>
+        /// <param name="safeMobile"></param>
+        /// <param name="unmaskedEmail"></param>
+        /// <param name="unmaskedEmailType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Passport.LoginUserInfo"/> instance for mocking. </returns>
+        public static LoginUserInfo LoginUserInfo(string accountName = default, string aid = default, string areaCode = default, string country = default, string email = default, string identityCode = default, int? isAdult = default, int? isEmailVerify = default, IEnumerable<BinaryData> links = default, string mid = default, string mobile = default, string passwordTime = default, string realname = default, string rebindAreaCode = default, string rebindMobile = default, string rebindMobileTime = default, string safeAreaCode = default, string safeMobile = default, string unmaskedEmail = default, int? unmaskedEmailType = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            links ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginUserInfo(
+                accountName,
+                aid,
+                areaCode,
+                country,
+                email,
+                identityCode,
+                isAdult,
+                isEmailVerify,
+                links.ToList(),
+                mid,
+                mobile,
+                passwordTime,
+                realname,
+                rebindAreaCode,
+                rebindMobile,
+                rebindMobileTime,
+                safeAreaCode,
+                safeMobile,
+                unmaskedEmail,
+                unmaskedEmailType,
+                additionalProperties);
         }
 
         /// <summary> The GameTokenRequest. </summary>
@@ -300,7 +416,7 @@ namespace UIGF.Mihoyo
         /// <param name="mid"></param>
         /// <param name="srcToken"></param>
         /// <returns> A new <see cref="Passport.TokenExchangeRequest"/> instance for mocking. </returns>
-        public static TokenExchangeRequest TokenExchangeRequest(string dstTokenType = default, string mid = default, string srcToken = default)
+        public static TokenExchangeRequest TokenExchangeRequest(int dstTokenType = default, string mid = default, LoginToken srcToken = default)
         {
             return new TokenExchangeRequest(dstTokenType, mid, srcToken, additionalBinaryDataProperties: null);
         }
@@ -309,7 +425,17 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseCommunityUser"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponse"/> instance for mocking. </returns>
+        public static ApiResponse ApiResponse(int retcode = default, string message = default, BinaryData data = default)
+        {
+            return new ApiResponse(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseCommunityUser"/> instance for mocking. </returns>
         public static ApiResponseCommunityUser ApiResponseCommunityUser(int retcode = default, string message = default, CommunityUser data = default)
         {
             return new ApiResponseCommunityUser(retcode, message, data, additionalBinaryDataProperties: null);
@@ -324,7 +450,7 @@ namespace UIGF.Mihoyo
         /// <param name="levelExp"></param>
         /// <param name="communityInfo"></param>
         /// <param name="additionalProperties"></param>
-        /// <returns> A new <see cref="UIGF.CommunityUser"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.CommunityUser"/> instance for mocking. </returns>
         public static CommunityUser CommunityUser(string uid = default, string nickname = default, string introduce = default, string avatarUrl = default, int? gender = default, JsonObject levelExp = default, JsonObject communityInfo = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
@@ -338,6 +464,16 @@ namespace UIGF.Mihoyo
                 levelExp,
                 communityInfo,
                 additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseJsonObject"/> instance for mocking. </returns>
+        public static ApiResponseJsonObject ApiResponseJsonObject(int retcode = default, string message = default, JsonObject data = default)
+        {
+            return new ApiResponseJsonObject(retcode, message, data, additionalBinaryDataProperties: null);
         }
 
         /// <summary> The VerificationCreateRequest. </summary>
@@ -368,7 +504,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponsePost"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponsePost"/> instance for mocking. </returns>
         public static ApiResponsePost ApiResponsePost(int retcode = default, string message = default, Post data = default)
         {
             return new ApiResponsePost(retcode, message, data, additionalBinaryDataProperties: null);
@@ -402,7 +538,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponsePostList"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponsePostList"/> instance for mocking. </returns>
         public static ApiResponsePostList ApiResponsePostList(int retcode = default, string message = default, PostList data = default)
         {
             return new ApiResponsePostList(retcode, message, data, additionalBinaryDataProperties: null);
@@ -435,7 +571,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseForumList"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseForumList"/> instance for mocking. </returns>
         public static ApiResponseForumList ApiResponseForumList(int retcode = default, string message = default, ForumList data = default)
         {
             return new ApiResponseForumList(retcode, message, data, additionalBinaryDataProperties: null);
@@ -465,6 +601,98 @@ namespace UIGF.Mihoyo
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
             return new Forum(id, gameId, name, icon, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseCommunityAppConfigData"/> instance for mocking. </returns>
+        public static ApiResponseCommunityAppConfigData ApiResponseCommunityAppConfigData(int retcode = default, string message = default, CommunityAppConfigData data = default)
+        {
+            return new ApiResponseCommunityAppConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The CommunityAppConfigData. </summary>
+        /// <param name="config"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.CommunityAppConfigData"/> instance for mocking. </returns>
+        public static CommunityAppConfigData CommunityAppConfigData(IDictionary<string, string> config = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            config ??= new ChangeTrackingDictionary<string, string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new CommunityAppConfigData(config, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseCommunityHomeData"/> instance for mocking. </returns>
+        public static ApiResponseCommunityHomeData ApiResponseCommunityHomeData(int retcode = default, string message = default, CommunityHomeData data = default)
+        {
+            return new ApiResponseCommunityHomeData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The CommunityHomeData. </summary>
+        /// <param name="albumCard"></param>
+        /// <param name="background"></param>
+        /// <param name="breakFrameCard"></param>
+        /// <param name="carousels"></param>
+        /// <param name="discussion"></param>
+        /// <param name="exposedResourceTickets"></param>
+        /// <param name="gameReceptions"></param>
+        /// <param name="hotTopics"></param>
+        /// <param name="imagePostCard"></param>
+        /// <param name="isResourceUnchanged"></param>
+        /// <param name="lightInteractiveCard"></param>
+        /// <param name="linkCard"></param>
+        /// <param name="linkTopicCard"></param>
+        /// <param name="lives"></param>
+        /// <param name="navigator"></param>
+        /// <param name="official"></param>
+        /// <param name="perspectiveCard"></param>
+        /// <param name="posts"></param>
+        /// <param name="recommendVilla"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.CommunityHomeData"/> instance for mocking. </returns>
+        public static CommunityHomeData CommunityHomeData(IEnumerable<BinaryData> albumCard = default, IDictionary<string, BinaryData> background = default, BinaryData breakFrameCard = default, BinaryData carousels = default, BinaryData discussion = default, IEnumerable<BinaryData> exposedResourceTickets = default, IEnumerable<IDictionary<string, BinaryData>> gameReceptions = default, BinaryData hotTopics = default, IEnumerable<BinaryData> imagePostCard = default, bool? isResourceUnchanged = default, BinaryData lightInteractiveCard = default, IEnumerable<BinaryData> linkCard = default, IEnumerable<BinaryData> linkTopicCard = default, IEnumerable<BinaryData> lives = default, IEnumerable<IDictionary<string, BinaryData>> navigator = default, IDictionary<string, BinaryData> official = default, BinaryData perspectiveCard = default, IEnumerable<BinaryData> posts = default, BinaryData recommendVilla = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            albumCard ??= new ChangeTrackingList<BinaryData>();
+            background ??= new ChangeTrackingDictionary<string, BinaryData>();
+            exposedResourceTickets ??= new ChangeTrackingList<BinaryData>();
+            gameReceptions ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            imagePostCard ??= new ChangeTrackingList<BinaryData>();
+            linkCard ??= new ChangeTrackingList<BinaryData>();
+            linkTopicCard ??= new ChangeTrackingList<BinaryData>();
+            lives ??= new ChangeTrackingList<BinaryData>();
+            navigator ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            official ??= new ChangeTrackingDictionary<string, BinaryData>();
+            posts ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new CommunityHomeData(
+                albumCard.ToList(),
+                background,
+                breakFrameCard,
+                carousels,
+                discussion,
+                exposedResourceTickets.ToList(),
+                gameReceptions.ToList(),
+                hotTopics,
+                imagePostCard.ToList(),
+                isResourceUnchanged,
+                lightInteractiveCard,
+                linkCard.ToList(),
+                linkTopicCard.ToList(),
+                lives.ToList(),
+                navigator.ToList(),
+                official,
+                perspectiveCard,
+                posts.ToList(),
+                recommendVilla,
+                additionalProperties);
         }
 
         /// <summary> The SignInRequest. </summary>
@@ -501,7 +729,7 @@ namespace UIGF.Mihoyo
         /// <param name="gameUid"></param>
         /// <param name="region"></param>
         /// <returns> A new <see cref="Game.AuthKeyRequest"/> instance for mocking. </returns>
-        public static AuthKeyRequest AuthKeyRequest(string authAppid = default, string gameBiz = default, string gameUid = default, string region = default)
+        public static AuthKeyRequest AuthKeyRequest(string authAppid = default, string gameBiz = default, long gameUid = default, string region = default)
         {
             return new AuthKeyRequest(authAppid, gameBiz, gameUid, region, additionalBinaryDataProperties: null);
         }
@@ -510,7 +738,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseGameRoleList"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGameRoleList"/> instance for mocking. </returns>
         public static ApiResponseGameRoleList ApiResponseGameRoleList(int retcode = default, string message = default, GameRoleList data = default)
         {
             return new ApiResponseGameRoleList(retcode, message, data, additionalBinaryDataProperties: null);
@@ -518,7 +746,7 @@ namespace UIGF.Mihoyo
 
         /// <summary> The GameRoleList. </summary>
         /// <param name="list"></param>
-        /// <returns> A new <see cref="UIGF.GameRoleList"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.GameRoleList"/> instance for mocking. </returns>
         public static GameRoleList GameRoleList(IEnumerable<GameRole> list = default)
         {
             list ??= new ChangeTrackingList<GameRole>();
@@ -535,7 +763,7 @@ namespace UIGF.Mihoyo
         /// <param name="isChosen"></param>
         /// <param name="regionName"></param>
         /// <param name="gameName"></param>
-        /// <returns> A new <see cref="UIGF.GameRole"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.GameRole"/> instance for mocking. </returns>
         public static GameRole GameRole(string gameBiz = default, string region = default, string gameUid = default, string nickname = default, int? level = default, bool? isChosen = default, string regionName = default, string gameName = default)
         {
             return new GameRole(
@@ -560,20 +788,87 @@ namespace UIGF.Mihoyo
             return new CalculateRequest(additionalProperties);
         }
 
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinRecordIndexData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinRecordIndexData ApiResponseGenshinRecordIndexData(int retcode = default, string message = default, GenshinRecordIndexData data = default)
+        {
+            return new ApiResponseGenshinRecordIndexData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinRecordIndexData. </summary>
+        /// <param name="avatars"></param>
+        /// <param name="cityExplorations"></param>
+        /// <param name="homes"></param>
+        /// <param name="queryToolImage"></param>
+        /// <param name="queryToolLink"></param>
+        /// <param name="role"></param>
+        /// <param name="stats"></param>
+        /// <param name="worldExplorationDisplay"></param>
+        /// <param name="worldExplorations"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinRecordIndexData"/> instance for mocking. </returns>
+        public static GenshinRecordIndexData GenshinRecordIndexData(IEnumerable<IDictionary<string, BinaryData>> avatars = default, IEnumerable<BinaryData> cityExplorations = default, IEnumerable<IDictionary<string, BinaryData>> homes = default, string queryToolImage = default, string queryToolLink = default, GenshinRecordRole role = default, IDictionary<string, BinaryData> stats = default, IEnumerable<IDictionary<string, BinaryData>> worldExplorationDisplay = default, IEnumerable<IDictionary<string, BinaryData>> worldExplorations = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            avatars ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            cityExplorations ??= new ChangeTrackingList<BinaryData>();
+            homes ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            stats ??= new ChangeTrackingDictionary<string, BinaryData>();
+            worldExplorationDisplay ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            worldExplorations ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinRecordIndexData(
+                avatars.ToList(),
+                cityExplorations.ToList(),
+                homes.ToList(),
+                queryToolImage,
+                queryToolLink,
+                role,
+                stats,
+                worldExplorationDisplay.ToList(),
+                worldExplorations.ToList(),
+                additionalProperties);
+        }
+
+        /// <summary> The GenshinRecordRole. </summary>
+        /// <param name="avatarUrl"></param>
+        /// <param name="gameHeadIcon"></param>
+        /// <param name="level"></param>
+        /// <param name="nickname"></param>
+        /// <param name="region"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinRecordRole"/> instance for mocking. </returns>
+        public static GenshinRecordRole GenshinRecordRole(string avatarUrl = default, string gameHeadIcon = default, int? level = default, string nickname = default, string region = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinRecordRole(
+                avatarUrl,
+                gameHeadIcon,
+                level,
+                nickname,
+                region,
+                additionalProperties);
+        }
+
         /// <summary> The CharacterListRequest. </summary>
         /// <param name="roleId"></param>
         /// <param name="server"></param>
+        /// <param name="sortType"></param>
         /// <returns> A new <see cref="Game.CharacterListRequest"/> instance for mocking. </returns>
-        public static CharacterListRequest CharacterListRequest(string roleId = default, string server = default)
+        public static CharacterListRequest CharacterListRequest(string roleId = default, string server = default, int? sortType = default)
         {
-            return new CharacterListRequest(roleId, server, additionalBinaryDataProperties: null);
+            return new CharacterListRequest(roleId, server, sortType, additionalBinaryDataProperties: null);
         }
 
         /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseCharacterList"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseCharacterList"/> instance for mocking. </returns>
         public static ApiResponseCharacterList ApiResponseCharacterList(int retcode = default, string message = default, CharacterList data = default)
         {
             return new ApiResponseCharacterList(retcode, message, data, additionalBinaryDataProperties: null);
@@ -623,20 +918,606 @@ namespace UIGF.Mihoyo
         /// <summary> The CharacterDetailRequest. </summary>
         /// <param name="roleId"></param>
         /// <param name="server"></param>
+        /// <param name="sortType"></param>
         /// <param name="characterIds"></param>
         /// <returns> A new <see cref="Game.CharacterDetailRequest"/> instance for mocking. </returns>
-        public static CharacterDetailRequest CharacterDetailRequest(string roleId = default, string server = default, IEnumerable<string> characterIds = default)
+        public static CharacterDetailRequest CharacterDetailRequest(string roleId = default, string server = default, int? sortType = default, IEnumerable<BinaryData> characterIds = default)
         {
-            characterIds ??= new ChangeTrackingList<string>();
+            characterIds ??= new ChangeTrackingList<BinaryData>();
 
-            return new CharacterDetailRequest(roleId, server, additionalBinaryDataProperties: null, characterIds.ToList());
+            return new CharacterDetailRequest(roleId, server, sortType, additionalBinaryDataProperties: null, characterIds.ToList());
         }
 
         /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseGachaLogPage"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinDailyNoteData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinDailyNoteData ApiResponseGenshinDailyNoteData(int retcode = default, string message = default, GenshinDailyNoteData data = default)
+        {
+            return new ApiResponseGenshinDailyNoteData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinDailyNoteData. </summary>
+        /// <param name="archonQuestProgress"></param>
+        /// <param name="calendarUrl"></param>
+        /// <param name="currentExpeditionNum"></param>
+        /// <param name="currentHomeCoin"></param>
+        /// <param name="currentResin"></param>
+        /// <param name="dailyTask"></param>
+        /// <param name="expeditions"></param>
+        /// <param name="finishedTaskNum"></param>
+        /// <param name="homeCoinRecoveryTime"></param>
+        /// <param name="isExtraTaskRewardReceived"></param>
+        /// <param name="maxExpeditionNum"></param>
+        /// <param name="maxHomeCoin"></param>
+        /// <param name="maxResin"></param>
+        /// <param name="remainResinDiscountNum"></param>
+        /// <param name="resinDiscountNumLimit"></param>
+        /// <param name="resinRecoveryTime"></param>
+        /// <param name="totalTaskNum"></param>
+        /// <param name="transformer"></param>
+        /// <param name="weekActiveProgress"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinDailyNoteData"/> instance for mocking. </returns>
+        public static GenshinDailyNoteData GenshinDailyNoteData(IDictionary<string, BinaryData> archonQuestProgress = default, string calendarUrl = default, int? currentExpeditionNum = default, int? currentHomeCoin = default, int? currentResin = default, IDictionary<string, BinaryData> dailyTask = default, IEnumerable<IDictionary<string, BinaryData>> expeditions = default, int? finishedTaskNum = default, string homeCoinRecoveryTime = default, bool? isExtraTaskRewardReceived = default, int? maxExpeditionNum = default, int? maxHomeCoin = default, int? maxResin = default, int? remainResinDiscountNum = default, int? resinDiscountNumLimit = default, string resinRecoveryTime = default, int? totalTaskNum = default, IDictionary<string, BinaryData> transformer = default, IDictionary<string, BinaryData> weekActiveProgress = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            archonQuestProgress ??= new ChangeTrackingDictionary<string, BinaryData>();
+            dailyTask ??= new ChangeTrackingDictionary<string, BinaryData>();
+            expeditions ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            transformer ??= new ChangeTrackingDictionary<string, BinaryData>();
+            weekActiveProgress ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinDailyNoteData(
+                archonQuestProgress,
+                calendarUrl,
+                currentExpeditionNum,
+                currentHomeCoin,
+                currentResin,
+                dailyTask,
+                expeditions.ToList(),
+                finishedTaskNum,
+                homeCoinRecoveryTime,
+                isExtraTaskRewardReceived,
+                maxExpeditionNum,
+                maxHomeCoin,
+                maxResin,
+                remainResinDiscountNum,
+                resinDiscountNumLimit,
+                resinRecoveryTime,
+                totalTaskNum,
+                transformer,
+                weekActiveProgress,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinSpiralAbyssData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinSpiralAbyssData ApiResponseGenshinSpiralAbyssData(int retcode = default, string message = default, GenshinSpiralAbyssData data = default)
+        {
+            return new ApiResponseGenshinSpiralAbyssData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinSpiralAbyssData. </summary>
+        /// <param name="damageRank"></param>
+        /// <param name="defeatRank"></param>
+        /// <param name="endTime"></param>
+        /// <param name="energySkillRank"></param>
+        /// <param name="floors"></param>
+        /// <param name="isJustSkippedFloor"></param>
+        /// <param name="isUnlock"></param>
+        /// <param name="maxFloor"></param>
+        /// <param name="normalSkillRank"></param>
+        /// <param name="revealRank"></param>
+        /// <param name="scheduleId"></param>
+        /// <param name="skippedFloor"></param>
+        /// <param name="startTime"></param>
+        /// <param name="takeDamageRank"></param>
+        /// <param name="totalBattleTimes"></param>
+        /// <param name="totalStar"></param>
+        /// <param name="totalWinTimes"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinSpiralAbyssData"/> instance for mocking. </returns>
+        public static GenshinSpiralAbyssData GenshinSpiralAbyssData(IEnumerable<BinaryData> damageRank = default, IEnumerable<BinaryData> defeatRank = default, string endTime = default, IEnumerable<BinaryData> energySkillRank = default, IEnumerable<BinaryData> floors = default, bool? isJustSkippedFloor = default, bool? isUnlock = default, string maxFloor = default, IEnumerable<BinaryData> normalSkillRank = default, IEnumerable<BinaryData> revealRank = default, long? scheduleId = default, string skippedFloor = default, string startTime = default, IEnumerable<BinaryData> takeDamageRank = default, int? totalBattleTimes = default, int? totalStar = default, int? totalWinTimes = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            damageRank ??= new ChangeTrackingList<BinaryData>();
+            defeatRank ??= new ChangeTrackingList<BinaryData>();
+            energySkillRank ??= new ChangeTrackingList<BinaryData>();
+            floors ??= new ChangeTrackingList<BinaryData>();
+            normalSkillRank ??= new ChangeTrackingList<BinaryData>();
+            revealRank ??= new ChangeTrackingList<BinaryData>();
+            takeDamageRank ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinSpiralAbyssData(
+                damageRank.ToList(),
+                defeatRank.ToList(),
+                endTime,
+                energySkillRank.ToList(),
+                floors.ToList(),
+                isJustSkippedFloor,
+                isUnlock,
+                maxFloor,
+                normalSkillRank.ToList(),
+                revealRank.ToList(),
+                scheduleId,
+                skippedFloor,
+                startTime,
+                takeDamageRank.ToList(),
+                totalBattleTimes,
+                totalStar,
+                totalWinTimes,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinTheaterData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinTheaterData ApiResponseGenshinTheaterData(int retcode = default, string message = default, GenshinTheaterData data = default)
+        {
+            return new ApiResponseGenshinTheaterData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinTheaterData. </summary>
+        /// <param name="data"></param>
+        /// <param name="isUnlock"></param>
+        /// <param name="links"></param>
+        /// <param name="tarotCardState"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinTheaterData"/> instance for mocking. </returns>
+        public static GenshinTheaterData GenshinTheaterData(IEnumerable<IDictionary<string, BinaryData>> data = default, bool? isUnlock = default, IDictionary<string, BinaryData> links = default, IDictionary<string, BinaryData> tarotCardState = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            data ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            links ??= new ChangeTrackingDictionary<string, BinaryData>();
+            tarotCardState ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinTheaterData(data.ToList(), isUnlock, links, tarotCardState, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinCharacterMasterData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinCharacterMasterData ApiResponseGenshinCharacterMasterData(int retcode = default, string message = default, GenshinCharacterMasterData data = default)
+        {
+            return new ApiResponseGenshinCharacterMasterData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinCharacterMasterData. </summary>
+        /// <param name="isUnlock"></param>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinCharacterMasterData"/> instance for mocking. </returns>
+        public static GenshinCharacterMasterData GenshinCharacterMasterData(bool? isUnlock = default, IEnumerable<IDictionary<string, BinaryData>> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinCharacterMasterData(isUnlock, list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinStygianData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinStygianData ApiResponseGenshinStygianData(int retcode = default, string message = default, GenshinStygianData data = default)
+        {
+            return new ApiResponseGenshinStygianData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinStygianData. </summary>
+        /// <param name="data"></param>
+        /// <param name="isUnlock"></param>
+        /// <param name="links"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinStygianData"/> instance for mocking. </returns>
+        public static GenshinStygianData GenshinStygianData(IEnumerable<IDictionary<string, BinaryData>> data = default, bool? isUnlock = default, IDictionary<string, BinaryData> links = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            data ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            links ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinStygianData(data.ToList(), isUnlock, links, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinStygianPopularityData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinStygianPopularityData ApiResponseGenshinStygianPopularityData(int retcode = default, string message = default, GenshinStygianPopularityData data = default)
+        {
+            return new ApiResponseGenshinStygianPopularityData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinStygianPopularityData. </summary>
+        /// <param name="avatarList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinStygianPopularityData"/> instance for mocking. </returns>
+        public static GenshinStygianPopularityData GenshinStygianPopularityData(IEnumerable<IDictionary<string, BinaryData>> avatarList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            avatarList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinStygianPopularityData(avatarList.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinActivityCalendarData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinActivityCalendarData ApiResponseGenshinActivityCalendarData(int retcode = default, string message = default, GenshinActivityCalendarData data = default)
+        {
+            return new ApiResponseGenshinActivityCalendarData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinActivityCalendarData. </summary>
+        /// <param name="actList"></param>
+        /// <param name="avatarCardPoolList"></param>
+        /// <param name="fixedActList"></param>
+        /// <param name="mixedCardPoolList"></param>
+        /// <param name="selectedActList"></param>
+        /// <param name="selectedAvatarCardPoolList"></param>
+        /// <param name="selectedMixedCardPoolList"></param>
+        /// <param name="weaponCardPoolList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinActivityCalendarData"/> instance for mocking. </returns>
+        public static GenshinActivityCalendarData GenshinActivityCalendarData(IEnumerable<IDictionary<string, BinaryData>> actList = default, IEnumerable<IDictionary<string, BinaryData>> avatarCardPoolList = default, IEnumerable<IDictionary<string, BinaryData>> fixedActList = default, IEnumerable<BinaryData> mixedCardPoolList = default, IEnumerable<IDictionary<string, BinaryData>> selectedActList = default, IEnumerable<IDictionary<string, BinaryData>> selectedAvatarCardPoolList = default, IEnumerable<BinaryData> selectedMixedCardPoolList = default, IEnumerable<IDictionary<string, BinaryData>> weaponCardPoolList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            actList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            avatarCardPoolList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            fixedActList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            mixedCardPoolList ??= new ChangeTrackingList<BinaryData>();
+            selectedActList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            selectedAvatarCardPoolList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            selectedMixedCardPoolList ??= new ChangeTrackingList<BinaryData>();
+            weaponCardPoolList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinActivityCalendarData(
+                actList.ToList(),
+                avatarCardPoolList.ToList(),
+                fixedActList.ToList(),
+                mixedCardPoolList.ToList(),
+                selectedActList.ToList(),
+                selectedAvatarCardPoolList.ToList(),
+                selectedMixedCardPoolList.ToList(),
+                weaponCardPoolList.ToList(),
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinExternalContentData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinExternalContentData ApiResponseGenshinExternalContentData(int retcode = default, string message = default, GenshinExternalContentData data = default)
+        {
+            return new ApiResponseGenshinExternalContentData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinExternalContentData. </summary>
+        /// <param name="caculatorUrl"></param>
+        /// <param name="lineupUrl"></param>
+        /// <param name="strategyUrl"></param>
+        /// <param name="wikiUrl"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinExternalContentData"/> instance for mocking. </returns>
+        public static GenshinExternalContentData GenshinExternalContentData(string caculatorUrl = default, string lineupUrl = default, string strategyUrl = default, string wikiUrl = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinExternalContentData(caculatorUrl, lineupUrl, strategyUrl, wikiUrl, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinRoleBasicInfoData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinRoleBasicInfoData ApiResponseGenshinRoleBasicInfoData(int retcode = default, string message = default, GenshinRoleBasicInfoData data = default)
+        {
+            return new ApiResponseGenshinRoleBasicInfoData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinRoleBasicInfoData. </summary>
+        /// <param name="avatarUrl"></param>
+        /// <param name="gameHeadIcon"></param>
+        /// <param name="level"></param>
+        /// <param name="nickname"></param>
+        /// <param name="region"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="cardPlayLevel"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinRoleBasicInfoData"/> instance for mocking. </returns>
+        public static GenshinRoleBasicInfoData GenshinRoleBasicInfoData(string avatarUrl = default, string gameHeadIcon = default, int? level = default, string nickname = default, string region = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default, int? cardPlayLevel = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinRoleBasicInfoData(
+                avatarUrl,
+                gameHeadIcon,
+                level,
+                nickname,
+                region,
+                additionalProperties,
+                cardPlayLevel);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinToolData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinToolData ApiResponseGenshinToolData(int retcode = default, string message = default, GenshinToolData data = default)
+        {
+            return new ApiResponseGenshinToolData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinToolData. </summary>
+        /// <param name="tools"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinToolData"/> instance for mocking. </returns>
+        public static GenshinToolData GenshinToolData(IEnumerable<IDictionary<string, BinaryData>> tools = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            tools ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinToolData(tools.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgBasicInfoData"/> instance for mocking. </returns>
+        public static ApiResponseGcgBasicInfoData ApiResponseGcgBasicInfoData(int retcode = default, string message = default, GcgBasicInfoData data = default)
+        {
+            return new ApiResponseGcgBasicInfoData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgBasicInfoData. </summary>
+        /// <param name="actionCardNumGained"></param>
+        /// <param name="actionCardNumTotal"></param>
+        /// <param name="avatarCardNumGained"></param>
+        /// <param name="avatarCardNumTotal"></param>
+        /// <param name="challengeBasic"></param>
+        /// <param name="covers"></param>
+        /// <param name="hornorCharacter"></param>
+        /// <param name="isHideCovers"></param>
+        /// <param name="isHideReplays"></param>
+        /// <param name="level"></param>
+        /// <param name="nickname"></param>
+        /// <param name="replays"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgBasicInfoData"/> instance for mocking. </returns>
+        public static GcgBasicInfoData GcgBasicInfoData(int? actionCardNumGained = default, int? actionCardNumTotal = default, int? avatarCardNumGained = default, int? avatarCardNumTotal = default, IDictionary<string, BinaryData> challengeBasic = default, IEnumerable<IDictionary<string, BinaryData>> covers = default, BinaryData hornorCharacter = default, bool? isHideCovers = default, bool? isHideReplays = default, int? level = default, string nickname = default, IEnumerable<IDictionary<string, BinaryData>> replays = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            challengeBasic ??= new ChangeTrackingDictionary<string, BinaryData>();
+            covers ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            replays ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgBasicInfoData(
+                actionCardNumGained,
+                actionCardNumTotal,
+                avatarCardNumGained,
+                avatarCardNumTotal,
+                challengeBasic,
+                covers.ToList(),
+                hornorCharacter,
+                isHideCovers,
+                isHideReplays,
+                level,
+                nickname,
+                replays.ToList(),
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgCardBackListData"/> instance for mocking. </returns>
+        public static ApiResponseGcgCardBackListData ApiResponseGcgCardBackListData(int retcode = default, string message = default, GcgCardBackListData data = default)
+        {
+            return new ApiResponseGcgCardBackListData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgCardBackListData. </summary>
+        /// <param name="cardBackList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgCardBackListData"/> instance for mocking. </returns>
+        public static GcgCardBackListData GcgCardBackListData(IEnumerable<IDictionary<string, BinaryData>> cardBackList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            cardBackList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgCardBackListData(cardBackList.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgCardListData"/> instance for mocking. </returns>
+        public static ApiResponseGcgCardListData ApiResponseGcgCardListData(int retcode = default, string message = default, GcgCardListData data = default)
+        {
+            return new ApiResponseGcgCardListData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgCardListData. </summary>
+        /// <param name="cardList"></param>
+        /// <param name="isLast"></param>
+        /// <param name="nextOffset"></param>
+        /// <param name="stats"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgCardListData"/> instance for mocking. </returns>
+        public static GcgCardListData GcgCardListData(IEnumerable<IDictionary<string, BinaryData>> cardList = default, bool? isLast = default, int? nextOffset = default, IDictionary<string, BinaryData> stats = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            cardList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            stats ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgCardListData(cardList.ToList(), isLast, nextOffset, stats, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgChallengeRecordData"/> instance for mocking. </returns>
+        public static ApiResponseGcgChallengeRecordData ApiResponseGcgChallengeRecordData(int retcode = default, string message = default, GcgChallengeRecordData data = default)
+        {
+            return new ApiResponseGcgChallengeRecordData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgChallengeRecordData. </summary>
+        /// <param name="basic"></param>
+        /// <param name="deckList"></param>
+        /// <param name="honorCharacter"></param>
+        /// <param name="recommendUrl"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgChallengeRecordData"/> instance for mocking. </returns>
+        public static GcgChallengeRecordData GcgChallengeRecordData(IDictionary<string, BinaryData> basic = default, IEnumerable<BinaryData> deckList = default, IEnumerable<BinaryData> honorCharacter = default, string recommendUrl = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            basic ??= new ChangeTrackingDictionary<string, BinaryData>();
+            deckList ??= new ChangeTrackingList<BinaryData>();
+            honorCharacter ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgChallengeRecordData(basic, deckList.ToList(), honorCharacter.ToList(), recommendUrl, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgChallengeScheduleData"/> instance for mocking. </returns>
+        public static ApiResponseGcgChallengeScheduleData ApiResponseGcgChallengeScheduleData(int retcode = default, string message = default, GcgChallengeScheduleData data = default)
+        {
+            return new ApiResponseGcgChallengeScheduleData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgChallengeScheduleData. </summary>
+        /// <param name="scheduleList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgChallengeScheduleData"/> instance for mocking. </returns>
+        public static GcgChallengeScheduleData GcgChallengeScheduleData(IEnumerable<IDictionary<string, BinaryData>> scheduleList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            scheduleList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgChallengeScheduleData(scheduleList.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgDeckListData"/> instance for mocking. </returns>
+        public static ApiResponseGcgDeckListData ApiResponseGcgDeckListData(int retcode = default, string message = default, GcgDeckListData data = default)
+        {
+            return new ApiResponseGcgDeckListData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgDeckListData. </summary>
+        /// <param name="deckList"></param>
+        /// <param name="level"></param>
+        /// <param name="nickname"></param>
+        /// <param name="roleId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgDeckListData"/> instance for mocking. </returns>
+        public static GcgDeckListData GcgDeckListData(IEnumerable<IDictionary<string, BinaryData>> deckList = default, int? level = default, string nickname = default, string roleId = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            deckList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgDeckListData(deckList.ToList(), level, nickname, roleId, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgCoversData"/> instance for mocking. </returns>
+        public static ApiResponseGcgCoversData ApiResponseGcgCoversData(int retcode = default, string message = default, GcgCoversData data = default)
+        {
+            return new ApiResponseGcgCoversData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgCoversData. </summary>
+        /// <param name="covers"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgCoversData"/> instance for mocking. </returns>
+        public static GcgCoversData GcgCoversData(IEnumerable<IDictionary<string, BinaryData>> covers = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            covers ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgCoversData(covers.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGcgMatchListData"/> instance for mocking. </returns>
+        public static ApiResponseGcgMatchListData ApiResponseGcgMatchListData(int retcode = default, string message = default, GcgMatchListData data = default)
+        {
+            return new ApiResponseGcgMatchListData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GcgMatchListData. </summary>
+        /// <param name="favouriteMatches"></param>
+        /// <param name="recentMatches"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GcgMatchListData"/> instance for mocking. </returns>
+        public static GcgMatchListData GcgMatchListData(IEnumerable<BinaryData> favouriteMatches = default, IEnumerable<IDictionary<string, BinaryData>> recentMatches = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            favouriteMatches ??= new ChangeTrackingList<BinaryData>();
+            recentMatches ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GcgMatchListData(favouriteMatches.ToList(), recentMatches.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGenshinGameRecordCardData"/> instance for mocking. </returns>
+        public static ApiResponseGenshinGameRecordCardData ApiResponseGenshinGameRecordCardData(int retcode = default, string message = default, GenshinGameRecordCardData data = default)
+        {
+            return new ApiResponseGenshinGameRecordCardData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GenshinGameRecordCardData. </summary>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GenshinGameRecordCardData"/> instance for mocking. </returns>
+        public static GenshinGameRecordCardData GenshinGameRecordCardData(IEnumerable<IDictionary<string, BinaryData>> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GenshinGameRecordCardData(list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGachaLogPage"/> instance for mocking. </returns>
         public static ApiResponseGachaLogPage ApiResponseGachaLogPage(int retcode = default, string message = default, GachaLogPage data = default)
         {
             return new ApiResponseGachaLogPage(retcode, message, data, additionalBinaryDataProperties: null);
@@ -649,8 +1530,8 @@ namespace UIGF.Mihoyo
         /// <param name="region"></param>
         /// <param name="list"></param>
         /// <param name="additionalProperties"></param>
-        /// <returns> A new <see cref="UIGF.GachaLogPage"/> instance for mocking. </returns>
-        public static GachaLogPage GachaLogPage(int? page = default, int? size = default, int? total = default, string region = default, IEnumerable<GachaItem> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        /// <returns> A new <see cref="Mihoyo.GachaLogPage"/> instance for mocking. </returns>
+        public static GachaLogPage GachaLogPage(string page = default, string size = default, string total = default, string region = default, IEnumerable<GachaItem> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
         {
             list ??= new ChangeTrackingList<GachaItem>();
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
@@ -672,11 +1553,13 @@ namespace UIGF.Mihoyo
         /// <param name="time"></param>
         /// <param name="name"></param>
         /// <param name="itemType"></param>
+        /// <param name="lang"></param>
+        /// <param name="opGachaType"></param>
         /// <param name="rankType"></param>
         /// <param name="id"></param>
         /// <param name="additionalProperties"></param>
-        /// <returns> A new <see cref="UIGF.GachaItem"/> instance for mocking. </returns>
-        public static GachaItem GachaItem(string uid = default, string gachaType = default, string itemId = default, string count = default, string time = default, string name = default, string itemType = default, string rankType = default, string id = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        /// <returns> A new <see cref="Mihoyo.GachaItem"/> instance for mocking. </returns>
+        public static GachaItem GachaItem(string uid = default, string gachaType = default, string itemId = default, string count = default, string time = default, string name = default, string itemType = default, string lang = default, string opGachaType = default, string rankType = default, string id = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
@@ -688,6 +1571,8 @@ namespace UIGF.Mihoyo
                 time,
                 name,
                 itemType,
+                lang,
+                opGachaType,
                 rankType,
                 id,
                 additionalProperties);
@@ -697,49 +1582,268 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseAnnouncementList"/> instance for mocking. </returns>
-        public static ApiResponseAnnouncementList ApiResponseAnnouncementList(int retcode = default, string message = default, AnnouncementList data = default)
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAnnouncementListData"/> instance for mocking. </returns>
+        public static ApiResponseAnnouncementListData ApiResponseAnnouncementListData(int retcode = default, string message = default, AnnouncementListData data = default)
         {
-            return new ApiResponseAnnouncementList(retcode, message, data, additionalBinaryDataProperties: null);
+            return new ApiResponseAnnouncementListData(retcode, message, data, additionalBinaryDataProperties: null);
         }
 
-        /// <summary> The AnnouncementList. </summary>
-        /// <param name="list"></param>
+        /// <summary> The AnnouncementListData. </summary>
         /// <param name="alert"></param>
+        /// <param name="alertId"></param>
+        /// <param name="banner"></param>
+        /// <param name="calendarType"></param>
+        /// <param name="list"></param>
+        /// <param name="picAlert"></param>
+        /// <param name="picAlertId"></param>
+        /// <param name="picList"></param>
+        /// <param name="picTotal"></param>
+        /// <param name="picTypeList"></param>
+        /// <param name="staticSign"></param>
+        /// <param name="t"></param>
+        /// <param name="timezone"></param>
+        /// <param name="total"></param>
+        /// <param name="typeList"></param>
+        /// <param name="useWebp"></param>
         /// <param name="additionalProperties"></param>
-        /// <returns> A new <see cref="UIGF.AnnouncementList"/> instance for mocking. </returns>
-        public static AnnouncementList AnnouncementList(IEnumerable<Announcement> list = default, bool? alert = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        /// <returns> A new <see cref="Game.Response.AnnouncementListData"/> instance for mocking. </returns>
+        public static AnnouncementListData AnnouncementListData(bool? alert = default, int? alertId = default, string banner = default, AnnouncementCalendarType calendarType = default, IEnumerable<AnnouncementGroup> list = default, bool? picAlert = default, int? picAlertId = default, IEnumerable<BinaryData> picList = default, int? picTotal = default, IEnumerable<BinaryData> picTypeList = default, string staticSign = default, string t = default, int? timezone = default, int? total = default, IEnumerable<AnnouncementType> typeList = default, string useWebp = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
         {
-            list ??= new ChangeTrackingList<Announcement>();
+            list ??= new ChangeTrackingList<AnnouncementGroup>();
+            picList ??= new ChangeTrackingList<BinaryData>();
+            picTypeList ??= new ChangeTrackingList<BinaryData>();
+            typeList ??= new ChangeTrackingList<AnnouncementType>();
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
-            return new AnnouncementList(list.ToList(), alert, additionalProperties);
+            return new AnnouncementListData(
+                alert,
+                alertId,
+                banner,
+                calendarType,
+                list.ToList(),
+                picAlert,
+                picAlertId,
+                picList.ToList(),
+                picTotal,
+                picTypeList.ToList(),
+                staticSign,
+                t,
+                timezone,
+                total,
+                typeList.ToList(),
+                useWebp,
+                additionalProperties);
         }
 
-        /// <summary> The Announcement. </summary>
+        /// <summary> The AnnouncementCalendarType. </summary>
+        /// <param name="enabled"></param>
+        /// <param name="mi18nName"></param>
+        /// <param name="remind"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementCalendarType"/> instance for mocking. </returns>
+        public static AnnouncementCalendarType AnnouncementCalendarType(bool? enabled = default, string mi18nName = default, bool? remind = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementCalendarType(enabled, mi18nName, remind, additionalProperties);
+        }
+
+        /// <summary> The AnnouncementGroup. </summary>
+        /// <param name="list"></param>
+        /// <param name="typeId"></param>
+        /// <param name="typeLabel"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementGroup"/> instance for mocking. </returns>
+        public static AnnouncementGroup AnnouncementGroup(IEnumerable<AnnouncementItem> list = default, int? typeId = default, string typeLabel = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<AnnouncementItem>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementGroup(list.ToList(), typeId, typeLabel, additionalProperties);
+        }
+
+        /// <summary> The AnnouncementItem. </summary>
+        /// <param name="alert"></param>
         /// <param name="annId"></param>
-        /// <param name="title"></param>
-        /// <param name="subtitle"></param>
         /// <param name="banner"></param>
         /// <param name="content"></param>
-        /// <param name="startTime"></param>
+        /// <param name="country"></param>
         /// <param name="endTime"></param>
+        /// <param name="extraRemind"></param>
+        /// <param name="hasContent"></param>
+        /// <param name="lang"></param>
+        /// <param name="loginAlert"></param>
+        /// <param name="logoutRemind"></param>
+        /// <param name="logoutRemindVer"></param>
+        /// <param name="needRemindText"></param>
+        /// <param name="remind"></param>
+        /// <param name="remindConsumptionType"></param>
+        /// <param name="remindText"></param>
+        /// <param name="remindVer"></param>
+        /// <param name="startTime"></param>
+        /// <param name="subtitle"></param>
+        /// <param name="tagEndTime"></param>
+        /// <param name="tagIcon"></param>
+        /// <param name="tagIconHover"></param>
+        /// <param name="tagLabel"></param>
+        /// <param name="tagStartTime"></param>
+        /// <param name="title"></param>
         /// <param name="type"></param>
+        /// <param name="typeLabel"></param>
+        /// <param name="weakRemind"></param>
         /// <param name="additionalProperties"></param>
-        /// <returns> A new <see cref="UIGF.Announcement"/> instance for mocking. </returns>
-        public static Announcement Announcement(long? annId = default, string title = default, string subtitle = default, string banner = default, string content = default, string startTime = default, string endTime = default, int? @type = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        /// <returns> A new <see cref="Game.Response.AnnouncementItem"/> instance for mocking. </returns>
+        public static AnnouncementItem AnnouncementItem(int? alert = default, int? annId = default, string banner = default, string content = default, string country = default, string endTime = default, int? extraRemind = default, bool? hasContent = default, string lang = default, int? loginAlert = default, int? logoutRemind = default, int? logoutRemindVer = default, int? needRemindText = default, int? remind = default, int? remindConsumptionType = default, string remindText = default, int? remindVer = default, string startTime = default, string subtitle = default, string tagEndTime = default, string tagIcon = default, string tagIconHover = default, string tagLabel = default, string tagStartTime = default, string title = default, int? @type = default, string typeLabel = default, int? weakRemind = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
-            return new Announcement(
+            return new AnnouncementItem(
+                alert,
                 annId,
-                title,
-                subtitle,
                 banner,
                 content,
-                startTime,
+                country,
                 endTime,
+                extraRemind,
+                hasContent,
+                lang,
+                loginAlert,
+                logoutRemind,
+                logoutRemindVer,
+                needRemindText,
+                remind,
+                remindConsumptionType,
+                remindText,
+                remindVer,
+                startTime,
+                subtitle,
+                tagEndTime,
+                tagIcon,
+                tagIconHover,
+                tagLabel,
+                tagStartTime,
+                title,
                 @type,
+                typeLabel,
+                weakRemind,
+                additionalProperties);
+        }
+
+        /// <summary> The AnnouncementType. </summary>
+        /// <param name="id"></param>
+        /// <param name="mi18nName"></param>
+        /// <param name="name"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementType"/> instance for mocking. </returns>
+        public static AnnouncementType AnnouncementType(int? id = default, string mi18nName = default, string name = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementType(id, mi18nName, name, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAnnouncementAlertData"/> instance for mocking. </returns>
+        public static ApiResponseAnnouncementAlertData ApiResponseAnnouncementAlertData(int retcode = default, string message = default, AnnouncementAlertData data = default)
+        {
+            return new ApiResponseAnnouncementAlertData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Genshin announcement alert state shared by regular and UGC announcements. </summary>
+        /// <param name="alert"></param>
+        /// <param name="alertId"></param>
+        /// <param name="extraRemind"></param>
+        /// <param name="remind"></param>
+        /// <param name="remindText"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementAlertData"/> instance for mocking. </returns>
+        public static AnnouncementAlertData AnnouncementAlertData(bool? alert = default, int? alertId = default, bool? extraRemind = default, bool? remind = default, string remindText = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementAlertData(
+                alert,
+                alertId,
+                extraRemind,
+                remind,
+                remindText,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAnnouncementPictureData"/> instance for mocking. </returns>
+        public static ApiResponseAnnouncementPictureData ApiResponseAnnouncementPictureData(int retcode = default, string message = default, AnnouncementPictureData data = default)
+        {
+            return new ApiResponseAnnouncementPictureData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The AnnouncementPictureData. </summary>
+        /// <param name="list"></param>
+        /// <param name="total"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementPictureData"/> instance for mocking. </returns>
+        public static AnnouncementPictureData AnnouncementPictureData(IEnumerable<BinaryData> list = default, int? total = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementPictureData(list.ToList(), total, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAnnouncementContentData"/> instance for mocking. </returns>
+        public static ApiResponseAnnouncementContentData ApiResponseAnnouncementContentData(int retcode = default, string message = default, AnnouncementContentData data = default)
+        {
+            return new ApiResponseAnnouncementContentData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The AnnouncementContentData. </summary>
+        /// <param name="list"></param>
+        /// <param name="picList"></param>
+        /// <param name="picTotal"></param>
+        /// <param name="total"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementContentData"/> instance for mocking. </returns>
+        public static AnnouncementContentData AnnouncementContentData(IEnumerable<AnnouncementContentItem> list = default, IEnumerable<BinaryData> picList = default, int? picTotal = default, int? total = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<AnnouncementContentItem>();
+            picList ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementContentData(list.ToList(), picList.ToList(), picTotal, total, additionalProperties);
+        }
+
+        /// <summary> The AnnouncementContentItem. </summary>
+        /// <param name="annId"></param>
+        /// <param name="banner"></param>
+        /// <param name="content"></param>
+        /// <param name="lang"></param>
+        /// <param name="remindText"></param>
+        /// <param name="subtitle"></param>
+        /// <param name="title"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.AnnouncementContentItem"/> instance for mocking. </returns>
+        public static AnnouncementContentItem AnnouncementContentItem(int? annId = default, string banner = default, string content = default, string lang = default, string remindText = default, string subtitle = default, string title = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementContentItem(
+                annId,
+                banner,
+                content,
+                lang,
+                remindText,
+                subtitle,
+                title,
                 additionalProperties);
         }
 
@@ -757,7 +1861,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponsePandaQrResponse"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponsePandaQrResponse"/> instance for mocking. </returns>
         public static ApiResponsePandaQrResponse ApiResponsePandaQrResponse(int retcode = default, string message = default, PandaQrResponse data = default)
         {
             return new ApiResponsePandaQrResponse(retcode, message, data, additionalBinaryDataProperties: null);
@@ -783,7 +1887,7 @@ namespace UIGF.Mihoyo
         /// <param name="device"></param>
         /// <param name="sign"></param>
         /// <returns> A new <see cref="Game.Genshin.SDK.GranterLoginRequest"/> instance for mocking. </returns>
-        public static GranterLoginRequest GranterLoginRequest(string appId = default, string channelId = default, string data = default, string device = default, string sign = default)
+        public static GranterLoginRequest GranterLoginRequest(int appId = default, int channelId = default, string data = default, string device = default, string sign = default)
         {
             return new GranterLoginRequest(
                 appId,
@@ -794,6 +1898,55 @@ namespace UIGF.Mihoyo
                 additionalBinaryDataProperties: null);
         }
 
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGranterLoginData"/> instance for mocking. </returns>
+        public static ApiResponseGranterLoginData ApiResponseGranterLoginData(int retcode = default, string message = default, GranterLoginData data = default)
+        {
+            return new ApiResponseGranterLoginData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GranterLoginData. </summary>
+        /// <param name="accountType"></param>
+        /// <param name="comboId"></param>
+        /// <param name="comboToken"></param>
+        /// <param name="data"></param>
+        /// <param name="fatigueRemind"></param>
+        /// <param name="heartbeat"></param>
+        /// <param name="openId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GranterLoginData"/> instance for mocking. </returns>
+        public static GranterLoginData GranterLoginData(int? accountType = default, string comboId = default, string comboToken = default, string data = default, GranterFatigueRemind fatigueRemind = default, bool? heartbeat = default, string openId = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GranterLoginData(
+                accountType,
+                comboId,
+                comboToken,
+                data,
+                fatigueRemind,
+                heartbeat,
+                openId,
+                additionalProperties);
+        }
+
+        /// <summary> The GranterFatigueRemind. </summary>
+        /// <param name="durations"></param>
+        /// <param name="nickname"></param>
+        /// <param name="resetPoint"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GranterFatigueRemind"/> instance for mocking. </returns>
+        public static GranterFatigueRemind GranterFatigueRemind(IEnumerable<int> durations = default, string nickname = default, int? resetPoint = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            durations ??= new ChangeTrackingList<int>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GranterFatigueRemind(durations.ToList(), nickname, resetPoint, additionalProperties);
+        }
+
         /// <summary> The SignedDispatchResponse. </summary>
         /// <param name="content"></param>
         /// <param name="sign"></param>
@@ -801,6 +1954,266 @@ namespace UIGF.Mihoyo
         public static SignedDispatchResponse SignedDispatchResponse(string content = default, string sign = default)
         {
             return new SignedDispatchResponse(content, sign, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseGateAddressData"/> instance for mocking. </returns>
+        public static ApiResponseGateAddressData ApiResponseGateAddressData(int retcode = default, string message = default, GateAddressData data = default)
+        {
+            return new ApiResponseGateAddressData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The GateAddressData. </summary>
+        /// <param name="addressList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GateAddressData"/> instance for mocking. </returns>
+        public static GateAddressData GateAddressData(IEnumerable<GateAddress> addressList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            addressList ??= new ChangeTrackingList<GateAddress>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GateAddressData(addressList.ToList(), additionalProperties);
+        }
+
+        /// <summary> Gateway IP and port candidates returned by the CN dispatch service. </summary>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.GateAddress"/> instance for mocking. </returns>
+        public static GateAddress GateAddress(string ip = default, int? port = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GateAddress(ip, port, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkComboConfigData"/> instance for mocking. </returns>
+        public static ApiResponseSdkComboConfigData ApiResponseSdkComboConfigData(int retcode = default, string message = default, SdkComboConfigData data = default)
+        {
+            return new ApiResponseSdkComboConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Genshin SDK bootstrap configuration payloads. Dynamic settings remain maps. </summary>
+        /// <param name="vals"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkComboConfigData"/> instance for mocking. </returns>
+        public static SdkComboConfigData SdkComboConfigData(IDictionary<string, string> vals = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            vals ??= new ChangeTrackingDictionary<string, string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkComboConfigData(vals, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkPrecacheConfigData"/> instance for mocking. </returns>
+        public static ApiResponseSdkPrecacheConfigData ApiResponseSdkPrecacheConfigData(int retcode = default, string message = default, SdkPrecacheConfigData data = default)
+        {
+            return new ApiResponseSdkPrecacheConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkPrecacheConfigData. </summary>
+        /// <param name="vals"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkPrecacheConfigData"/> instance for mocking. </returns>
+        public static SdkPrecacheConfigData SdkPrecacheConfigData(IDictionary<string, string> vals = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            vals ??= new ChangeTrackingDictionary<string, string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkPrecacheConfigData(vals, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkGranterConfigData"/> instance for mocking. </returns>
+        public static ApiResponseSdkGranterConfigData ApiResponseSdkGranterConfigData(int retcode = default, string message = default, SdkGranterConfigData data = default)
+        {
+            return new ApiResponseSdkGranterConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkGranterConfigData. </summary>
+        /// <param name="announceUrl"></param>
+        /// <param name="appName"></param>
+        /// <param name="disableYsdkGuard"></param>
+        /// <param name="enableAnnouncePicPopup"></param>
+        /// <param name="enableUserCenter"></param>
+        /// <param name="functionalSwitchConfigs"></param>
+        /// <param name="logLevel"></param>
+        /// <param name="protocol"></param>
+        /// <param name="pushAliasType"></param>
+        /// <param name="qrAppIcons"></param>
+        /// <param name="qrCloudDisplayName"></param>
+        /// <param name="qrEnabled"></param>
+        /// <param name="qrEnabledApps"></param>
+        /// <param name="ugcProtocol"></param>
+        /// <param name="widgetConfig"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkGranterConfigData"/> instance for mocking. </returns>
+        public static SdkGranterConfigData SdkGranterConfigData(string announceUrl = default, string appName = default, bool? disableYsdkGuard = default, bool? enableAnnouncePicPopup = default, bool? enableUserCenter = default, IDictionary<string, BinaryData> functionalSwitchConfigs = default, string logLevel = default, bool? protocol = default, int? pushAliasType = default, SdkGranterQrAppIcons qrAppIcons = default, string qrCloudDisplayName = default, bool? qrEnabled = default, SdkGranterQrEnabledApps qrEnabledApps = default, bool? ugcProtocol = default, BinaryData widgetConfig = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            functionalSwitchConfigs ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkGranterConfigData(
+                announceUrl,
+                appName,
+                disableYsdkGuard,
+                enableAnnouncePicPopup,
+                enableUserCenter,
+                functionalSwitchConfigs,
+                logLevel,
+                protocol,
+                pushAliasType,
+                qrAppIcons,
+                qrCloudDisplayName,
+                qrEnabled,
+                qrEnabledApps,
+                ugcProtocol,
+                widgetConfig,
+                additionalProperties);
+        }
+
+        /// <summary> The SdkGranterQrAppIcons. </summary>
+        /// <param name="app"></param>
+        /// <param name="bbs"></param>
+        /// <param name="cloud"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkGranterQrAppIcons"/> instance for mocking. </returns>
+        public static SdkGranterQrAppIcons SdkGranterQrAppIcons(string app = default, string bbs = default, string cloud = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkGranterQrAppIcons(app, bbs, cloud, additionalProperties);
+        }
+
+        /// <summary> The SdkGranterQrEnabledApps. </summary>
+        /// <param name="bbs"></param>
+        /// <param name="cloud"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkGranterQrEnabledApps"/> instance for mocking. </returns>
+        public static SdkGranterQrEnabledApps SdkGranterQrEnabledApps(bool? bbs = default, bool? cloud = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkGranterQrEnabledApps(bbs, cloud, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkShieldConfigData"/> instance for mocking. </returns>
+        public static ApiResponseSdkShieldConfigData ApiResponseSdkShieldConfigData(int retcode = default, string message = default, SdkShieldConfigData data = default)
+        {
+            return new ApiResponseSdkShieldConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkShieldConfigData. </summary>
+        /// <param name="bbsAuthLogin"></param>
+        /// <param name="bbsAuthLoginIgnore"></param>
+        /// <param name="client"></param>
+        /// <param name="disableMmt"></param>
+        /// <param name="disableRegist"></param>
+        /// <param name="enableAgeGate"></param>
+        /// <param name="enableAgeGateIgnore"></param>
+        /// <param name="enableBrAgeGate"></param>
+        /// <param name="enableBrAgeGateIgnore"></param>
+        /// <param name="enableCxBindAccount"></param>
+        /// <param name="enableDouyinFlashLogin"></param>
+        /// <param name="enableEmailCaptcha"></param>
+        /// <param name="enableEuAgeGate"></param>
+        /// <param name="enableEuAgeGateIgnore"></param>
+        /// <param name="enableFlashLogin"></param>
+        /// <param name="enableLogo18"></param>
+        /// <param name="enablePsBindAccount"></param>
+        /// <param name="fetchInstanceId"></param>
+        /// <param name="firebaseBlacklistDevicesSwitch"></param>
+        /// <param name="firebaseBlacklistDevicesVersion"></param>
+        /// <param name="gameKey"></param>
+        /// <param name="guest"></param>
+        /// <param name="hoyolabAuthLogin"></param>
+        /// <param name="hoyolabAuthLoginIgnore"></param>
+        /// <param name="hoyoplayAuthLogin"></param>
+        /// <param name="id"></param>
+        /// <param name="identity"></param>
+        /// <param name="ignoreVersions"></param>
+        /// <param name="initializeFirebase"></param>
+        /// <param name="logoHeight"></param>
+        /// <param name="logoWidth"></param>
+        /// <param name="name"></param>
+        /// <param name="scene"></param>
+        /// <param name="serverGuest"></param>
+        /// <param name="thirdparty"></param>
+        /// <param name="thirdpartyIgnore"></param>
+        /// <param name="thirdpartyLoginConfigs"></param>
+        /// <param name="vnWebviewRealnameEnabled"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkShieldConfigData"/> instance for mocking. </returns>
+        public static SdkShieldConfigData SdkShieldConfigData(bool? bbsAuthLogin = default, IEnumerable<BinaryData> bbsAuthLoginIgnore = default, string client = default, bool? disableMmt = default, bool? disableRegist = default, bool? enableAgeGate = default, IEnumerable<BinaryData> enableAgeGateIgnore = default, bool? enableBrAgeGate = default, IEnumerable<BinaryData> enableBrAgeGateIgnore = default, bool? enableCxBindAccount = default, bool? enableDouyinFlashLogin = default, bool? enableEmailCaptcha = default, bool? enableEuAgeGate = default, IEnumerable<BinaryData> enableEuAgeGateIgnore = default, bool? enableFlashLogin = default, bool? enableLogo18 = default, bool? enablePsBindAccount = default, bool? fetchInstanceId = default, bool? firebaseBlacklistDevicesSwitch = default, int? firebaseBlacklistDevicesVersion = default, string gameKey = default, bool? guest = default, bool? hoyolabAuthLogin = default, IEnumerable<BinaryData> hoyolabAuthLoginIgnore = default, bool? hoyoplayAuthLogin = default, int? id = default, string identity = default, string ignoreVersions = default, bool? initializeFirebase = default, string logoHeight = default, string logoWidth = default, string name = default, string scene = default, bool? serverGuest = default, IEnumerable<string> thirdparty = default, IDictionary<string, BinaryData> thirdpartyIgnore = default, IDictionary<string, BinaryData> thirdpartyLoginConfigs = default, bool? vnWebviewRealnameEnabled = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            bbsAuthLoginIgnore ??= new ChangeTrackingList<BinaryData>();
+            enableAgeGateIgnore ??= new ChangeTrackingList<BinaryData>();
+            enableBrAgeGateIgnore ??= new ChangeTrackingList<BinaryData>();
+            enableEuAgeGateIgnore ??= new ChangeTrackingList<BinaryData>();
+            hoyolabAuthLoginIgnore ??= new ChangeTrackingList<BinaryData>();
+            thirdparty ??= new ChangeTrackingList<string>();
+            thirdpartyIgnore ??= new ChangeTrackingDictionary<string, BinaryData>();
+            thirdpartyLoginConfigs ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkShieldConfigData(
+                bbsAuthLogin,
+                bbsAuthLoginIgnore.ToList(),
+                client,
+                disableMmt,
+                disableRegist,
+                enableAgeGate,
+                enableAgeGateIgnore.ToList(),
+                enableBrAgeGate,
+                enableBrAgeGateIgnore.ToList(),
+                enableCxBindAccount,
+                enableDouyinFlashLogin,
+                enableEmailCaptcha,
+                enableEuAgeGate,
+                enableEuAgeGateIgnore.ToList(),
+                enableFlashLogin,
+                enableLogo18,
+                enablePsBindAccount,
+                fetchInstanceId,
+                firebaseBlacklistDevicesSwitch,
+                firebaseBlacklistDevicesVersion,
+                gameKey,
+                guest,
+                hoyolabAuthLogin,
+                hoyolabAuthLoginIgnore.ToList(),
+                hoyoplayAuthLogin,
+                id,
+                identity,
+                ignoreVersions,
+                initializeFirebase,
+                logoHeight,
+                logoWidth,
+                name,
+                scene,
+                serverGuest,
+                thirdparty.ToList(),
+                thirdpartyIgnore,
+                thirdpartyLoginConfigs,
+                vnWebviewRealnameEnabled,
+                additionalProperties);
         }
 
         /// <summary> The ProtocolVersionRequest. </summary>
@@ -821,6 +2234,61 @@ namespace UIGF.Mihoyo
                 additionalBinaryDataProperties: null);
         }
 
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkProtocolVersionComparisonData"/> instance for mocking. </returns>
+        public static ApiResponseSdkProtocolVersionComparisonData ApiResponseSdkProtocolVersionComparisonData(int retcode = default, string message = default, SdkProtocolVersionComparisonData data = default)
+        {
+            return new ApiResponseSdkProtocolVersionComparisonData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkProtocolVersionComparisonData. </summary>
+        /// <param name="modified"></param>
+        /// <param name="protocol"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkProtocolVersionComparisonData"/> instance for mocking. </returns>
+        public static SdkProtocolVersionComparisonData SdkProtocolVersionComparisonData(bool? modified = default, SdkProtocolVersion protocol = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkProtocolVersionComparisonData(modified, protocol, additionalProperties);
+        }
+
+        /// <summary> The SdkProtocolVersion. </summary>
+        /// <param name="appId"></param>
+        /// <param name="createTime"></param>
+        /// <param name="fullPrivProto"></param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
+        /// <param name="major"></param>
+        /// <param name="minimum"></param>
+        /// <param name="privProto"></param>
+        /// <param name="teenagerProto"></param>
+        /// <param name="thirdProto"></param>
+        /// <param name="userProto"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkProtocolVersion"/> instance for mocking. </returns>
+        public static SdkProtocolVersion SdkProtocolVersion(int? appId = default, string createTime = default, string fullPrivProto = default, int? id = default, string language = default, int? major = default, int? minimum = default, string privProto = default, string teenagerProto = default, string thirdProto = default, string userProto = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkProtocolVersion(
+                appId,
+                createTime,
+                fullPrivProto,
+                id,
+                language,
+                major,
+                minimum,
+                privProto,
+                teenagerProto,
+                thirdProto,
+                userProto,
+                additionalProperties);
+        }
+
         /// <summary> The RedDotRequest. </summary>
         /// <param name="gameBiz"></param>
         /// <param name="playerLevel"></param>
@@ -832,11 +2300,891 @@ namespace UIGF.Mihoyo
             return new RedDotRequest(gameBiz, playerLevel, region, uid, additionalBinaryDataProperties: null);
         }
 
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkRedDotData"/> instance for mocking. </returns>
+        public static ApiResponseSdkRedDotData ApiResponseSdkRedDotData(int retcode = default, string message = default, SdkRedDotData data = default)
+        {
+            return new ApiResponseSdkRedDotData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkRedDotData. </summary>
+        /// <param name="infos"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkRedDotData"/> instance for mocking. </returns>
+        public static SdkRedDotData SdkRedDotData(IEnumerable<SdkRedDotInfo> infos = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            infos ??= new ChangeTrackingList<SdkRedDotInfo>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkRedDotData(infos.ToList(), additionalProperties);
+        }
+
+        /// <summary> The SdkRedDotInfo. </summary>
+        /// <param name="contentId"></param>
+        /// <param name="display"></param>
+        /// <param name="redPointType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.SdkRedDotInfo"/> instance for mocking. </returns>
+        public static SdkRedDotInfo SdkRedDotInfo(int? contentId = default, bool? display = default, int? redPointType = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkRedDotInfo(contentId, display, redPointType, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAnnouncementList"/> instance for mocking. </returns>
+        public static ApiResponseAnnouncementList ApiResponseAnnouncementList(int retcode = default, string message = default, AnnouncementList data = default)
+        {
+            return new ApiResponseAnnouncementList(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The AnnouncementList. </summary>
+        /// <param name="list"></param>
+        /// <param name="alert"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Mihoyo.AnnouncementList"/> instance for mocking. </returns>
+        public static AnnouncementList AnnouncementList(IEnumerable<Announcement> list = default, bool? alert = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<Announcement>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AnnouncementList(list.ToList(), alert, additionalProperties);
+        }
+
+        /// <summary> The Announcement. </summary>
+        /// <param name="annId"></param>
+        /// <param name="title"></param>
+        /// <param name="subtitle"></param>
+        /// <param name="banner"></param>
+        /// <param name="content"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="type"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Mihoyo.Announcement"/> instance for mocking. </returns>
+        public static Announcement Announcement(long? annId = default, string title = default, string subtitle = default, string banner = default, string content = default, string startTime = default, string endTime = default, int? @type = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new Announcement(
+                annId,
+                title,
+                subtitle,
+                banner,
+                content,
+                startTime,
+                endTime,
+                @type,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessIndexData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessIndexData ApiResponseZenlessIndexData(int retcode = default, string message = default, ZenlessIndexData data = default)
+        {
+            return new ApiResponseZenlessIndexData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessIndexData. </summary>
+        /// <param name="areaCollections"></param>
+        /// <param name="avatarList"></param>
+        /// <param name="awardState"></param>
+        /// <param name="buddyList"></param>
+        /// <param name="catNotesList"></param>
+        /// <param name="challengeScheduleList"></param>
+        /// <param name="curHeadIconUrl"></param>
+        /// <param name="gameDataShow"></param>
+        /// <param name="stats"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessIndexData"/> instance for mocking. </returns>
+        public static ZenlessIndexData ZenlessIndexData(IEnumerable<IDictionary<string, BinaryData>> areaCollections = default, IEnumerable<IDictionary<string, BinaryData>> avatarList = default, string awardState = default, IEnumerable<IDictionary<string, BinaryData>> buddyList = default, IEnumerable<BinaryData> catNotesList = default, IEnumerable<IDictionary<string, BinaryData>> challengeScheduleList = default, string curHeadIconUrl = default, IDictionary<string, BinaryData> gameDataShow = default, IDictionary<string, BinaryData> stats = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            areaCollections ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            avatarList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            buddyList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            catNotesList ??= new ChangeTrackingList<BinaryData>();
+            challengeScheduleList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            gameDataShow ??= new ChangeTrackingDictionary<string, BinaryData>();
+            stats ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessIndexData(
+                areaCollections.ToList(),
+                avatarList.ToList(),
+                awardState,
+                buddyList.ToList(),
+                catNotesList.ToList(),
+                challengeScheduleList.ToList(),
+                curHeadIconUrl,
+                gameDataShow,
+                stats,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessDailyNoteData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessDailyNoteData ApiResponseZenlessDailyNoteData(int retcode = default, string message = default, ZenlessDailyNoteData data = default)
+        {
+            return new ApiResponseZenlessDailyNoteData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessDailyNoteData. </summary>
+        /// <param name="abyssRefresh"></param>
+        /// <param name="bountyCommission"></param>
+        /// <param name="cafeState"></param>
+        /// <param name="cardSign"></param>
+        /// <param name="coffee"></param>
+        /// <param name="energy"></param>
+        /// <param name="isOtherSub"></param>
+        /// <param name="isSub"></param>
+        /// <param name="memberCard"></param>
+        /// <param name="surveyPoints"></param>
+        /// <param name="templeRunning"></param>
+        /// <param name="vhsSale"></param>
+        /// <param name="vitality"></param>
+        /// <param name="weeklyTask"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessDailyNoteData"/> instance for mocking. </returns>
+        public static ZenlessDailyNoteData ZenlessDailyNoteData(long? abyssRefresh = default, IDictionary<string, BinaryData> bountyCommission = default, string cafeState = default, string cardSign = default, BinaryData coffee = default, IDictionary<string, BinaryData> energy = default, bool? isOtherSub = default, bool? isSub = default, IDictionary<string, BinaryData> memberCard = default, BinaryData surveyPoints = default, IDictionary<string, BinaryData> templeRunning = default, IDictionary<string, BinaryData> vhsSale = default, IDictionary<string, BinaryData> vitality = default, BinaryData weeklyTask = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            bountyCommission ??= new ChangeTrackingDictionary<string, BinaryData>();
+            energy ??= new ChangeTrackingDictionary<string, BinaryData>();
+            memberCard ??= new ChangeTrackingDictionary<string, BinaryData>();
+            templeRunning ??= new ChangeTrackingDictionary<string, BinaryData>();
+            vhsSale ??= new ChangeTrackingDictionary<string, BinaryData>();
+            vitality ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessDailyNoteData(
+                abyssRefresh,
+                bountyCommission,
+                cafeState,
+                cardSign,
+                coffee,
+                energy,
+                isOtherSub,
+                isSub,
+                memberCard,
+                surveyPoints,
+                templeRunning,
+                vhsSale,
+                vitality,
+                weeklyTask,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessShiyuDefenseData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessShiyuDefenseData ApiResponseZenlessShiyuDefenseData(int retcode = default, string message = default, ZenlessShiyuDefenseData data = default)
+        {
+            return new ApiResponseZenlessShiyuDefenseData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessShiyuDefenseData. </summary>
+        /// <param name="hadalInfoV2"></param>
+        /// <param name="hadalVer"></param>
+        /// <param name="icon"></param>
+        /// <param name="nickName"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessShiyuDefenseData"/> instance for mocking. </returns>
+        public static ZenlessShiyuDefenseData ZenlessShiyuDefenseData(IDictionary<string, BinaryData> hadalInfoV2 = default, string hadalVer = default, string icon = default, string nickName = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            hadalInfoV2 ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessShiyuDefenseData(hadalInfoV2, hadalVer, icon, nickName, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessAbyssSummaryData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessAbyssSummaryData ApiResponseZenlessAbyssSummaryData(int retcode = default, string message = default, ZenlessAbyssSummaryData data = default)
+        {
+            return new ApiResponseZenlessAbyssSummaryData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessAbyssSummaryData. </summary>
+        /// <param name="abyssCollect"></param>
+        /// <param name="abyssDuty"></param>
+        /// <param name="abyssLevel"></param>
+        /// <param name="abyssNest"></param>
+        /// <param name="abyssPoint"></param>
+        /// <param name="abyssTalent"></param>
+        /// <param name="abyssThrone"></param>
+        /// <param name="refreshTime"></param>
+        /// <param name="unlock"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessAbyssSummaryData"/> instance for mocking. </returns>
+        public static ZenlessAbyssSummaryData ZenlessAbyssSummaryData(IEnumerable<IDictionary<string, BinaryData>> abyssCollect = default, BinaryData abyssDuty = default, IDictionary<string, BinaryData> abyssLevel = default, IDictionary<string, BinaryData> abyssNest = default, IDictionary<string, BinaryData> abyssPoint = default, IDictionary<string, BinaryData> abyssTalent = default, IDictionary<string, BinaryData> abyssThrone = default, long? refreshTime = default, bool? unlock = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            abyssCollect ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            abyssLevel ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssNest ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssPoint ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssTalent ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssThrone ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessAbyssSummaryData(
+                abyssCollect.ToList(),
+                abyssDuty,
+                abyssLevel,
+                abyssNest,
+                abyssPoint,
+                abyssTalent,
+                abyssThrone,
+                refreshTime,
+                unlock,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessAbyssSeasonTwoSummaryData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessAbyssSeasonTwoSummaryData ApiResponseZenlessAbyssSeasonTwoSummaryData(int retcode = default, string message = default, ZenlessAbyssSeasonTwoSummaryData data = default)
+        {
+            return new ApiResponseZenlessAbyssSeasonTwoSummaryData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessAbyssSeasonTwoSummaryData. </summary>
+        /// <param name="abyssCollect"></param>
+        /// <param name="abyssDuty"></param>
+        /// <param name="abyssLevel"></param>
+        /// <param name="abyssMax"></param>
+        /// <param name="abyssTask"></param>
+        /// <param name="abyssTaskForceInvestigationMax"></param>
+        /// <param name="hideAbyssDuty"></param>
+        /// <param name="refreshTime"></param>
+        /// <param name="specialMission"></param>
+        /// <param name="unlock"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessAbyssSeasonTwoSummaryData"/> instance for mocking. </returns>
+        public static ZenlessAbyssSeasonTwoSummaryData ZenlessAbyssSeasonTwoSummaryData(IEnumerable<IDictionary<string, BinaryData>> abyssCollect = default, IDictionary<string, BinaryData> abyssDuty = default, IDictionary<string, BinaryData> abyssLevel = default, IDictionary<string, BinaryData> abyssMax = default, IDictionary<string, BinaryData> abyssTask = default, IDictionary<string, BinaryData> abyssTaskForceInvestigationMax = default, bool? hideAbyssDuty = default, long? refreshTime = default, IDictionary<string, BinaryData> specialMission = default, bool? unlock = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            abyssCollect ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            abyssDuty ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssLevel ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssMax ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssTask ??= new ChangeTrackingDictionary<string, BinaryData>();
+            abyssTaskForceInvestigationMax ??= new ChangeTrackingDictionary<string, BinaryData>();
+            specialMission ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessAbyssSeasonTwoSummaryData(
+                abyssCollect.ToList(),
+                abyssDuty,
+                abyssLevel,
+                abyssMax,
+                abyssTask,
+                abyssTaskForceInvestigationMax,
+                hideAbyssDuty,
+                refreshTime,
+                specialMission,
+                unlock,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessActivityCalendarData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessActivityCalendarData ApiResponseZenlessActivityCalendarData(int retcode = default, string message = default, ZenlessActivityCalendarData data = default)
+        {
+            return new ApiResponseZenlessActivityCalendarData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessActivityCalendarData. </summary>
+        /// <param name="activityList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessActivityCalendarData"/> instance for mocking. </returns>
+        public static ZenlessActivityCalendarData ZenlessActivityCalendarData(IEnumerable<IDictionary<string, BinaryData>> activityList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            activityList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessActivityCalendarData(activityList.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessClimbingTowerDetailData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessClimbingTowerDetailData ApiResponseZenlessClimbingTowerDetailData(int retcode = default, string message = default, ZenlessClimbingTowerDetailData data = default)
+        {
+            return new ApiResponseZenlessClimbingTowerDetailData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessClimbingTowerDetailData. </summary>
+        /// <param name="climbingTowerS1"></param>
+        /// <param name="climbingTowerS2"></param>
+        /// <param name="climbingTowerS3"></param>
+        /// <param name="climbingTowerS4"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessClimbingTowerDetailData"/> instance for mocking. </returns>
+        public static ZenlessClimbingTowerDetailData ZenlessClimbingTowerDetailData(BinaryData climbingTowerS1 = default, BinaryData climbingTowerS2 = default, BinaryData climbingTowerS3 = default, BinaryData climbingTowerS4 = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessClimbingTowerDetailData(climbingTowerS1, climbingTowerS2, climbingTowerS3, climbingTowerS4, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessExplorationDetailData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessExplorationDetailData ApiResponseZenlessExplorationDetailData(int retcode = default, string message = default, ZenlessExplorationDetailData data = default)
+        {
+            return new ApiResponseZenlessExplorationDetailData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessExplorationDetailData. </summary>
+        /// <param name="areaCollections"></param>
+        /// <param name="catNotes"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessExplorationDetailData"/> instance for mocking. </returns>
+        public static ZenlessExplorationDetailData ZenlessExplorationDetailData(IEnumerable<IDictionary<string, BinaryData>> areaCollections = default, IEnumerable<IDictionary<string, BinaryData>> catNotes = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            areaCollections ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            catNotes ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessExplorationDetailData(areaCollections.ToList(), catNotes.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessGachaCalendarData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessGachaCalendarData ApiResponseZenlessGachaCalendarData(int retcode = default, string message = default, ZenlessGachaCalendarData data = default)
+        {
+            return new ApiResponseZenlessGachaCalendarData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessGachaCalendarData. </summary>
+        /// <param name="avatarGachaScheduleList"></param>
+        /// <param name="weaponGachaScheduleList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessGachaCalendarData"/> instance for mocking. </returns>
+        public static ZenlessGachaCalendarData ZenlessGachaCalendarData(IEnumerable<IDictionary<string, BinaryData>> avatarGachaScheduleList = default, IEnumerable<IDictionary<string, BinaryData>> weaponGachaScheduleList = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            avatarGachaScheduleList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            weaponGachaScheduleList ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessGachaCalendarData(avatarGachaScheduleList.ToList(), weaponGachaScheduleList.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessDeadlyAssaultSummaryData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessDeadlyAssaultSummaryData ApiResponseZenlessDeadlyAssaultSummaryData(int retcode = default, string message = default, ZenlessDeadlyAssaultSummaryData data = default)
+        {
+            return new ApiResponseZenlessDeadlyAssaultSummaryData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessDeadlyAssaultSummaryData. </summary>
+        /// <param name="avatarIcon"></param>
+        /// <param name="endTime"></param>
+        /// <param name="list"></param>
+        /// <param name="nickName"></param>
+        /// <param name="roomMaxScore"></param>
+        /// <param name="startTime"></param>
+        /// <param name="totalMaxScore"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessDeadlyAssaultSummaryData"/> instance for mocking. </returns>
+        public static ZenlessDeadlyAssaultSummaryData ZenlessDeadlyAssaultSummaryData(string avatarIcon = default, IDictionary<string, BinaryData> endTime = default, IEnumerable<BinaryData> list = default, string nickName = default, int? roomMaxScore = default, IDictionary<string, BinaryData> startTime = default, int? totalMaxScore = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            endTime ??= new ChangeTrackingDictionary<string, BinaryData>();
+            list ??= new ChangeTrackingList<BinaryData>();
+            startTime ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessDeadlyAssaultSummaryData(
+                avatarIcon,
+                endTime,
+                list.ToList(),
+                nickName,
+                roomMaxScore,
+                startTime,
+                totalMaxScore,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessThresholdSimulationPeriodSummaryData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessThresholdSimulationPeriodSummaryData ApiResponseZenlessThresholdSimulationPeriodSummaryData(int retcode = default, string message = default, ZenlessThresholdSimulationPeriodSummaryData data = default)
+        {
+            return new ApiResponseZenlessThresholdSimulationPeriodSummaryData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessThresholdSimulationPeriodSummaryData. </summary>
+        /// <param name="hasDetailRecord"></param>
+        /// <param name="voidFrontBattleAbstractInfoBrief"></param>
+        /// <param name="voidFrontId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessThresholdSimulationPeriodSummaryData"/> instance for mocking. </returns>
+        public static ZenlessThresholdSimulationPeriodSummaryData ZenlessThresholdSimulationPeriodSummaryData(bool? hasDetailRecord = default, IDictionary<string, BinaryData> voidFrontBattleAbstractInfoBrief = default, long? voidFrontId = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            voidFrontBattleAbstractInfoBrief ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessThresholdSimulationPeriodSummaryData(hasDetailRecord, voidFrontBattleAbstractInfoBrief, voidFrontId, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessLedgerMonthInfoData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessLedgerMonthInfoData ApiResponseZenlessLedgerMonthInfoData(int retcode = default, string message = default, ZenlessLedgerMonthInfoData data = default)
+        {
+            return new ApiResponseZenlessLedgerMonthInfoData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessLedgerMonthInfoData. </summary>
+        /// <param name="currentMonth"></param>
+        /// <param name="dataMonth"></param>
+        /// <param name="monthData"></param>
+        /// <param name="optionalMonth"></param>
+        /// <param name="region"></param>
+        /// <param name="roleInfo"></param>
+        /// <param name="uid"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Game.Response.ZenlessLedgerMonthInfoData"/> instance for mocking. </returns>
+        public static ZenlessLedgerMonthInfoData ZenlessLedgerMonthInfoData(string currentMonth = default, string dataMonth = default, IDictionary<string, BinaryData> monthData = default, IEnumerable<string> optionalMonth = default, string region = default, IDictionary<string, BinaryData> roleInfo = default, string uid = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            monthData ??= new ChangeTrackingDictionary<string, BinaryData>();
+            optionalMonth ??= new ChangeTrackingList<string>();
+            roleInfo ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessLedgerMonthInfoData(
+                currentMonth,
+                dataMonth,
+                monthData,
+                optionalMonth.ToList(),
+                region,
+                roleInfo,
+                uid,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStrategyLatestContentData"/> instance for mocking. </returns>
+        public static ApiResponseStrategyLatestContentData ApiResponseStrategyLatestContentData(int retcode = default, string message = default, StrategyLatestContentData data = default)
+        {
+            return new ApiResponseStrategyLatestContentData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StrategyLatestContentData. </summary>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategyLatestContentData"/> instance for mocking. </returns>
+        public static StrategyLatestContentData StrategyLatestContentData(IEnumerable<StrategyContentItem> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<StrategyContentItem>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategyLatestContentData(list.ToList(), additionalProperties);
+        }
+
+        /// <summary> The StrategyContentItem. </summary>
+        /// <param name="aliasName"></param>
+        /// <param name="articleTime"></param>
+        /// <param name="articleUserName"></param>
+        /// <param name="avatarUrl"></param>
+        /// <param name="bbsUrl"></param>
+        /// <param name="contentId"></param>
+        /// <param name="cornerMark"></param>
+        /// <param name="ext"></param>
+        /// <param name="icon"></param>
+        /// <param name="summary"></param>
+        /// <param name="title"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategyContentItem"/> instance for mocking. </returns>
+        public static StrategyContentItem StrategyContentItem(string aliasName = default, string articleTime = default, string articleUserName = default, string avatarUrl = default, string bbsUrl = default, long? contentId = default, string cornerMark = default, string ext = default, string icon = default, string summary = default, string title = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategyContentItem(
+                aliasName,
+                articleTime,
+                articleUserName,
+                avatarUrl,
+                bbsUrl,
+                contentId,
+                cornerMark,
+                ext,
+                icon,
+                summary,
+                title,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStrategyHomeInfoData"/> instance for mocking. </returns>
+        public static ApiResponseStrategyHomeInfoData ApiResponseStrategyHomeInfoData(int retcode = default, string message = default, StrategyHomeInfoData data = default)
+        {
+            return new ApiResponseStrategyHomeInfoData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StrategyHomeInfoData. </summary>
+        /// <param name="announce"></param>
+        /// <param name="popWindow"></param>
+        /// <param name="search"></param>
+        /// <param name="speaker"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategyHomeInfoData"/> instance for mocking. </returns>
+        public static StrategyHomeInfoData StrategyHomeInfoData(StrategyAnnouncement announce = default, BinaryData popWindow = default, StrategySearch search = default, BinaryData speaker = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategyHomeInfoData(announce, popWindow, search, speaker, additionalProperties);
+        }
+
+        /// <summary> The StrategyAnnouncement. </summary>
+        /// <param name="content"></param>
+        /// <param name="version"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategyAnnouncement"/> instance for mocking. </returns>
+        public static StrategyAnnouncement StrategyAnnouncement(string content = default, int? version = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategyAnnouncement(content, version, additionalProperties);
+        }
+
+        /// <summary> The StrategySearch. </summary>
+        /// <param name="hotWords"></param>
+        /// <param name="placeholder"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategySearch"/> instance for mocking. </returns>
+        public static StrategySearch StrategySearch(IEnumerable<string> hotWords = default, string placeholder = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            hotWords ??= new ChangeTrackingList<string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategySearch(hotWords.ToList(), placeholder, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStrategyHomeNavbarData"/> instance for mocking. </returns>
+        public static ApiResponseStrategyHomeNavbarData ApiResponseStrategyHomeNavbarData(int retcode = default, string message = default, StrategyHomeNavbarData data = default)
+        {
+            return new ApiResponseStrategyHomeNavbarData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StrategyHomeNavbarData. </summary>
+        /// <param name="homeImg"></param>
+        /// <param name="navbar"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategyHomeNavbarData"/> instance for mocking. </returns>
+        public static StrategyHomeNavbarData StrategyHomeNavbarData(StrategyHomeImage homeImg = default, IEnumerable<BinaryData> navbar = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            navbar ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategyHomeNavbarData(homeImg, navbar.ToList(), additionalProperties);
+        }
+
+        /// <summary> The StrategyHomeImage. </summary>
+        /// <param name="headImg"></param>
+        /// <param name="logo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StrategyHomeImage"/> instance for mocking. </returns>
+        public static StrategyHomeImage StrategyHomeImage(string headImg = default, string logo = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StrategyHomeImage(headImg, logo, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseZenlessFeedbackScheduleData"/> instance for mocking. </returns>
+        public static ApiResponseZenlessFeedbackScheduleData ApiResponseZenlessFeedbackScheduleData(int retcode = default, string message = default, ZenlessFeedbackScheduleData data = default)
+        {
+            return new ApiResponseZenlessFeedbackScheduleData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ZenlessFeedbackScheduleData. </summary>
+        /// <param name="isNeedCollect"></param>
+        /// <param name="scheduleId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.ZenlessFeedbackScheduleData"/> instance for mocking. </returns>
+        public static ZenlessFeedbackScheduleData ZenlessFeedbackScheduleData(bool? isNeedCollect = default, string scheduleId = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessFeedbackScheduleData(isNeedCollect, scheduleId, additionalProperties);
+        }
+
+        /// <summary> The ZenlessFeedbackCollectionRequest. </summary>
+        /// <param name="region"></param>
+        /// <param name="scheduleId"></param>
+        /// <param name="score"></param>
+        /// <param name="source"></param>
+        /// <param name="toolType"></param>
+        /// <param name="uid"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.ZenlessFeedbackCollectionRequest"/> instance for mocking. </returns>
+        public static ZenlessFeedbackCollectionRequest ZenlessFeedbackCollectionRequest(string region = default, string scheduleId = default, int score = default, int source = default, int toolType = default, string uid = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ZenlessFeedbackCollectionRequest(
+                region,
+                scheduleId,
+                score,
+                source,
+                toolType,
+                uid,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseEmptyData"/> instance for mocking. </returns>
+        public static ApiResponseEmptyData ApiResponseEmptyData(int retcode = default, string message = default, EmptyData data = default)
+        {
+            return new ApiResponseEmptyData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The EmptyData. </summary>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.EmptyData"/> instance for mocking. </returns>
+        public static EmptyData EmptyData(IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new EmptyData(additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseRedDotBatchData"/> instance for mocking. </returns>
+        public static ApiResponseRedDotBatchData ApiResponseRedDotBatchData(int retcode = default, string message = default, RedDotBatchData data = default)
+        {
+            return new ApiResponseRedDotBatchData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The RedDotBatchData. </summary>
+        /// <param name="gameStatus"></param>
+        /// <param name="status"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.RedDotBatchData"/> instance for mocking. </returns>
+        public static RedDotBatchData RedDotBatchData(RedDotGameStatus gameStatus = default, bool? status = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new RedDotBatchData(gameStatus, status, additionalProperties);
+        }
+
+        /// <summary> The RedDotGameStatus. </summary>
+        /// <param name="bbsCn"></param>
+        /// <param name="hk4eCn"></param>
+        /// <param name="napCn"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.RedDotGameStatus"/> instance for mocking. </returns>
+        public static RedDotGameStatus RedDotGameStatus(bool? bbsCn = default, bool? hk4eCn = default, bool? napCn = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new RedDotGameStatus(bbsCn, hk4eCn, napCn, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponsePatchData"/> instance for mocking. </returns>
+        public static ApiResponsePatchData ApiResponsePatchData(int retcode = default, string message = default, PatchData data = default)
+        {
+            return new ApiResponsePatchData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The PatchData. </summary>
+        /// <param name="dialogContent"></param>
+        /// <param name="dialogContentEn"></param>
+        /// <param name="dialogNum"></param>
+        /// <param name="dialogPeriod"></param>
+        /// <param name="dialogPeriodType"></param>
+        /// <param name="dialogTitle"></param>
+        /// <param name="fileName"></param>
+        /// <param name="fileUrl"></param>
+        /// <param name="imPageIds"></param>
+        /// <param name="md5"></param>
+        /// <param name="patchAction"></param>
+        /// <param name="patchId"></param>
+        /// <param name="patchStrategyId"></param>
+        /// <param name="patchVersion"></param>
+        /// <param name="updateRecommendedIntensity"></param>
+        /// <param name="updateType"></param>
+        /// <param name="userDefined"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.PatchData"/> instance for mocking. </returns>
+        public static PatchData PatchData(string dialogContent = default, string dialogContentEn = default, int? dialogNum = default, int? dialogPeriod = default, int? dialogPeriodType = default, string dialogTitle = default, string fileName = default, string fileUrl = default, IEnumerable<BinaryData> imPageIds = default, string md5 = default, int? patchAction = default, long? patchId = default, long? patchStrategyId = default, string patchVersion = default, string updateRecommendedIntensity = default, int? updateType = default, string userDefined = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            imPageIds ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new PatchData(
+                dialogContent,
+                dialogContentEn,
+                dialogNum,
+                dialogPeriod,
+                dialogPeriodType,
+                dialogTitle,
+                fileName,
+                fileUrl,
+                imPageIds.ToList(),
+                md5,
+                patchAction,
+                patchId,
+                patchStrategyId,
+                patchVersion,
+                updateRecommendedIntensity,
+                updateType,
+                userDefined,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseAuthKeyData"/> instance for mocking. </returns>
+        public static ApiResponseAuthKeyData ApiResponseAuthKeyData(int retcode = default, string message = default, AuthKeyData data = default)
+        {
+            return new ApiResponseAuthKeyData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The AuthKeyData. </summary>
+        /// <param name="authkey"></param>
+        /// <param name="authkeyVer"></param>
+        /// <param name="signType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.AuthKeyData"/> instance for mocking. </returns>
+        public static AuthKeyData AuthKeyData(string authkey = default, int? authkeyVer = default, int? signType = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new AuthKeyData(authkey, authkeyVer, signType, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseReleaseData"/> instance for mocking. </returns>
+        public static ApiResponseReleaseData ApiResponseReleaseData(int retcode = default, string message = default, ReleaseData data = default)
+        {
+            return new ApiResponseReleaseData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ReleaseData. </summary>
+        /// <param name="dialog"></param>
+        /// <param name="dialogContent"></param>
+        /// <param name="dialogContentEn"></param>
+        /// <param name="dialogNum"></param>
+        /// <param name="dialogPeriod"></param>
+        /// <param name="dialogPeriodType"></param>
+        /// <param name="dialogTitle"></param>
+        /// <param name="dialogTitleEn"></param>
+        /// <param name="hasUpdate"></param>
+        /// <param name="hypGameIds"></param>
+        /// <param name="loopWay"></param>
+        /// <param name="packageMd5"></param>
+        /// <param name="packageName"></param>
+        /// <param name="packageSize"></param>
+        /// <param name="packageUrl"></param>
+        /// <param name="packageVersion"></param>
+        /// <param name="silent"></param>
+        /// <param name="strategyId"></param>
+        /// <param name="updateRecommendedIntensity"></param>
+        /// <param name="updateType"></param>
+        /// <param name="userDefined"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.ReleaseData"/> instance for mocking. </returns>
+        public static ReleaseData ReleaseData(string dialog = default, string dialogContent = default, string dialogContentEn = default, int? dialogNum = default, int? dialogPeriod = default, int? dialogPeriodType = default, string dialogTitle = default, string dialogTitleEn = default, bool? hasUpdate = default, IEnumerable<BinaryData> hypGameIds = default, string loopWay = default, string packageMd5 = default, string packageName = default, string packageSize = default, string packageUrl = default, string packageVersion = default, string silent = default, long? strategyId = default, string updateRecommendedIntensity = default, int? updateType = default, string userDefined = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            hypGameIds ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ReleaseData(
+                dialog,
+                dialogContent,
+                dialogContentEn,
+                dialogNum,
+                dialogPeriod,
+                dialogPeriodType,
+                dialogTitle,
+                dialogTitleEn,
+                hasUpdate,
+                hypGameIds.ToList(),
+                loopWay,
+                packageMd5,
+                packageName,
+                packageSize,
+                packageUrl,
+                packageVersion,
+                silent,
+                strategyId,
+                updateRecommendedIntensity,
+                updateType,
+                userDefined,
+                additionalProperties);
+        }
+
         /// <summary> Common envelope used by the HoYoPlay and Sophon APIs. </summary>
         /// <param name="retcode"></param>
         /// <param name="message"></param>
         /// <param name="data"></param>
-        /// <returns> A new <see cref="UIGF.LauncherResponseGameBasicInfo"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.LauncherResponseGameBasicInfo"/> instance for mocking. </returns>
         public static LauncherResponseGameBasicInfo LauncherResponseGameBasicInfo(int retcode = default, string message = default, GameBasicInfo data = default)
         {
             return new LauncherResponseGameBasicInfo(retcode, message, data, additionalBinaryDataProperties: null);
@@ -858,7 +3206,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"></param>
         /// <param name="message"></param>
         /// <param name="data"></param>
-        /// <returns> A new <see cref="UIGF.LauncherResponseJsonObject"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.LauncherResponseJsonObject"/> instance for mocking. </returns>
         public static LauncherResponseJsonObject LauncherResponseJsonObject(int retcode = default, string message = default, JsonObject data = default)
         {
             return new LauncherResponseJsonObject(retcode, message, data, additionalBinaryDataProperties: null);
@@ -895,7 +3243,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseDeviceExtensionList"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseDeviceExtensionList"/> instance for mocking. </returns>
         public static ApiResponseDeviceExtensionList ApiResponseDeviceExtensionList(int retcode = default, string message = default, DeviceExtensionList data = default)
         {
             return new ApiResponseDeviceExtensionList(retcode, message, data, additionalBinaryDataProperties: null);
@@ -929,12 +3277,13 @@ namespace UIGF.Mihoyo
         /// <param name="deviceFp"></param>
         /// <param name="seedId"></param>
         /// <param name="deviceId"></param>
+        /// <param name="bbsDeviceId"></param>
         /// <param name="extFields"></param>
         /// <param name="platform"></param>
         /// <param name="seedTime"></param>
         /// <param name="additionalProperties"></param>
         /// <returns> A new <see cref="Game.DeviceFingerprintRequest"/> instance for mocking. </returns>
-        public static DeviceFingerprintRequest DeviceFingerprintRequest(string appName = default, string deviceFp = default, string seedId = default, string deviceId = default, string extFields = default, string platform = default, string seedTime = default, IDictionary<string, BinaryData> additionalProperties = default)
+        public static DeviceFingerprintRequest DeviceFingerprintRequest(string appName = default, string deviceFp = default, string seedId = default, string deviceId = default, string bbsDeviceId = default, string extFields = default, string platform = default, string seedTime = default, IDictionary<string, BinaryData> additionalProperties = default)
         {
             additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
 
@@ -943,6 +3292,7 @@ namespace UIGF.Mihoyo
                 deviceFp,
                 seedId,
                 deviceId,
+                bbsDeviceId,
                 extFields,
                 platform,
                 seedTime,
@@ -953,7 +3303,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseDeviceFingerprint"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseDeviceFingerprint"/> instance for mocking. </returns>
         public static ApiResponseDeviceFingerprint ApiResponseDeviceFingerprint(int retcode = default, string message = default, DeviceFingerprint data = default)
         {
             return new ApiResponseDeviceFingerprint(retcode, message, data, additionalBinaryDataProperties: null);
@@ -994,7 +3344,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseShopGoods"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseShopGoods"/> instance for mocking. </returns>
         public static ApiResponseShopGoods ApiResponseShopGoods(int retcode = default, string message = default, ShopGoods data = default)
         {
             return new ApiResponseShopGoods(retcode, message, data, additionalBinaryDataProperties: null);
@@ -1061,6 +3411,29 @@ namespace UIGF.Mihoyo
             return new BonusDescription(bonusDesc, bonusUnit, bonusGoodsId, bonusIcon, additionalProperties);
         }
 
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseCurrencyAndCountry"/> instance for mocking. </returns>
+        public static ApiResponseCurrencyAndCountry ApiResponseCurrencyAndCountry(int retcode = default, string message = default, CurrencyAndCountry data = default)
+        {
+            return new ApiResponseCurrencyAndCountry(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The CurrencyAndCountry. </summary>
+        /// <param name="country"></param>
+        /// <param name="currency"></param>
+        /// <param name="priceTierVersion"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Commerce.CurrencyAndCountry"/> instance for mocking. </returns>
+        public static CurrencyAndCountry CurrencyAndCountry(string country = default, string currency = default, string priceTierVersion = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new CurrencyAndCountry(country, currency, priceTierVersion, additionalProperties);
+        }
+
         /// <summary>
         /// Vendor-signed order creation payload. `sign` must come from an authorized
         /// official client or payment integration; this SDK intentionally does not
@@ -1083,7 +3456,7 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseOrderStatus"/> instance for mocking. </returns>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseOrderStatus"/> instance for mocking. </returns>
         public static ApiResponseOrderStatus ApiResponseOrderStatus(int retcode = default, string message = default, OrderStatus data = default)
         {
             return new ApiResponseOrderStatus(retcode, message, data, additionalBinaryDataProperties: null);
@@ -1120,20 +3493,96 @@ namespace UIGF.Mihoyo
             return new ComboTokenRequest(biz, additionalBinaryDataProperties: null);
         }
 
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseComboTokenUploadCredentials"/> instance for mocking. </returns>
+        public static ApiResponseComboTokenUploadCredentials ApiResponseComboTokenUploadCredentials(int retcode = default, string message = default, ComboTokenUploadCredentials data = default)
+        {
+            return new ApiResponseComboTokenUploadCredentials(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ComboTokenUploadCredentials. </summary>
+        /// <param name="accessKeyId"></param>
+        /// <param name="accessKeySecret"></param>
+        /// <param name="bucket"></param>
+        /// <param name="dir"></param>
+        /// <param name="endpoint"></param>
+        /// <param name="expire"></param>
+        /// <param name="expireStr"></param>
+        /// <param name="ossCallbackUrl"></param>
+        /// <param name="region"></param>
+        /// <param name="securityToken"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Uncategorized.ComboTokenUploadCredentials"/> instance for mocking. </returns>
+        public static ComboTokenUploadCredentials ComboTokenUploadCredentials(string accessKeyId = default, string accessKeySecret = default, string bucket = default, string dir = default, string endpoint = default, string expire = default, string expireStr = default, string ossCallbackUrl = default, string region = default, string securityToken = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ComboTokenUploadCredentials(
+                accessKeyId,
+                accessKeySecret,
+                bucket,
+                dir,
+                endpoint,
+                expire,
+                expireStr,
+                ossCallbackUrl,
+                region,
+                securityToken,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseUgcTokenInfo"/> instance for mocking. </returns>
+        public static ApiResponseUgcTokenInfo ApiResponseUgcTokenInfo(int retcode = default, string message = default, UgcTokenInfo data = default)
+        {
+            return new ApiResponseUgcTokenInfo(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The UgcTokenInfo. </summary>
+        /// <param name="expire"></param>
+        /// <param name="level"></param>
+        /// <param name="nickname"></param>
+        /// <param name="region"></param>
+        /// <param name="ugcToken"></param>
+        /// <param name="uid"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Uncategorized.UgcTokenInfo"/> instance for mocking. </returns>
+        public static UgcTokenInfo UgcTokenInfo(string expire = default, string level = default, string nickname = default, string region = default, string ugcToken = default, string uid = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new UgcTokenInfo(
+                expire,
+                level,
+                nickname,
+                region,
+                ugcToken,
+                uid,
+                additionalProperties);
+        }
+
         /// <summary> The ExperimentListRequest. </summary>
         /// <param name="appId"></param>
         /// <param name="appSign"></param>
+        /// <param name="experimentId"></param>
         /// <param name="params"></param>
         /// <param name="sceneId"></param>
         /// <param name="uid"></param>
         /// <returns> A new <see cref="Uncategorized.ExperimentListRequest"/> instance for mocking. </returns>
-        public static ExperimentListRequest ExperimentListRequest(int appId = default, string appSign = default, IEnumerable<ExperimentParameter> @params = default, string sceneId = default, string uid = default)
+        public static ExperimentListRequest ExperimentListRequest(BinaryData appId = default, string appSign = default, string experimentId = default, IEnumerable<ExperimentParameter> @params = default, string sceneId = default, string uid = default)
         {
             @params ??= new ChangeTrackingList<ExperimentParameter>();
 
             return new ExperimentListRequest(
                 appId,
                 appSign,
+                experimentId,
                 @params.ToList(),
                 sceneId,
                 uid,
@@ -1155,9 +3604,9 @@ namespace UIGF.Mihoyo
         /// <param name="data"> Endpoint-specific payload. </param>
         /// <param name="success"></param>
         /// <returns> A new <see cref="Uncategorized.ExperimentListResponse"/> instance for mocking. </returns>
-        public static ExperimentListResponse ExperimentListResponse(int retcode = default, string message = default, IEnumerable<JsonObject> data = default, bool? success = default)
+        public static ExperimentListResponse ExperimentListResponse(int retcode = default, string message = default, IEnumerable<ExperimentAssignment> data = default, bool? success = default)
         {
-            data ??= new ChangeTrackingList<JsonObject>();
+            data ??= new ChangeTrackingList<ExperimentAssignment>();
 
             return new ExperimentListResponse(retcode, message, data.ToList(), additionalBinaryDataProperties: null, success);
         }
@@ -1166,12 +3615,40 @@ namespace UIGF.Mihoyo
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        /// <returns> A new <see cref="UIGF.ApiResponseArray"/> instance for mocking. </returns>
-        public static ApiResponseArray ApiResponseArray(int retcode = default, string message = default, IEnumerable<JsonObject> data = default)
+        /// <returns> A new <see cref="Mihoyo.ApiResponseArray"/> instance for mocking. </returns>
+        public static ApiResponseArray ApiResponseArray(int retcode = default, string message = default, IEnumerable<ExperimentAssignment> data = default)
         {
-            data ??= new ChangeTrackingList<JsonObject>();
+            data ??= new ChangeTrackingList<ExperimentAssignment>();
 
             return new ApiResponseArray(retcode, message, data.ToList(), additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The ExperimentAssignment. </summary>
+        /// <param name="code"></param>
+        /// <param name="configId"></param>
+        /// <param name="configs"></param>
+        /// <param name="experimentWhiteList"></param>
+        /// <param name="periodId"></param>
+        /// <param name="sceneWhiteList"></param>
+        /// <param name="type"></param>
+        /// <param name="version"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Uncategorized.ExperimentAssignment"/> instance for mocking. </returns>
+        public static ExperimentAssignment ExperimentAssignment(int? code = default, string configId = default, IDictionary<string, BinaryData> configs = default, bool? experimentWhiteList = default, string periodId = default, bool? sceneWhiteList = default, int? @type = default, string version = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            configs ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new ExperimentAssignment(
+                code,
+                configId,
+                configs,
+                experimentWhiteList,
+                periodId,
+                sceneWhiteList,
+                @type,
+                version,
+                additionalProperties);
         }
 
         /// <summary> The UploadResponse. </summary>
@@ -1183,12 +3660,1904 @@ namespace UIGF.Mihoyo
             return new UploadResponse(code, message, additionalBinaryDataProperties: null);
         }
 
+        /// <summary> The GameCrashTelemetryEvent. </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="eventId"></param>
+        /// <param name="eventName"></param>
+        /// <param name="eventTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="msgID"></param>
+        /// <param name="uploadContent"></param>
+        /// <returns> A new <see cref="Api.Request.GameCrashTelemetryEvent"/> instance for mocking. </returns>
+        public static GameCrashTelemetryEvent GameCrashTelemetryEvent(int? applicationId = default, string applicationName = default, int? eventId = default, string eventName = default, string eventTime = default, IDictionary<string, BinaryData> additionalProperties = default, string msgID = default, GameCrashTelemetryUploadContent uploadContent = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameCrashTelemetryEvent(
+                applicationId,
+                applicationName,
+                eventId,
+                eventName,
+                eventTime,
+                additionalProperties,
+                msgID,
+                uploadContent);
+        }
+
+        /// <summary> The GameCrashTelemetryUploadContent. </summary>
+        /// <param name="auid"></param>
+        /// <param name="clientIP"></param>
+        /// <param name="cpuInfo"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="errorCodeNumeric"></param>
+        /// <param name="errorCategory"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorLevel"></param>
+        /// <param name="exceptionSerialNum"></param>
+        /// <param name="frame"></param>
+        /// <param name="gpuInfo"></param>
+        /// <param name="graphicsLevel"></param>
+        /// <param name="graphicsVersion"></param>
+        /// <param name="guid"></param>
+        /// <param name="isRelease"></param>
+        /// <param name="logType"></param>
+        /// <param name="memoryInfo"></param>
+        /// <param name="message"></param>
+        /// <param name="notifyUser"></param>
+        /// <param name="operatingSystem"></param>
+        /// <param name="projectNick"></param>
+        /// <param name="serverName"></param>
+        /// <param name="stackTrace"></param>
+        /// <param name="subErrorCode"></param>
+        /// <param name="time"></param>
+        /// <param name="userId"></param>
+        /// <param name="userName"></param>
+        /// <param name="userNick"></param>
+        /// <param name="version"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameCrashTelemetryUploadContent"/> instance for mocking. </returns>
+        public static GameCrashTelemetryUploadContent GameCrashTelemetryUploadContent(string auid = default, string clientIP = default, string cpuInfo = default, string deviceModel = default, string deviceName = default, int? errorCodeNumeric = default, string errorCategory = default, string errorCode = default, string errorLevel = default, long? exceptionSerialNum = default, string frame = default, string gpuInfo = default, string graphicsLevel = default, string graphicsVersion = default, string guid = default, bool? isRelease = default, string logType = default, string memoryInfo = default, string message = default, string notifyUser = default, string operatingSystem = default, string projectNick = default, string serverName = default, string stackTrace = default, string subErrorCode = default, long? time = default, long? userId = default, string userName = default, string userNick = default, string version = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameCrashTelemetryUploadContent(
+                auid,
+                clientIP,
+                cpuInfo,
+                deviceModel,
+                deviceName,
+                errorCodeNumeric,
+                errorCategory,
+                errorCode,
+                errorLevel,
+                exceptionSerialNum,
+                frame,
+                gpuInfo,
+                graphicsLevel,
+                graphicsVersion,
+                guid,
+                isRelease,
+                logType,
+                memoryInfo,
+                message,
+                notifyUser,
+                operatingSystem,
+                projectNick,
+                serverName,
+                stackTrace,
+                subErrorCode,
+                time,
+                userId,
+                userName,
+                userNick,
+                version,
+                additionalProperties);
+        }
+
+        /// <summary> The TelemetryEvent. </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="eventId"></param>
+        /// <param name="eventName"></param>
+        /// <param name="eventTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.TelemetryEvent"/> instance for mocking. </returns>
+        public static TelemetryEvent TelemetryEvent(int? applicationId = default, string applicationName = default, int? eventId = default, string eventName = default, string eventTime = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new TelemetryEvent(
+                applicationId,
+                applicationName,
+                eventId,
+                eventName,
+                eventTime,
+                additionalProperties);
+        }
+
+        /// <summary> The GameSdkTelemetryEvent. </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="eventId"></param>
+        /// <param name="eventName"></param>
+        /// <param name="eventTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="msgId"></param>
+        /// <param name="uploadContent"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkTelemetryEvent"/> instance for mocking. </returns>
+        public static GameSdkTelemetryEvent GameSdkTelemetryEvent(int? applicationId = default, string applicationName = default, int? eventId = default, string eventName = default, string eventTime = default, IDictionary<string, BinaryData> additionalProperties = default, string msgId = default, GameSdkTelemetryUploadContent uploadContent = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkTelemetryEvent(
+                applicationId,
+                applicationName,
+                eventId,
+                eventName,
+                eventTime,
+                additionalProperties,
+                msgId,
+                uploadContent);
+        }
+
+        /// <summary> The GameSdkTelemetryUploadContent. </summary>
+        /// <param name="snakeDeviceInfo"></param>
+        /// <param name="camelDeviceInfo"></param>
+        /// <param name="eventTimeMs"></param>
+        /// <param name="launchTraceId"></param>
+        /// <param name="logInfo"></param>
+        /// <param name="telemetryInfo"></param>
+        /// <param name="userInfo"></param>
+        /// <param name="versionInfo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkTelemetryUploadContent"/> instance for mocking. </returns>
+        public static GameSdkTelemetryUploadContent GameSdkTelemetryUploadContent(GameSdkSnakeDeviceInfo snakeDeviceInfo = default, GameSdkCamelDeviceInfo camelDeviceInfo = default, string eventTimeMs = default, string launchTraceId = default, GameSdkLogInfo logInfo = default, SdkTelemetryInfo telemetryInfo = default, GameSdkUserInfo userInfo = default, GameSdkVersionInfo versionInfo = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkTelemetryUploadContent(
+                snakeDeviceInfo,
+                camelDeviceInfo,
+                eventTimeMs,
+                launchTraceId,
+                logInfo,
+                telemetryInfo,
+                userInfo,
+                versionInfo,
+                additionalProperties);
+        }
+
+        /// <summary> The GameSdkSnakeDeviceInfo. </summary>
+        /// <param name="bundleId"></param>
+        /// <param name="channelId"></param>
+        /// <param name="channelSubid"></param>
+        /// <param name="channelSubidInt"></param>
+        /// <param name="currentCps"></param>
+        /// <param name="deviceFp"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="ip"></param>
+        /// <param name="networkType"></param>
+        /// <param name="os"></param>
+        /// <param name="plat"></param>
+        /// <param name="registerCps"></param>
+        /// <param name="uapc"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkSnakeDeviceInfo"/> instance for mocking. </returns>
+        public static GameSdkSnakeDeviceInfo GameSdkSnakeDeviceInfo(string bundleId = default, string channelId = default, string channelSubid = default, int? channelSubidInt = default, string currentCps = default, string deviceFp = default, string deviceId = default, string deviceModel = default, string deviceName = default, string ip = default, string networkType = default, string os = default, int? plat = default, string registerCps = default, string uapc = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkSnakeDeviceInfo(
+                bundleId,
+                channelId,
+                channelSubid,
+                channelSubidInt,
+                currentCps,
+                deviceFp,
+                deviceId,
+                deviceModel,
+                deviceName,
+                ip,
+                networkType,
+                os,
+                plat,
+                registerCps,
+                uapc,
+                additionalProperties);
+        }
+
+        /// <summary> The GameSdkCamelDeviceInfo. </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="deviceSciX"></param>
+        /// <param name="deviceSciY"></param>
+        /// <param name="dpi"></param>
+        /// <param name="networkType"></param>
+        /// <param name="platform"></param>
+        /// <param name="platformName"></param>
+        /// <param name="processorCount"></param>
+        /// <param name="processorType"></param>
+        /// <param name="ramCapacity"></param>
+        /// <param name="ramRemain"></param>
+        /// <param name="systemInfo"></param>
+        /// <param name="systemLang"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkCamelDeviceInfo"/> instance for mocking. </returns>
+        public static GameSdkCamelDeviceInfo GameSdkCamelDeviceInfo(string deviceId = default, string deviceModel = default, string deviceName = default, int? deviceSciX = default, int? deviceSciY = default, int? dpi = default, string networkType = default, int? platform = default, string platformName = default, int? processorCount = default, string processorType = default, long? ramCapacity = default, long? ramRemain = default, string systemInfo = default, string systemLang = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkCamelDeviceInfo(
+                deviceId,
+                deviceModel,
+                deviceName,
+                deviceSciX,
+                deviceSciY,
+                dpi,
+                networkType,
+                platform,
+                platformName,
+                processorCount,
+                processorType,
+                ramCapacity,
+                ramRemain,
+                systemInfo,
+                systemLang,
+                additionalProperties);
+        }
+
+        /// <summary> The GameSdkLogInfo. </summary>
+        /// <param name="actionId"></param>
+        /// <param name="actionName"></param>
+        /// <param name="cBody"></param>
+        /// <param name="logTime"></param>
+        /// <param name="platformType"></param>
+        /// <param name="region"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkLogInfo"/> instance for mocking. </returns>
+        public static GameSdkLogInfo GameSdkLogInfo(int? actionId = default, string actionName = default, string cBody = default, string logTime = default, string platformType = default, string region = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkLogInfo(
+                actionId,
+                actionName,
+                cBody,
+                logTime,
+                platformType,
+                region,
+                additionalProperties);
+        }
+
+        /// <summary> The SdkTelemetryInfo. </summary>
+        /// <param name="area"></param>
+        /// <param name="lifecycleId"></param>
+        /// <param name="telemetryVersion"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryInfo"/> instance for mocking. </returns>
+        public static SdkTelemetryInfo SdkTelemetryInfo(string area = default, string lifecycleId = default, string telemetryVersion = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryInfo(area, lifecycleId, telemetryVersion, additionalProperties);
+        }
+
+        /// <summary> The GameSdkUserInfo. </summary>
+        /// <param name="accountType"></param>
+        /// <param name="level"></param>
+        /// <param name="openId"></param>
+        /// <param name="tag"></param>
+        /// <param name="uid"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkUserInfo"/> instance for mocking. </returns>
+        public static GameSdkUserInfo GameSdkUserInfo(string accountType = default, string level = default, string openId = default, string tag = default, string uid = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkUserInfo(
+                accountType,
+                level,
+                openId,
+                tag,
+                uid,
+                additionalProperties);
+        }
+
+        /// <summary> The GameSdkVersionInfo. </summary>
+        /// <param name="clientVersion"></param>
+        /// <param name="logVersion"></param>
+        /// <param name="sdkEnv"></param>
+        /// <param name="sdkVersion"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameSdkVersionInfo"/> instance for mocking. </returns>
+        public static GameSdkVersionInfo GameSdkVersionInfo(string clientVersion = default, string logVersion = default, int? sdkEnv = default, string sdkVersion = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameSdkVersionInfo(clientVersion, logVersion, sdkEnv, sdkVersion, additionalProperties);
+        }
+
+        /// <summary> The GameCustomTelemetryEvent. </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="eventId"></param>
+        /// <param name="eventName"></param>
+        /// <param name="eventTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="msgID"></param>
+        /// <param name="uploadContent"></param>
+        /// <returns> A new <see cref="Api.Request.GameCustomTelemetryEvent"/> instance for mocking. </returns>
+        public static GameCustomTelemetryEvent GameCustomTelemetryEvent(int? applicationId = default, string applicationName = default, int? eventId = default, string eventName = default, string eventTime = default, IDictionary<string, BinaryData> additionalProperties = default, string msgID = default, GameCustomTelemetryUploadContent uploadContent = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameCustomTelemetryEvent(
+                applicationId,
+                applicationName,
+                eventId,
+                eventName,
+                eventTime,
+                additionalProperties,
+                msgID,
+                uploadContent);
+        }
+
+        /// <summary> The GameCustomTelemetryUploadContent. </summary>
+        /// <param name="auid"></param>
+        /// <param name="clientIP"></param>
+        /// <param name="cpuInfo"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="gpuInfo"></param>
+        /// <param name="isRelease"></param>
+        /// <param name="memoryInfo"></param>
+        /// <param name="msg"></param>
+        /// <param name="msgKey"></param>
+        /// <param name="operatingSystem"></param>
+        /// <param name="platform"></param>
+        /// <param name="serverName"></param>
+        /// <param name="userId"></param>
+        /// <param name="version"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.GameCustomTelemetryUploadContent"/> instance for mocking. </returns>
+        public static GameCustomTelemetryUploadContent GameCustomTelemetryUploadContent(string auid = default, string clientIP = default, string cpuInfo = default, string deviceId = default, string deviceModel = default, string deviceName = default, string gpuInfo = default, bool? isRelease = default, string memoryInfo = default, string msg = default, string msgKey = default, string operatingSystem = default, int? platform = default, string serverName = default, long? userId = default, string version = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new GameCustomTelemetryUploadContent(
+                auid,
+                clientIP,
+                cpuInfo,
+                deviceId,
+                deviceModel,
+                deviceName,
+                gpuInfo,
+                isRelease,
+                memoryInfo,
+                msg,
+                msgKey,
+                operatingSystem,
+                platform,
+                serverName,
+                userId,
+                version,
+                additionalProperties);
+        }
+
+        /// <summary> The SdkTelemetryUploadEvent. </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="eventId"></param>
+        /// <param name="eventName"></param>
+        /// <param name="eventTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="msgId"></param>
+        /// <param name="uploadContent"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryUploadEvent"/> instance for mocking. </returns>
+        public static SdkTelemetryUploadEvent SdkTelemetryUploadEvent(int? applicationId = default, string applicationName = default, int? eventId = default, string eventName = default, string eventTime = default, IDictionary<string, BinaryData> additionalProperties = default, string msgId = default, SdkTelemetryUploadContent uploadContent = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryUploadEvent(
+                applicationId,
+                applicationName,
+                eventId,
+                eventName,
+                eventTime,
+                additionalProperties,
+                msgId,
+                uploadContent);
+        }
+
+        /// <summary> The SdkTelemetryUploadContent. </summary>
+        /// <param name="deviceInfo"></param>
+        /// <param name="eventTimeMs"></param>
+        /// <param name="launchTraceId"></param>
+        /// <param name="logInfo"></param>
+        /// <param name="telemetryInfo"></param>
+        /// <param name="userInfo"></param>
+        /// <param name="versionInfo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryUploadContent"/> instance for mocking. </returns>
+        public static SdkTelemetryUploadContent SdkTelemetryUploadContent(SdkTelemetryDeviceInfo deviceInfo = default, string eventTimeMs = default, string launchTraceId = default, SdkTelemetryLogInfo logInfo = default, SdkTelemetryInfo telemetryInfo = default, SdkTelemetryUserInfo userInfo = default, SdkTelemetryVersionInfo versionInfo = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryUploadContent(
+                deviceInfo,
+                eventTimeMs,
+                launchTraceId,
+                logInfo,
+                telemetryInfo,
+                userInfo,
+                versionInfo,
+                additionalProperties);
+        }
+
+        /// <summary> The SdkTelemetryDeviceInfo. </summary>
+        /// <param name="addressMac"></param>
+        /// <param name="bundleId"></param>
+        /// <param name="cps"></param>
+        /// <param name="deviceFp"></param>
+        /// <param name="snakeDeviceSciX"></param>
+        /// <param name="snakeDeviceSciY"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="deviceSciX"></param>
+        /// <param name="deviceSciY"></param>
+        /// <param name="dpi"></param>
+        /// <param name="gpuMemSize"></param>
+        /// <param name="gpuName"></param>
+        /// <param name="ip"></param>
+        /// <param name="isp"></param>
+        /// <param name="snakeNetworkType"></param>
+        /// <param name="networkType"></param>
+        /// <param name="platform"></param>
+        /// <param name="platformName"></param>
+        /// <param name="processorCount"></param>
+        /// <param name="processorFrequency"></param>
+        /// <param name="processorType"></param>
+        /// <param name="ramCapacity"></param>
+        /// <param name="ramRemain"></param>
+        /// <param name="registerCPS"></param>
+        /// <param name="romCapacity"></param>
+        /// <param name="romRemain"></param>
+        /// <param name="softSciX"></param>
+        /// <param name="softSciY"></param>
+        /// <param name="systemInfo"></param>
+        /// <param name="systemLang"></param>
+        /// <param name="uapc"></param>
+        /// <param name="wmac"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryDeviceInfo"/> instance for mocking. </returns>
+        public static SdkTelemetryDeviceInfo SdkTelemetryDeviceInfo(string addressMac = default, string bundleId = default, string cps = default, string deviceFp = default, int? snakeDeviceSciX = default, int? snakeDeviceSciY = default, string deviceId = default, string deviceModel = default, string deviceName = default, int? deviceSciX = default, int? deviceSciY = default, int? dpi = default, int? gpuMemSize = default, string gpuName = default, string ip = default, string isp = default, string snakeNetworkType = default, string networkType = default, BinaryData platform = default, string platformName = default, int? processorCount = default, double? processorFrequency = default, string processorType = default, BinaryData ramCapacity = default, BinaryData ramRemain = default, string registerCPS = default, BinaryData romCapacity = default, double? romRemain = default, int? softSciX = default, int? softSciY = default, string systemInfo = default, string systemLang = default, string uapc = default, string wmac = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryDeviceInfo(
+                addressMac,
+                bundleId,
+                cps,
+                deviceFp,
+                snakeDeviceSciX,
+                snakeDeviceSciY,
+                deviceId,
+                deviceModel,
+                deviceName,
+                deviceSciX,
+                deviceSciY,
+                dpi,
+                gpuMemSize,
+                gpuName,
+                ip,
+                isp,
+                snakeNetworkType,
+                networkType,
+                platform,
+                platformName,
+                processorCount,
+                processorFrequency,
+                processorType,
+                ramCapacity,
+                ramRemain,
+                registerCPS,
+                romCapacity,
+                romRemain,
+                softSciX,
+                softSciY,
+                systemInfo,
+                systemLang,
+                uapc,
+                wmac,
+                additionalProperties);
+        }
+
+        /// <summary> The SdkTelemetryLogInfo. </summary>
+        /// <param name="actionId"></param>
+        /// <param name="actionName"></param>
+        /// <param name="cBody"></param>
+        /// <param name="logTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryLogInfo"/> instance for mocking. </returns>
+        public static SdkTelemetryLogInfo SdkTelemetryLogInfo(int? actionId = default, string actionName = default, string cBody = default, string logTime = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryLogInfo(actionId, actionName, cBody, logTime, additionalProperties);
+        }
+
+        /// <summary> The SdkTelemetryUserInfo. </summary>
+        /// <param name="accountId"></param>
+        /// <param name="accountType"></param>
+        /// <param name="channelId"></param>
+        /// <param name="userId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryUserInfo"/> instance for mocking. </returns>
+        public static SdkTelemetryUserInfo SdkTelemetryUserInfo(string accountId = default, string accountType = default, string channelId = default, string userId = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryUserInfo(accountId, accountType, channelId, userId, additionalProperties);
+        }
+
+        /// <summary> The SdkTelemetryVersionInfo. </summary>
+        /// <param name="clientVersion"></param>
+        /// <param name="logVersion"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.SdkTelemetryVersionInfo"/> instance for mocking. </returns>
+        public static SdkTelemetryVersionInfo SdkTelemetryVersionInfo(string clientVersion = default, string logVersion = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkTelemetryVersionInfo(clientVersion, logVersion, additionalProperties);
+        }
+
         /// <summary> The H5LogRequest. </summary>
         /// <param name="data"></param>
         /// <returns> A new <see cref="Uncategorized.H5LogRequest"/> instance for mocking. </returns>
         public static H5LogRequest H5LogRequest(string data = default)
         {
             return new H5LogRequest(data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The H5CollectorUploadRequest. </summary>
+        /// <param name="analysisVersion"></param>
+        /// <param name="dataBelong"></param>
+        /// <param name="eventInfo"></param>
+        /// <param name="miaSessionId"></param>
+        /// <param name="miaSessionStep"></param>
+        /// <param name="pageInfo"></param>
+        /// <param name="type"></param>
+        /// <param name="userInfo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.H5CollectorUploadRequest"/> instance for mocking. </returns>
+        public static H5CollectorUploadRequest H5CollectorUploadRequest(string analysisVersion = default, string dataBelong = default, H5CollectorEventInfo eventInfo = default, string miaSessionId = default, string miaSessionStep = default, H5CollectorPageInfo pageInfo = default, string @type = default, H5CollectorUserInfo userInfo = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new H5CollectorUploadRequest(
+                analysisVersion,
+                dataBelong,
+                eventInfo,
+                miaSessionId,
+                miaSessionStep,
+                pageInfo,
+                @type,
+                userInfo,
+                additionalProperties);
+        }
+
+        /// <summary> The H5CollectorEventInfo. </summary>
+        /// <param name="eventAction"></param>
+        /// <param name="eventCategory"></param>
+        /// <param name="eventLabel"></param>
+        /// <param name="eventValue"></param>
+        /// <param name="extraInfo"></param>
+        /// <param name="timestamp"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.H5CollectorEventInfo"/> instance for mocking. </returns>
+        public static H5CollectorEventInfo H5CollectorEventInfo(string eventAction = default, string eventCategory = default, string eventLabel = default, BinaryData eventValue = default, H5CollectorEventExtraInfo extraInfo = default, long? timestamp = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new H5CollectorEventInfo(
+                eventAction,
+                eventCategory,
+                eventLabel,
+                eventValue,
+                extraInfo,
+                timestamp,
+                additionalProperties);
+        }
+
+        /// <summary> The H5CollectorEventExtraInfo. </summary>
+        /// <param name="season"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.H5CollectorEventExtraInfo"/> instance for mocking. </returns>
+        public static H5CollectorEventExtraInfo H5CollectorEventExtraInfo(string season = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new H5CollectorEventExtraInfo(season, additionalProperties);
+        }
+
+        /// <summary> The H5CollectorPageInfo. </summary>
+        /// <param name="appId"></param>
+        /// <param name="documentReferrer"></param>
+        /// <param name="extraInfo"></param>
+        /// <param name="pageFullurl"></param>
+        /// <param name="pageName"></param>
+        /// <param name="pageUrl"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.H5CollectorPageInfo"/> instance for mocking. </returns>
+        public static H5CollectorPageInfo H5CollectorPageInfo(string appId = default, string documentReferrer = default, H5CollectorPageExtraInfo extraInfo = default, string pageFullurl = default, string pageName = default, string pageUrl = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new H5CollectorPageInfo(
+                appId,
+                documentReferrer,
+                extraInfo,
+                pageFullurl,
+                pageName,
+                pageUrl,
+                additionalProperties);
+        }
+
+        /// <summary> The H5CollectorPageExtraInfo. </summary>
+        /// <param name="appId"></param>
+        /// <param name="appVersion"></param>
+        /// <param name="businessUrl"></param>
+        /// <param name="deviceFp"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="environment"></param>
+        /// <param name="gameBiz"></param>
+        /// <param name="isV2Platform"></param>
+        /// <param name="isApp"></param>
+        /// <param name="language"></param>
+        /// <param name="lifecycleId"></param>
+        /// <param name="sdkVersion"></param>
+        /// <param name="syncLoginStatus"></param>
+        /// <param name="theme"></param>
+        /// <param name="tokenType"></param>
+        /// <param name="viewType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.H5CollectorPageExtraInfo"/> instance for mocking. </returns>
+        public static H5CollectorPageExtraInfo H5CollectorPageExtraInfo(string appId = default, string appVersion = default, string businessUrl = default, string deviceFp = default, string deviceId = default, string environment = default, string gameBiz = default, string isV2Platform = default, string isApp = default, string language = default, string lifecycleId = default, string sdkVersion = default, bool? syncLoginStatus = default, string theme = default, int? tokenType = default, int? viewType = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new H5CollectorPageExtraInfo(
+                appId,
+                appVersion,
+                businessUrl,
+                deviceFp,
+                deviceId,
+                environment,
+                gameBiz,
+                isV2Platform,
+                isApp,
+                language,
+                lifecycleId,
+                sdkVersion,
+                syncLoginStatus,
+                theme,
+                tokenType,
+                viewType,
+                additionalProperties);
+        }
+
+        /// <summary> The H5CollectorUserInfo. </summary>
+        /// <param name="accountId"></param>
+        /// <param name="authKey"></param>
+        /// <param name="device"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="gameBiz"></param>
+        /// <param name="gameRegion"></param>
+        /// <param name="gameUid"></param>
+        /// <param name="lang"></param>
+        /// <param name="platform"></param>
+        /// <param name="uuid"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.H5CollectorUserInfo"/> instance for mocking. </returns>
+        public static H5CollectorUserInfo H5CollectorUserInfo(string accountId = default, string authKey = default, string device = default, string deviceId = default, string gameBiz = default, string gameRegion = default, string gameUid = default, string lang = default, string platform = default, string uuid = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new H5CollectorUserInfo(
+                accountId,
+                authKey,
+                device,
+                deviceId,
+                gameBiz,
+                gameRegion,
+                gameUid,
+                lang,
+                platform,
+                uuid,
+                additionalProperties);
+        }
+
+        /// <summary> The LoginTelemetryEvent. </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="eventId"></param>
+        /// <param name="eventName"></param>
+        /// <param name="eventTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="msgId"></param>
+        /// <param name="uploadContent"></param>
+        /// <returns> A new <see cref="Api.Request.LoginTelemetryEvent"/> instance for mocking. </returns>
+        public static LoginTelemetryEvent LoginTelemetryEvent(int? applicationId = default, string applicationName = default, int? eventId = default, string eventName = default, string eventTime = default, IDictionary<string, BinaryData> additionalProperties = default, string msgId = default, LoginTelemetryUploadContent uploadContent = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginTelemetryEvent(
+                applicationId,
+                applicationName,
+                eventId,
+                eventName,
+                eventTime,
+                additionalProperties,
+                msgId,
+                uploadContent);
+        }
+
+        /// <summary> The LoginTelemetryUploadContent. </summary>
+        /// <param name="deviceinfo"></param>
+        /// <param name="loginfo"></param>
+        /// <param name="userinfo"></param>
+        /// <param name="versioninfo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.LoginTelemetryUploadContent"/> instance for mocking. </returns>
+        public static LoginTelemetryUploadContent LoginTelemetryUploadContent(LoginTelemetryDeviceInfo deviceinfo = default, LoginTelemetryLogInfo loginfo = default, LoginTelemetryUserInfo userinfo = default, LoginTelemetryVersionInfo versioninfo = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginTelemetryUploadContent(deviceinfo, loginfo, userinfo, versioninfo, additionalProperties);
+        }
+
+        /// <summary> The LoginTelemetryDeviceInfo. </summary>
+        /// <param name="bundleId"></param>
+        /// <param name="clientType"></param>
+        /// <param name="cps"></param>
+        /// <param name="deviceFp"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="ip"></param>
+        /// <param name="isp"></param>
+        /// <param name="platform"></param>
+        /// <param name="registerCPS"></param>
+        /// <param name="sciX"></param>
+        /// <param name="sciY"></param>
+        /// <param name="sourceDeviceId"></param>
+        /// <param name="systemInfo"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.LoginTelemetryDeviceInfo"/> instance for mocking. </returns>
+        public static LoginTelemetryDeviceInfo LoginTelemetryDeviceInfo(string bundleId = default, string clientType = default, string cps = default, string deviceFp = default, string deviceId = default, string deviceModel = default, string deviceName = default, string ip = default, string isp = default, string platform = default, string registerCPS = default, int? sciX = default, int? sciY = default, string sourceDeviceId = default, string systemInfo = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginTelemetryDeviceInfo(
+                bundleId,
+                clientType,
+                cps,
+                deviceFp,
+                deviceId,
+                deviceModel,
+                deviceName,
+                ip,
+                isp,
+                platform,
+                registerCPS,
+                sciX,
+                sciY,
+                sourceDeviceId,
+                systemInfo,
+                additionalProperties);
+        }
+
+        /// <summary> The LoginTelemetryLogInfo. </summary>
+        /// <param name="actionId"></param>
+        /// <param name="actionName"></param>
+        /// <param name="cBody"></param>
+        /// <param name="logTime"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.LoginTelemetryLogInfo"/> instance for mocking. </returns>
+        public static LoginTelemetryLogInfo LoginTelemetryLogInfo(int? actionId = default, string actionName = default, string cBody = default, string logTime = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginTelemetryLogInfo(actionId, actionName, cBody, logTime, additionalProperties);
+        }
+
+        /// <summary> The LoginTelemetryUserInfo. </summary>
+        /// <param name="accountId"></param>
+        /// <param name="accountType"></param>
+        /// <param name="channelId"></param>
+        /// <param name="mid"></param>
+        /// <param name="userId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.LoginTelemetryUserInfo"/> instance for mocking. </returns>
+        public static LoginTelemetryUserInfo LoginTelemetryUserInfo(string accountId = default, int? accountType = default, int? channelId = default, string mid = default, long? userId = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginTelemetryUserInfo(
+                accountId,
+                accountType,
+                channelId,
+                mid,
+                userId,
+                additionalProperties);
+        }
+
+        /// <summary> The LoginTelemetryVersionInfo. </summary>
+        /// <param name="clientVersion"></param>
+        /// <param name="logVersion"></param>
+        /// <param name="sdkVersion"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.LoginTelemetryVersionInfo"/> instance for mocking. </returns>
+        public static LoginTelemetryVersionInfo LoginTelemetryVersionInfo(string clientVersion = default, string logVersion = default, string sdkVersion = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LoginTelemetryVersionInfo(clientVersion, logVersion, sdkVersion, additionalProperties);
+        }
+
+        /// <summary> The CommunityTelemetryUploadRequest. </summary>
+        /// <param name="content"></param>
+        /// <param name="sign"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.CommunityTelemetryUploadRequest"/> instance for mocking. </returns>
+        public static CommunityTelemetryUploadRequest CommunityTelemetryUploadRequest(string content = default, string sign = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new CommunityTelemetryUploadRequest(content, sign, additionalProperties);
+        }
+
+        /// <summary> The LegacyCrashReport. </summary>
+        /// <param name="auid"></param>
+        /// <param name="backBuffer"></param>
+        /// <param name="buildUrl"></param>
+        /// <param name="clientIP"></param>
+        /// <param name="cpuInfo"></param>
+        /// <param name="deviceModel"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="errorCategory"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorCodeToPlatform"></param>
+        /// <param name="errorLevel"></param>
+        /// <param name="exceptionSerialNum"></param>
+        /// <param name="frame"></param>
+        /// <param name="gBuffer"></param>
+        /// <param name="gpuInfo"></param>
+        /// <param name="graphicsLevel"></param>
+        /// <param name="graphicsVersion"></param>
+        /// <param name="guid"></param>
+        /// <param name="is2g"></param>
+        /// <param name="loginTime"></param>
+        /// <param name="logStr"></param>
+        /// <param name="logType"></param>
+        /// <param name="memoryInfo"></param>
+        /// <param name="needShowErrDlg"></param>
+        /// <param name="notifyUserName"></param>
+        /// <param name="operatingSystem"></param>
+        /// <param name="platformType"></param>
+        /// <param name="pos"></param>
+        /// <param name="serverName"></param>
+        /// <param name="stackTrace"></param>
+        /// <param name="subErrorCode"></param>
+        /// <param name="time"></param>
+        /// <param name="title"></param>
+        /// <param name="uid"></param>
+        /// <param name="userName"></param>
+        /// <param name="version"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.LegacyCrashReport"/> instance for mocking. </returns>
+        public static LegacyCrashReport LegacyCrashReport(string auid = default, string backBuffer = default, string buildUrl = default, string clientIP = default, string cpuInfo = default, string deviceModel = default, string deviceName = default, string errorCategory = default, string errorCode = default, int? errorCodeToPlatform = default, string errorLevel = default, string exceptionSerialNum = default, string frame = default, string gBuffer = default, string gpuInfo = default, string graphicsLevel = default, string graphicsVersion = default, string guid = default, bool? is2g = default, long? loginTime = default, string logStr = default, string logType = default, string memoryInfo = default, bool? needShowErrDlg = default, string notifyUserName = default, string operatingSystem = default, int? platformType = default, string pos = default, string serverName = default, string stackTrace = default, int? subErrorCode = default, string time = default, string title = default, long? uid = default, string userName = default, string version = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new LegacyCrashReport(
+                auid,
+                backBuffer,
+                buildUrl,
+                clientIP,
+                cpuInfo,
+                deviceModel,
+                deviceName,
+                errorCategory,
+                errorCode,
+                errorCodeToPlatform,
+                errorLevel,
+                exceptionSerialNum,
+                frame,
+                gBuffer,
+                gpuInfo,
+                graphicsLevel,
+                graphicsVersion,
+                guid,
+                is2g,
+                loginTime,
+                logStr,
+                logType,
+                memoryInfo,
+                needShowErrDlg,
+                notifyUserName,
+                operatingSystem,
+                platformType,
+                pos,
+                serverName,
+                stackTrace,
+                subErrorCode,
+                time,
+                title,
+                uid,
+                userName,
+                version,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileAppSplashData"/> instance for mocking. </returns>
+        public static ApiResponseMobileAppSplashData ApiResponseMobileAppSplashData(int retcode = default, string message = default, MobileAppSplashData data = default)
+        {
+            return new ApiResponseMobileAppSplashData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileAppSplashData. </summary>
+        /// <param name="hasSplash"></param>
+        /// <param name="splashes"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileAppSplashData"/> instance for mocking. </returns>
+        public static MobileAppSplashData MobileAppSplashData(bool? hasSplash = default, IEnumerable<BinaryData> splashes = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            splashes ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileAppSplashData(hasSplash, splashes.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileGameListData"/> instance for mocking. </returns>
+        public static ApiResponseMobileGameListData ApiResponseMobileGameListData(int retcode = default, string message = default, MobileGameListData data = default)
+        {
+            return new ApiResponseMobileGameListData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileGameListData. </summary>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileGameListData"/> instance for mocking. </returns>
+        public static MobileGameListData MobileGameListData(IEnumerable<MobileGame> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<MobileGame>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileGameListData(list.ToList(), additionalProperties);
+        }
+
+        /// <summary> The MobileGame. </summary>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileGame"/> instance for mocking. </returns>
+        public static MobileGame MobileGame(IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileGame(additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileMyselfPageConfigData"/> instance for mocking. </returns>
+        public static ApiResponseMobileMyselfPageConfigData ApiResponseMobileMyselfPageConfigData(int retcode = default, string message = default, MobileMyselfPageConfigData data = default)
+        {
+            return new ApiResponseMobileMyselfPageConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileMyselfPageConfigData. </summary>
+        /// <param name="appPersonalEntry"></param>
+        /// <param name="appPersonalUnread"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileMyselfPageConfigData"/> instance for mocking. </returns>
+        public static MobileMyselfPageConfigData MobileMyselfPageConfigData(IDictionary<string, BinaryData> appPersonalEntry = default, IDictionary<string, BinaryData> appPersonalUnread = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            appPersonalEntry ??= new ChangeTrackingDictionary<string, BinaryData>();
+            appPersonalUnread ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileMyselfPageConfigData(appPersonalEntry, appPersonalUnread, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileUnreadMessageData"/> instance for mocking. </returns>
+        public static ApiResponseMobileUnreadMessageData ApiResponseMobileUnreadMessageData(int retcode = default, string message = default, MobileUnreadMessageData data = default)
+        {
+            return new ApiResponseMobileUnreadMessageData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileUnreadMessageData. </summary>
+        /// <param name="chatUnread"></param>
+        /// <param name="notificationUnread"></param>
+        /// <param name="semNotification"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileUnreadMessageData"/> instance for mocking. </returns>
+        public static MobileUnreadMessageData MobileUnreadMessageData(IDictionary<string, BinaryData> chatUnread = default, IDictionary<string, BinaryData> notificationUnread = default, IDictionary<string, BinaryData> semNotification = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            chatUnread ??= new ChangeTrackingDictionary<string, BinaryData>();
+            notificationUnread ??= new ChangeTrackingDictionary<string, BinaryData>();
+            semNotification ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileUnreadMessageData(chatUnread, notificationUnread, semNotification, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileMissionsStateData"/> instance for mocking. </returns>
+        public static ApiResponseMobileMissionsStateData ApiResponseMobileMissionsStateData(int retcode = default, string message = default, MobileMissionsStateData data = default)
+        {
+            return new ApiResponseMobileMissionsStateData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileMissionsStateData. </summary>
+        /// <param name="alreadyReceivedPoints"></param>
+        /// <param name="canGetPoints"></param>
+        /// <param name="isUnclaimed"></param>
+        /// <param name="states"></param>
+        /// <param name="todayTotalPoints"></param>
+        /// <param name="totalPoints"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileMissionsStateData"/> instance for mocking. </returns>
+        public static MobileMissionsStateData MobileMissionsStateData(int? alreadyReceivedPoints = default, int? canGetPoints = default, bool? isUnclaimed = default, IEnumerable<IDictionary<string, BinaryData>> states = default, int? todayTotalPoints = default, int? totalPoints = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            states ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileMissionsStateData(
+                alreadyReceivedPoints,
+                canGetPoints,
+                isUnclaimed,
+                states.ToList(),
+                todayTotalPoints,
+                totalPoints,
+                additionalProperties);
+        }
+
+        /// <summary> The MobileDeviceSessionRequest. </summary>
+        /// <param name="appVersion"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="deviceName"></param>
+        /// <param name="osVersion"></param>
+        /// <param name="platform"></param>
+        /// <param name="registrationId"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileDeviceSessionRequest"/> instance for mocking. </returns>
+        public static MobileDeviceSessionRequest MobileDeviceSessionRequest(string appVersion = default, string deviceId = default, string deviceName = default, string osVersion = default, string platform = default, string registrationId = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileDeviceSessionRequest(
+                appVersion,
+                deviceId,
+                deviceName,
+                osVersion,
+                platform,
+                registrationId,
+                additionalProperties);
+        }
+
+        /// <summary> The MobileStartupRequest. </summary>
+        /// <param name="reqList"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileStartupRequest"/> instance for mocking. </returns>
+        public static MobileStartupRequest MobileStartupRequest(IEnumerable<MobileStartupRequestItem> reqList = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            reqList ??= new ChangeTrackingList<MobileStartupRequestItem>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileStartupRequest(reqList.ToList(), additionalProperties);
+        }
+
+        /// <summary> The MobileStartupRequestItem. </summary>
+        /// <param name="apiUrl"></param>
+        /// <param name="req"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileStartupRequestItem"/> instance for mocking. </returns>
+        public static MobileStartupRequestItem MobileStartupRequestItem(string apiUrl = default, MobileStartupRequestPayload req = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileStartupRequestItem(apiUrl, req, additionalProperties);
+        }
+
+        /// <summary> The MobileStartupRequestPayload. </summary>
+        /// <param name="fetchImageTemplateListReq"></param>
+        /// <param name="getAllGameRoleKeywordReq"></param>
+        /// <param name="getAllStaticResourceVersionsReq"></param>
+        /// <param name="getAppConfigRequest"></param>
+        /// <param name="getAppMediaDataReq"></param>
+        /// <param name="getLinkCardWhitelistReq"></param>
+        /// <param name="getTeenagerInfoReq"></param>
+        /// <param name="recentEmoticonListReq"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileStartupRequestPayload"/> instance for mocking. </returns>
+        public static MobileStartupRequestPayload MobileStartupRequestPayload(MobileStartupImageTemplateRequest fetchImageTemplateListReq = default, IDictionary<string, BinaryData> getAllGameRoleKeywordReq = default, IDictionary<string, BinaryData> getAllStaticResourceVersionsReq = default, IDictionary<string, BinaryData> getAppConfigRequest = default, IDictionary<string, BinaryData> getAppMediaDataReq = default, IDictionary<string, BinaryData> getLinkCardWhitelistReq = default, IDictionary<string, BinaryData> getTeenagerInfoReq = default, IDictionary<string, BinaryData> recentEmoticonListReq = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            getAllGameRoleKeywordReq ??= new ChangeTrackingDictionary<string, BinaryData>();
+            getAllStaticResourceVersionsReq ??= new ChangeTrackingDictionary<string, BinaryData>();
+            getAppConfigRequest ??= new ChangeTrackingDictionary<string, BinaryData>();
+            getAppMediaDataReq ??= new ChangeTrackingDictionary<string, BinaryData>();
+            getLinkCardWhitelistReq ??= new ChangeTrackingDictionary<string, BinaryData>();
+            getTeenagerInfoReq ??= new ChangeTrackingDictionary<string, BinaryData>();
+            recentEmoticonListReq ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileStartupRequestPayload(
+                fetchImageTemplateListReq,
+                getAllGameRoleKeywordReq,
+                getAllStaticResourceVersionsReq,
+                getAppConfigRequest,
+                getAppMediaDataReq,
+                getLinkCardWhitelistReq,
+                getTeenagerInfoReq,
+                recentEmoticonListReq,
+                additionalProperties);
+        }
+
+        /// <summary> The MobileStartupImageTemplateRequest. </summary>
+        /// <param name="clientType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileStartupImageTemplateRequest"/> instance for mocking. </returns>
+        public static MobileStartupImageTemplateRequest MobileStartupImageTemplateRequest(int? clientType = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileStartupImageTemplateRequest(clientType, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileStartupData"/> instance for mocking. </returns>
+        public static ApiResponseMobileStartupData ApiResponseMobileStartupData(int retcode = default, string message = default, MobileStartupData data = default)
+        {
+            return new ApiResponseMobileStartupData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileStartupData. </summary>
+        /// <param name="respMap"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileStartupData"/> instance for mocking. </returns>
+        public static MobileStartupData MobileStartupData(IDictionary<string, BinaryData> respMap = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            respMap ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileStartupData(respMap, additionalProperties);
+        }
+
+        /// <summary> The MobileWindowPrepareRequest. </summary>
+        /// <param name="focusGame"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileWindowPrepareRequest"/> instance for mocking. </returns>
+        public static MobileWindowPrepareRequest MobileWindowPrepareRequest(IEnumerable<string> focusGame = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            focusGame ??= new ChangeTrackingList<string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileWindowPrepareRequest(focusGame.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileWindowPrepareData"/> instance for mocking. </returns>
+        public static ApiResponseMobileWindowPrepareData ApiResponseMobileWindowPrepareData(int retcode = default, string message = default, MobileWindowPrepareData data = default)
+        {
+            return new ApiResponseMobileWindowPrepareData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileWindowPrepareData. </summary>
+        /// <param name="androidPkg"></param>
+        /// <param name="iosApp"></param>
+        /// <param name="ticket"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileWindowPrepareData"/> instance for mocking. </returns>
+        public static MobileWindowPrepareData MobileWindowPrepareData(IEnumerable<BinaryData> androidPkg = default, IEnumerable<BinaryData> iosApp = default, string ticket = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            androidPkg ??= new ChangeTrackingList<BinaryData>();
+            iosApp ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileWindowPrepareData(androidPkg.ToList(), iosApp.ToList(), ticket, additionalProperties);
+        }
+
+        /// <summary> The MobileWindowShowRequest. </summary>
+        /// <param name="focusGame"></param>
+        /// <param name="additionalProperties"></param>
+        /// <param name="installStatus"></param>
+        /// <param name="ticket"></param>
+        /// <returns> A new <see cref="Api.Request.MobileWindowShowRequest"/> instance for mocking. </returns>
+        public static MobileWindowShowRequest MobileWindowShowRequest(IEnumerable<string> focusGame = default, IDictionary<string, BinaryData> additionalProperties = default, IDictionary<string, BinaryData> installStatus = default, string ticket = default)
+        {
+            focusGame ??= new ChangeTrackingList<string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+            installStatus ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileWindowShowRequest(focusGame.ToList(), additionalProperties, installStatus, ticket);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileWindowShowData"/> instance for mocking. </returns>
+        public static ApiResponseMobileWindowShowData ApiResponseMobileWindowShowData(int retcode = default, string message = default, MobileWindowShowData data = default)
+        {
+            return new ApiResponseMobileWindowShowData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileWindowShowData. </summary>
+        /// <param name="bubbleList"></param>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileWindowShowData"/> instance for mocking. </returns>
+        public static MobileWindowShowData MobileWindowShowData(IEnumerable<BinaryData> bubbleList = default, IEnumerable<BinaryData> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            bubbleList ??= new ChangeTrackingList<BinaryData>();
+            list ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileWindowShowData(bubbleList.ToList(), list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileUserSettingsData"/> instance for mocking. </returns>
+        public static ApiResponseMobileUserSettingsData ApiResponseMobileUserSettingsData(int retcode = default, string message = default, MobileUserSettingsData data = default)
+        {
+            return new ApiResponseMobileUserSettingsData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileUserSettingsData. </summary>
+        /// <param name="isMergeUnfollow"></param>
+        /// <param name="isReceiveFromUnfollow"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileUserSettingsData"/> instance for mocking. </returns>
+        public static MobileUserSettingsData MobileUserSettingsData(bool? isMergeUnfollow = default, bool? isReceiveFromUnfollow = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileUserSettingsData(isMergeUnfollow, isReceiveFromUnfollow, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileDiscussionData"/> instance for mocking. </returns>
+        public static ApiResponseMobileDiscussionData ApiResponseMobileDiscussionData(int retcode = default, string message = default, MobileDiscussionData data = default)
+        {
+            return new ApiResponseMobileDiscussionData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileDiscussionData. </summary>
+        /// <param name="discussion"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileDiscussionData"/> instance for mocking. </returns>
+        public static MobileDiscussionData MobileDiscussionData(MobileDiscussion discussion = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileDiscussionData(discussion, additionalProperties);
+        }
+
+        /// <summary> The MobileDiscussion. </summary>
+        /// <param name="createdAt"></param>
+        /// <param name="defaultFeedForumId"></param>
+        /// <param name="defaultFeedTab"></param>
+        /// <param name="desc"></param>
+        /// <param name="descType"></param>
+        /// <param name="discussionId"></param>
+        /// <param name="forums"></param>
+        /// <param name="gameId"></param>
+        /// <param name="hotPosts"></param>
+        /// <param name="icon"></param>
+        /// <param name="subject"></param>
+        /// <param name="talkingForumId"></param>
+        /// <param name="talkingPrompt"></param>
+        /// <param name="updatedAt"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileDiscussion"/> instance for mocking. </returns>
+        public static MobileDiscussion MobileDiscussion(long? createdAt = default, long? defaultFeedForumId = default, int? defaultFeedTab = default, string desc = default, int? descType = default, long? discussionId = default, IEnumerable<BinaryData> forums = default, int? gameId = default, IEnumerable<BinaryData> hotPosts = default, string icon = default, string subject = default, string talkingForumId = default, string talkingPrompt = default, long? updatedAt = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            forums ??= new ChangeTrackingList<BinaryData>();
+            hotPosts ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileDiscussion(
+                createdAt,
+                defaultFeedForumId,
+                defaultFeedTab,
+                desc,
+                descType,
+                discussionId,
+                forums.ToList(),
+                gameId,
+                hotPosts.ToList(),
+                icon,
+                subject,
+                talkingForumId,
+                talkingPrompt,
+                updatedAt,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileEmoticonData"/> instance for mocking. </returns>
+        public static ApiResponseMobileEmoticonData ApiResponseMobileEmoticonData(int retcode = default, string message = default, MobileEmoticonData data = default)
+        {
+            return new ApiResponseMobileEmoticonData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileEmoticonData. </summary>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileEmoticonData"/> instance for mocking. </returns>
+        public static MobileEmoticonData MobileEmoticonData(IEnumerable<BinaryData> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileEmoticonData(list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileFeedPostsData"/> instance for mocking. </returns>
+        public static ApiResponseMobileFeedPostsData ApiResponseMobileFeedPostsData(int retcode = default, string message = default, MobileFeedPostsData data = default)
+        {
+            return new ApiResponseMobileFeedPostsData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileFeedPostsData. </summary>
+        /// <param name="databox"></param>
+        /// <param name="isOriginal"></param>
+        /// <param name="isResourceUnchanged"></param>
+        /// <param name="lastId"></param>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileFeedPostsData"/> instance for mocking. </returns>
+        public static MobileFeedPostsData MobileFeedPostsData(IDictionary<string, string> databox = default, bool? isOriginal = default, bool? isResourceUnchanged = default, string lastId = default, IEnumerable<IDictionary<string, BinaryData>> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            databox ??= new ChangeTrackingDictionary<string, string>();
+            list ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileFeedPostsData(
+                databox,
+                isOriginal,
+                isResourceUnchanged,
+                lastId,
+                list.ToList(),
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileUserInstantListData"/> instance for mocking. </returns>
+        public static ApiResponseMobileUserInstantListData ApiResponseMobileUserInstantListData(int retcode = default, string message = default, MobileUserInstantListData data = default)
+        {
+            return new ApiResponseMobileUserInstantListData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileUserInstantListData. </summary>
+        /// <param name="isLast"></param>
+        /// <param name="list"></param>
+        /// <param name="nextOffset"></param>
+        /// <param name="topPost"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileUserInstantListData"/> instance for mocking. </returns>
+        public static MobileUserInstantListData MobileUserInstantListData(bool? isLast = default, IEnumerable<IDictionary<string, BinaryData>> list = default, int? nextOffset = default, BinaryData topPost = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileUserInstantListData(isLast, list.ToList(), nextOffset, topPost, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileVillaSitePushData"/> instance for mocking. </returns>
+        public static ApiResponseMobileVillaSitePushData ApiResponseMobileVillaSitePushData(int retcode = default, string message = default, MobileVillaSitePushData data = default)
+        {
+            return new ApiResponseMobileVillaSitePushData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileVillaSitePushData. </summary>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileVillaSitePushData"/> instance for mocking. </returns>
+        public static MobileVillaSitePushData MobileVillaSitePushData(IEnumerable<BinaryData> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileVillaSitePushData(list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileVideoPermissionData"/> instance for mocking. </returns>
+        public static ApiResponseMobileVideoPermissionData ApiResponseMobileVideoPermissionData(int retcode = default, string message = default, MobileVideoPermissionData data = default)
+        {
+            return new ApiResponseMobileVideoPermissionData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileVideoPermissionData. </summary>
+        /// <param name="canPublish"></param>
+        /// <param name="toast"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileVideoPermissionData"/> instance for mocking. </returns>
+        public static MobileVideoPermissionData MobileVideoPermissionData(bool? canPublish = default, string toast = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileVideoPermissionData(canPublish, toast, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileGameCenterData"/> instance for mocking. </returns>
+        public static ApiResponseMobileGameCenterData ApiResponseMobileGameCenterData(int retcode = default, string message = default, MobileGameCenterData data = default)
+        {
+            return new ApiResponseMobileGameCenterData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileGameCenterData. </summary>
+        /// <param name="autoDownloadEnableMap"></param>
+        /// <param name="downloadMode"></param>
+        /// <param name="gameDownloadExperiment"></param>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileGameCenterData"/> instance for mocking. </returns>
+        public static MobileGameCenterData MobileGameCenterData(IDictionary<string, BinaryData> autoDownloadEnableMap = default, string downloadMode = default, IDictionary<string, BinaryData> gameDownloadExperiment = default, IEnumerable<IDictionary<string, BinaryData>> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            autoDownloadEnableMap ??= new ChangeTrackingDictionary<string, BinaryData>();
+            gameDownloadExperiment ??= new ChangeTrackingDictionary<string, BinaryData>();
+            list ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileGameCenterData(autoDownloadEnableMap, downloadMode, gameDownloadExperiment, list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileTeenagerInfoData"/> instance for mocking. </returns>
+        public static ApiResponseMobileTeenagerInfoData ApiResponseMobileTeenagerInfoData(int retcode = default, string message = default, MobileTeenagerInfoData data = default)
+        {
+            return new ApiResponseMobileTeenagerInfoData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileTeenagerInfoData. </summary>
+        /// <param name="availableDuration"></param>
+        /// <param name="disableEndTime"></param>
+        /// <param name="disableStartTime"></param>
+        /// <param name="isEnabled"></param>
+        /// <param name="isForce"></param>
+        /// <param name="isRealName"></param>
+        /// <param name="isTeenager"></param>
+        /// <param name="loopPeriod"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileTeenagerInfoData"/> instance for mocking. </returns>
+        public static MobileTeenagerInfoData MobileTeenagerInfoData(int? availableDuration = default, long? disableEndTime = default, long? disableStartTime = default, bool? isEnabled = default, bool? isForce = default, bool? isRealName = default, bool? isTeenager = default, int? loopPeriod = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileTeenagerInfoData(
+                availableDuration,
+                disableEndTime,
+                disableStartTime,
+                isEnabled,
+                isForce,
+                isRealName,
+                isTeenager,
+                loopPeriod,
+                additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileUnreadInfoData"/> instance for mocking. </returns>
+        public static ApiResponseMobileUnreadInfoData ApiResponseMobileUnreadInfoData(int retcode = default, string message = default, MobileUnreadInfoData data = default)
+        {
+            return new ApiResponseMobileUnreadInfoData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileUnreadInfoData. </summary>
+        /// <param name="latestUpdateUserInfo"></param>
+        /// <param name="unreadNum"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileUnreadInfoData"/> instance for mocking. </returns>
+        public static MobileUnreadInfoData MobileUnreadInfoData(MobileUnreadInfoUser latestUpdateUserInfo = default, int? unreadNum = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileUnreadInfoData(latestUpdateUserInfo, unreadNum, additionalProperties);
+        }
+
+        /// <summary> The MobileUnreadInfoUser. </summary>
+        /// <param name="avatarUrl"></param>
+        /// <param name="uid"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileUnreadInfoUser"/> instance for mocking. </returns>
+        public static MobileUnreadInfoUser MobileUnreadInfoUser(string avatarUrl = default, string uid = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileUnreadInfoUser(avatarUrl, uid, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileBusinessesData"/> instance for mocking. </returns>
+        public static ApiResponseMobileBusinessesData ApiResponseMobileBusinessesData(int retcode = default, string message = default, MobileBusinessesData data = default)
+        {
+            return new ApiResponseMobileBusinessesData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileBusinessesData. </summary>
+        /// <param name="businesses"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileBusinessesData"/> instance for mocking. </returns>
+        public static MobileBusinessesData MobileBusinessesData(IEnumerable<string> businesses = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            businesses ??= new ChangeTrackingList<string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileBusinessesData(businesses.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileNotificationSettingsData"/> instance for mocking. </returns>
+        public static ApiResponseMobileNotificationSettingsData ApiResponseMobileNotificationSettingsData(int retcode = default, string message = default, MobileNotificationSettingsData data = default)
+        {
+            return new ApiResponseMobileNotificationSettingsData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileNotificationSettingsData. </summary>
+        /// <param name="settings"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileNotificationSettingsData"/> instance for mocking. </returns>
+        public static MobileNotificationSettingsData MobileNotificationSettingsData(IDictionary<string, BinaryData> settings = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            settings ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileNotificationSettingsData(settings, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileReplyPermissionData"/> instance for mocking. </returns>
+        public static ApiResponseMobileReplyPermissionData ApiResponseMobileReplyPermissionData(int retcode = default, string message = default, MobileReplyPermissionData data = default)
+        {
+            return new ApiResponseMobileReplyPermissionData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileReplyPermissionData. </summary>
+        /// <param name="instant"></param>
+        /// <param name="maxImageNumber"></param>
+        /// <param name="post"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileReplyPermissionData"/> instance for mocking. </returns>
+        public static MobileReplyPermissionData MobileReplyPermissionData(IEnumerable<BinaryData> instant = default, int? maxImageNumber = default, IEnumerable<BinaryData> post = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            instant ??= new ChangeTrackingList<BinaryData>();
+            post ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileReplyPermissionData(instant.ToList(), maxImageNumber, post.ToList(), additionalProperties);
+        }
+
+        /// <summary> The MobileLoginRequest. </summary>
+        /// <param name="sourceId"></param>
+        /// <param name="sourceKey"></param>
+        /// <param name="sourceName"></param>
+        /// <param name="sourceType"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobileLoginRequest"/> instance for mocking. </returns>
+        public static MobileLoginRequest MobileLoginRequest(string sourceId = default, string sourceKey = default, string sourceName = default, int sourceType = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileLoginRequest(sourceId, sourceKey, sourceName, sourceType, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobileEntityReviewData"/> instance for mocking. </returns>
+        public static ApiResponseMobileEntityReviewData ApiResponseMobileEntityReviewData(int retcode = default, string message = default, MobileEntityReviewData data = default)
+        {
+            return new ApiResponseMobileEntityReviewData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobileEntityReviewData. </summary>
+        /// <param name="isLast"></param>
+        /// <param name="list"></param>
+        /// <param name="nextOffset"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobileEntityReviewData"/> instance for mocking. </returns>
+        public static MobileEntityReviewData MobileEntityReviewData(bool? isLast = default, IEnumerable<BinaryData> list = default, int? nextOffset = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobileEntityReviewData(isLast, list.ToList(), nextOffset, additionalProperties);
+        }
+
+        /// <summary> The MobilePreloadConfigRequest. </summary>
+        /// <param name="clientVersion"></param>
+        /// <param name="platform"></param>
+        /// <param name="rnApp"></param>
+        /// <param name="rnInfos"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobilePreloadConfigRequest"/> instance for mocking. </returns>
+        public static MobilePreloadConfigRequest MobilePreloadConfigRequest(string clientVersion = default, string platform = default, string rnApp = default, IEnumerable<MobilePreloadResourceInfo> rnInfos = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            rnInfos ??= new ChangeTrackingList<MobilePreloadResourceInfo>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobilePreloadConfigRequest(clientVersion, platform, rnApp, rnInfos.ToList(), additionalProperties);
+        }
+
+        /// <summary> The MobilePreloadResourceInfo. </summary>
+        /// <param name="moduleName"></param>
+        /// <param name="resourceUrl"></param>
+        /// <param name="rnVersion"></param>
+        /// <param name="sha1"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Request.MobilePreloadResourceInfo"/> instance for mocking. </returns>
+        public static MobilePreloadResourceInfo MobilePreloadResourceInfo(string moduleName = default, string resourceUrl = default, string rnVersion = default, string sha1 = default, IDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobilePreloadResourceInfo(moduleName, resourceUrl, rnVersion, sha1, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseMobilePreloadConfigData"/> instance for mocking. </returns>
+        public static ApiResponseMobilePreloadConfigData ApiResponseMobilePreloadConfigData(int retcode = default, string message = default, MobilePreloadConfigData data = default)
+        {
+            return new ApiResponseMobilePreloadConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The MobilePreloadConfigData. </summary>
+        /// <param name="needPreload"></param>
+        /// <param name="needUpdate"></param>
+        /// <param name="rnPreload"></param>
+        /// <param name="rnUpdateInfos"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.MobilePreloadConfigData"/> instance for mocking. </returns>
+        public static MobilePreloadConfigData MobilePreloadConfigData(bool? needPreload = default, bool? needUpdate = default, IEnumerable<IDictionary<string, BinaryData>> rnPreload = default, IEnumerable<BinaryData> rnUpdateInfos = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            rnPreload ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            rnUpdateInfos ??= new ChangeTrackingList<BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new MobilePreloadConfigData(needPreload, needUpdate, rnPreload.ToList(), rnUpdateInfos.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStaticResourceData"/> instance for mocking. </returns>
+        public static ApiResponseStaticResourceData ApiResponseStaticResourceData(int retcode = default, string message = default, StaticResourceData data = default)
+        {
+            return new ApiResponseStaticResourceData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StaticResourceData. </summary>
+        /// <param name="divider"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StaticResourceData"/> instance for mocking. </returns>
+        public static StaticResourceData StaticResourceData(IEnumerable<IDictionary<string, BinaryData>> divider = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            divider ??= new ChangeTrackingList<IDictionary<string, BinaryData>>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StaticResourceData(divider.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStaticResourceVersionsData"/> instance for mocking. </returns>
+        public static ApiResponseStaticResourceVersionsData ApiResponseStaticResourceVersionsData(int retcode = default, string message = default, StaticResourceVersionsData data = default)
+        {
+            return new ApiResponseStaticResourceVersionsData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StaticResourceVersionsData. </summary>
+        /// <param name="divider"></param>
+        /// <param name="emoticonSet"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StaticResourceVersionsData"/> instance for mocking. </returns>
+        public static StaticResourceVersionsData StaticResourceVersionsData(string divider = default, string emoticonSet = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StaticResourceVersionsData(divider, emoticonSet, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStaticLatestVersionData"/> instance for mocking. </returns>
+        public static ApiResponseStaticLatestVersionData ApiResponseStaticLatestVersionData(int retcode = default, string message = default, StaticLatestVersionData data = default)
+        {
+            return new ApiResponseStaticLatestVersionData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StaticLatestVersionData. </summary>
+        /// <param name="version"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StaticLatestVersionData"/> instance for mocking. </returns>
+        public static StaticLatestVersionData StaticLatestVersionData(string version = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StaticLatestVersionData(version, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseStaticPreKeywordData"/> instance for mocking. </returns>
+        public static ApiResponseStaticPreKeywordData ApiResponseStaticPreKeywordData(int retcode = default, string message = default, StaticPreKeywordData data = default)
+        {
+            return new ApiResponseStaticPreKeywordData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The StaticPreKeywordData. </summary>
+        /// <param name="list"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.StaticPreKeywordData"/> instance for mocking. </returns>
+        public static StaticPreKeywordData StaticPreKeywordData(IEnumerable<string> list = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            list ??= new ChangeTrackingList<string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new StaticPreKeywordData(list.ToList(), additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponsePassportSwitchStatusData"/> instance for mocking. </returns>
+        public static ApiResponsePassportSwitchStatusData ApiResponsePassportSwitchStatusData(int retcode = default, string message = default, PassportSwitchStatusData data = default)
+        {
+            return new ApiResponsePassportSwitchStatusData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The PassportSwitchStatusData. </summary>
+        /// <param name="enabled"></param>
+        /// <param name="switchStatusMap"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.PassportSwitchStatusData"/> instance for mocking. </returns>
+        public static PassportSwitchStatusData PassportSwitchStatusData(IDictionary<string, BinaryData> enabled = default, IDictionary<string, BinaryData> switchStatusMap = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            enabled ??= new ChangeTrackingDictionary<string, BinaryData>();
+            switchStatusMap ??= new ChangeTrackingDictionary<string, BinaryData>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new PassportSwitchStatusData(enabled, switchStatusMap, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkPorteData"/> instance for mocking. </returns>
+        public static ApiResponseSdkPorteData ApiResponseSdkPorteData(int retcode = default, string message = default, SdkPorteData data = default)
+        {
+            return new ApiResponseSdkPorteData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkPorteData. </summary>
+        /// <param name="vals"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.SdkPorteData"/> instance for mocking. </returns>
+        public static SdkPorteData SdkPorteData(IDictionary<string, string> vals = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            vals ??= new ChangeTrackingDictionary<string, string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkPorteData(vals, additionalProperties);
+        }
+
+        /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
+        /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
+        /// <param name="message"> Vendor diagnostic message. </param>
+        /// <param name="data"> Endpoint-specific payload. </param>
+        /// <returns> A new <see cref="Mihoyo.ApiResponseSdkFeCnConfigData"/> instance for mocking. </returns>
+        public static ApiResponseSdkFeCnConfigData ApiResponseSdkFeCnConfigData(int retcode = default, string message = default, SdkFeCnConfigData data = default)
+        {
+            return new ApiResponseSdkFeCnConfigData(retcode, message, data, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The SdkFeCnConfigData. </summary>
+        /// <param name="vals"></param>
+        /// <param name="additionalProperties"></param>
+        /// <returns> A new <see cref="Api.Response.SdkFeCnConfigData"/> instance for mocking. </returns>
+        public static SdkFeCnConfigData SdkFeCnConfigData(IDictionary<string, string> vals = default, IReadOnlyDictionary<string, BinaryData> additionalProperties = default)
+        {
+            vals ??= new ChangeTrackingDictionary<string, string>();
+            additionalProperties ??= new ChangeTrackingDictionary<string, BinaryData>();
+
+            return new SdkFeCnConfigData(vals, additionalProperties);
         }
     }
 }

@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher.Sophon.CN
+namespace UIGF.Mihoyo.Launcher.Sophon.CN
 {
     /// <summary> The CnSophonBuildApi sub-client. </summary>
     public partial class CnSophonBuildApi

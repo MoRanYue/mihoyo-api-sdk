@@ -4,10 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce
+namespace UIGF.Mihoyo.Commerce
 {
     /// <summary>
     /// Vendor-signed order creation payload. `sign` must come from an authorized

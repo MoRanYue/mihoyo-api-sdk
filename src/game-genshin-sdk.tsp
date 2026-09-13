@@ -2,8 +2,8 @@ import "@typespec/http";
 
 using TypeSpec.Http;
 
-namespace UIGF.Game.Genshin.SDK {
-  /** Optional x-rpc context fields observed on official Genshin SDK configuration requests. */
+namespace UIGF.Mihoyo.Game.Genshin.SDK {
+  /** Optional x-rpc context fields for Genshin SDK configuration requests. */
   model ClientHeaders {
     @header("x-rpc-app_id") rpcAppId?: string;
     @header("x-rpc-app_version") rpcAppVersion?: string;
@@ -41,8 +41,8 @@ namespace UIGF.Game.Genshin.SDK {
   }
 
   model GranterLoginRequest {
-    app_id: string;
-    channel_id: string;
+    app_id: int32;
+    channel_id: int32;
     data: string;
     device: string;
     sign: string;
@@ -52,23 +52,23 @@ namespace UIGF.Game.Genshin.SDK {
 /** Genshin SDK bootstrap and shield configuration APIs. */
 @service(#{ title: "UIGF Genshin CN SDK Configuration API" })
 @server("https://sdk-static.mihoyo.com", "CN Genshin SDK static configuration API")
-namespace UIGF.Game.Genshin.SDK.Config {
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Config {
   interface ConfigApi {
     @get
     @route("/combo/box/api/config/sdk/combo")
     getCombo(
       @query biz_key: string,
       @query client_type: string,
-      ...UIGF.Game.Genshin.SDK.ClientHeaders,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Game.Genshin.SDK.ClientHeaders,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.Game.Response.SdkComboConfigData>;
 
     @get
     @route("/combo/box/api/config/sw/precache")
     getPrecache(
       @query biz: string,
       @query client: string,
-      ...UIGF.Game.Genshin.SDK.ClientHeaders,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Game.Genshin.SDK.ClientHeaders,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.Game.Response.SdkPrecacheConfigData>;
 
     @get
     @route("/hk4e_cn/combo/granter/api/getConfig")
@@ -76,36 +76,36 @@ namespace UIGF.Game.Genshin.SDK.Config {
       @query app_id: string,
       @query channel_id: string,
       @query client_type: string,
-      ...UIGF.Game.Genshin.SDK.ClientHeaders,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Game.Genshin.SDK.ClientHeaders,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.Game.Response.SdkGranterConfigData>;
 
     @get
     @route("/hk4e_cn/mdk/shield/api/loadConfig")
     getShieldConfig(
       @query client: string,
       @query game_key: string,
-      ...UIGF.Game.Genshin.SDK.ClientHeaders,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Game.Genshin.SDK.ClientHeaders,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.Game.Response.SdkShieldConfigData>;
   }
 }
 
 /** Genshin SDK secure protocol-version and red-dot APIs. */
 @service(#{ title: "UIGF Genshin CN Secure SDK API" })
 @server("https://hk4e-sdk-s.mihoyo.com", "CN Genshin secure SDK API")
-namespace UIGF.Game.Genshin.SDK.Secure {
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Secure {
   interface SecureApi {
     @post
     @route("/hk4e_cn/combo/granter/api/compareProtocolVersion")
     compareProtocolVersion(
-      ...UIGF.Game.Genshin.SDK.ClientHeaders,
-      @body body: UIGF.Game.Genshin.SDK.ProtocolVersionRequest,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Game.Genshin.SDK.ClientHeaders,
+      @body body: UIGF.Mihoyo.Game.Genshin.SDK.ProtocolVersionRequest,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.Game.Response.SdkProtocolVersionComparisonData>;
 
     @post
     @route("/hk4e_cn/combo/red_dot/list")
     getRedDots(
-      ...UIGF.Game.Genshin.SDK.ClientHeaders,
-      @body body: UIGF.Game.Genshin.SDK.RedDotRequest,
-    ): UIGF.ApiResponse<UIGF.JsonObject>;
+      ...UIGF.Mihoyo.Game.Genshin.SDK.ClientHeaders,
+      @body body: UIGF.Mihoyo.Game.Genshin.SDK.RedDotRequest,
+    ): UIGF.Mihoyo.ApiResponse<UIGF.Mihoyo.Game.Response.SdkRedDotData>;
   }
 }

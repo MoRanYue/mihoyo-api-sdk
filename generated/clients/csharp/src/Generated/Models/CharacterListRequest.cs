@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The CharacterListRequest. </summary>
     public partial class CharacterListRequest
@@ -30,11 +30,13 @@ namespace UIGF.Game
         /// <summary> Initializes a new instance of <see cref="CharacterListRequest"/>. </summary>
         /// <param name="roleId"></param>
         /// <param name="server"></param>
+        /// <param name="sortType"></param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal CharacterListRequest(string roleId, string server, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal CharacterListRequest(string roleId, string server, int? sortType, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             RoleId = roleId;
             Server = server;
+            SortType = sortType;
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
@@ -43,5 +45,8 @@ namespace UIGF.Game
 
         /// <summary> Gets the Server. </summary>
         public string Server { get; }
+
+        /// <summary> Gets or sets the SortType. </summary>
+        public int? SortType { get; set; }
     }
 }

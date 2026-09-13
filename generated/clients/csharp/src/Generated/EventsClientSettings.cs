@@ -6,9 +6,9 @@ using System;
 using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.CN.Events
+namespace UIGF.Mihoyo.Game.CN.Events
 {
     /// <summary> Represents the settings used to configure a <see cref="EventsClient"/> that can be loaded from an <see cref="IConfigurationSection"/>. </summary>
     [Experimental("SCME0002")]

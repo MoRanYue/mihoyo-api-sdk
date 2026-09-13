@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Game.Genshin.SDK;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Game.Genshin.SDK;
 
-namespace UIGF.Game.Genshin.SDK.Secure
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Secure
 {
     /// <summary> The GenshinSdkSecureApi sub-client. </summary>
     public partial class GenshinSdkSecureApi
@@ -136,12 +135,12 @@ namespace UIGF.Game.Genshin.SDK.Secure
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> CompareProtocolVersion(ProtocolVersionRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseSdkProtocolVersionComparisonData> CompareProtocolVersion(ProtocolVersionRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = CompareProtocolVersion(body, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkProtocolVersionComparisonData)result, result.GetRawResponse());
         }
 
         /// <summary> CompareProtocolVersion. </summary>
@@ -167,12 +166,12 @@ namespace UIGF.Game.Genshin.SDK.Secure
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> CompareProtocolVersionAsync(ProtocolVersionRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseSdkProtocolVersionComparisonData>> CompareProtocolVersionAsync(ProtocolVersionRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await CompareProtocolVersionAsync(body, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkProtocolVersionComparisonData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -276,12 +275,12 @@ namespace UIGF.Game.Genshin.SDK.Secure
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetRedDots(RedDotRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseSdkRedDotData> GetRedDots(RedDotRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = GetRedDots(body, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkRedDotData)result, result.GetRawResponse());
         }
 
         /// <summary> GetRedDots. </summary>
@@ -307,12 +306,12 @@ namespace UIGF.Game.Genshin.SDK.Secure
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetRedDotsAsync(RedDotRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseSdkRedDotData>> GetRedDotsAsync(RedDotRequest body, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await GetRedDotsAsync(body, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkRedDotData)result, result.GetRawResponse());
         }
     }
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.CN.HonkaiImpact
+namespace UIGF.Mihoyo.Game.CN.HonkaiImpact
 {
     /// <summary></summary>
     public partial class HonkaiImpactClient

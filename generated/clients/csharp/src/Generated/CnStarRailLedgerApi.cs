@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.CN.Events
+namespace UIGF.Mihoyo.Game.CN.Events
 {
     /// <summary> The CnStarRailLedgerApi sub-client. </summary>
     public partial class CnStarRailLedgerApi

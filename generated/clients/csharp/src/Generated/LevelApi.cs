@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.UGC
+namespace UIGF.Mihoyo.Uncategorized.UGC
 {
     /// <summary> The LevelApi sub-client. </summary>
     public partial class LevelApi
@@ -34,7 +34,7 @@ namespace UIGF.Uncategorized.UGC
         public ClientPipeline Pipeline { get; }
 
         /// <summary>
-        /// [Protocol Method] The observed request and response use the vendor's protobuf media type.
+        /// [Protocol Method] Uses the vendor's protobuf media type.
         /// <list type="bullet">
         /// <item>
         /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
@@ -51,7 +51,7 @@ namespace UIGF.Uncategorized.UGC
         }
 
         /// <summary>
-        /// [Protocol Method] The observed request and response use the vendor's protobuf media type.
+        /// [Protocol Method] Uses the vendor's protobuf media type.
         /// <list type="bullet">
         /// <item>
         /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
@@ -67,7 +67,7 @@ namespace UIGF.Uncategorized.UGC
             return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
         }
 
-        /// <summary> The observed request and response use the vendor's protobuf media type. </summary>
+        /// <summary> Uses the vendor's protobuf media type. </summary>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
         public virtual ClientResult<BinaryData> GetIndexRedpoint(CancellationToken cancellationToken = default)
@@ -76,7 +76,7 @@ namespace UIGF.Uncategorized.UGC
             return ClientResult.FromValue(result.GetRawResponse().Content, result.GetRawResponse());
         }
 
-        /// <summary> The observed request and response use the vendor's protobuf media type. </summary>
+        /// <summary> Uses the vendor's protobuf media type. </summary>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
         public virtual async Task<ClientResult<BinaryData>> GetIndexRedpointAsync(CancellationToken cancellationToken = default)
@@ -86,7 +86,7 @@ namespace UIGF.Uncategorized.UGC
         }
 
         /// <summary>
-        /// [Protocol Method] The gateway payload is opaque protobuf data in the available capture.
+        /// [Protocol Method] The gateway payload is opaque protobuf data.
         /// <list type="bullet">
         /// <item>
         /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
@@ -107,7 +107,7 @@ namespace UIGF.Uncategorized.UGC
         }
 
         /// <summary>
-        /// [Protocol Method] The gateway payload is opaque protobuf data in the available capture.
+        /// [Protocol Method] The gateway payload is opaque protobuf data.
         /// <list type="bullet">
         /// <item>
         /// <description> This <see href="https://aka.ms/azsdk/net/protocol-methods">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios. </description>
@@ -127,7 +127,7 @@ namespace UIGF.Uncategorized.UGC
             return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
         }
 
-        /// <summary> The gateway payload is opaque protobuf data in the available capture. </summary>
+        /// <summary> The gateway payload is opaque protobuf data. </summary>
         /// <param name="body"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
@@ -140,7 +140,7 @@ namespace UIGF.Uncategorized.UGC
             return ClientResult.FromValue(result.GetRawResponse().Content, result.GetRawResponse());
         }
 
-        /// <summary> The gateway payload is opaque protobuf data in the available capture. </summary>
+        /// <summary> The gateway payload is opaque protobuf data. </summary>
         /// <param name="body"></param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>

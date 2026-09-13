@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.Telemetry.Crash
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Crash
 {
     /// <summary></summary>
     public partial class CrashApi

@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Dispatch.CurrentRegion
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.CurrentRegion
 {
     /// <summary> Resolves the current Genshin region from the CN game dispatch service. </summary>
     public partial class CurrentRegionClient

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The PandaQrRequest. </summary>
     public partial class PandaQrRequest

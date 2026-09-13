@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.UGC
+namespace UIGF.Mihoyo.Uncategorized.UGC
 {
     /// <summary> The TokenApi sub-client. </summary>
     public partial class TokenApi
@@ -94,14 +93,14 @@ namespace UIGF.Uncategorized.UGC
         /// <exception cref="ArgumentNullException"> <paramref name="authkey"/>, <paramref name="authAppid"/> or <paramref name="lang"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="authkey"/>, <paramref name="authAppid"/> or <paramref name="lang"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> Get(string authkey, string authAppid, string lang, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseUgcTokenInfo> Get(string authkey, string authAppid, string lang, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(authkey, nameof(authkey));
             Argument.AssertNotNullOrEmpty(authAppid, nameof(authAppid));
             Argument.AssertNotNullOrEmpty(lang, nameof(lang));
 
             ClientResult result = Get(authkey, authAppid, lang, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseUgcTokenInfo)result, result.GetRawResponse());
         }
 
         /// <summary> Get. </summary>
@@ -112,14 +111,14 @@ namespace UIGF.Uncategorized.UGC
         /// <exception cref="ArgumentNullException"> <paramref name="authkey"/>, <paramref name="authAppid"/> or <paramref name="lang"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="authkey"/>, <paramref name="authAppid"/> or <paramref name="lang"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetAsync(string authkey, string authAppid, string lang, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseUgcTokenInfo>> GetAsync(string authkey, string authAppid, string lang, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(authkey, nameof(authkey));
             Argument.AssertNotNullOrEmpty(authAppid, nameof(authAppid));
             Argument.AssertNotNullOrEmpty(lang, nameof(lang));
 
             ClientResult result = await GetAsync(authkey, authAppid, lang, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseUgcTokenInfo)result, result.GetRawResponse());
         }
     }
 }

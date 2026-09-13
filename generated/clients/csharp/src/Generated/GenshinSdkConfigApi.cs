@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.SDK.Config
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Config
 {
     /// <summary> The GenshinSdkConfigApi sub-client. </summary>
     public partial class GenshinSdkConfigApi
@@ -143,13 +142,13 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="bizKey"/> or <paramref name="clientType"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="bizKey"/> or <paramref name="clientType"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetCombo(string bizKey, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseSdkComboConfigData> GetCombo(string bizKey, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(bizKey, nameof(bizKey));
             Argument.AssertNotNullOrEmpty(clientType, nameof(clientType));
 
             ClientResult result = GetCombo(bizKey, clientType, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkComboConfigData)result, result.GetRawResponse());
         }
 
         /// <summary> GetCombo. </summary>
@@ -177,13 +176,13 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="bizKey"/> or <paramref name="clientType"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="bizKey"/> or <paramref name="clientType"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetComboAsync(string bizKey, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseSdkComboConfigData>> GetComboAsync(string bizKey, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(bizKey, nameof(bizKey));
             Argument.AssertNotNullOrEmpty(clientType, nameof(clientType));
 
             ClientResult result = await GetComboAsync(bizKey, clientType, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkComboConfigData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -295,13 +294,13 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="biz"/> or <paramref name="client"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="biz"/> or <paramref name="client"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetPrecache(string biz, string client, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseSdkPrecacheConfigData> GetPrecache(string biz, string client, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(biz, nameof(biz));
             Argument.AssertNotNullOrEmpty(client, nameof(client));
 
             ClientResult result = GetPrecache(biz, client, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkPrecacheConfigData)result, result.GetRawResponse());
         }
 
         /// <summary> GetPrecache. </summary>
@@ -329,13 +328,13 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="biz"/> or <paramref name="client"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="biz"/> or <paramref name="client"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetPrecacheAsync(string biz, string client, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseSdkPrecacheConfigData>> GetPrecacheAsync(string biz, string client, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(biz, nameof(biz));
             Argument.AssertNotNullOrEmpty(client, nameof(client));
 
             ClientResult result = await GetPrecacheAsync(biz, client, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkPrecacheConfigData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -452,14 +451,14 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="appId"/>, <paramref name="channelId"/> or <paramref name="clientType"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="appId"/>, <paramref name="channelId"/> or <paramref name="clientType"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetGranterConfig(string appId, string channelId, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseSdkGranterConfigData> GetGranterConfig(string appId, string channelId, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(appId, nameof(appId));
             Argument.AssertNotNullOrEmpty(channelId, nameof(channelId));
             Argument.AssertNotNullOrEmpty(clientType, nameof(clientType));
 
             ClientResult result = GetGranterConfig(appId, channelId, clientType, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkGranterConfigData)result, result.GetRawResponse());
         }
 
         /// <summary> GetGranterConfig. </summary>
@@ -488,14 +487,14 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="appId"/>, <paramref name="channelId"/> or <paramref name="clientType"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="appId"/>, <paramref name="channelId"/> or <paramref name="clientType"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetGranterConfigAsync(string appId, string channelId, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseSdkGranterConfigData>> GetGranterConfigAsync(string appId, string channelId, string clientType, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(appId, nameof(appId));
             Argument.AssertNotNullOrEmpty(channelId, nameof(channelId));
             Argument.AssertNotNullOrEmpty(clientType, nameof(clientType));
 
             ClientResult result = await GetGranterConfigAsync(appId, channelId, clientType, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkGranterConfigData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -607,13 +606,13 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="client"/> or <paramref name="gameKey"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="client"/> or <paramref name="gameKey"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetShieldConfig(string client, string gameKey, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseSdkShieldConfigData> GetShieldConfig(string client, string gameKey, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(client, nameof(client));
             Argument.AssertNotNullOrEmpty(gameKey, nameof(gameKey));
 
             ClientResult result = GetShieldConfig(client, gameKey, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkShieldConfigData)result, result.GetRawResponse());
         }
 
         /// <summary> GetShieldConfig. </summary>
@@ -641,13 +640,13 @@ namespace UIGF.Game.Genshin.SDK.Config
         /// <exception cref="ArgumentNullException"> <paramref name="client"/> or <paramref name="gameKey"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="client"/> or <paramref name="gameKey"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetShieldConfigAsync(string client, string gameKey, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseSdkShieldConfigData>> GetShieldConfigAsync(string client, string gameKey, string rpcAppId = default, string rpcAppVersion = default, string rpcChannelId = default, string rpcChannelVersion = default, string rpcClientType = default, string rpcComboVersion = default, string rpcDeviceFingerprint = default, string rpcDeviceId = default, string rpcDeviceModel = default, string rpcDeviceName = default, string rpcGameBiz = default, string rpcGoodsThirdParty = default, string rpcLanguage = default, string rpcMdkVersion = default, string rpcPaymentVersion = default, string rpcSdkVersion = default, string rpcSubChannelId = default, string rpcSystemVersion = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(client, nameof(client));
             Argument.AssertNotNullOrEmpty(gameKey, nameof(gameKey));
 
             ClientResult result = await GetShieldConfigAsync(client, gameKey, rpcAppId, rpcAppVersion, rpcChannelId, rpcChannelVersion, rpcClientType, rpcComboVersion, rpcDeviceFingerprint, rpcDeviceId, rpcDeviceModel, rpcDeviceName, rpcGameBiz, rpcGoodsThirdParty, rpcLanguage, rpcMdkVersion, rpcPaymentVersion, rpcSdkVersion, rpcSubChannelId, rpcSystemVersion, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseSdkShieldConfigData)result, result.GetRawResponse());
         }
     }
 }

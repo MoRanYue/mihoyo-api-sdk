@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Utility.Device
+namespace UIGF.Mihoyo.Utility.Device
 {
     /// <summary> CN device fingerprint registration contract. Do not submit fabricated device telemetry. </summary>
     public partial class DeviceClient

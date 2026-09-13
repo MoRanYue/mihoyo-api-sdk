@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Record
+namespace UIGF.Mihoyo.Game.Genshin.Record
 {
     /// <summary></summary>
     public partial class RecordClient

@@ -4,7 +4,7 @@
 
 using System;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     internal static partial class ListRequestPlatformExtensions
     {

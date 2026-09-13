@@ -7,10 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF.Game.Genshin.Dispatch;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Game.Genshin.Dispatch;
 
-namespace UIGF.Game.Genshin.Dispatch.CurrentRegion
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.CurrentRegion
 {
     /// <summary> The CurrentRegionApi sub-client. </summary>
     public partial class CurrentRegionApi

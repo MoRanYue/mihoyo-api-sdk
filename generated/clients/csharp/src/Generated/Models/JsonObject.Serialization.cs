@@ -7,9 +7,8 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> A JSON object whose vendor-defined properties are preserved by generated clients. </summary>
     public partial class JsonObject : IJsonModel<JsonObject>

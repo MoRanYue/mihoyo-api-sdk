@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.PassportV4
+namespace UIGF.Mihoyo.PassportV4
 {
     /// <summary></summary>
     public partial class PassportV4SessionApi

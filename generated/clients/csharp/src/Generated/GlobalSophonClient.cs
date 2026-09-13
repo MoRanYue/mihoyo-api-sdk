@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Launcher.Sophon.Global
+namespace UIGF.Mihoyo.Launcher.Sophon.Global
 {
     /// <summary> Global Sophon chunk and incremental-patch manifests. </summary>
     public partial class GlobalSophonClient

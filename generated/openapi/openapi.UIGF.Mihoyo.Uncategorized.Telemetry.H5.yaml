@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: UIGF Uncategorized H5 Telemetry API
+  description: Web-view telemetry batch endpoint.
+  version: 0.0.0
+tags: []
+paths:
+  /common/h5log/log/batch:
+    post:
+      operationId: BatchApi_upload
+      parameters:
+        - name: topic
+          in: query
+          required: true
+          schema:
+            type: string
+          explode: false
+        - name: DATE
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - retcode
+                  - message
+                  - data
+                properties:
+                  retcode:
+                    type: integer
+                    format: int32
+                    description: Vendor result code. `0` normally represents success.
+                  message:
+                    type: string
+                    description: Vendor diagnostic message.
+                  data:
+                    description: Endpoint-specific payload.
+                description: Common response wrapper returned by MiHoYo and HoYoLAB services.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UIGF.Mihoyo.Uncategorized.H5LogRequest'
+components:
+  schemas:
+    UIGF.Mihoyo.Uncategorized.H5LogRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: string
+servers:
+  - url: https://h5log-api-dualstack.mihoyo.com
+    description: MiHoYo H5 telemetry API
+    variables: {}

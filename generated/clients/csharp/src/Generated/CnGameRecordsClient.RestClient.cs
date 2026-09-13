@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.CN.Records
+namespace UIGF.Mihoyo.Game.CN.Records
 {
     /// <summary></summary>
     public partial class CnGameRecordsClient

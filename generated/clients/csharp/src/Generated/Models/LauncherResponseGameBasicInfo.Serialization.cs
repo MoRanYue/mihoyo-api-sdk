@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
-using UIGF.Launcher;
-using UIGF.Mihoyo;
+using UIGF.Mihoyo.Launcher;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Common envelope used by the HoYoPlay and Sophon APIs. </summary>
     public partial class LauncherResponseGameBasicInfo : IJsonModel<LauncherResponseGameBasicInfo>

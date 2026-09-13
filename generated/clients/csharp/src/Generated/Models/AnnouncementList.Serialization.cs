@@ -7,9 +7,8 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The AnnouncementList. </summary>
     public partial class AnnouncementList : IJsonModel<AnnouncementList>

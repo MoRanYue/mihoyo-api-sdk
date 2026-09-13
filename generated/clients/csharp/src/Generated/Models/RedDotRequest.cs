@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.SDK
+namespace UIGF.Mihoyo.Game.Genshin.SDK
 {
     /// <summary> The RedDotRequest. </summary>
     public partial class RedDotRequest

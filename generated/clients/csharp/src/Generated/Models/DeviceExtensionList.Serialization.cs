@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Utility.Device
+namespace UIGF.Mihoyo.Utility.Device
 {
     /// <summary> The DeviceExtensionList. </summary>
     public partial class DeviceExtensionList : IJsonModel<DeviceExtensionList>

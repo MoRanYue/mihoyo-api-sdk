@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The CharacterDetailRequest. </summary>
     public partial class CharacterDetailRequest : CharacterListRequest, IJsonModel<CharacterDetailRequest>
@@ -90,14 +90,21 @@ namespace UIGF.Game
             base.JsonModelWriteCore(writer, options);
             writer.WritePropertyName("character_ids"u8);
             writer.WriteStartArray();
-            foreach (string item in CharacterIds)
+            foreach (BinaryData item in CharacterIds)
             {
                 if (item == null)
                 {
                     writer.WriteNullValue();
                     continue;
                 }
-                writer.WriteStringValue(item);
+#if NET6_0_OR_GREATER
+                writer.WriteRawValue(item);
+#else
+                using (JsonDocument document = JsonDocument.Parse(item))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
+#endif
             }
             writer.WriteEndArray();
         }
@@ -129,8 +136,9 @@ namespace UIGF.Game
             }
             string roleId = default;
             string server = default;
+            int? sortType = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
-            IList<string> characterIds = default;
+            IList<BinaryData> characterIds = default;
             foreach (var prop in element.EnumerateObject())
             {
                 if (prop.NameEquals("role_id"u8))
@@ -143,9 +151,18 @@ namespace UIGF.Game
                     server = prop.Value.GetString();
                     continue;
                 }
+                if (prop.NameEquals("sort_type"u8))
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    sortType = prop.Value.GetInt32();
+                    continue;
+                }
                 if (prop.NameEquals("character_ids"u8))
                 {
-                    List<string> array = new List<string>();
+                    List<BinaryData> array = new List<BinaryData>();
                     foreach (var item in prop.Value.EnumerateArray())
                     {
                         if (item.ValueKind == JsonValueKind.Null)
@@ -154,7 +171,7 @@ namespace UIGF.Game
                         }
                         else
                         {
-                            array.Add(item.GetString());
+                            array.Add(BinaryData.FromString(item.GetRawText()));
                         }
                     }
                     characterIds = array;
@@ -165,7 +182,7 @@ namespace UIGF.Game
                     additionalBinaryDataProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
                 }
             }
-            return new CharacterDetailRequest(roleId, server, additionalBinaryDataProperties, characterIds);
+            return new CharacterDetailRequest(roleId, server, sortType, additionalBinaryDataProperties, characterIds);
         }
     }
 }

@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.PassportV4
+namespace UIGF.Mihoyo.PassportV4
 {
     /// <summary> The PassportV4SessionApi sub-client. </summary>
     public partial class PassportV4SessionApi

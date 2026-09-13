@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ClientModel;
 using System.ClientModel.Primitives;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
 namespace UIGF.Mihoyo
 {

@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.CN.Records
+namespace UIGF.Mihoyo.Game.CN.Records
 {
     /// <summary> CN game-record APIs for Honkai Impact 3rd, Star Rail, and Zenless Zone Zero. </summary>
     public partial class CnGameRecordsClient
@@ -18,6 +18,7 @@ namespace UIGF.Game.CN.Records
         private CnHonkaiImpactApi _cachedCnHonkaiImpactApi;
         private StarRailApi _cachedStarRailApi;
         private ZenlessApi _cachedZenlessApi;
+        private ZenlessMobileApi _cachedZenlessMobileApi;
 
         /// <summary> Initializes a new instance of CnGameRecordsClient. </summary>
         public CnGameRecordsClient() : this(new Uri("https://api-takumi-record.mihoyo.com"), new UIGFMihoyoClientOptions())
@@ -79,6 +80,12 @@ namespace UIGF.Game.CN.Records
         public virtual ZenlessApi GetZenlessApiClient()
         {
             return Volatile.Read(ref _cachedZenlessApi) ?? Interlocked.CompareExchange(ref _cachedZenlessApi, new ZenlessApi(Pipeline, _endpoint), null) ?? _cachedZenlessApi;
+        }
+
+        /// <summary> Initializes a new instance of ZenlessMobileApi. </summary>
+        public virtual ZenlessMobileApi GetZenlessMobileApiClient()
+        {
+            return Volatile.Read(ref _cachedZenlessMobileApi) ?? Interlocked.CompareExchange(ref _cachedZenlessMobileApi, new ZenlessMobileApi(Pipeline, _endpoint), null) ?? _cachedZenlessMobileApi;
         }
     }
 }

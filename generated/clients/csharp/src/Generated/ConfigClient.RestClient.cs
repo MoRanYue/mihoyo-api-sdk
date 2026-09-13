@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.SDK.Config
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Config
 {
     /// <summary></summary>
     public partial class ConfigClient

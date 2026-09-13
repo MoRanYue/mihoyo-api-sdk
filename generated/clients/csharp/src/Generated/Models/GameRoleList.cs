@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The GameRoleList. </summary>
     public partial class GameRoleList

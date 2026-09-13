@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Record
+namespace UIGF.Mihoyo.Game.Genshin.Record
 {
     /// <summary></summary>
     public partial class CardApi

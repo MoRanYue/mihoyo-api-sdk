@@ -7,11 +7,11 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.ComboToken
+namespace UIGF.Mihoyo.Uncategorized.ComboToken
 {
-    /// <summary> Token exchange endpoint whose product ownership cannot be inferred from the capture. </summary>
+    /// <summary> Token exchange endpoint without a stable product namespace. </summary>
     public partial class ComboTokenClient
     {
         private readonly Uri _endpoint;

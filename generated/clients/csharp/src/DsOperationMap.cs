@@ -10,20 +10,59 @@ namespace UIGF.Mihoyo
         {
             switch (path)
             {
+                case "/account/auth/api/genAuthKey":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/account/ma-cn-passport/passport/getSwitchStatus":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/deviceLogin":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/deviceLogout":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/getAppSplash":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/getAppStartupData":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/getGameList":
+                    generation = DsGeneration.V1;
+                    return true;
                 case "/apihub/api/getShareConf":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/myselfPageConfig":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/staticResource":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/unreadMessageCnt":
                     generation = DsGeneration.V1;
                     return true;
                 case "/apihub/api/upvotePost":
                     generation = DsGeneration.V1;
                     return true;
+                case "/apihub/api/window/prepare":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/api/window/show":
+                    generation = DsGeneration.V1;
+                    return true;
                 case "/apihub/app/api/signIn":
-                    generation = DsGeneration.V2;
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/apihub/sapi/getUserMissionsState":
+                    generation = DsGeneration.V1;
                     return true;
                 case "/apihub/wapi/getMissions":
-                    generation = DsGeneration.V2;
+                    generation = DsGeneration.V1;
                     return true;
                 case "/apihub/wapi/getUserMissionsState":
-                    generation = DsGeneration.V2;
+                    generation = DsGeneration.V1;
                     return true;
                 case "/auth/api/getActionTicketBySToken":
                     generation = DsGeneration.V2;
@@ -31,7 +70,16 @@ namespace UIGF.Mihoyo
                 case "/binding/api/genAuthKey":
                     generation = DsGeneration.V1;
                     return true;
+                case "/binding/api/getUserGameRolesByStoken":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/chat/api/getUserSettings":
+                    generation = DsGeneration.V1;
+                    return true;
                 case "/collection/wapi/collection/detail":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/common/csc_qna/public/batchGetRedDot":
                     generation = DsGeneration.V1;
                     return true;
                 case "/common/homutreasure/v1/web/user/record":
@@ -85,6 +133,9 @@ namespace UIGF.Mihoyo
                 case "/event/ys_ledger/monthInfo":
                     generation = DsGeneration.V2;
                     return true;
+                case "/forum/api/getDiscussionByGame":
+                    generation = DsGeneration.V1;
+                    return true;
                 case "/game_record/app/card/wapi/getGameRecordCard":
                     generation = DsGeneration.V2;
                     return true;
@@ -103,6 +154,33 @@ namespace UIGF.Mihoyo
                 case "/game_record/app/genshin/api/dailyNote":
                     generation = DsGeneration.V2;
                     return true;
+                case "/game_record/app/genshin/api/external_content":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/basicInfo":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/cardBackList":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/cardList":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/challenge/record":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/challenge/schedule":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/deckList":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/getGCGCovers":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/gcg/matchList":
+                    generation = DsGeneration.V2;
+                    return true;
                 case "/game_record/app/genshin/api/hard_challenge":
                     generation = DsGeneration.V2;
                     return true;
@@ -112,7 +190,13 @@ namespace UIGF.Mihoyo
                 case "/game_record/app/genshin/api/role_combat":
                     generation = DsGeneration.V2;
                     return true;
+                case "/game_record/app/genshin/api/roleBasicInfo":
+                    generation = DsGeneration.V2;
+                    return true;
                 case "/game_record/app/genshin/api/spiralAbyss":
+                    generation = DsGeneration.V2;
+                    return true;
+                case "/game_record/app/genshin/api/tool":
                     generation = DsGeneration.V2;
                     return true;
                 case "/game_record/app/genshin/api/tps":
@@ -148,7 +232,67 @@ namespace UIGF.Mihoyo
                 case "/game_record/appv2/honkai3rd/api/note":
                     generation = DsGeneration.V2;
                     return true;
+                case "/game_record/card/api/getGameRecordCard":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/misc/api/getAllStaticResourceVersions":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/misc/api/recentEmoticonList":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/painter/api/feeds/posts":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/painter/api/user_instant/list":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/painter/api/villa/notification/site_push":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/post/api/check/publishVideoPerm":
+                    generation = DsGeneration.V1;
+                    return true;
                 case "/post/wapi/userFavoritePost":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/preload_resource/api/latest_version":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/preload_resource/api/rn/get_latest_config":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/ptolemaios_api/api/getLatestRelease":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/reception/api/gameCenter":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/search/api/search/pre_keyword":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/teenager/api/info":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/timeline/api/getUnreadInfo":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/user_instant/api/entity/review":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/user/api/getUserBusinesses":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/user/api/getUserFullInfo":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/user/api/login":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/user/api/notify/settings":
+                    generation = DsGeneration.V1;
+                    return true;
+                case "/user/api/replyPermission":
                     generation = DsGeneration.V1;
                     return true;
                 default:

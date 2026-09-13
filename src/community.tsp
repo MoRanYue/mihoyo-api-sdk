@@ -6,7 +6,7 @@ using TypeSpec.Http;
 /** MiYouShe (CN community) forum, post, task, and check-in APIs. */
 @service(#{ title: "UIGF MiYouShe Community API" })
 @server("https://bbs-api.miyoushe.com", "MiYouShe Community API")
-namespace UIGF.Community;
+namespace UIGF.Mihoyo.Community;
 
 model CommunityPaging {
   @query
@@ -157,7 +157,7 @@ interface MiscApi {
 }
 
 @route("/collection/wapi/collection")
-@UIGF.Security.requiresDs("v1")
+@UIGF.Mihoyo.Security.requiresDs("v1")
 interface CollectionApi {
   @get
   @route("/detail")
@@ -169,7 +169,7 @@ interface CollectionApi {
 }
 
 @route("/common/homutreasure/v1/web/user")
-@UIGF.Security.requiresDs("v2")
+@UIGF.Mihoyo.Security.requiresDs("v2")
 interface CoinRecordApi {
   /** Returns MiYouShe coin earnings or spending records. */
   @get
@@ -233,7 +233,7 @@ interface PostApi {
 
   @post
   @route("/userFavoritePost")
-  @UIGF.Security.requiresDs("v1")
+  @UIGF.Mihoyo.Security.requiresDs("v1")
   setFavorite(
     @header("Cookie") cookie: string,
     @header("DS") ds: string,
@@ -278,7 +278,7 @@ interface TopicApi {
 }
 
 @route("/apihub")
-@UIGF.Security.requiresDs("v2")
+@UIGF.Mihoyo.Security.requiresDs("v1")
 interface ApiHub {
   @get
   @route("/wapi/getAllGamesForums")
@@ -286,7 +286,7 @@ interface ApiHub {
 
   @get
   @route("/api/getAppConfig")
-  getAppConfig(@query gid?: string): ApiResponse<JsonObject>;
+  getAppConfig(@query gid?: string): ApiResponse<UIGF.Mihoyo.Api.Response.CommunityAppConfigData>;
 
   @get
   @route("/wapi/getGameList")
@@ -302,7 +302,7 @@ interface ApiHub {
 
   @get
   @route("/api/getShareConf")
-  @UIGF.Security.requiresDs("v1")
+  @UIGF.Mihoyo.Security.requiresDs("v1")
   getShareConfig(
     @header("Cookie") cookie: string,
     @header("DS") ds: string,
@@ -334,7 +334,15 @@ interface ApiHub {
 
   @get
   @route("/api/home/new")
-  getHome(@query gids: int32 = 2): ApiResponse<JsonObject>;
+  getHome(
+    @query gids: int32 = 2,
+    @query cpu?: string,
+    @query device?: string,
+    @query exposed_resource_tickets?: string,
+    @query is_triggered_by_resource?: boolean,
+    @query parts?: string,
+    @query version?: string,
+  ): ApiResponse<UIGF.Mihoyo.Api.Response.CommunityHomeData>;
 
   @post
   @route("/app/api/signIn")
@@ -347,7 +355,7 @@ interface ApiHub {
 
   @post
   @route("/api/upvotePost")
-  @UIGF.Security.requiresDs("v1")
+  @UIGF.Mihoyo.Security.requiresDs("v1")
   setPostVote(
     @header("Cookie") cookie: string,
     @header("DS") ds: string,

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher
+namespace UIGF.Mihoyo.Launcher
 {
     /// <summary> The DxConfigRequest. </summary>
     public partial class DxConfigRequest : IJsonModel<DxConfigRequest>

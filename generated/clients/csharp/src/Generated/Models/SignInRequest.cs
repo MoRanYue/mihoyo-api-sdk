@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary> The SignInRequest. </summary>
     public partial class SignInRequest

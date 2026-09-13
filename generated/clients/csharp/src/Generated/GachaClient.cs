@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Gacha
+namespace UIGF.Mihoyo.Game.Genshin.Gacha
 {
     /// <summary> CN Genshin gacha-history endpoints. Respect the vendor's request rate limits. </summary>
     public partial class GachaClient

@@ -43,7 +43,7 @@ test("all four SDKs cover every TypeSpec service, and all JS clients can be cons
     const Client = sdk[name][`${name}Client`];
     assert.equal(typeof Client, "function", service);
     const mock = mockResponse();
-    const client = service === "UIGF.Commerce.CN" ? new Client("https://hk4e-sdk.mihoyo.com", mock.options) : new Client(mock.options);
+    const client = service === "UIGF.Mihoyo.Commerce.CN" ? new Client("https://hk4e-sdk.mihoyo.com", mock.options) : new Client(mock.options);
     assert.ok(client.pipeline, service);
     const httpService = httpServices.find((s) => getNamespaceFullName(s.namespace) === service);
     for (const { operation } of httpService.operations) {
@@ -60,7 +60,7 @@ test("all four SDKs cover every TypeSpec service, and all JS clients can be cons
 
 test("signed requests preserve wire names, false and zero query values", async () => {
   const mock = mockResponse();
-  const client = new sdk.GameCNRecords.GameCNRecordsClient(mock.options);
+  const client = new sdk.MihoyoGameCNRecords.MihoyoGameCNRecordsClient(mock.options);
   const response = await client.starRailApi.getSimulatedUniverse("cookie-placeholder", "ds-placeholder", "prod_gf_cn", "123456", {
     scheduleType: 0, needDetail: false, needAll: false,
   });
@@ -80,7 +80,7 @@ test("signed requests preserve wire names, false and zero query values", async (
 
 test("POST sends arbitrary JSON payloads and Cookie to the correct service", async () => {
   const mock = mockResponse({ token: "placeholder" });
-  const client = new sdk.PassportV4.PassportV4Client(mock.options);
+  const client = new sdk.MihoyoPassportV4.MihoyoPassportV4Client(mock.options);
   await client.sessionApi.verifyLToken("cookie-placeholder", {
     additionalProperties: { ltoken: "placeholder", custom_field: { value: 0 } },
   });
@@ -91,7 +91,7 @@ test("POST sends arbitrary JSON payloads and Cookie to the correct service", asy
 
 test("Commerce uses the selected endpoint and encodes order query parameters", async () => {
   const mock = mockResponse();
-  const client = new sdk.CommerceCN.CommerceCNClient("https://hk4e-sdk.mihoyo.com", mock.options);
+  const client = new sdk.MihoyoCommerceCN.MihoyoCommerceCNClient("https://hk4e-sdk.mihoyo.com", mock.options);
   await client.shopApi.checkOrder("hk4e_cn", "order & 123", "hk4e", "cn_gf01", "123456");
   const url = new URL(mock.requests[0].url);
   assert.equal(url.origin, "https://hk4e-sdk.mihoyo.com");
@@ -101,6 +101,6 @@ test("Commerce uses the selected endpoint and encodes order query parameters", a
 
 test("HTTP errors reject instead of returning a successful result", async () => {
   const mock = mockResponse({}, 403);
-  const client = new sdk.GameCNRecords.GameCNRecordsClient(mock.options);
+  const client = new sdk.MihoyoGameCNRecords.MihoyoGameCNRecordsClient(mock.options);
   await assert.rejects(client.starRailApi.getSimulatedUniverse("cookie", "ds", "prod_gf_cn", "123456"), { statusCode: 403 });
 });

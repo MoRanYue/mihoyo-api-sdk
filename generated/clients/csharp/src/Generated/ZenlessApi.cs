@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.CN.Records
+namespace UIGF.Mihoyo.Game.CN.Records
 {
     /// <summary> The ZenlessApi sub-client. </summary>
     public partial class ZenlessApi
@@ -97,14 +96,14 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetIndex(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseZenlessIndexData> GetIndex(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetIndex(cookie, server, roleId, ds, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseZenlessIndexData)result, result.GetRawResponse());
         }
 
         /// <summary> GetIndex. </summary>
@@ -116,14 +115,14 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetIndexAsync(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseZenlessIndexData>> GetIndexAsync(string cookie, string server, string roleId, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetIndexAsync(cookie, server, roleId, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseZenlessIndexData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -186,14 +185,14 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetDailyNote(string cookie, string server, string roleId, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseZenlessDailyNoteData> GetDailyNote(string cookie, string server, string roleId, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = GetDailyNote(cookie, server, roleId, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseZenlessDailyNoteData)result, result.GetRawResponse());
         }
 
         /// <summary> GetDailyNote. </summary>
@@ -204,14 +203,14 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetDailyNoteAsync(string cookie, string server, string roleId, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseZenlessDailyNoteData>> GetDailyNoteAsync(string cookie, string server, string roleId, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
             ClientResult result = await GetDailyNoteAsync(cookie, server, roleId, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseZenlessDailyNoteData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -326,6 +325,7 @@ namespace UIGF.Game.CN.Records
         /// <param name="server"></param>
         /// <param name="roleId"></param>
         /// <param name="ds"></param>
+        /// <param name="withoutV2Detail"></param>
         /// <param name="scheduleType"></param>
         /// <param name="needDetail"></param>
         /// <param name="needAll"></param>
@@ -334,13 +334,13 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual ClientResult GetShiyuDefense(string cookie, string server, string roleId, string ds, int? scheduleType, bool? needDetail, bool? needAll, RequestOptions options)
+        public virtual ClientResult GetShiyuDefense(string cookie, string server, string roleId, string ds, bool? withoutV2Detail, int? scheduleType, bool? needDetail, bool? needAll, RequestOptions options)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
-            using PipelineMessage message = CreateGetShiyuDefenseRequest(cookie, server, roleId, ds, scheduleType, needDetail, needAll, options);
+            using PipelineMessage message = CreateGetShiyuDefenseRequest(cookie, server, roleId, ds, withoutV2Detail, scheduleType, needDetail, needAll, options);
             return ClientResult.FromResponse(Pipeline.ProcessMessage(message, options));
         }
 
@@ -356,6 +356,7 @@ namespace UIGF.Game.CN.Records
         /// <param name="server"></param>
         /// <param name="roleId"></param>
         /// <param name="ds"></param>
+        /// <param name="withoutV2Detail"></param>
         /// <param name="scheduleType"></param>
         /// <param name="needDetail"></param>
         /// <param name="needAll"></param>
@@ -364,13 +365,13 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual async Task<ClientResult> GetShiyuDefenseAsync(string cookie, string server, string roleId, string ds, int? scheduleType, bool? needDetail, bool? needAll, RequestOptions options)
+        public virtual async Task<ClientResult> GetShiyuDefenseAsync(string cookie, string server, string roleId, string ds, bool? withoutV2Detail, int? scheduleType, bool? needDetail, bool? needAll, RequestOptions options)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
-            using PipelineMessage message = CreateGetShiyuDefenseRequest(cookie, server, roleId, ds, scheduleType, needDetail, needAll, options);
+            using PipelineMessage message = CreateGetShiyuDefenseRequest(cookie, server, roleId, ds, withoutV2Detail, scheduleType, needDetail, needAll, options);
             return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
         }
 
@@ -379,6 +380,7 @@ namespace UIGF.Game.CN.Records
         /// <param name="server"></param>
         /// <param name="roleId"></param>
         /// <param name="ds"></param>
+        /// <param name="withoutV2Detail"></param>
         /// <param name="scheduleType"></param>
         /// <param name="needDetail"></param>
         /// <param name="needAll"></param>
@@ -386,14 +388,14 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetShiyuDefense(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseZenlessShiyuDefenseData> GetShiyuDefense(string cookie, string server, string roleId, string ds = default, bool? withoutV2Detail = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
-            ClientResult result = GetShiyuDefense(cookie, server, roleId, ds, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            ClientResult result = GetShiyuDefense(cookie, server, roleId, ds, withoutV2Detail, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions());
+            return ClientResult.FromValue((ApiResponseZenlessShiyuDefenseData)result, result.GetRawResponse());
         }
 
         /// <summary> GetShiyuDefense. </summary>
@@ -401,6 +403,7 @@ namespace UIGF.Game.CN.Records
         /// <param name="server"></param>
         /// <param name="roleId"></param>
         /// <param name="ds"></param>
+        /// <param name="withoutV2Detail"></param>
         /// <param name="scheduleType"></param>
         /// <param name="needDetail"></param>
         /// <param name="needAll"></param>
@@ -408,14 +411,14 @@ namespace UIGF.Game.CN.Records
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/>, <paramref name="server"/> or <paramref name="roleId"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetShiyuDefenseAsync(string cookie, string server, string roleId, string ds = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseZenlessShiyuDefenseData>> GetShiyuDefenseAsync(string cookie, string server, string roleId, string ds = default, bool? withoutV2Detail = default, int? scheduleType = default, bool? needDetail = default, bool? needAll = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(server, nameof(server));
             Argument.AssertNotNullOrEmpty(roleId, nameof(roleId));
 
-            ClientResult result = await GetShiyuDefenseAsync(cookie, server, roleId, ds, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            ClientResult result = await GetShiyuDefenseAsync(cookie, server, roleId, ds, withoutV2Detail, scheduleType, needDetail, needAll, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
+            return ClientResult.FromValue((ApiResponseZenlessShiyuDefenseData)result, result.GetRawResponse());
         }
 
         /// <summary>

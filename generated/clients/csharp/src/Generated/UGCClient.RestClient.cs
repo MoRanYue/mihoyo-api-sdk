@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Uncategorized.UGC
+namespace UIGF.Mihoyo.Uncategorized.UGC
 {
     /// <summary></summary>
     public partial class UGCClient

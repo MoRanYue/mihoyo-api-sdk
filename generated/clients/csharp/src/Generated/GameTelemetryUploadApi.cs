@@ -8,11 +8,11 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
-using UIGF.Uncategorized;
+using UIGF.Mihoyo.Api.Request;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF.Uncategorized.Telemetry.Game
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Game
 {
     /// <summary> The GameTelemetryUploadApi sub-client. </summary>
     public partial class GameTelemetryUploadApi
@@ -95,7 +95,7 @@ namespace UIGF.Uncategorized.Telemetry.Game
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<UploadResponse> UploadCrash(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<UploadResponse> UploadCrash(IEnumerable<GameCrashTelemetryEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -113,7 +113,7 @@ namespace UIGF.Uncategorized.Telemetry.Game
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<UploadResponse>> UploadCrashAsync(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<UploadResponse>> UploadCrashAsync(IEnumerable<GameCrashTelemetryEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -181,7 +181,7 @@ namespace UIGF.Uncategorized.Telemetry.Game
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<UploadResponse> UploadSdk(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<UploadResponse> UploadSdk(IEnumerable<GameSdkTelemetryEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -199,7 +199,7 @@ namespace UIGF.Uncategorized.Telemetry.Game
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<UploadResponse>> UploadSdkAsync(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<UploadResponse>> UploadSdkAsync(IEnumerable<GameSdkTelemetryEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -267,7 +267,7 @@ namespace UIGF.Uncategorized.Telemetry.Game
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<UploadResponse> UploadCustom(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<UploadResponse> UploadCustom(IEnumerable<GameCustomTelemetryEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -285,7 +285,7 @@ namespace UIGF.Uncategorized.Telemetry.Game
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<UploadResponse>> UploadCustomAsync(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<UploadResponse>> UploadCustomAsync(IEnumerable<GameCustomTelemetryEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 

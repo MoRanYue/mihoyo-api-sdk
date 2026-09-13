@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce.CN
+namespace UIGF.Mihoyo.Commerce.CN
 {
     /// <summary></summary>
     public partial class ShopApi

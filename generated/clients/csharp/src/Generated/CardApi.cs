@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Record
+namespace UIGF.Mihoyo.Game.Genshin.Record
 {
     /// <summary> The CardApi sub-client. </summary>
     public partial class CardApi
@@ -92,13 +91,13 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> or <paramref name="uid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/> or <paramref name="uid"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseJsonObject> GetGameRecordCard(string cookie, string uid, string ds = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseGenshinGameRecordCardData> GetGameRecordCard(string cookie, string uid, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(uid, nameof(uid));
 
             ClientResult result = GetGameRecordCard(cookie, uid, ds, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinGameRecordCardData)result, result.GetRawResponse());
         }
 
         /// <summary> GetGameRecordCard. </summary>
@@ -109,13 +108,13 @@ namespace UIGF.Game.Genshin.Record
         /// <exception cref="ArgumentNullException"> <paramref name="cookie"/> or <paramref name="uid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="cookie"/> or <paramref name="uid"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseJsonObject>> GetGameRecordCardAsync(string cookie, string uid, string ds = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseGenshinGameRecordCardData>> GetGameRecordCardAsync(string cookie, string uid, string ds = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(cookie, nameof(cookie));
             Argument.AssertNotNullOrEmpty(uid, nameof(uid));
 
             ClientResult result = await GetGameRecordCardAsync(cookie, uid, ds, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseJsonObject)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseGenshinGameRecordCardData)result, result.GetRawResponse());
         }
     }
 }

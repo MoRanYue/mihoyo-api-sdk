@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.AnnouncementContent
+namespace UIGF.Mihoyo.Game.Genshin.AnnouncementContent
 {
     /// <summary> CN announcement detail content is served by the static announcement origin. </summary>
     public partial class AnnouncementContentClient

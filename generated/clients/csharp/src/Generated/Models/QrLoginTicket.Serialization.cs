@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The QrLoginTicket. </summary>
     public partial class QrLoginTicket : IJsonModel<QrLoginTicket>

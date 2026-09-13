@@ -4,9 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using UIGF;
+using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The ExperimentListResponse. </summary>
     public partial class ExperimentListResponse : ApiResponseArray
@@ -15,7 +15,7 @@ namespace UIGF.Uncategorized
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        internal ExperimentListResponse(int retcode, string message, IEnumerable<JsonObject> data) : base(retcode, message, data)
+        internal ExperimentListResponse(int retcode, string message, IEnumerable<ExperimentAssignment> data) : base(retcode, message, data)
         {
         }
 
@@ -25,7 +25,7 @@ namespace UIGF.Uncategorized
         /// <param name="data"> Endpoint-specific payload. </param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
         /// <param name="success"></param>
-        internal ExperimentListResponse(int retcode, string message, IList<JsonObject> data, IDictionary<string, BinaryData> additionalBinaryDataProperties, bool? success) : base(retcode, message, data, additionalBinaryDataProperties)
+        internal ExperimentListResponse(int retcode, string message, IList<ExperimentAssignment> data, IDictionary<string, BinaryData> additionalBinaryDataProperties, bool? success) : base(retcode, message, data, additionalBinaryDataProperties)
         {
             Success = success;
         }

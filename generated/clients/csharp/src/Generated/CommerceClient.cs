@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Commerce.CN
+namespace UIGF.Mihoyo.Commerce.CN
 {
     /// <summary>
     /// Store catalogue and order-state APIs. Supply the complete game SDK endpoint,

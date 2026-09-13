@@ -1,0 +1,67 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import { MihoyoGameGenshinRecordContext as Client } from "../index.js";
+import {
+  ApiResponseGenshinGameRecordCardData,
+  apiResponseGenshinGameRecordCardDataDeserializer,
+} from "../../models/uigf/mihoyo/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import { CardApiGetGameRecordCardOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getGameRecordCardSend(
+  context: Client,
+  cookie: string,
+  ds: string,
+  uid: string,
+  options: CardApiGetGameRecordCardOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/game_record/app/card/wapi/getGameRecordCard{?uid}",
+    {
+      uid: uid,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        cookie: cookie,
+        ds: ds,
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getGameRecordCardDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ApiResponseGenshinGameRecordCardData> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return apiResponseGenshinGameRecordCardDataDeserializer(result.body);
+}
+
+export async function getGameRecordCard(
+  context: Client,
+  cookie: string,
+  ds: string,
+  uid: string,
+  options: CardApiGetGameRecordCardOptionalParams = { requestOptions: {} },
+): Promise<ApiResponseGenshinGameRecordCardData> {
+  const result = await _getGameRecordCardSend(context, cookie, ds, uid, options);
+  return _getGameRecordCardDeserialize(result);
+}

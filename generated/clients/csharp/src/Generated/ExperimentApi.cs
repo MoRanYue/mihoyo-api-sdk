@@ -8,9 +8,9 @@ using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
 using UIGF.Mihoyo;
-using UIGF.Uncategorized;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF.Uncategorized.Experimentation
+namespace UIGF.Mihoyo.Uncategorized.Experimentation
 {
     /// <summary> The ExperimentApi sub-client. </summary>
     public partial class ExperimentApi

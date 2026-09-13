@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.SDK.Config
+namespace UIGF.Mihoyo.Game.Genshin.SDK.Config
 {
     /// <summary> Genshin SDK bootstrap and shield configuration APIs. </summary>
     public partial class ConfigClient

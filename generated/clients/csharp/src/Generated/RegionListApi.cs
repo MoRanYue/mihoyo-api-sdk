@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Dispatch.RegionList
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.RegionList
 {
     /// <summary> The RegionListApi sub-client. </summary>
     public partial class RegionListApi

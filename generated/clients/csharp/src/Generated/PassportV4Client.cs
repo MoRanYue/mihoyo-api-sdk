@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.PassportV4
+namespace UIGF.Mihoyo.PassportV4
 {
     /// <summary> The V4 LToken verifier for a legitimately obtained LToken cookie. </summary>
     public partial class PassportV4Client

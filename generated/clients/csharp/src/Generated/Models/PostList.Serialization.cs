@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary> The PostList. </summary>
     public partial class PostList : IJsonModel<PostList>

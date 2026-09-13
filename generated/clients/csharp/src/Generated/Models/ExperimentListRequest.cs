@@ -5,9 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The ExperimentListRequest. </summary>
     public partial class ExperimentListRequest
@@ -19,51 +20,92 @@ namespace UIGF.Uncategorized
         /// <param name="appId"></param>
         /// <param name="appSign"></param>
         /// <param name="params"></param>
-        /// <param name="sceneId"></param>
         /// <param name="uid"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="appSign"/>, <paramref name="params"/>, <paramref name="sceneId"/> or <paramref name="uid"/> is null. </exception>
-        public ExperimentListRequest(int appId, string appSign, IEnumerable<ExperimentParameter> @params, string sceneId, string uid)
+        /// <exception cref="ArgumentNullException"> <paramref name="appId"/>, <paramref name="appSign"/>, <paramref name="params"/> or <paramref name="uid"/> is null. </exception>
+        public ExperimentListRequest(BinaryData appId, string appSign, IEnumerable<ExperimentParameter> @params, string uid)
         {
+            Argument.AssertNotNull(appId, nameof(appId));
             Argument.AssertNotNull(appSign, nameof(appSign));
             Argument.AssertNotNull(@params, nameof(@params));
-            Argument.AssertNotNull(sceneId, nameof(sceneId));
             Argument.AssertNotNull(uid, nameof(uid));
 
             AppId = appId;
             AppSign = appSign;
             Params = @params.ToList();
-            SceneId = sceneId;
             Uid = uid;
         }
 
         /// <summary> Initializes a new instance of <see cref="ExperimentListRequest"/>. </summary>
         /// <param name="appId"></param>
         /// <param name="appSign"></param>
+        /// <param name="experimentId"></param>
         /// <param name="params"></param>
         /// <param name="sceneId"></param>
         /// <param name="uid"></param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal ExperimentListRequest(int appId, string appSign, IList<ExperimentParameter> @params, string sceneId, string uid, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal ExperimentListRequest(BinaryData appId, string appSign, string experimentId, IList<ExperimentParameter> @params, string sceneId, string uid, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             AppId = appId;
             AppSign = appSign;
+            ExperimentId = experimentId;
             Params = @params;
             SceneId = sceneId;
             Uid = uid;
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
-        /// <summary> Gets the AppId. </summary>
-        public int AppId { get; }
+        /// <summary>
+        /// Gets the AppId.
+        /// <para> To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
+        /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
+        /// <para>
+        /// <remarks>
+        /// Supported types:
+        /// <list type="bullet">
+        /// <item>
+        /// <description> <see cref="string"/>. </description>
+        /// </item>
+        /// <item>
+        /// <description> <see cref="int"/>. </description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term> BinaryData.FromObjectAsJson("foo"). </term>
+        /// <description> Creates a payload of "foo". </description>
+        /// </item>
+        /// <item>
+        /// <term> BinaryData.FromString("\"foo\""). </term>
+        /// <description> Creates a payload of "foo". </description>
+        /// </item>
+        /// <item>
+        /// <term> BinaryData.FromObjectAsJson(new { key = "value" }). </term>
+        /// <description> Creates a payload of { "key": "value" }. </description>
+        /// </item>
+        /// <item>
+        /// <term> BinaryData.FromString("{\"key\": \"value\"}"). </term>
+        /// <description> Creates a payload of { "key": "value" }. </description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        public BinaryData AppId { get; }
 
         /// <summary> Gets the AppSign. </summary>
         public string AppSign { get; }
 
+        /// <summary> Gets or sets the ExperimentId. </summary>
+        public string ExperimentId { get; set; }
+
         /// <summary> Gets the Params. </summary>
         public IList<ExperimentParameter> Params { get; }
 
-        /// <summary> Gets the SceneId. </summary>
-        public string SceneId { get; }
+        /// <summary> Gets or sets the SceneId. </summary>
+        public string SceneId { get; set; }
 
         /// <summary> Gets the Uid. </summary>
         public string Uid { get; }

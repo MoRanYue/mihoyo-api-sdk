@@ -7,11 +7,10 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Game;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Game;
 
-namespace UIGF.Game.Account
+namespace UIGF.Mihoyo.Game.Account
 {
     /// <summary> The CultivationApi sub-client. </summary>
     public partial class CultivationApi

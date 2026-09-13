@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The DeviceFingerprintRequest. </summary>
     public partial class DeviceFingerprintRequest : IJsonModel<DeviceFingerprintRequest>
@@ -95,6 +95,11 @@ namespace UIGF.Game
             writer.WriteStringValue(SeedId);
             writer.WritePropertyName("device_id"u8);
             writer.WriteStringValue(DeviceId);
+            if (Optional.IsDefined(BbsDeviceId))
+            {
+                writer.WritePropertyName("bbs_device_id"u8);
+                writer.WriteStringValue(BbsDeviceId);
+            }
             writer.WritePropertyName("ext_fields"u8);
             writer.WriteStringValue(ExtFields);
             writer.WritePropertyName("platform"u8);
@@ -144,6 +149,7 @@ namespace UIGF.Game
             string deviceFp = default;
             string seedId = default;
             string deviceId = default;
+            string bbsDeviceId = default;
             string extFields = default;
             string platform = default;
             string seedTime = default;
@@ -170,6 +176,11 @@ namespace UIGF.Game
                     deviceId = prop.Value.GetString();
                     continue;
                 }
+                if (prop.NameEquals("bbs_device_id"u8))
+                {
+                    bbsDeviceId = prop.Value.GetString();
+                    continue;
+                }
                 if (prop.NameEquals("ext_fields"u8))
                 {
                     extFields = prop.Value.GetString();
@@ -192,6 +203,7 @@ namespace UIGF.Game
                 deviceFp,
                 seedId,
                 deviceId,
+                bbsDeviceId,
                 extFields,
                 platform,
                 seedTime,

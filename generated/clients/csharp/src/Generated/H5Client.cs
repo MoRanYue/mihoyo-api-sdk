@@ -7,15 +7,15 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Uncategorized.Telemetry.H5
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.H5
 {
     /// <summary> Web-view telemetry batch endpoint. </summary>
     public partial class H5Client
     {
         private readonly Uri _endpoint;
-        private BatchApi _cachedBatchApi;
+        private H5BatchApi _cachedH5BatchApi;
 
         /// <summary> Initializes a new instance of H5Client. </summary>
         public H5Client() : this(new Uri("https://h5log-api-dualstack.mihoyo.com"), new UIGFMihoyoClientOptions())
@@ -61,10 +61,10 @@ namespace UIGF.Uncategorized.Telemetry.H5
         /// <summary> The HTTP pipeline for sending and receiving REST requests and responses. </summary>
         public ClientPipeline Pipeline { get; }
 
-        /// <summary> Initializes a new instance of BatchApi. </summary>
-        public virtual BatchApi GetBatchApiClient()
+        /// <summary> Initializes a new instance of H5BatchApi. </summary>
+        public virtual H5BatchApi GetH5BatchApiClient()
         {
-            return Volatile.Read(ref _cachedBatchApi) ?? Interlocked.CompareExchange(ref _cachedBatchApi, new BatchApi(Pipeline, _endpoint), null) ?? _cachedBatchApi;
+            return Volatile.Read(ref _cachedH5BatchApi) ?? Interlocked.CompareExchange(ref _cachedH5BatchApi, new H5BatchApi(Pipeline, _endpoint), null) ?? _cachedH5BatchApi;
         }
     }
 }

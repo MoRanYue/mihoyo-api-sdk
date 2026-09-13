@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Utility.Device
+namespace UIGF.Mihoyo.Utility.Device
 {
     /// <summary></summary>
     public partial class FingerprintApi
@@ -15,11 +15,15 @@ namespace UIGF.Utility.Device
 
         private static PipelineMessageClassifier PipelineMessageClassifier200 => _pipelineMessageClassifier200 ??= PipelineMessageClassifier.Create(stackalloc ushort[] { 200 });
 
-        internal PipelineMessage CreateGetExtensionListRequest(string platform, RequestOptions options)
+        internal PipelineMessage CreateGetExtensionListRequest(string platform, string appName, RequestOptions options)
         {
             ClientUriBuilder uri = new ClientUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/device-fp/api/getExtList", false);
+            if (appName != null)
+            {
+                uri.AppendQuery("app_name", appName, true);
+            }
             uri.AppendQuery("platform", platform, true);
             PipelineMessage message = Pipeline.CreateMessage(uri.ToUri(), "GET", PipelineMessageClassifier200);
             PipelineRequest request = message.Request;

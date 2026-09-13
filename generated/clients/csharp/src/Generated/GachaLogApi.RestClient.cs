@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Gacha
+namespace UIGF.Mihoyo.Game.Genshin.Gacha
 {
     /// <summary></summary>
     public partial class GachaLogApi

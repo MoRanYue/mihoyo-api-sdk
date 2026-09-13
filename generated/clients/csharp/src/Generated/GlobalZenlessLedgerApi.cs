@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Global.Records
+namespace UIGF.Mihoyo.Game.Global.Records
 {
     /// <summary> The GlobalZenlessLedgerApi sub-client. </summary>
     public partial class GlobalZenlessLedgerApi

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The DeviceContext. </summary>
     public partial class DeviceContext : IJsonModel<DeviceContext>

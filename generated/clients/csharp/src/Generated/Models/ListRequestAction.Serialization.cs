@@ -4,7 +4,7 @@
 
 using System;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     internal static partial class ListRequestActionExtensions
     {

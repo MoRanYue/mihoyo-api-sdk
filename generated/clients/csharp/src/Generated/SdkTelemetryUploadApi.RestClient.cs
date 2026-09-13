@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.Telemetry.SDK
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.SDK
 {
     /// <summary></summary>
     public partial class SdkTelemetryUploadApi

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The ExperimentListRequest. </summary>
     public partial class ExperimentListRequest : IJsonModel<ExperimentListRequest>
@@ -88,9 +88,21 @@ namespace UIGF.Uncategorized
                 throw new FormatException($"The model {nameof(ExperimentListRequest)} does not support writing '{format}' format.");
             }
             writer.WritePropertyName("app_id"u8);
-            writer.WriteNumberValue(AppId);
+#if NET6_0_OR_GREATER
+            writer.WriteRawValue(AppId);
+#else
+            using (JsonDocument document = JsonDocument.Parse(AppId))
+            {
+                JsonSerializer.Serialize(writer, document.RootElement);
+            }
+#endif
             writer.WritePropertyName("app_sign"u8);
             writer.WriteStringValue(AppSign);
+            if (Optional.IsDefined(ExperimentId))
+            {
+                writer.WritePropertyName("experiment_id"u8);
+                writer.WriteStringValue(ExperimentId);
+            }
             writer.WritePropertyName("params"u8);
             writer.WriteStartArray();
             foreach (ExperimentParameter item in Params)
@@ -98,8 +110,11 @@ namespace UIGF.Uncategorized
                 writer.WriteObjectValue(item, options);
             }
             writer.WriteEndArray();
-            writer.WritePropertyName("scene_id"u8);
-            writer.WriteStringValue(SceneId);
+            if (Optional.IsDefined(SceneId))
+            {
+                writer.WritePropertyName("scene_id"u8);
+                writer.WriteStringValue(SceneId);
+            }
             writer.WritePropertyName("uid"u8);
             writer.WriteStringValue(Uid);
             if (options.Format != "W" && _additionalBinaryDataProperties != null)
@@ -144,8 +159,9 @@ namespace UIGF.Uncategorized
             {
                 return null;
             }
-            int appId = default;
+            BinaryData appId = default;
             string appSign = default;
+            string experimentId = default;
             IList<ExperimentParameter> @params = default;
             string sceneId = default;
             string uid = default;
@@ -154,12 +170,17 @@ namespace UIGF.Uncategorized
             {
                 if (prop.NameEquals("app_id"u8))
                 {
-                    appId = prop.Value.GetInt32();
+                    appId = BinaryData.FromString(prop.Value.GetRawText());
                     continue;
                 }
                 if (prop.NameEquals("app_sign"u8))
                 {
                     appSign = prop.Value.GetString();
+                    continue;
+                }
+                if (prop.NameEquals("experiment_id"u8))
+                {
+                    experimentId = prop.Value.GetString();
                     continue;
                 }
                 if (prop.NameEquals("params"u8))
@@ -190,6 +211,7 @@ namespace UIGF.Uncategorized
             return new ExperimentListRequest(
                 appId,
                 appSign,
+                experimentId,
                 @params,
                 sceneId,
                 uid,

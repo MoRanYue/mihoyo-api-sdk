@@ -8,11 +8,10 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Launcher;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Launcher;
 
-namespace UIGF.Launcher.Global
+namespace UIGF.Mihoyo.Launcher.Global
 {
     /// <summary> The GlobalLauncherMetadataApi sub-client. </summary>
     public partial class GlobalLauncherMetadataApi

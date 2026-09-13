@@ -6,9 +6,8 @@ using System;
 using System.ClientModel.Primitives;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> A user profile returned by community-account APIs. </summary>
     public partial class CommunityUser : IJsonModel<CommunityUser>

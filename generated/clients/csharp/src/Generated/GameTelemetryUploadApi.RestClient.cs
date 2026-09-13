@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.Telemetry.Game
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Game
 {
     /// <summary></summary>
     public partial class GameTelemetryUploadApi

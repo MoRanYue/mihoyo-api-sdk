@@ -5,9 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The CharacterDetailRequest. </summary>
     public partial class CharacterDetailRequest : CharacterListRequest
@@ -17,7 +18,7 @@ namespace UIGF.Game
         /// <param name="server"></param>
         /// <param name="characterIds"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="roleId"/>, <paramref name="server"/> or <paramref name="characterIds"/> is null. </exception>
-        public CharacterDetailRequest(string roleId, string server, IEnumerable<string> characterIds) : base(roleId, server)
+        public CharacterDetailRequest(string roleId, string server, IEnumerable<BinaryData> characterIds) : base(roleId, server)
         {
             Argument.AssertNotNull(roleId, nameof(roleId));
             Argument.AssertNotNull(server, nameof(server));
@@ -29,14 +30,53 @@ namespace UIGF.Game
         /// <summary> Initializes a new instance of <see cref="CharacterDetailRequest"/>. </summary>
         /// <param name="roleId"></param>
         /// <param name="server"></param>
+        /// <param name="sortType"></param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
         /// <param name="characterIds"></param>
-        internal CharacterDetailRequest(string roleId, string server, IDictionary<string, BinaryData> additionalBinaryDataProperties, IList<string> characterIds) : base(roleId, server, additionalBinaryDataProperties)
+        internal CharacterDetailRequest(string roleId, string server, int? sortType, IDictionary<string, BinaryData> additionalBinaryDataProperties, IList<BinaryData> characterIds) : base(roleId, server, sortType, additionalBinaryDataProperties)
         {
             CharacterIds = characterIds;
         }
 
-        /// <summary> Gets the CharacterIds. </summary>
-        public IList<string> CharacterIds { get; }
+        /// <summary>
+        /// Gets the CharacterIds.
+        /// <para> To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
+        /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
+        /// <para>
+        /// <remarks>
+        /// Supported types:
+        /// <list type="bullet">
+        /// <item>
+        /// <description> <see cref="string"/>. </description>
+        /// </item>
+        /// <item>
+        /// <description> <see cref="long"/>. </description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item>
+        /// <term> BinaryData.FromObjectAsJson("foo"). </term>
+        /// <description> Creates a payload of "foo". </description>
+        /// </item>
+        /// <item>
+        /// <term> BinaryData.FromString("\"foo\""). </term>
+        /// <description> Creates a payload of "foo". </description>
+        /// </item>
+        /// <item>
+        /// <term> BinaryData.FromObjectAsJson(new { key = "value" }). </term>
+        /// <description> Creates a payload of { "key": "value" }. </description>
+        /// </item>
+        /// <item>
+        /// <term> BinaryData.FromString("{\"key\": \"value\"}"). </term>
+        /// <description> Creates a payload of { "key": "value" }. </description>
+        /// </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        public IList<BinaryData> CharacterIds { get; }
     }
 }

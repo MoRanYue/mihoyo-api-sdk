@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The QrLoginApi sub-client. </summary>
     public partial class QrLoginApi
@@ -285,12 +284,12 @@ namespace UIGF.Passport
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseTokenInfo> LoginByAuthTicket(AuthTicketLoginRequest body, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseAuthTicketLoginData> LoginByAuthTicket(AuthTicketLoginRequest body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = LoginByAuthTicket(body, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseTokenInfo)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAuthTicketLoginData)result, result.GetRawResponse());
         }
 
         /// <summary> Exchanges an official auth ticket for the associated login-session payload. </summary>
@@ -298,12 +297,12 @@ namespace UIGF.Passport
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseTokenInfo>> LoginByAuthTicketAsync(AuthTicketLoginRequest body, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseAuthTicketLoginData>> LoginByAuthTicketAsync(AuthTicketLoginRequest body, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
             ClientResult result = await LoginByAuthTicketAsync(body, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseTokenInfo)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAuthTicketLoginData)result, result.GetRawResponse());
         }
     }
 }

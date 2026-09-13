@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary> The VerificationCreateRequest. </summary>
     public partial class VerificationCreateRequest : IJsonModel<VerificationCreateRequest>

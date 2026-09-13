@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.AnnouncementContent
+namespace UIGF.Mihoyo.Game.Genshin.AnnouncementContent
 {
     /// <summary></summary>
     public partial class ContentApi

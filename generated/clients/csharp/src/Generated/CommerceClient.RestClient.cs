@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Commerce.CN
+namespace UIGF.Mihoyo.Commerce.CN
 {
     /// <summary></summary>
     public partial class CommerceClient

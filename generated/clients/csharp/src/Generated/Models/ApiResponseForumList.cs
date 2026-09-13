@@ -4,9 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using UIGF.Community;
+using UIGF.Mihoyo.Community;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
     public partial class ApiResponseForumList

@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.Announcements
+namespace UIGF.Mihoyo.Game.Genshin.Announcements
 {
     /// <summary> The GenshinAnnouncementApi sub-client. </summary>
     public partial class GenshinAnnouncementApi
@@ -116,7 +115,7 @@ namespace UIGF.Game.Genshin.Announcements
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseAnnouncementList> GetAll(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseAnnouncementListData> GetAll(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -125,7 +124,7 @@ namespace UIGF.Game.Genshin.Announcements
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = GetAll(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, level, uid, channelId, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementListData)result, result.GetRawResponse());
         }
 
         /// <summary> GetAll. </summary>
@@ -142,7 +141,7 @@ namespace UIGF.Game.Genshin.Announcements
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseAnnouncementList>> GetAllAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseAnnouncementListData>> GetAllAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -151,7 +150,7 @@ namespace UIGF.Game.Genshin.Announcements
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = await GetAllAsync(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, level, uid, channelId, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementListData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -236,7 +235,7 @@ namespace UIGF.Game.Genshin.Announcements
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseAnnouncementList> GetAlert(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseAnnouncementAlertData> GetAlert(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -245,7 +244,7 @@ namespace UIGF.Game.Genshin.Announcements
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = GetAlert(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, level, uid, channelId, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementAlertData)result, result.GetRawResponse());
         }
 
         /// <summary> GetAlert. </summary>
@@ -262,7 +261,7 @@ namespace UIGF.Game.Genshin.Announcements
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseAnnouncementList>> GetAlertAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseAnnouncementAlertData>> GetAlertAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -271,7 +270,7 @@ namespace UIGF.Game.Genshin.Announcements
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = await GetAlertAsync(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, level, uid, channelId, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementAlertData)result, result.GetRawResponse());
         }
 
         /// <summary>
@@ -356,7 +355,7 @@ namespace UIGF.Game.Genshin.Announcements
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseAnnouncementList> GetAlertPicture(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseAnnouncementPictureData> GetAlertPicture(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -365,7 +364,7 @@ namespace UIGF.Game.Genshin.Announcements
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = GetAlertPicture(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, level, uid, channelId, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementPictureData)result, result.GetRawResponse());
         }
 
         /// <summary> GetAlertPicture. </summary>
@@ -382,7 +381,7 @@ namespace UIGF.Game.Genshin.Announcements
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseAnnouncementList>> GetAlertPictureAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseAnnouncementPictureData>> GetAlertPictureAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -391,7 +390,7 @@ namespace UIGF.Game.Genshin.Announcements
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = await GetAlertPictureAsync(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, level, uid, channelId, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementPictureData)result, result.GetRawResponse());
         }
     }
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Login
+namespace UIGF.Mihoyo.Game.Genshin.Login
 {
     /// <summary></summary>
     public partial class LoginClient

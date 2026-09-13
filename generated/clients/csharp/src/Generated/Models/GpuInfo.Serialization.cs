@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher
+namespace UIGF.Mihoyo.Launcher
 {
     /// <summary> The GpuInfo. </summary>
     public partial class GpuInfo : IJsonModel<GpuInfo>

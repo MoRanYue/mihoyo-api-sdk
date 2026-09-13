@@ -2,7 +2,7 @@
   "version": 1,
   "services": [
     {
-      "service": "UIGF.Community",
+      "service": "UIGF.Mihoyo.Community",
       "operations": [
         {
           "operationId": "CollectionApi_getDetail",
@@ -31,10 +31,8 @@
           "operationId": "ApiHub_getMissions",
           "method": "GET",
           "path": "/apihub/wapi/getMissions",
-          "generation": "v2",
-          "header": "DS",
-          "body": "exact-serialized",
-          "query": "lexicographic-segments"
+          "generation": "v1",
+          "header": "DS"
         },
         {
           "operationId": "ApiHub_getShareConfig",
@@ -47,19 +45,15 @@
           "operationId": "ApiHub_getMissionState",
           "method": "GET",
           "path": "/apihub/wapi/getUserMissionsState",
-          "generation": "v2",
-          "header": "DS",
-          "body": "exact-serialized",
-          "query": "lexicographic-segments"
+          "generation": "v1",
+          "header": "DS"
         },
         {
           "operationId": "ApiHub_signIn",
           "method": "POST",
           "path": "/apihub/app/api/signIn",
-          "generation": "v2",
-          "header": "DS",
-          "body": "exact-serialized",
-          "query": "lexicographic-segments"
+          "generation": "v1",
+          "header": "DS"
         },
         {
           "operationId": "ApiHub_setPostVote",
@@ -71,7 +65,7 @@
       ]
     },
     {
-      "service": "UIGF.Game.Account",
+      "service": "UIGF.Mihoyo.Game.Account",
       "operations": [
         {
           "operationId": "ActionTicketApi_getBySToken",
@@ -128,7 +122,7 @@
       ]
     },
     {
-      "service": "UIGF.Game.Genshin.Record",
+      "service": "UIGF.Mihoyo.Game.Genshin.Record",
       "operations": [
         {
           "operationId": "GameRecordApi_getIndex",
@@ -221,6 +215,105 @@
           "query": "lexicographic-segments"
         },
         {
+          "operationId": "GameRecordApi_getExternalContent",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/external_content",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GameRecordApi_getRoleBasicInfo",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/roleBasicInfo",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GameRecordApi_getTool",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/tool",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getBasicInfo",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/basicInfo",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getCardBackList",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/cardBackList",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getCardList",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/cardList",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getChallengeRecord",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/challenge/record",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getChallengeSchedule",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/challenge/schedule",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getDeckList",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/deckList",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getCovers",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/getGCGCovers",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
+          "operationId": "GcgApi_getMatchList",
+          "method": "GET",
+          "path": "/game_record/app/genshin/api/gcg/matchList",
+          "generation": "v2",
+          "header": "DS",
+          "body": "exact-serialized",
+          "query": "lexicographic-segments"
+        },
+        {
           "operationId": "CardApi_getGameRecordCard",
           "method": "GET",
           "path": "/game_record/app/card/wapi/getGameRecordCard",
@@ -232,7 +325,7 @@
       ]
     },
     {
-      "service": "UIGF.Game.Genshin.Ledger",
+      "service": "UIGF.Mihoyo.Game.Genshin.Ledger",
       "operations": [
         {
           "operationId": "LedgerApi_getMonthInfo",
@@ -255,7 +348,19 @@
       ]
     },
     {
-      "service": "UIGF.Game.Global.Records",
+      "service": "UIGF.Mihoyo.Game.Genshin.LegacyRecord",
+      "operations": [
+        {
+          "operationId": "LegacyCardApi_getGameRecordCard",
+          "method": "GET",
+          "path": "/game_record/card/api/getGameRecordCard",
+          "generation": "v1",
+          "header": "DS"
+        }
+      ]
+    },
+    {
+      "service": "UIGF.Mihoyo.Game.Global.Records",
       "operations": [
         {
           "operationId": "GameRecordApi_getGenshinIndex",
@@ -341,7 +446,7 @@
       ]
     },
     {
-      "service": "UIGF.Game.Global.CommunityRecords",
+      "service": "UIGF.Mihoyo.Game.Global.CommunityRecords",
       "operations": [
         {
           "operationId": "UserApi_getFullInfo",
@@ -436,7 +541,7 @@
       ]
     },
     {
-      "service": "UIGF.Game.CN.Records",
+      "service": "UIGF.Mihoyo.Game.CN.Records",
       "operations": [
         {
           "operationId": "HonkaiImpactApi_getIndex",
@@ -540,7 +645,7 @@
       ]
     },
     {
-      "service": "UIGF.Game.CN.HonkaiImpact",
+      "service": "UIGF.Mihoyo.Game.CN.HonkaiImpact",
       "operations": [
         {
           "operationId": "DailyNoteApi_getDailyNote",
@@ -550,6 +655,283 @@
           "header": "DS",
           "body": "exact-serialized",
           "query": "lexicographic-segments"
+        }
+      ]
+    },
+    {
+      "service": "UIGF.Mihoyo.Game.CN.AccountExtension",
+      "operations": [
+        {
+          "operationId": "RedDotApi_getBatch",
+          "method": "GET",
+          "path": "/common/csc_qna/public/batchGetRedDot",
+          "generation": "v1",
+          "header": "DS"
+        }
+      ]
+    },
+    {
+      "service": "UIGF.Mihoyo.Game.CN.MiYouSheAccount",
+      "operations": [
+        {
+          "operationId": "BindingApi_getRoles",
+          "method": "GET",
+          "path": "/binding/api/getUserGameRolesByStoken",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "AuthKeyApi_generate",
+          "method": "POST",
+          "path": "/account/auth/api/genAuthKey",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "ReleaseApi_getLatestRelease",
+          "method": "GET",
+          "path": "/ptolemaios_api/api/getLatestRelease",
+          "generation": "v1",
+          "header": "DS"
+        }
+      ]
+    },
+    {
+      "service": "UIGF.Mihoyo.MiYouShe.Mobile",
+      "operations": [
+        {
+          "operationId": "MobileApiHub_getAppSplash",
+          "method": "GET",
+          "path": "/apihub/api/getAppSplash",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_getGameList",
+          "method": "GET",
+          "path": "/apihub/api/getGameList",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_getMyselfPageConfig",
+          "method": "GET",
+          "path": "/apihub/api/myselfPageConfig",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_getUnreadMessageCount",
+          "method": "GET",
+          "path": "/apihub/api/unreadMessageCnt",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_getUserMissionsState",
+          "method": "GET",
+          "path": "/apihub/sapi/getUserMissionsState",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_deviceLogin",
+          "method": "POST",
+          "path": "/apihub/api/deviceLogin",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_deviceLogout",
+          "method": "POST",
+          "path": "/apihub/api/deviceLogout",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_getAppStartupData",
+          "method": "POST",
+          "path": "/apihub/api/getAppStartupData",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_prepareWindow",
+          "method": "POST",
+          "path": "/apihub/api/window/prepare",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileApiHub_showWindow",
+          "method": "POST",
+          "path": "/apihub/api/window/show",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileChatApi_getUserSettings",
+          "method": "GET",
+          "path": "/chat/api/getUserSettings",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileForumApi_getDiscussionByGame",
+          "method": "GET",
+          "path": "/forum/api/getDiscussionByGame",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileMiscApi_getRecentEmoticons",
+          "method": "GET",
+          "path": "/misc/api/recentEmoticonList",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobilePainterApi_getFeedPosts",
+          "method": "GET",
+          "path": "/painter/api/feeds/posts",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobilePainterApi_getUserInstantList",
+          "method": "GET",
+          "path": "/painter/api/user_instant/list",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobilePainterApi_getVillaSitePush",
+          "method": "GET",
+          "path": "/painter/api/villa/notification/site_push",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobilePostApi_getPublishVideoPermission",
+          "method": "GET",
+          "path": "/post/api/check/publishVideoPerm",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileReceptionApi_getGameCenter",
+          "method": "GET",
+          "path": "/reception/api/gameCenter",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileTeenagerApi_getInfo",
+          "method": "GET",
+          "path": "/teenager/api/info",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileTimelineApi_getUnreadInfo",
+          "method": "GET",
+          "path": "/timeline/api/getUnreadInfo",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileUserApi_getUserBusinesses",
+          "method": "GET",
+          "path": "/user/api/getUserBusinesses",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileUserApi_getUserFullInfo",
+          "method": "GET",
+          "path": "/user/api/getUserFullInfo",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileUserApi_getNotificationSettings",
+          "method": "GET",
+          "path": "/user/api/notify/settings",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileUserApi_getReplyPermission",
+          "method": "GET",
+          "path": "/user/api/replyPermission",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileUserApi_login",
+          "method": "POST",
+          "path": "/user/api/login",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobileUserInstantApi_getEntityReview",
+          "method": "GET",
+          "path": "/user_instant/api/entity/review",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "MobilePreloadApi_getLatestConfig",
+          "method": "POST",
+          "path": "/preload_resource/api/rn/get_latest_config",
+          "generation": "v1",
+          "header": "DS"
+        }
+      ]
+    },
+    {
+      "service": "UIGF.Mihoyo.MiYouShe.Static",
+      "operations": [
+        {
+          "operationId": "StaticApiHub_getStaticResource",
+          "method": "GET",
+          "path": "/apihub/api/staticResource",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "StaticMiscApi_getAllResourceVersions",
+          "method": "GET",
+          "path": "/misc/api/getAllStaticResourceVersions",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "StaticPreloadApi_getLatestVersion",
+          "method": "GET",
+          "path": "/preload_resource/api/latest_version",
+          "generation": "v1",
+          "header": "DS"
+        },
+        {
+          "operationId": "StaticSearchApi_getPreKeyword",
+          "method": "GET",
+          "path": "/search/api/search/pre_keyword",
+          "generation": "v1",
+          "header": "DS"
+        }
+      ]
+    },
+    {
+      "service": "UIGF.Mihoyo.PassportStatic",
+      "operations": [
+        {
+          "operationId": "SwitchApi_getSwitchStatus",
+          "method": "GET",
+          "path": "/account/ma-cn-passport/passport/getSwitchStatus",
+          "generation": "v1",
+          "header": "DS"
         }
       ]
     }

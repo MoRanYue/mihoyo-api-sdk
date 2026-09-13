@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Dispatch.CurrentRegion
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.CurrentRegion
 {
     /// <summary></summary>
     public partial class CurrentRegionClient

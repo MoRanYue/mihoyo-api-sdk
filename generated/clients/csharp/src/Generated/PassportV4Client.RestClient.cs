@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.PassportV4
+namespace UIGF.Mihoyo.PassportV4
 {
     /// <summary></summary>
     public partial class PassportV4Client

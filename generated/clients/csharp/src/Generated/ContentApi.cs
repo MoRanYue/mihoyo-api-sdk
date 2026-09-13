@@ -7,10 +7,9 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Genshin.AnnouncementContent
+namespace UIGF.Mihoyo.Game.Genshin.AnnouncementContent
 {
     /// <summary> The ContentApi sub-client. </summary>
     public partial class ContentApi
@@ -119,7 +118,7 @@ namespace UIGF.Game.Genshin.AnnouncementContent
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<ApiResponseAnnouncementList> Get(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, string t = default, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<ApiResponseAnnouncementContentData> Get(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, string t = default, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -128,7 +127,7 @@ namespace UIGF.Game.Genshin.AnnouncementContent
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = Get(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, t, level, uid, channelId, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementContentData)result, result.GetRawResponse());
         }
 
         /// <summary> Get. </summary>
@@ -146,7 +145,7 @@ namespace UIGF.Game.Genshin.AnnouncementContent
         /// <exception cref="ArgumentNullException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="game"/>, <paramref name="gameBiz"/>, <paramref name="lang"/>, <paramref name="bundleId"/> or <paramref name="region"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<ApiResponseAnnouncementList>> GetAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, string t = default, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<ApiResponseAnnouncementContentData>> GetAsync(string game, string gameBiz, string lang, string bundleId, ListRequestPlatform platform, string region, string t = default, int? level = default, string uid = default, int? channelId = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(game, nameof(game));
             Argument.AssertNotNullOrEmpty(gameBiz, nameof(gameBiz));
@@ -155,7 +154,7 @@ namespace UIGF.Game.Genshin.AnnouncementContent
             Argument.AssertNotNullOrEmpty(region, nameof(region));
 
             ClientResult result = await GetAsync(game, gameBiz, lang, bundleId, platform.ToSerialString(), region, t, level, uid, channelId, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((ApiResponseAnnouncementList)result, result.GetRawResponse());
+            return ClientResult.FromValue((ApiResponseAnnouncementContentData)result, result.GetRawResponse());
         }
     }
 }

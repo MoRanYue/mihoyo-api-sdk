@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The CharacterListRequest. </summary>
     public partial class CharacterListRequest : IJsonModel<CharacterListRequest>
@@ -91,6 +91,11 @@ namespace UIGF.Game
             writer.WriteStringValue(RoleId);
             writer.WritePropertyName("server"u8);
             writer.WriteStringValue(Server);
+            if (Optional.IsDefined(SortType))
+            {
+                writer.WritePropertyName("sort_type"u8);
+                writer.WriteNumberValue(SortType.Value);
+            }
             if (options.Format != "W" && _additionalBinaryDataProperties != null)
             {
                 foreach (var item in _additionalBinaryDataProperties)
@@ -135,6 +140,7 @@ namespace UIGF.Game
             }
             string roleId = default;
             string server = default;
+            int? sortType = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
@@ -148,12 +154,21 @@ namespace UIGF.Game
                     server = prop.Value.GetString();
                     continue;
                 }
+                if (prop.NameEquals("sort_type"u8))
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    sortType = prop.Value.GetInt32();
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     additionalBinaryDataProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
                 }
             }
-            return new CharacterListRequest(roleId, server, additionalBinaryDataProperties);
+            return new CharacterListRequest(roleId, server, sortType, additionalBinaryDataProperties);
         }
     }
 }

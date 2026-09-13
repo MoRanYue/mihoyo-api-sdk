@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher
+namespace UIGF.Mihoyo.Launcher
 {
     /// <summary> The GpuInfo. </summary>
     public partial class GpuInfo

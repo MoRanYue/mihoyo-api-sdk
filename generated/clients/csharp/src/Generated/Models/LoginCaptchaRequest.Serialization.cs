@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> The LoginCaptchaRequest. </summary>
-    public partial class LoginCaptchaRequest : DeviceContext, IJsonModel<LoginCaptchaRequest>
+    public partial class LoginCaptchaRequest : IJsonModel<LoginCaptchaRequest>
     {
         /// <summary> Initializes a new instance of <see cref="LoginCaptchaRequest"/> for deserialization. </summary>
         internal LoginCaptchaRequest()
@@ -21,7 +21,7 @@ namespace UIGF.Passport
 
         /// <param name="data"> The data to parse. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override DeviceContext PersistableModelCreateCore(BinaryData data, ModelReaderWriterOptions options)
+        protected virtual LoginCaptchaRequest PersistableModelCreateCore(BinaryData data, ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<LoginCaptchaRequest>)this).GetFormatFromOptions(options) : options.Format;
             switch (format)
@@ -37,7 +37,7 @@ namespace UIGF.Passport
         }
 
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override BinaryData PersistableModelWriteCore(ModelReaderWriterOptions options)
+        protected virtual BinaryData PersistableModelWriteCore(ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<LoginCaptchaRequest>)this).GetFormatFromOptions(options) : options.Format;
             switch (format)
@@ -54,7 +54,7 @@ namespace UIGF.Passport
 
         /// <param name="data"> The data to parse. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        LoginCaptchaRequest IPersistableModel<LoginCaptchaRequest>.Create(BinaryData data, ModelReaderWriterOptions options) => (LoginCaptchaRequest)PersistableModelCreateCore(data, options);
+        LoginCaptchaRequest IPersistableModel<LoginCaptchaRequest>.Create(BinaryData data, ModelReaderWriterOptions options) => PersistableModelCreateCore(data, options);
 
         /// <param name="options"> The client options for reading and writing models. </param>
         string IPersistableModel<LoginCaptchaRequest>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
@@ -80,30 +80,38 @@ namespace UIGF.Passport
 
         /// <param name="writer"> The JSON writer. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        protected virtual void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<LoginCaptchaRequest>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
                 throw new FormatException($"The model {nameof(LoginCaptchaRequest)} does not support writing '{format}' format.");
             }
-            base.JsonModelWriteCore(writer, options);
-            writer.WritePropertyName("action_type"u8);
-            writer.WriteStringValue(ActionType);
-            if (Optional.IsDefined(GameBiz))
+            writer.WritePropertyName("area_code"u8);
+            writer.WriteStringValue(AreaCode);
+            writer.WritePropertyName("mobile"u8);
+            writer.WriteStringValue(Mobile);
+            foreach (var item in AdditionalProperties)
             {
-                writer.WritePropertyName("game_biz"u8);
-                writer.WriteStringValue(GameBiz);
+                writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+                writer.WriteRawValue(item.Value);
+#else
+                using (JsonDocument document = JsonDocument.Parse(item.Value))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
+                }
+#endif
             }
         }
 
         /// <param name="reader"> The JSON reader. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        LoginCaptchaRequest IJsonModel<LoginCaptchaRequest>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options) => (LoginCaptchaRequest)JsonModelCreateCore(ref reader, options);
+        LoginCaptchaRequest IJsonModel<LoginCaptchaRequest>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options) => JsonModelCreateCore(ref reader, options);
 
         /// <param name="reader"> The JSON reader. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override DeviceContext JsonModelCreateCore(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        protected virtual LoginCaptchaRequest JsonModelCreateCore(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
             string format = options.Format == "W" ? ((IPersistableModel<LoginCaptchaRequest>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
@@ -122,69 +130,24 @@ namespace UIGF.Passport
             {
                 return null;
             }
-            string device = default;
-            string deviceFp = default;
-            string deviceName = default;
-            string deviceModel = default;
-            string deviceId = default;
-            string appId = default;
+            string areaCode = default;
+            string mobile = default;
             IDictionary<string, BinaryData> additionalProperties = new ChangeTrackingDictionary<string, BinaryData>();
-            string actionType = default;
-            string gameBiz = default;
             foreach (var prop in element.EnumerateObject())
             {
-                if (prop.NameEquals("device"u8))
+                if (prop.NameEquals("area_code"u8))
                 {
-                    device = prop.Value.GetString();
+                    areaCode = prop.Value.GetString();
                     continue;
                 }
-                if (prop.NameEquals("device_fp"u8))
+                if (prop.NameEquals("mobile"u8))
                 {
-                    deviceFp = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("device_name"u8))
-                {
-                    deviceName = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("device_model"u8))
-                {
-                    deviceModel = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("device_id"u8))
-                {
-                    deviceId = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("app_id"u8))
-                {
-                    appId = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("action_type"u8))
-                {
-                    actionType = prop.Value.GetString();
-                    continue;
-                }
-                if (prop.NameEquals("game_biz"u8))
-                {
-                    gameBiz = prop.Value.GetString();
+                    mobile = prop.Value.GetString();
                     continue;
                 }
                 additionalProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
             }
-            return new LoginCaptchaRequest(
-                device,
-                deviceFp,
-                deviceName,
-                deviceModel,
-                deviceId,
-                appId,
-                additionalProperties,
-                actionType,
-                gameBiz);
+            return new LoginCaptchaRequest(areaCode, mobile, additionalProperties);
         }
     }
 }

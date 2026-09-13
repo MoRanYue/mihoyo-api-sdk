@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> Passport, login-ticket, QR login, and account-token APIs for CN services. </summary>
     public partial class PassportClient
@@ -18,6 +18,7 @@ namespace UIGF.Passport
         private CaptchaApi _cachedCaptchaApi;
         private QrLoginApi _cachedQrLoginApi;
         private PassportSessionApi _cachedPassportSessionApi;
+        private WebSessionApi _cachedWebSessionApi;
         private AccountTokenApi _cachedAccountTokenApi;
 
         /// <summary> Initializes a new instance of PassportClient. </summary>
@@ -86,6 +87,12 @@ namespace UIGF.Passport
         public virtual PassportSessionApi GetPassportSessionApiClient()
         {
             return Volatile.Read(ref _cachedPassportSessionApi) ?? Interlocked.CompareExchange(ref _cachedPassportSessionApi, new PassportSessionApi(Pipeline, _endpoint), null) ?? _cachedPassportSessionApi;
+        }
+
+        /// <summary> Initializes a new instance of WebSessionApi. </summary>
+        public virtual WebSessionApi GetWebSessionApiClient()
+        {
+            return Volatile.Read(ref _cachedWebSessionApi) ?? Interlocked.CompareExchange(ref _cachedWebSessionApi, new WebSessionApi(Pipeline, _endpoint), null) ?? _cachedWebSessionApi;
         }
 
         /// <summary> Initializes a new instance of AccountTokenApi. </summary>

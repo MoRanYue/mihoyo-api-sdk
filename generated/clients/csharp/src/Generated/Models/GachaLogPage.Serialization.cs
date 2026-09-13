@@ -7,9 +7,8 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The GachaLogPage. </summary>
     public partial class GachaLogPage : IJsonModel<GachaLogPage>
@@ -80,17 +79,17 @@ namespace UIGF
             if (Optional.IsDefined(Page))
             {
                 writer.WritePropertyName("page"u8);
-                writer.WriteNumberValue(Page.Value);
+                writer.WriteStringValue(Page);
             }
             if (Optional.IsDefined(Size))
             {
                 writer.WritePropertyName("size"u8);
-                writer.WriteNumberValue(Size.Value);
+                writer.WriteStringValue(Size);
             }
             if (Optional.IsDefined(Total))
             {
                 writer.WritePropertyName("total"u8);
-                writer.WriteNumberValue(Total.Value);
+                writer.WriteStringValue(Total);
             }
             if (Optional.IsDefined(Region))
             {
@@ -143,9 +142,9 @@ namespace UIGF
             {
                 return null;
             }
-            int? page = default;
-            int? size = default;
-            int? total = default;
+            string page = default;
+            string size = default;
+            string total = default;
             string region = default;
             IList<GachaItem> list = default;
             ChangeTrackingDictionary<string, BinaryData> additionalProperties = new ChangeTrackingDictionary<string, BinaryData>();
@@ -153,29 +152,17 @@ namespace UIGF
             {
                 if (prop.NameEquals("page"u8))
                 {
-                    if (prop.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    page = prop.Value.GetInt32();
+                    page = prop.Value.GetString();
                     continue;
                 }
                 if (prop.NameEquals("size"u8))
                 {
-                    if (prop.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    size = prop.Value.GetInt32();
+                    size = prop.Value.GetString();
                     continue;
                 }
                 if (prop.NameEquals("total"u8))
                 {
-                    if (prop.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    total = prop.Value.GetInt32();
+                    total = prop.Value.GetString();
                     continue;
                 }
                 if (prop.NameEquals("region"u8))

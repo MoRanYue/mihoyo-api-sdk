@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Global.Account
+namespace UIGF.Mihoyo.Game.Global.Account
 {
     /// <summary></summary>
     public partial class GlobalBindingApi

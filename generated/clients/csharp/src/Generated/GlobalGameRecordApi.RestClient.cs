@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game.Global.Records
+namespace UIGF.Mihoyo.Game.Global.Records
 {
     /// <summary></summary>
     public partial class GlobalGameRecordApi

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Uncategorized.Telemetry.Crash
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.Crash
 {
     /// <summary></summary>
     public partial class CrashClient

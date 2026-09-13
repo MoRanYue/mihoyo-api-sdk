@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.ComboToken
+namespace UIGF.Mihoyo.Uncategorized.ComboToken
 {
     /// <summary></summary>
     public partial class ComboTokenApi

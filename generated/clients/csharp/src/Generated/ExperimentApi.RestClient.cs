@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized.Experimentation
+namespace UIGF.Mihoyo.Uncategorized.Experimentation
 {
     /// <summary></summary>
     public partial class ExperimentApi

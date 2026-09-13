@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Dispatch.Gate
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.Gate
 {
     /// <summary> Resolves the game gateway address for a selected CN Genshin region. </summary>
     public partial class GateClient

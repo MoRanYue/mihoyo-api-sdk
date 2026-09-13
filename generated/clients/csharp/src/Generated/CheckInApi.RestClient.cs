@@ -6,7 +6,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.CheckIn
+namespace UIGF.Mihoyo.CheckIn
 {
     /// <summary></summary>
     public partial class CheckInApi

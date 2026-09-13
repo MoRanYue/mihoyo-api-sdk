@@ -6,7 +6,7 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 
-namespace UIGF.Passport
+namespace UIGF.Mihoyo.Passport
 {
     /// <summary> Client options for clients in this library. </summary>
     public partial class UIGFMihoyoClientOptions : ClientPipelineOptions

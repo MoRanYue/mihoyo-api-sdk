@@ -55,14 +55,14 @@ const commerce = new CommerceCN.CommerceCNClient("https://hk4e-sdk.mihoyo.com");
 
 JS/TS 中，`JsonObject` 等开放模型的动态字段放在 `additionalProperties` 中；序列化时会展开回原始 JSON 对象。
 
-Python 提供同步和异步客户端，例如 `from uigf.game.cn.records import CnGameRecordsClient`；异步版本位于对应包的 `aio`。海外服务的 Python 命名空间使用 `overseas`，避免 `global` 关键字。
+Python 提供同步和异步客户端，例如 `from uigf.mihoyo.game.cn.records import CnGameRecordsClient`；异步版本位于对应包的 `aio`。海外服务的 Python 命名空间使用 `overseas`，避免 `global` 关键字。
 
-C# 可使用 `UIGF.Game.CN.Records.CnGameRecordsClient`，Java 可使用 `uigf.game.cn.records.CnGameRecordsClientBuilder`。各 SDK 的 `services.json` 列出覆盖的服务。
+C# 可使用 `UIGF.Mihoyo.Game.CN.Records.CnGameRecordsClient`，Java 可使用 `uigf.mihoyo.game.cn.records.CnGameRecordsClientBuilder`。各 SDK 的 `services.json` 列出覆盖的服务。
 
 需要 DS 的接口接收调用者传入的 `cookie`。C# DLL 使用 `UIGF.Mihoyo.DsSigner.CreateClientOptions(salt)` 在发送请求前按操作自动计算 V1/V2 DS；便利方法中的 `ds` 参数可省略，显式传入非空值时则会保留该值。TS 版本位于 `runtime/ds.ts`。DS v2 必须与最终请求体字节和查询参数一致，SDK 不会内置或探测盐值。
 
 ```csharp
-using UIGF.Game.Genshin.Record;
+using UIGF.Mihoyo.Game.Genshin.Record;
 using UIGF.Mihoyo;
 
 var client = new RecordClient(

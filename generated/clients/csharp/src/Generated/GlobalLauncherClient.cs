@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Launcher.Global
+namespace UIGF.Mihoyo.Launcher.Global
 {
     /// <summary> HoYoPlay launcher metadata for the global launcher. </summary>
     public partial class GlobalLauncherClient

@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Login
+namespace UIGF.Mihoyo.Game.Genshin.Login
 {
     /// <summary> CN Genshin SDK QR-login and granter-login endpoints. </summary>
     public partial class LoginClient

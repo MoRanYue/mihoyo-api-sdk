@@ -8,11 +8,11 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
 using UIGF.Mihoyo;
-using UIGF.Uncategorized;
+using UIGF.Mihoyo.Api.Request;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF.Uncategorized.Telemetry.SDK
+namespace UIGF.Mihoyo.Uncategorized.Telemetry.SDK
 {
     /// <summary> The SdkTelemetryUploadApi sub-client. </summary>
     public partial class SdkTelemetryUploadApi
@@ -95,7 +95,7 @@ namespace UIGF.Uncategorized.Telemetry.SDK
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual ClientResult<UploadResponse> Upload(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual ClientResult<UploadResponse> Upload(IEnumerable<SdkTelemetryUploadEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 
@@ -113,7 +113,7 @@ namespace UIGF.Uncategorized.Telemetry.SDK
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <exception cref="ClientResultException"> Service returned a non-success status code. </exception>
-        public virtual async Task<ClientResult<UploadResponse>> UploadAsync(IEnumerable<JsonObject> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<UploadResponse>> UploadAsync(IEnumerable<SdkTelemetryUploadEvent> body, string authorization = default, string contentMd5 = default, string date = default, string cmsSignature = default, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(body, nameof(body));
 

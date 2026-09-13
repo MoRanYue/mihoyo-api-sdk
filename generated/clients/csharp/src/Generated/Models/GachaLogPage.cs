@@ -6,9 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The GachaLogPage. </summary>
     public partial class GachaLogPage
@@ -31,7 +30,7 @@ namespace UIGF
         /// <param name="region"></param>
         /// <param name="list"></param>
         /// <param name="additionalProperties"></param>
-        internal GachaLogPage(int? page, int? size, int? total, string region, IList<GachaItem> list, IReadOnlyDictionary<string, BinaryData> additionalProperties)
+        internal GachaLogPage(string page, string size, string total, string region, IList<GachaItem> list, IReadOnlyDictionary<string, BinaryData> additionalProperties)
         {
             Page = page;
             Size = size;
@@ -42,13 +41,13 @@ namespace UIGF
         }
 
         /// <summary> Gets the Page. </summary>
-        public int? Page { get; }
+        public string Page { get; }
 
         /// <summary> Gets the Size. </summary>
-        public int? Size { get; }
+        public string Size { get; }
 
         /// <summary> Gets the Total. </summary>
-        public int? Total { get; }
+        public string Total { get; }
 
         /// <summary> Gets the Region. </summary>
         public string Region { get; }

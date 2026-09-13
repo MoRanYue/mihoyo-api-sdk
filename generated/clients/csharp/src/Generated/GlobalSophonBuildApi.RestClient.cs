@@ -5,7 +5,7 @@
 using System.ClientModel.Primitives;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher.Sophon.Global
+namespace UIGF.Mihoyo.Launcher.Sophon.Global
 {
     /// <summary></summary>
     public partial class GlobalSophonBuildApi

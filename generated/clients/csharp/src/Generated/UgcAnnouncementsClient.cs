@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.UgcAnnouncements
+namespace UIGF.Mihoyo.Game.Genshin.UgcAnnouncements
 {
     /// <summary> CN UGC announcement alerts use a distinct route on the announcement host. </summary>
     public partial class UgcAnnouncementsClient

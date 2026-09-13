@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The DeviceFingerprintRequest. </summary>
     public partial class DeviceFingerprintRequest
@@ -48,16 +48,18 @@ namespace UIGF.Game
         /// <param name="deviceFp"></param>
         /// <param name="seedId"></param>
         /// <param name="deviceId"></param>
+        /// <param name="bbsDeviceId"></param>
         /// <param name="extFields"></param>
         /// <param name="platform"></param>
         /// <param name="seedTime"></param>
         /// <param name="additionalProperties"></param>
-        internal DeviceFingerprintRequest(string appName, string deviceFp, string seedId, string deviceId, string extFields, string platform, string seedTime, IDictionary<string, BinaryData> additionalProperties)
+        internal DeviceFingerprintRequest(string appName, string deviceFp, string seedId, string deviceId, string bbsDeviceId, string extFields, string platform, string seedTime, IDictionary<string, BinaryData> additionalProperties)
         {
             AppName = appName;
             DeviceFp = deviceFp;
             SeedId = seedId;
             DeviceId = deviceId;
+            BbsDeviceId = bbsDeviceId;
             ExtFields = extFields;
             Platform = platform;
             SeedTime = seedTime;
@@ -75,6 +77,9 @@ namespace UIGF.Game
 
         /// <summary> Gets the DeviceId. </summary>
         public string DeviceId { get; }
+
+        /// <summary> Gets or sets the BbsDeviceId. </summary>
+        public string BbsDeviceId { get; set; }
 
         /// <summary> Gets the ExtFields. </summary>
         public string ExtFields { get; }

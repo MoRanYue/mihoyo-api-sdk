@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Community
+namespace UIGF.Mihoyo.Community
 {
     /// <summary></summary>
     public enum ListRequestAction

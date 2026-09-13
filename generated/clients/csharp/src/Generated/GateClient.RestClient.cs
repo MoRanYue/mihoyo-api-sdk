@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Game.Genshin.Dispatch.Gate
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.Gate
 {
     /// <summary></summary>
     public partial class GateClient

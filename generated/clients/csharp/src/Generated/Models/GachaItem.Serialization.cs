@@ -6,9 +6,8 @@ using System;
 using System.ClientModel.Primitives;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using UIGF.Mihoyo;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> The GachaItem. </summary>
     public partial class GachaItem : IJsonModel<GachaItem>
@@ -111,6 +110,16 @@ namespace UIGF
                 writer.WritePropertyName("item_type"u8);
                 writer.WriteStringValue(ItemType);
             }
+            if (Optional.IsDefined(Lang))
+            {
+                writer.WritePropertyName("lang"u8);
+                writer.WriteStringValue(Lang);
+            }
+            if (Optional.IsDefined(OpGachaType))
+            {
+                writer.WritePropertyName("op_gacha_type"u8);
+                writer.WriteStringValue(OpGachaType);
+            }
             if (Optional.IsDefined(RankType))
             {
                 writer.WritePropertyName("rank_type"u8);
@@ -164,6 +173,8 @@ namespace UIGF
             string time = default;
             string name = default;
             string itemType = default;
+            string lang = default;
+            string opGachaType = default;
             string rankType = default;
             string id = default;
             ChangeTrackingDictionary<string, BinaryData> additionalProperties = new ChangeTrackingDictionary<string, BinaryData>();
@@ -204,6 +215,16 @@ namespace UIGF
                     itemType = prop.Value.GetString();
                     continue;
                 }
+                if (prop.NameEquals("lang"u8))
+                {
+                    lang = prop.Value.GetString();
+                    continue;
+                }
+                if (prop.NameEquals("op_gacha_type"u8))
+                {
+                    opGachaType = prop.Value.GetString();
+                    continue;
+                }
                 if (prop.NameEquals("rank_type"u8))
                 {
                     rankType = prop.Value.GetString();
@@ -224,6 +245,8 @@ namespace UIGF
                 time,
                 name,
                 itemType,
+                lang,
+                opGachaType,
                 rankType,
                 id,
                 new ReadOnlyDictionary<string, BinaryData>(additionalProperties));

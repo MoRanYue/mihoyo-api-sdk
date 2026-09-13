@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using UIGF.Mihoyo;
 
-namespace UIGF.Game
+namespace UIGF.Mihoyo.Game
 {
     /// <summary> The AuthKeyRequest. </summary>
     public partial class AuthKeyRequest
@@ -19,12 +19,11 @@ namespace UIGF.Game
         /// <param name="gameBiz"></param>
         /// <param name="gameUid"></param>
         /// <param name="region"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="authAppid"/>, <paramref name="gameBiz"/>, <paramref name="gameUid"/> or <paramref name="region"/> is null. </exception>
-        public AuthKeyRequest(string authAppid, string gameBiz, string gameUid, string region)
+        /// <exception cref="ArgumentNullException"> <paramref name="authAppid"/>, <paramref name="gameBiz"/> or <paramref name="region"/> is null. </exception>
+        public AuthKeyRequest(string authAppid, string gameBiz, long gameUid, string region)
         {
             Argument.AssertNotNull(authAppid, nameof(authAppid));
             Argument.AssertNotNull(gameBiz, nameof(gameBiz));
-            Argument.AssertNotNull(gameUid, nameof(gameUid));
             Argument.AssertNotNull(region, nameof(region));
 
             AuthAppid = authAppid;
@@ -39,7 +38,7 @@ namespace UIGF.Game
         /// <param name="gameUid"></param>
         /// <param name="region"></param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal AuthKeyRequest(string authAppid, string gameBiz, string gameUid, string region, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal AuthKeyRequest(string authAppid, string gameBiz, long gameUid, string region, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             AuthAppid = authAppid;
             GameBiz = gameBiz;
@@ -55,7 +54,7 @@ namespace UIGF.Game
         public string GameBiz { get; }
 
         /// <summary> Gets the GameUid. </summary>
-        public string GameUid { get; }
+        public long GameUid { get; }
 
         /// <summary> Gets the Region. </summary>
         public string Region { get; }

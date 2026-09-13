@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.Utility.Device
+namespace UIGF.Mihoyo.Utility.Device
 {
     /// <summary></summary>
     public partial class DeviceClient

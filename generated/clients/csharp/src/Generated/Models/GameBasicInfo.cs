@@ -5,10 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UIGF;
 using UIGF.Mihoyo;
 
-namespace UIGF.Launcher
+namespace UIGF.Mihoyo.Launcher
 {
     /// <summary> The GameBasicInfo. </summary>
     public partial class GameBasicInfo

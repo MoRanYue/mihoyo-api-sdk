@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Genshin.Dispatch.RegionList
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch.RegionList
 {
     /// <summary> Returns the encrypted CN Genshin region list delivered by the global dispatcher. </summary>
     public partial class RegionListClient

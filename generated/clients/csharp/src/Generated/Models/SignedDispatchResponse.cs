@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace UIGF.Game.Genshin.Dispatch
+namespace UIGF.Mihoyo.Game.Genshin.Dispatch
 {
     /// <summary> The SignedDispatchResponse. </summary>
     public partial class SignedDispatchResponse

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Commerce
+namespace UIGF.Mihoyo.Commerce
 {
     /// <summary> The ShopGoodsRequest. </summary>
     public partial class ShopGoodsRequest : IJsonModel<ShopGoodsRequest>

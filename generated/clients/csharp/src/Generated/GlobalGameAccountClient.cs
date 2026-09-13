@@ -7,9 +7,9 @@ using System.ClientModel.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using UIGF.Mihoyo;
-using UIGF.Passport;
+using UIGF.Mihoyo.Passport;
 
-namespace UIGF.Game.Global.Account
+namespace UIGF.Mihoyo.Game.Global.Account
 {
     /// <summary> International HoYoLAB account binding APIs. </summary>
     public partial class GlobalGameAccountClient

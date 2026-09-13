@@ -5,8 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UIGF.Mihoyo.Uncategorized;
 
-namespace UIGF
+namespace UIGF.Mihoyo
 {
     /// <summary> Common response wrapper returned by MiHoYo and HoYoLAB services. </summary>
     public partial class ApiResponseArray
@@ -18,7 +19,7 @@ namespace UIGF
         /// <param name="retcode"> Vendor result code. `0` normally represents success. </param>
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
-        internal ApiResponseArray(int retcode, string message, IEnumerable<JsonObject> data)
+        internal ApiResponseArray(int retcode, string message, IEnumerable<ExperimentAssignment> data)
         {
             Retcode = retcode;
             Message = message;
@@ -30,7 +31,7 @@ namespace UIGF
         /// <param name="message"> Vendor diagnostic message. </param>
         /// <param name="data"> Endpoint-specific payload. </param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal ApiResponseArray(int retcode, string message, IList<JsonObject> data, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal ApiResponseArray(int retcode, string message, IList<ExperimentAssignment> data, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             Retcode = retcode;
             Message = message;
@@ -45,6 +46,6 @@ namespace UIGF
         public string Message { get; }
 
         /// <summary> Endpoint-specific payload. </summary>
-        public IList<JsonObject> Data { get; }
+        public IList<ExperimentAssignment> Data { get; }
     }
 }

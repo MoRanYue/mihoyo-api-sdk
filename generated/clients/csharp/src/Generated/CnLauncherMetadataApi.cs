@@ -8,11 +8,10 @@ using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using UIGF;
-using UIGF.Launcher;
 using UIGF.Mihoyo;
+using UIGF.Mihoyo.Launcher;
 
-namespace UIGF.Launcher.CN
+namespace UIGF.Mihoyo.Launcher.CN
 {
     /// <summary> The CnLauncherMetadataApi sub-client. </summary>
     public partial class CnLauncherMetadataApi

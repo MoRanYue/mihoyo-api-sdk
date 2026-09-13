@@ -2,12 +2,12 @@ import "@typespec/http";
 
 using TypeSpec.Http;
 
-namespace UIGF.Game;
+namespace UIGF.Mihoyo.Game;
 
 model AuthKeyRequest {
   auth_appid: string = "webview_gacha";
   game_biz: string;
-  game_uid: string;
+  game_uid: int64;
   region: string;
 }
 
@@ -25,10 +25,11 @@ model ActionTicketQuery {
 model CharacterListRequest {
   role_id: string;
   server: string;
+  sort_type?: int32;
 }
 
 model CharacterDetailRequest extends CharacterListRequest {
-  character_ids: string[];
+  character_ids: (string | int64)[];
 }
 
 model AuthKeyQuery {
@@ -144,6 +145,7 @@ model DeviceFingerprintRequest extends Record<unknown> {
   device_fp: string;
   seed_id: string;
   device_id: string;
+  bbs_device_id?: string;
   ext_fields: string;
   platform: string;
   seed_time: string;

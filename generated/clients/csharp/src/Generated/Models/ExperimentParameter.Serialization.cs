@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using UIGF.Mihoyo;
 
-namespace UIGF.Uncategorized
+namespace UIGF.Mihoyo.Uncategorized
 {
     /// <summary> The ExperimentParameter. </summary>
     public partial class ExperimentParameter : IJsonModel<ExperimentParameter>

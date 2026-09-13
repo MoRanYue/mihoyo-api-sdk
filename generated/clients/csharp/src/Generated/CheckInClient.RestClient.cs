@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UIGF.CheckIn
+namespace UIGF.Mihoyo.CheckIn
 {
     /// <summary></summary>
     public partial class CheckInClient

@@ -1,0 +1,3944 @@
+openapi: 3.0.0
+info:
+  title: UIGF Honkai Impact 3rd CN API
+  description: CN Honkai Impact 3rd real-time note uses a dedicated activity host.
+  version: 0.0.0
+tags: []
+paths:
+  /game_record/appv2/honkai3rd/api/note:
+    get:
+      operationId: DailyNoteApi_getDailyNote
+      parameters:
+        - name: Cookie
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: DS
+          in: header
+          required: false
+          schema:
+            type: string
+        - $ref: "#/components/parameters/UIGF.Mihoyo.Game.GameRecordQuery.server"
+        - $ref: "#/components/parameters/UIGF.Mihoyo.Game.GameRecordQuery.roleId"
+      responses:
+        "200":
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - retcode
+                  - message
+                  - data
+                properties:
+                  retcode:
+                    type: integer
+                    format: int32
+                    description: Vendor result code. `0` normally represents success.
+                  message:
+                    type: string
+                    description: Vendor diagnostic message.
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+                    description: Endpoint-specific payload.
+                description: Common response wrapper returned by MiHoYo and HoYoLAB services.
+      x-uigf-ds:
+        generation: v2
+        header: DS
+        canonicalization:
+          body: exact-serialized
+          query: lexicographic-segments
+components:
+  parameters:
+    UIGF.Mihoyo.Game.GameRecordQuery.roleId:
+      name: role_id
+      in: query
+      required: true
+      schema:
+        type: string
+      explode: false
+    UIGF.Mihoyo.Game.GameRecordQuery.server:
+      name: server
+      in: query
+      required: true
+      schema:
+        type: string
+      explode: false
+  schemas:
+    UIGF.Mihoyo.Announcement:
+      type: object
+      properties:
+        ann_id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        subtitle:
+          type: string
+        banner:
+          type: string
+        content:
+          type: string
+        start_time:
+          type: string
+        end_time:
+          type: string
+        type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.AnnouncementList:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Announcement"
+        alert:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.CommunityTelemetryUploadRequest:
+      type: object
+      required:
+        - content
+        - sign
+      properties:
+        content:
+          type: string
+        sign:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameCrashTelemetryEvent:
+      type: object
+      properties:
+        msgID:
+          type: string
+        uploadContent:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameCrashTelemetryUploadCon\
+            tent"
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.TelemetryEvent"
+    UIGF.Mihoyo.Api.Request.GameCrashTelemetryUploadContent:
+      type: object
+      properties:
+        auid:
+          type: string
+        clientIp:
+          type: string
+        cpuInfo:
+          type: string
+        deviceModel:
+          type: string
+        deviceName:
+          type: string
+        error_code:
+          type: integer
+          format: int32
+        errorCategory:
+          type: string
+        errorCode:
+          type: string
+        errorLevel:
+          type: string
+        exceptionSerialNum:
+          type: integer
+          format: int64
+        frame:
+          type: string
+        gpuInfo:
+          type: string
+        graphicsLevel:
+          type: string
+        graphicsVersion:
+          type: string
+        guid:
+          type: string
+        isRelease:
+          type: boolean
+        logType:
+          type: string
+        memoryInfo:
+          type: string
+        message:
+          type: string
+        notifyUser:
+          type: string
+        operatingSystem:
+          type: string
+        projectNick:
+          type: string
+        serverName:
+          type: string
+        stackTrace:
+          type: string
+        subErrorCode:
+          type: string
+        time:
+          type: integer
+          format: int64
+        user_id:
+          type: integer
+          format: int64
+        userName:
+          type: string
+        userNick:
+          type: string
+        version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameCustomTelemetryEvent:
+      type: object
+      properties:
+        msgID:
+          type: string
+        uploadContent:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameCustomTelemetryUploadCo\
+            ntent"
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.TelemetryEvent"
+    UIGF.Mihoyo.Api.Request.GameCustomTelemetryUploadContent:
+      type: object
+      properties:
+        auid:
+          type: string
+        clientIp:
+          type: string
+        cpuInfo:
+          type: string
+        deviceId:
+          type: string
+        deviceModel:
+          type: string
+        deviceName:
+          type: string
+        gpuInfo:
+          type: string
+        isRelease:
+          type: boolean
+        memoryInfo:
+          type: string
+        msg:
+          type: string
+        msgKey:
+          type: string
+        operatingSystem:
+          type: string
+        platform:
+          type: integer
+          format: int32
+        serverName:
+          type: string
+        user_id:
+          type: integer
+          format: int64
+        version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameSdkCamelDeviceInfo:
+      type: object
+      properties:
+        deviceId:
+          type: string
+        deviceModel:
+          type: string
+        deviceName:
+          type: string
+        deviceSciX:
+          type: integer
+          format: int32
+        deviceSciY:
+          type: integer
+          format: int32
+        dpi:
+          type: integer
+          format: int32
+        networkType:
+          type: string
+        platform:
+          type: integer
+          format: int32
+        platformName:
+          type: string
+        processorCount:
+          type: integer
+          format: int32
+        processorType:
+          type: string
+        ramCapacity:
+          type: integer
+          format: int64
+        ramRemain:
+          type: integer
+          format: int64
+        systemInfo:
+          type: string
+        systemLang:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameSdkLogInfo:
+      type: object
+      properties:
+        action_id:
+          type: integer
+          format: int32
+        action_name:
+          type: string
+        c_body:
+          type: string
+        log_time:
+          type: string
+        platform_type:
+          type: string
+        region:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameSdkSnakeDeviceInfo:
+      type: object
+      properties:
+        bundle_id:
+          type: string
+        channel_id:
+          type: string
+        channel_subid:
+          type: string
+        channel_subid_int:
+          type: integer
+          format: int32
+        current_cps:
+          type: string
+        device_fp:
+          type: string
+        device_id:
+          type: string
+        device_model:
+          type: string
+        device_name:
+          type: string
+        ip:
+          type: string
+        network_type:
+          type: string
+        os:
+          type: string
+        plat:
+          type: integer
+          format: int32
+        register_cps:
+          type: string
+        uapc:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameSdkTelemetryEvent:
+      type: object
+      properties:
+        msgId:
+          type: string
+        uploadContent:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameSdkTelemetryUploadConte\
+            nt"
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.TelemetryEvent"
+    UIGF.Mihoyo.Api.Request.GameSdkTelemetryUploadContent:
+      type: object
+      properties:
+        device_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameSdkSnakeDeviceInfo"
+        deviceInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameSdkCamelDeviceInfo"
+        eventTimeMs:
+          type: string
+        launchTraceId:
+          type: string
+        log_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameSdkLogInfo"
+        telemetryInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryInfo"
+        user_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameSdkUserInfo"
+        version_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.GameSdkVersionInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameSdkUserInfo:
+      type: object
+      properties:
+        account_type:
+          type: string
+        level:
+          type: string
+        open_id:
+          type: string
+        tag:
+          type: string
+        uid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.GameSdkVersionInfo:
+      type: object
+      properties:
+        client_version:
+          type: string
+        log_version:
+          type: string
+        sdk_env:
+          type: integer
+          format: int32
+        sdk_version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.H5CollectorEventExtraInfo:
+      type: object
+      properties:
+        season:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.H5CollectorEventInfo:
+      type: object
+      properties:
+        eventAction:
+          type: string
+        eventCategory:
+          type: string
+        eventLabel:
+          type: string
+        eventValue:
+          anyOf:
+            - type: string
+            - type: integer
+              format: int32
+        extra_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.H5CollectorEventExtraInfo"
+        timestamp:
+          type: integer
+          format: int64
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.H5CollectorPageExtraInfo:
+      type: object
+      properties:
+        app_id:
+          type: string
+        app_version:
+          type: string
+        business_url:
+          type: string
+        device_fp:
+          type: string
+        device_id:
+          type: string
+        environment:
+          type: string
+        gameBiz:
+          type: string
+        is_v2_platform:
+          type: string
+        isApp:
+          type: string
+        language:
+          type: string
+        lifecycle_id:
+          type: string
+        sdk_version:
+          type: string
+        syncLoginStatus:
+          type: boolean
+        theme:
+          type: string
+        tokenType:
+          type: integer
+          format: int32
+        view_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.H5CollectorPageInfo:
+      type: object
+      properties:
+        app_id:
+          type: string
+        document_referrer:
+          type: string
+        extra_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.H5CollectorPageExtraInfo"
+        page_fullurl:
+          type: string
+        page_name:
+          type: string
+        page_url:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.H5CollectorUploadRequest:
+      type: object
+      required:
+        - analysis_version
+        - data_belong
+        - event_info
+        - mia_session_id
+        - mia_session_step
+        - page_info
+        - type
+        - user_info
+      properties:
+        analysis_version:
+          type: string
+        data_belong:
+          type: string
+        event_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.H5CollectorEventInfo"
+        mia_session_id:
+          type: string
+        mia_session_step:
+          type: string
+        page_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.H5CollectorPageInfo"
+        type:
+          type: string
+        user_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.H5CollectorUserInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.H5CollectorUserInfo:
+      type: object
+      properties:
+        account_id:
+          type: string
+        auth_key:
+          type: string
+        device:
+          type: string
+        device_id:
+          type: string
+        game_biz:
+          type: string
+        game_region:
+          type: string
+        game_uid:
+          type: string
+        lang:
+          type: string
+        platform:
+          type: string
+        uuid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.LegacyCrashReport:
+      type: object
+      properties:
+        auid:
+          type: string
+        backBuffer:
+          type: string
+        buildUrl:
+          type: string
+        clientIp:
+          type: string
+        cpuInfo:
+          type: string
+        deviceModel:
+          type: string
+        deviceName:
+          type: string
+        errorCategory:
+          type: string
+        errorCode:
+          type: string
+        errorCodeToPlatform:
+          type: integer
+          format: int32
+        errorLevel:
+          type: string
+        exceptionSerialNum:
+          type: string
+        frame:
+          type: string
+        gBuffer:
+          type: string
+        gpuInfo:
+          type: string
+        graphicsLevel:
+          type: string
+        graphicsVersion:
+          type: string
+        guid:
+          type: string
+        is2g:
+          type: boolean
+        loginTime:
+          type: integer
+          format: int64
+        logStr:
+          type: string
+        logType:
+          type: string
+        memoryInfo:
+          type: string
+        needShowErrDlg:
+          type: boolean
+        notifyUserName:
+          type: string
+        operatingSystem:
+          type: string
+        platformType:
+          type: integer
+          format: int32
+        pos:
+          type: string
+        serverName:
+          type: string
+        stackTrace:
+          type: string
+        subErrorCode:
+          type: integer
+          format: int32
+        time:
+          type: string
+        title:
+          type: string
+        uid:
+          type: integer
+          format: int64
+        userName:
+          type: string
+        version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.LoginTelemetryDeviceInfo:
+      type: object
+      properties:
+        bundleId:
+          type: string
+        clientType:
+          type: string
+        cps:
+          type: string
+        deviceFp:
+          type: string
+        deviceId:
+          type: string
+        deviceModel:
+          type: string
+        deviceName:
+          type: string
+        ip:
+          type: string
+        isp:
+          type: string
+        platform:
+          type: string
+        registerCPS:
+          type: string
+        sciX:
+          type: integer
+          format: int32
+        sciY:
+          type: integer
+          format: int32
+        sourceDeviceId:
+          type: string
+        systemInfo:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.LoginTelemetryEvent:
+      type: object
+      properties:
+        msgId:
+          type: string
+        uploadContent:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.LoginTelemetryUploadContent"
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.TelemetryEvent"
+    UIGF.Mihoyo.Api.Request.LoginTelemetryLogInfo:
+      type: object
+      properties:
+        actionId:
+          type: integer
+          format: int32
+        actionName:
+          type: string
+        cBody:
+          type: string
+        logTime:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.LoginTelemetryUploadContent:
+      type: object
+      properties:
+        deviceinfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.LoginTelemetryDeviceInfo"
+        loginfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.LoginTelemetryLogInfo"
+        userinfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.LoginTelemetryUserInfo"
+        versioninfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.LoginTelemetryVersionInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.LoginTelemetryUserInfo:
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountType:
+          type: integer
+          format: int32
+        channelId:
+          type: integer
+          format: int32
+        mid:
+          type: string
+        userId:
+          type: integer
+          format: int64
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.LoginTelemetryVersionInfo:
+      type: object
+      properties:
+        clientVersion:
+          type: string
+        logVersion:
+          type: string
+        sdkVersion:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileDeviceSessionRequest:
+      type: object
+      required:
+        - app_version
+        - device_id
+        - device_name
+        - os_version
+        - platform
+        - registration_id
+      properties:
+        app_version:
+          type: string
+        device_id:
+          type: string
+        device_name:
+          type: string
+        os_version:
+          type: string
+        platform:
+          type: string
+        registration_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileLoginRequest:
+      type: object
+      required:
+        - source_id
+        - source_key
+        - source_name
+        - source_type
+      properties:
+        source_id:
+          type: string
+        source_key:
+          type: string
+        source_name:
+          type: string
+        source_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobilePreloadConfigRequest:
+      type: object
+      required:
+        - client_version
+        - platform
+        - rn_app
+        - rn_infos
+      properties:
+        client_version:
+          type: string
+        platform:
+          type: string
+        rn_app:
+          type: string
+        rn_infos:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.MobilePreloadResourceInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobilePreloadResourceInfo:
+      type: object
+      required:
+        - module_name
+        - resource_url
+        - rn_version
+        - sha1
+      properties:
+        module_name:
+          type: string
+        resource_url:
+          type: string
+        rn_version:
+          type: string
+        sha1:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileStartupImageTemplateRequest:
+      type: object
+      properties:
+        client_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileStartupRequest:
+      type: object
+      required:
+        - req_list
+      properties:
+        req_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.MobileStartupRequestItem"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileStartupRequestItem:
+      type: object
+      required:
+        - api_url
+        - req
+      properties:
+        api_url:
+          type: string
+        req:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.MobileStartupRequestPayload"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileStartupRequestPayload:
+      type: object
+      properties:
+        fetch_image_template_list_req:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.MobileStartupImageTemplateR\
+            equest"
+        get_all_game_role_keyword_req:
+          type: object
+          additionalProperties: {}
+        get_all_static_resource_versions_req:
+          type: object
+          additionalProperties: {}
+        get_app_config_request:
+          type: object
+          additionalProperties: {}
+        get_app_media_data_req:
+          type: object
+          additionalProperties: {}
+        get_link_card_whitelist_req:
+          type: object
+          additionalProperties: {}
+        get_teenager_info_req:
+          type: object
+          additionalProperties: {}
+        recent_emoticon_list_req:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileWindowPrepareRequest:
+      type: object
+      required:
+        - focus_game
+      properties:
+        focus_game:
+          type: array
+          items:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.MobileWindowShowRequest:
+      type: object
+      required:
+        - install_status
+        - ticket
+      properties:
+        install_status:
+          type: object
+          additionalProperties: {}
+        ticket:
+          type: string
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.MobileWindowPrepareRequest"
+    UIGF.Mihoyo.Api.Request.SdkTelemetryDeviceInfo:
+      type: object
+      properties:
+        addressMac:
+          type: string
+        bundleId:
+          type: string
+        cps:
+          type: string
+        device_fp:
+          type: string
+        device_sciX:
+          type: integer
+          format: int32
+        device_sciY:
+          type: integer
+          format: int32
+        deviceId:
+          type: string
+        deviceModel:
+          type: string
+        deviceName:
+          type: string
+        deviceSciX:
+          type: integer
+          format: int32
+        deviceSciY:
+          type: integer
+          format: int32
+        dpi:
+          type: integer
+          format: int32
+        gpuMemSize:
+          type: integer
+          format: int32
+        gpuName:
+          type: string
+        ip:
+          type: string
+        isp:
+          type: string
+        network_type:
+          type: string
+        networkType:
+          type: string
+        platform:
+          anyOf:
+            - type: string
+            - type: integer
+              format: int32
+        platformName:
+          type: string
+        processorCount:
+          type: integer
+          format: int32
+        processorFrequency:
+          type: number
+          format: double
+        processorType:
+          type: string
+        ramCapacity:
+          anyOf:
+            - type: integer
+              format: int64
+            - type: number
+              format: double
+        ramRemain:
+          anyOf:
+            - type: integer
+              format: int64
+            - type: number
+              format: double
+        registerCPS:
+          type: string
+        romCapacity:
+          anyOf:
+            - type: integer
+              format: int64
+            - type: number
+              format: double
+        romRemain:
+          type: number
+          format: double
+        soft_sciX:
+          type: integer
+          format: int32
+        soft_sciY:
+          type: integer
+          format: int32
+        systemInfo:
+          type: string
+        systemLang:
+          type: string
+        uapc:
+          type: string
+        wmac:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.SdkTelemetryInfo:
+      type: object
+      properties:
+        area:
+          type: string
+        lifecycleId:
+          type: string
+        telemetryVersion:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.SdkTelemetryLogInfo:
+      type: object
+      properties:
+        actionId:
+          type: integer
+          format: int32
+        actionName:
+          type: string
+        cBody:
+          type: string
+        logTime:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.SdkTelemetryUploadContent:
+      type: object
+      properties:
+        deviceInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryDeviceInfo"
+        eventTimeMs:
+          type: string
+        launchTraceId:
+          type: string
+        logInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryLogInfo"
+        telemetryInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryInfo"
+        userInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryUserInfo"
+        versionInfo:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryVersionInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.SdkTelemetryUploadEvent:
+      type: object
+      properties:
+        msgId:
+          type: string
+        uploadContent:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.SdkTelemetryUploadContent"
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Api.Request.TelemetryEvent"
+    UIGF.Mihoyo.Api.Request.SdkTelemetryUserInfo:
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountType:
+          type: string
+        channelId:
+          type: string
+        userId:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.SdkTelemetryVersionInfo:
+      type: object
+      properties:
+        clientVersion:
+          type: string
+        logVersion:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.TelemetryEvent:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+        applicationName:
+          type: string
+        eventId:
+          type: integer
+          format: int32
+        eventName:
+          type: string
+        eventTime:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Request.ZenlessFeedbackCollectionRequest:
+      type: object
+      required:
+        - region
+        - schedule_id
+        - score
+        - source
+        - tool_type
+        - uid
+      properties:
+        region:
+          type: string
+        schedule_id:
+          type: string
+        score:
+          type: integer
+          format: int32
+        source:
+          type: integer
+          format: int32
+        tool_type:
+          type: integer
+          format: int32
+        uid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.AuthKeyData:
+      type: object
+      properties:
+        authkey:
+          type: string
+        authkey_ver:
+          type: integer
+          format: int32
+        sign_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.CommunityAppConfigData:
+      type: object
+      properties:
+        config:
+          type: object
+          additionalProperties:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.CommunityHomeData:
+      type: object
+      properties:
+        album_card:
+          type: array
+          items: {}
+        background:
+          type: object
+          additionalProperties: {}
+        break_frame_card: {}
+        carousels: {}
+        discussion: {}
+        exposed_resource_tickets:
+          type: array
+          items: {}
+        game_receptions:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        hot_topics: {}
+        image_post_card:
+          type: array
+          items: {}
+        is_resource_unchanged:
+          type: boolean
+        light_interactive_card: {}
+        link_card:
+          type: array
+          items: {}
+        link_topic_card:
+          type: array
+          items: {}
+        lives:
+          type: array
+          items: {}
+        navigator:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        official:
+          type: object
+          additionalProperties: {}
+        perspective_card: {}
+        posts:
+          type: array
+          items: {}
+        recommend_villa: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.EmptyData:
+      type: object
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.LoginCaptchaData:
+      type: object
+      properties:
+        action_type:
+          type: string
+        countdown:
+          type: integer
+          format: int32
+        sent_new:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileAppSplashData:
+      type: object
+      properties:
+        has_splash:
+          type: boolean
+        splashes:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileBusinessesData:
+      type: object
+      properties:
+        businesses:
+          type: array
+          items:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileDiscussion:
+      type: object
+      properties:
+        created_at:
+          type: integer
+          format: int64
+        default_feed_forum_id:
+          type: integer
+          format: int64
+        default_feed_tab:
+          type: integer
+          format: int32
+        desc:
+          type: string
+        desc_type:
+          type: integer
+          format: int32
+        discussion_id:
+          type: integer
+          format: int64
+        forums:
+          type: array
+          items: {}
+        game_id:
+          type: integer
+          format: int32
+        hot_posts:
+          type: array
+          items: {}
+        icon:
+          type: string
+        subject:
+          type: string
+        talking_forum_id:
+          type: string
+        talking_prompt:
+          type: string
+        updated_at:
+          type: integer
+          format: int64
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileDiscussionData:
+      type: object
+      properties:
+        discussion:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.MobileDiscussion"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileEmoticonData:
+      type: object
+      properties:
+        list:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileEntityReviewData:
+      type: object
+      properties:
+        is_last:
+          type: boolean
+        list:
+          type: array
+          items: {}
+        next_offset:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileFeedPostsData:
+      type: object
+      properties:
+        databox:
+          type: object
+          additionalProperties:
+            type: string
+        is_original:
+          type: boolean
+        is_resource_unchanged:
+          type: boolean
+        last_id:
+          type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileGame:
+      type: object
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileGameCenterData:
+      type: object
+      properties:
+        auto_download_enable_map:
+          type: object
+          additionalProperties: {}
+        download_mode:
+          type: string
+        game_download_experiment:
+          type: object
+          additionalProperties: {}
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileGameListData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.MobileGame"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileMissionsStateData:
+      type: object
+      properties:
+        already_received_points:
+          type: integer
+          format: int32
+        can_get_points:
+          type: integer
+          format: int32
+        is_unclaimed:
+          type: boolean
+        states:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        today_total_points:
+          type: integer
+          format: int32
+        total_points:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileMyselfPageConfigData:
+      type: object
+      properties:
+        app_personal_entry:
+          type: object
+          additionalProperties: {}
+        app_personal_unread:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileNotificationSettingsData:
+      type: object
+      properties:
+        settings:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobilePreloadConfigData:
+      type: object
+      properties:
+        need_preload:
+          type: boolean
+        need_update:
+          type: boolean
+        rn_preload:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        rn_update_infos:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileReplyPermissionData:
+      type: object
+      properties:
+        instant:
+          type: array
+          items: {}
+        max_image_number:
+          type: integer
+          format: int32
+        post:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileStartupData:
+      type: object
+      properties:
+        resp_map:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileTeenagerInfoData:
+      type: object
+      properties:
+        available_duration:
+          type: integer
+          format: int32
+        disable_end_time:
+          type: integer
+          format: int64
+        disable_start_time:
+          type: integer
+          format: int64
+        is_enabled:
+          type: boolean
+        is_force:
+          type: boolean
+        is_real_name:
+          type: boolean
+        is_teenager:
+          type: boolean
+        loop_period:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileUnreadInfoData:
+      type: object
+      properties:
+        latest_update_user_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.MobileUnreadInfoUser"
+        unread_num:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileUnreadInfoUser:
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        uid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileUnreadMessageData:
+      type: object
+      properties:
+        chat_unread:
+          type: object
+          additionalProperties: {}
+        notification_unread:
+          type: object
+          additionalProperties: {}
+        sem_notification:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileUserInstantListData:
+      type: object
+      properties:
+        is_last:
+          type: boolean
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        next_offset:
+          type: integer
+          format: int32
+        top_post: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileUserSettingsData:
+      type: object
+      properties:
+        is_merge_unfollow:
+          type: boolean
+        is_receive_from_unfollow:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileVideoPermissionData:
+      type: object
+      properties:
+        can_publish:
+          type: boolean
+        toast:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileVillaSitePushData:
+      type: object
+      properties:
+        list:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileWindowPrepareData:
+      type: object
+      properties:
+        android_pkg:
+          type: array
+          items: {}
+        ios_app:
+          type: array
+          items: {}
+        ticket:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.MobileWindowShowData:
+      type: object
+      properties:
+        bubble_list:
+          type: array
+          items: {}
+        list:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.PassportSwitchStatusData:
+      type: object
+      properties:
+        enabled:
+          type: object
+          additionalProperties: {}
+        switch_status_map:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.PatchData:
+      type: object
+      properties:
+        dialog_content:
+          type: string
+        dialog_content_en:
+          type: string
+        dialog_num:
+          type: integer
+          format: int32
+        dialog_period:
+          type: integer
+          format: int32
+        dialog_period_type:
+          type: integer
+          format: int32
+        dialog_title:
+          type: string
+        file_name:
+          type: string
+        file_url:
+          type: string
+        im_page_ids:
+          type: array
+          items: {}
+        md5:
+          type: string
+        patch_action:
+          type: integer
+          format: int32
+        patch_id:
+          type: integer
+          format: int64
+        patch_strategy_id:
+          type: integer
+          format: int64
+        patch_version:
+          type: string
+        update_recommended_intensity:
+          type: string
+        update_type:
+          type: integer
+          format: int32
+        user_defined:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.RedDotBatchData:
+      type: object
+      properties:
+        game_status:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.RedDotGameStatus"
+        status:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.RedDotGameStatus:
+      type: object
+      properties:
+        bbs_cn:
+          type: boolean
+        hk4e_cn:
+          type: boolean
+        nap_cn:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.ReleaseData:
+      type: object
+      properties:
+        dialog:
+          type: string
+        dialog_content:
+          type: string
+        dialog_content_en:
+          type: string
+        dialog_num:
+          type: integer
+          format: int32
+        dialog_period:
+          type: integer
+          format: int32
+        dialog_period_type:
+          type: integer
+          format: int32
+        dialog_title:
+          type: string
+        dialog_title_en:
+          type: string
+        has_update:
+          type: boolean
+        hyp_game_ids:
+          type: array
+          items: {}
+        loop_way:
+          type: string
+        package_md5:
+          type: string
+        package_name:
+          type: string
+        package_size:
+          type: string
+        package_url:
+          type: string
+        package_version:
+          type: string
+        silent:
+          type: string
+        strategy_id:
+          type: integer
+          format: int64
+        update_recommended_intensity:
+          type: string
+        update_type:
+          type: integer
+          format: int32
+        user_defined:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.SdkFeCnConfigData:
+      type: object
+      properties:
+        vals:
+          type: object
+          additionalProperties:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.SdkPorteData:
+      type: object
+      properties:
+        vals:
+          type: object
+          additionalProperties:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StaticLatestVersionData:
+      type: object
+      properties:
+        version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StaticPreKeywordData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StaticResourceData:
+      type: object
+      properties:
+        divider:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StaticResourceVersionsData:
+      type: object
+      properties:
+        divider:
+          type: string
+        emoticon_set:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategyAnnouncement:
+      type: object
+      properties:
+        content:
+          type: string
+        version:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategyContentItem:
+      type: object
+      properties:
+        alias_name:
+          type: string
+        article_time:
+          type: string
+        article_user_name:
+          type: string
+        avatar_url:
+          type: string
+        bbs_url:
+          type: string
+        content_id:
+          type: integer
+          format: int64
+        corner_mark:
+          type: string
+        ext:
+          type: string
+        icon:
+          type: string
+        summary:
+          type: string
+        title:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategyHomeImage:
+      type: object
+      properties:
+        headImg:
+          type: string
+        logo:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategyHomeInfoData:
+      type: object
+      properties:
+        announce:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.StrategyAnnouncement"
+        pop_window: {}
+        search:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.StrategySearch"
+        speaker: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategyHomeNavbarData:
+      type: object
+      properties:
+        home_img:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.StrategyHomeImage"
+        navbar:
+          type: array
+          items: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategyLatestContentData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Api.Response.StrategyContentItem"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.StrategySearch:
+      type: object
+      properties:
+        hot_words:
+          type: array
+          items:
+            type: string
+        placeholder:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Api.Response.ZenlessFeedbackScheduleData:
+      type: object
+      properties:
+        is_need_collect:
+          type: boolean
+        schedule_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Commerce.BonusDescription:
+      type: object
+      properties:
+        bonus_desc:
+          type: string
+        bonus_unit:
+          type: integer
+          format: int32
+        bonus_goods_id:
+          type: string
+        bonus_icon:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Commerce.CreateOrderRequest:
+      type: object
+      required:
+        - order
+        - sign
+      properties:
+        open_id:
+          type: string
+        special_info:
+          type: string
+        order:
+          $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+        sign:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+      description: >-
+        Vendor-signed order creation payload. `sign` must come from an
+        authorized
+
+        official client or payment integration; this SDK intentionally does not
+
+        implement signing or retain payment secrets.
+    UIGF.Mihoyo.Commerce.CurrencyAndCountry:
+      type: object
+      properties:
+        country:
+          type: string
+        currency:
+          type: string
+        price_tier_version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Commerce.OrderStatus:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        amount:
+          type: string
+        goods_num:
+          type: string
+        goods_title:
+          type: string
+        order_no:
+          type: string
+        pay_plat:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Commerce.ShopGood:
+      type: object
+      required:
+        - goods_id
+        - goods_name
+      properties:
+        goods_id:
+          type: string
+        goods_name:
+          type: string
+        goods_type:
+          type: string
+        goods_unit:
+          type: string
+        goods_icon:
+          type: string
+        currency:
+          type: string
+        price:
+          type: string
+        symbol:
+          type: string
+        tier_id:
+          type: string
+        bonus_desc:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Commerce.BonusDescription"
+        once_bonus_desc:
+          type: object
+          allOf:
+            - $ref: "#/components/schemas/UIGF.Mihoyo.Commerce.BonusDescription"
+          nullable: true
+        available:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Commerce.ShopGoods:
+      type: object
+      required:
+        - goods_list
+      properties:
+        goods_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Commerce.ShopGood"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.Forum:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        game_id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        icon:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.ForumList:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Community.Forum"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.LunaCheckInRequest:
+      type: object
+      required:
+        - act_id
+      properties:
+        act_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.Post:
+      type: object
+      properties:
+        post_id:
+          type: string
+        subject:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        user:
+          $ref: "#/components/schemas/UIGF.Mihoyo.CommunityUser"
+        images:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.PostList:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Community.Post"
+        is_last:
+          type: boolean
+        last_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.VerificationCreateRequest:
+      type: object
+      required:
+        - action_type
+      properties:
+        action_type:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Community.VerificationSubmitRequest:
+      type: object
+      required:
+        - challenge
+        - validate
+      properties:
+        challenge:
+          type: string
+        validate:
+          type: string
+        seccode:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.CommunityUser:
+      type: object
+      required:
+        - uid
+      properties:
+        uid:
+          type: string
+        nickname:
+          type: string
+        introduce:
+          type: string
+        avatar_url:
+          type: string
+        gender:
+          type: integer
+          format: int32
+        level_exp:
+          $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+        community_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+      allOf:
+        - type: object
+          additionalProperties: {}
+      description: A user profile returned by community-account APIs.
+    UIGF.Mihoyo.GachaItem:
+      type: object
+      required:
+        - id
+      properties:
+        uid:
+          type: string
+        gacha_type:
+          type: string
+        item_id:
+          type: string
+        count:
+          type: string
+        time:
+          type: string
+        name:
+          type: string
+        item_type:
+          type: string
+        lang:
+          type: string
+        op_gacha_type:
+          type: string
+        rank_type:
+          type: string
+        id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.GachaLogPage:
+      type: object
+      required:
+        - list
+      properties:
+        page:
+          type: string
+        size:
+          type: string
+        total:
+          type: string
+        region:
+          type: string
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.GachaItem"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.CalculateRequest:
+      type: object
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Character:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        level:
+          type: integer
+          format: int32
+        image:
+          type: string
+        icon:
+          type: string
+        rarity:
+          type: integer
+          format: int32
+        element:
+          type: string
+        fetter:
+          type: integer
+          format: int32
+        actived_constellation_num:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.CharacterList:
+      type: object
+      required:
+        - list
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Character"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.DeviceFingerprint:
+      type: object
+      properties:
+        device_fp:
+          type: string
+        code:
+          type: integer
+          format: int32
+        msg:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.DeviceFingerprintRequest:
+      type: object
+      required:
+        - app_name
+        - device_fp
+        - seed_id
+        - device_id
+        - ext_fields
+        - platform
+        - seed_time
+      properties:
+        app_name:
+          type: string
+        device_fp:
+          type: string
+        seed_id:
+          type: string
+        device_id:
+          type: string
+        bbs_device_id:
+          type: string
+        ext_fields:
+          type: string
+        platform:
+          type: string
+        seed_time:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.PandaQrResponse:
+      type: object
+      properties:
+        ticket:
+          type: string
+        url:
+          type: string
+        stat:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementAlertData:
+      type: object
+      properties:
+        alert:
+          type: boolean
+        alert_id:
+          type: integer
+          format: int32
+        extra_remind:
+          type: boolean
+        remind:
+          type: boolean
+        remind_text:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+      description: Genshin announcement alert state shared by regular and UGC announcements.
+    UIGF.Mihoyo.Game.Response.AnnouncementCalendarType:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        mi18n_name:
+          type: string
+        remind:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementContentData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.AnnouncementContentItem"
+        pic_list:
+          type: array
+          items: {}
+        pic_total:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementContentItem:
+      type: object
+      properties:
+        ann_id:
+          type: integer
+          format: int32
+        banner:
+          type: string
+        content:
+          type: string
+        lang:
+          type: string
+        remind_text:
+          type: string
+        subtitle:
+          type: string
+        title:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementGroup:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.AnnouncementItem"
+        type_id:
+          type: integer
+          format: int32
+        type_label:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementItem:
+      type: object
+      properties:
+        alert:
+          type: integer
+          format: int32
+        ann_id:
+          type: integer
+          format: int32
+        banner:
+          type: string
+        content:
+          type: string
+        country:
+          type: string
+        end_time:
+          type: string
+        extra_remind:
+          type: integer
+          format: int32
+        has_content:
+          type: boolean
+        lang:
+          type: string
+        login_alert:
+          type: integer
+          format: int32
+        logout_remind:
+          type: integer
+          format: int32
+        logout_remind_ver:
+          type: integer
+          format: int32
+        need_remind_text:
+          type: integer
+          format: int32
+        remind:
+          type: integer
+          format: int32
+        remind_consumption_type:
+          type: integer
+          format: int32
+        remind_text:
+          type: string
+        remind_ver:
+          type: integer
+          format: int32
+        start_time:
+          type: string
+        subtitle:
+          type: string
+        tag_end_time:
+          type: string
+        tag_icon:
+          type: string
+        tag_icon_hover:
+          type: string
+        tag_label:
+          type: string
+        tag_start_time:
+          type: string
+        title:
+          type: string
+        type:
+          type: integer
+          format: int32
+        type_label:
+          type: string
+        weak_remind:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementListData:
+      type: object
+      properties:
+        alert:
+          type: boolean
+        alert_id:
+          type: integer
+          format: int32
+        banner:
+          type: string
+        calendar_type:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.AnnouncementCalendarType"
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.AnnouncementGroup"
+        pic_alert:
+          type: boolean
+        pic_alert_id:
+          type: integer
+          format: int32
+        pic_list:
+          type: array
+          items: {}
+        pic_total:
+          type: integer
+          format: int32
+        pic_type_list:
+          type: array
+          items: {}
+        static_sign:
+          type: string
+        t:
+          type: string
+        timezone:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        type_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.AnnouncementType"
+        use_webp:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementPictureData:
+      type: object
+      properties:
+        list:
+          type: array
+          items: {}
+        total:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.AnnouncementType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        mi18n_name:
+          type: string
+        name:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GateAddress:
+      type: object
+      properties:
+        ip:
+          type: string
+        port:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+      description: Gateway IP and port candidates returned by the CN dispatch service.
+    UIGF.Mihoyo.Game.Response.GateAddressData:
+      type: object
+      properties:
+        address_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.GateAddress"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgBasicInfoData:
+      type: object
+      properties:
+        action_card_num_gained:
+          type: integer
+          format: int32
+        action_card_num_total:
+          type: integer
+          format: int32
+        avatar_card_num_gained:
+          type: integer
+          format: int32
+        avatar_card_num_total:
+          type: integer
+          format: int32
+        challenge_basic:
+          type: object
+          additionalProperties: {}
+        covers:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        hornor_character: {}
+        is_hide_covers:
+          type: boolean
+        is_hide_replays:
+          type: boolean
+        level:
+          type: integer
+          format: int32
+        nickname:
+          type: string
+        replays:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgCardBackListData:
+      type: object
+      properties:
+        card_back_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgCardListData:
+      type: object
+      properties:
+        card_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        is_last:
+          type: boolean
+        next_offset:
+          type: integer
+          format: int32
+        stats:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgChallengeRecordData:
+      type: object
+      properties:
+        basic:
+          type: object
+          additionalProperties: {}
+        deck_list:
+          type: array
+          items: {}
+        honor_character:
+          type: array
+          items: {}
+        recommend_url:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgChallengeScheduleData:
+      type: object
+      properties:
+        schedule_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgCoversData:
+      type: object
+      properties:
+        covers:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgDeckListData:
+      type: object
+      properties:
+        deck_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        level:
+          type: integer
+          format: int32
+        nickname:
+          type: string
+        role_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GcgMatchListData:
+      type: object
+      properties:
+        favourite_matches:
+          type: array
+          items: {}
+        recent_matches:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinActivityCalendarData:
+      type: object
+      properties:
+        act_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        avatar_card_pool_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        fixed_act_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        mixed_card_pool_list:
+          type: array
+          items: {}
+        selected_act_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        selected_avatar_card_pool_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        selected_mixed_card_pool_list:
+          type: array
+          items: {}
+        weapon_card_pool_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinCharacterMasterData:
+      type: object
+      properties:
+        is_unlock:
+          type: boolean
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinDailyNoteData:
+      type: object
+      properties:
+        archon_quest_progress:
+          type: object
+          additionalProperties: {}
+        calendar_url:
+          type: string
+        current_expedition_num:
+          type: integer
+          format: int32
+        current_home_coin:
+          type: integer
+          format: int32
+        current_resin:
+          type: integer
+          format: int32
+        daily_task:
+          type: object
+          additionalProperties: {}
+        expeditions:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        finished_task_num:
+          type: integer
+          format: int32
+        home_coin_recovery_time:
+          type: string
+        is_extra_task_reward_received:
+          type: boolean
+        max_expedition_num:
+          type: integer
+          format: int32
+        max_home_coin:
+          type: integer
+          format: int32
+        max_resin:
+          type: integer
+          format: int32
+        remain_resin_discount_num:
+          type: integer
+          format: int32
+        resin_discount_num_limit:
+          type: integer
+          format: int32
+        resin_recovery_time:
+          type: string
+        total_task_num:
+          type: integer
+          format: int32
+        transformer:
+          type: object
+          additionalProperties: {}
+        week_active_progress:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinExternalContentData:
+      type: object
+      properties:
+        caculator_url:
+          type: string
+        lineup_url:
+          type: string
+        strategy_url:
+          type: string
+        wiki_url:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinGameRecordCardData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinRecordIndexData:
+      type: object
+      properties:
+        avatars:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        city_explorations:
+          type: array
+          items: {}
+        homes:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        query_tool_image:
+          type: string
+        query_tool_link:
+          type: string
+        role:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.GenshinRecordRole"
+        stats:
+          type: object
+          additionalProperties: {}
+        world_exploration_display:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        world_explorations:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinRecordRole:
+      type: object
+      properties:
+        AvatarUrl:
+          type: string
+        game_head_icon:
+          type: string
+        level:
+          type: integer
+          format: int32
+        nickname:
+          type: string
+        region:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinRoleBasicInfoData:
+      type: object
+      properties:
+        card_play_level:
+          type: integer
+          format: int32
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.GenshinRecordRole"
+    UIGF.Mihoyo.Game.Response.GenshinSpiralAbyssData:
+      type: object
+      properties:
+        damage_rank:
+          type: array
+          items: {}
+        defeat_rank:
+          type: array
+          items: {}
+        end_time:
+          type: string
+        energy_skill_rank:
+          type: array
+          items: {}
+        floors:
+          type: array
+          items: {}
+        is_just_skipped_floor:
+          type: boolean
+        is_unlock:
+          type: boolean
+        max_floor:
+          type: string
+        normal_skill_rank:
+          type: array
+          items: {}
+        reveal_rank:
+          type: array
+          items: {}
+        schedule_id:
+          type: integer
+          format: int64
+        skipped_floor:
+          type: string
+        start_time:
+          type: string
+        take_damage_rank:
+          type: array
+          items: {}
+        total_battle_times:
+          type: integer
+          format: int32
+        total_star:
+          type: integer
+          format: int32
+        total_win_times:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinStygianData:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        is_unlock:
+          type: boolean
+        links:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinStygianPopularityData:
+      type: object
+      properties:
+        avatar_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinTheaterData:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        is_unlock:
+          type: boolean
+        links:
+          type: object
+          additionalProperties: {}
+        tarot_card_state:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GenshinToolData:
+      type: object
+      properties:
+        tools:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GranterFatigueRemind:
+      type: object
+      properties:
+        durations:
+          type: array
+          items:
+            type: integer
+            format: int32
+        nickname:
+          type: string
+        reset_point:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.GranterLoginData:
+      type: object
+      properties:
+        account_type:
+          type: integer
+          format: int32
+        combo_id:
+          type: string
+        combo_token:
+          type: string
+        data:
+          type: string
+        fatigue_remind:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.GranterFatigueRemind"
+        heartbeat:
+          type: boolean
+        open_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkComboConfigData:
+      type: object
+      properties:
+        vals:
+          type: object
+          additionalProperties:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+      description: Genshin SDK bootstrap configuration payloads. Dynamic settings
+        remain maps.
+    UIGF.Mihoyo.Game.Response.SdkGranterConfigData:
+      type: object
+      properties:
+        announce_url:
+          type: string
+        app_name:
+          type: string
+        disable_ysdk_guard:
+          type: boolean
+        enable_announce_pic_popup:
+          type: boolean
+        enable_user_center:
+          type: boolean
+        functional_switch_configs:
+          type: object
+          additionalProperties: {}
+        log_level:
+          type: string
+        protocol:
+          type: boolean
+        push_alias_type:
+          type: integer
+          format: int32
+        qr_app_icons:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.SdkGranterQrAppIcons"
+        qr_cloud_display_name:
+          type: string
+        qr_enabled:
+          type: boolean
+        qr_enabled_apps:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.SdkGranterQrEnabledApps"
+        ugc_protocol:
+          type: boolean
+        widget_config: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkGranterQrAppIcons:
+      type: object
+      properties:
+        app:
+          type: string
+        bbs:
+          type: string
+        cloud:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkGranterQrEnabledApps:
+      type: object
+      properties:
+        bbs:
+          type: boolean
+        cloud:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkPrecacheConfigData:
+      type: object
+      properties:
+        vals:
+          type: object
+          additionalProperties:
+            type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkProtocolVersion:
+      type: object
+      properties:
+        app_id:
+          type: integer
+          format: int32
+        create_time:
+          type: string
+        full_priv_proto:
+          type: string
+        id:
+          type: integer
+          format: int32
+        language:
+          type: string
+        major:
+          type: integer
+          format: int32
+        minimum:
+          type: integer
+          format: int32
+        priv_proto:
+          type: string
+        teenager_proto:
+          type: string
+        third_proto:
+          type: string
+        user_proto:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkProtocolVersionComparisonData:
+      type: object
+      properties:
+        modified:
+          type: boolean
+        protocol:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.SdkProtocolVersion"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkRedDotData:
+      type: object
+      properties:
+        infos:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.Game.Response.SdkRedDotInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkRedDotInfo:
+      type: object
+      properties:
+        content_id:
+          type: integer
+          format: int32
+        display:
+          type: boolean
+        red_point_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.SdkShieldConfigData:
+      type: object
+      properties:
+        bbs_auth_login:
+          type: boolean
+        bbs_auth_login_ignore:
+          type: array
+          items: {}
+        client:
+          type: string
+        disable_mmt:
+          type: boolean
+        disable_regist:
+          type: boolean
+        enable_age_gate:
+          type: boolean
+        enable_age_gate_ignore:
+          type: array
+          items: {}
+        enable_br_age_gate:
+          type: boolean
+        enable_br_age_gate_ignore:
+          type: array
+          items: {}
+        enable_cx_bind_account:
+          type: boolean
+        enable_douyin_flash_login:
+          type: boolean
+        enable_email_captcha:
+          type: boolean
+        enable_eu_age_gate:
+          type: boolean
+        enable_eu_age_gate_ignore:
+          type: array
+          items: {}
+        enable_flash_login:
+          type: boolean
+        enable_logo_18:
+          type: boolean
+        enable_ps_bind_account:
+          type: boolean
+        fetch_instance_id:
+          type: boolean
+        firebase_blacklist_devices_switch:
+          type: boolean
+        firebase_blacklist_devices_version:
+          type: integer
+          format: int32
+        game_key:
+          type: string
+        guest:
+          type: boolean
+        hoyolab_auth_login:
+          type: boolean
+        hoyolab_auth_login_ignore:
+          type: array
+          items: {}
+        hoyoplay_auth_login:
+          type: boolean
+        id:
+          type: integer
+          format: int32
+        identity:
+          type: string
+        ignore_versions:
+          type: string
+        initialize_firebase:
+          type: boolean
+        logo_height:
+          type: string
+        logo_width:
+          type: string
+        name:
+          type: string
+        scene:
+          type: string
+        server_guest:
+          type: boolean
+        thirdparty:
+          type: array
+          items:
+            type: string
+        thirdparty_ignore:
+          type: object
+          additionalProperties: {}
+        thirdparty_login_configs:
+          type: object
+          additionalProperties: {}
+        vn_webview_realname_enabled:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessAbyssSeasonTwoSummaryData:
+      type: object
+      properties:
+        abyss_collect:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        abyss_duty:
+          type: object
+          additionalProperties: {}
+        abyss_level:
+          type: object
+          additionalProperties: {}
+        abyss_max:
+          type: object
+          additionalProperties: {}
+        abyss_task:
+          type: object
+          additionalProperties: {}
+        abyss_task_force_investigation_max:
+          type: object
+          additionalProperties: {}
+        hide_abyss_duty:
+          type: boolean
+        refresh_time:
+          type: integer
+          format: int64
+        special_mission:
+          type: object
+          additionalProperties: {}
+        unlock:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessAbyssSummaryData:
+      type: object
+      properties:
+        abyss_collect:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        abyss_duty: {}
+        abyss_level:
+          type: object
+          additionalProperties: {}
+        abyss_nest:
+          type: object
+          additionalProperties: {}
+        abyss_point:
+          type: object
+          additionalProperties: {}
+        abyss_talent:
+          type: object
+          additionalProperties: {}
+        abyss_throne:
+          type: object
+          additionalProperties: {}
+        refresh_time:
+          type: integer
+          format: int64
+        unlock:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessActivityCalendarData:
+      type: object
+      properties:
+        activity_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessClimbingTowerDetailData:
+      type: object
+      properties:
+        climbing_tower_s1: {}
+        climbing_tower_s2: {}
+        climbing_tower_s3: {}
+        climbing_tower_s4: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessDailyNoteData:
+      type: object
+      properties:
+        abyss_refresh:
+          type: integer
+          format: int64
+        bounty_commission:
+          type: object
+          additionalProperties: {}
+        cafe_state:
+          type: string
+        card_sign:
+          type: string
+        coffee: {}
+        energy:
+          type: object
+          additionalProperties: {}
+        is_other_sub:
+          type: boolean
+        is_sub:
+          type: boolean
+        member_card:
+          type: object
+          additionalProperties: {}
+        survey_points: {}
+        temple_running:
+          type: object
+          additionalProperties: {}
+        vhs_sale:
+          type: object
+          additionalProperties: {}
+        vitality:
+          type: object
+          additionalProperties: {}
+        weekly_task: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessDeadlyAssaultSummaryData:
+      type: object
+      properties:
+        avatar_icon:
+          type: string
+        end_time:
+          type: object
+          additionalProperties: {}
+        list:
+          type: array
+          items: {}
+        nick_name:
+          type: string
+        room_max_score:
+          type: integer
+          format: int32
+        start_time:
+          type: object
+          additionalProperties: {}
+        total_max_score:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessExplorationDetailData:
+      type: object
+      properties:
+        area_collections:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        cat_notes:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessGachaCalendarData:
+      type: object
+      properties:
+        avatar_gacha_schedule_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        weapon_gacha_schedule_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessIndexData:
+      type: object
+      properties:
+        area_collections:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        avatar_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        award_state:
+          type: string
+        buddy_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        cat_notes_list:
+          type: array
+          items: {}
+        challenge_schedule_list:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        cur_head_icon_url:
+          type: string
+        game_data_show:
+          type: object
+          additionalProperties: {}
+        stats:
+          type: object
+          additionalProperties: {}
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessLedgerMonthInfoData:
+      type: object
+      properties:
+        current_month:
+          type: string
+        data_month:
+          type: string
+        month_data:
+          type: object
+          additionalProperties: {}
+        optional_month:
+          type: array
+          items:
+            type: string
+        region:
+          type: string
+        role_info:
+          type: object
+          additionalProperties: {}
+        uid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessShiyuDefenseData:
+      type: object
+      properties:
+        hadal_info_v2:
+          type: object
+          additionalProperties: {}
+        hadal_ver:
+          type: string
+        icon:
+          type: string
+        nick_name:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Game.Response.ZenlessThresholdSimulationPeriodSummaryData:
+      type: object
+      properties:
+        has_detail_record:
+          type: boolean
+        void_front_battle_abstract_info_brief:
+          type: object
+          additionalProperties: {}
+        void_front_id:
+          type: integer
+          format: int64
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.JsonObject:
+      type: object
+      allOf:
+        - type: object
+          additionalProperties: {}
+      description: A JSON object whose vendor-defined properties are preserved by
+        generated clients.
+    UIGF.Mihoyo.Launcher.GameBasicInfo:
+      type: object
+      properties:
+        game_info_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Launcher.GamePackage:
+      type: object
+      properties:
+        game_id:
+          type: string
+        game_name:
+          type: string
+        main:
+          $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+        pre_download:
+          $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Launcher.GpuInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        vendor_id:
+          type: integer
+          format: int32
+        device_id:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.AuthTicketLoginData:
+      type: object
+      properties:
+        login_ticket:
+          type: string
+        need_realperson:
+          type: boolean
+        oauth_hw_open_id:
+          type: string
+        reactivate_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Passport.ReactivateInfo"
+        realname_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Passport.RealnameInfo"
+        token:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Passport.LoginToken"
+        user_info:
+          $ref: "#/components/schemas/UIGF.Mihoyo.Passport.LoginUserInfo"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.AuthTicketRequest:
+      type: object
+      required:
+        - game_biz
+      properties:
+        game_biz:
+          type: string
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Passport.DeviceContext"
+    UIGF.Mihoyo.Passport.DeviceContext:
+      type: object
+      required:
+        - device
+      properties:
+        device:
+          type: string
+        device_fp:
+          type: string
+        device_name:
+          type: string
+        device_model:
+          type: string
+        device_id:
+          type: string
+        app_id:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.LoginCaptchaRequest:
+      type: object
+      required:
+        - area_code
+        - mobile
+      properties:
+        area_code:
+          type: string
+        mobile:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.LoginToken:
+      type: object
+      properties:
+        token:
+          type: string
+        token_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.LoginUserInfo:
+      type: object
+      properties:
+        account_name:
+          type: string
+        aid:
+          type: string
+        area_code:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+        identity_code:
+          type: string
+        is_adult:
+          type: integer
+          format: int32
+        is_email_verify:
+          type: integer
+          format: int32
+        links:
+          type: array
+          items: {}
+        mid:
+          type: string
+        mobile:
+          type: string
+        password_time:
+          type: string
+        realname:
+          type: string
+        rebind_area_code:
+          type: string
+        rebind_mobile:
+          type: string
+        rebind_mobile_time:
+          type: string
+        safe_area_code:
+          type: string
+        safe_mobile:
+          type: string
+        unmasked_email:
+          type: string
+        unmasked_email_type:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.MobileCaptchaLoginRequest:
+      type: object
+      required:
+        - action_type
+        - area_code
+        - captcha
+        - mobile
+      properties:
+        action_type:
+          type: string
+        area_code:
+          type: string
+        captcha:
+          type: string
+        mobile:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.QrLoginCreateRequest:
+      type: object
+      required:
+        - app_id
+      properties:
+        app_id:
+          type: string
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Passport.DeviceContext"
+    UIGF.Mihoyo.Passport.QrLoginStatus:
+      type: object
+      properties:
+        stat:
+          type: string
+        status:
+          type: string
+        payload:
+          $ref: "#/components/schemas/UIGF.Mihoyo.JsonObject"
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.QrLoginStatusRequest:
+      type: object
+      required:
+        - ticket
+        - app_id
+      properties:
+        ticket:
+          type: string
+        app_id:
+          type: string
+      allOf:
+        - $ref: "#/components/schemas/UIGF.Mihoyo.Passport.DeviceContext"
+    UIGF.Mihoyo.Passport.QrLoginTicket:
+      type: object
+      required:
+        - ticket
+      properties:
+        ticket:
+          type: string
+        url:
+          type: string
+        expires_in:
+          type: integer
+          format: int32
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.ReactivateInfo:
+      type: object
+      properties:
+        delete_after_days:
+          type: string
+        deleting_biz_account:
+          type: boolean
+        reactivate_biz:
+          type: string
+        required:
+          type: boolean
+        ticket:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.RealnameInfo:
+      type: object
+      properties:
+        action_ticket:
+          type: string
+        action_type:
+          type: string
+        required:
+          type: boolean
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Passport.TokenInfo:
+      type: object
+      properties:
+        account_id:
+          type: integer
+          format: int64
+        uid:
+          type: string
+        token:
+          type: string
+        game_token:
+          type: string
+        stoken:
+          type: string
+        ltoken:
+          type: string
+        cookie_token:
+          type: string
+        mid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Uncategorized.ComboTokenUploadCredentials:
+      type: object
+      properties:
+        access_key_id:
+          type: string
+        access_key_secret:
+          type: string
+        bucket:
+          type: string
+        dir:
+          type: string
+        endpoint:
+          type: string
+        expire:
+          type: string
+        expire_str:
+          type: string
+        oss_callback_url:
+          type: string
+        region:
+          type: string
+        security_token:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Uncategorized.ExperimentAssignment:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        config_id:
+          type: string
+        configs:
+          type: object
+          additionalProperties: {}
+        experimentWhiteList:
+          type: boolean
+        period_id:
+          type: string
+        sceneWhiteList:
+          type: boolean
+        type:
+          type: integer
+          format: int32
+        version:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Uncategorized.UgcTokenInfo:
+      type: object
+      properties:
+        expire:
+          type: string
+        level:
+          type: string
+        nickname:
+          type: string
+        region:
+          type: string
+        ugc_token:
+          type: string
+        uid:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+    UIGF.Mihoyo.Utility.Device.DeviceExtensionList:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        ext_list:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        pkg_list:
+          type: array
+          items:
+            type: string
+        pkg_str:
+          type: string
+      allOf:
+        - type: object
+          additionalProperties: {}
+servers:
+  - url: https://act-api-takumi.mihoyo.com
+    description: CN Activity API
+    variables: {}
