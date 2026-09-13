@@ -9,7 +9,6 @@ import { ApiResponseMobileGameCenterData } from "../../models/uigf/mihoyo/models
 /** Interface representing a MobileReceptionApi operations. */
 export interface MobileReceptionApiOperations {
   getGameCenter: (
-    ds: string,
     cpu: string,
     device: string,
     options?: MobileReceptionApiGetGameCenterOptionalParams,
@@ -19,11 +18,10 @@ export interface MobileReceptionApiOperations {
 function _getMobileReceptionApi(context: MihoyoMiYouSheMobileContext) {
   return {
     getGameCenter: (
-      ds: string,
       cpu: string,
       device: string,
       options?: MobileReceptionApiGetGameCenterOptionalParams,
-    ) => getGameCenter(context, ds, cpu, device, options),
+    ) => getGameCenter(context, cpu, device, options),
   };
 }
 

@@ -13,7 +13,6 @@ import { ApiResponseJsonObject } from "../../models/uigf/mihoyo/models.js";
 export interface LedgerApiOperations {
   getMonthDetail: (
     cookie: string,
-    ds: string,
     month: number,
     page: number,
     typeParam: number,
@@ -23,7 +22,6 @@ export interface LedgerApiOperations {
   ) => Promise<ApiResponseJsonObject>;
   getMonthInfo: (
     cookie: string,
-    ds: string,
     bindUid: string,
     bindRegion: string,
     options?: LedgerApiGetMonthInfoOptionalParams,
@@ -34,21 +32,19 @@ function _getLedgerApi(context: MihoyoGameGenshinLedgerContext) {
   return {
     getMonthDetail: (
       cookie: string,
-      ds: string,
       month: number,
       page: number,
       typeParam: number,
       bindUid: string,
       bindRegion: string,
       options?: LedgerApiGetMonthDetailOptionalParams,
-    ) => getMonthDetail(context, cookie, ds, month, page, typeParam, bindUid, bindRegion, options),
+    ) => getMonthDetail(context, cookie, month, page, typeParam, bindUid, bindRegion, options),
     getMonthInfo: (
       cookie: string,
-      ds: string,
       bindUid: string,
       bindRegion: string,
       options?: LedgerApiGetMonthInfoOptionalParams,
-    ) => getMonthInfo(context, cookie, ds, bindUid, bindRegion, options),
+    ) => getMonthInfo(context, cookie, bindUid, bindRegion, options),
   };
 }
 

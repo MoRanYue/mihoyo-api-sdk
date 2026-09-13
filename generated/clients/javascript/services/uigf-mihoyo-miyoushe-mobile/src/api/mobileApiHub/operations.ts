@@ -54,7 +54,6 @@ import {
 
 export function _showWindowSend(
   context: Client,
-  ds: string,
   body: MobileWindowShowRequest,
   options: MobileApiHubShowWindowOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -65,7 +64,7 @@ export function _showWindowSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -86,17 +85,15 @@ export async function _showWindowDeserialize(
 
 export async function showWindow(
   context: Client,
-  ds: string,
   body: MobileWindowShowRequest,
   options: MobileApiHubShowWindowOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileWindowShowData> {
-  const result = await _showWindowSend(context, ds, body, options);
+  const result = await _showWindowSend(context, body, options);
   return _showWindowDeserialize(result);
 }
 
 export function _prepareWindowSend(
   context: Client,
-  ds: string,
   body: MobileWindowPrepareRequest,
   options: MobileApiHubPrepareWindowOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -107,7 +104,7 @@ export function _prepareWindowSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -128,17 +125,15 @@ export async function _prepareWindowDeserialize(
 
 export async function prepareWindow(
   context: Client,
-  ds: string,
   body: MobileWindowPrepareRequest,
   options: MobileApiHubPrepareWindowOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileWindowPrepareData> {
-  const result = await _prepareWindowSend(context, ds, body, options);
+  const result = await _prepareWindowSend(context, body, options);
   return _prepareWindowDeserialize(result);
 }
 
 export function _getAppStartupDataSend(
   context: Client,
-  ds: string,
   body: MobileStartupRequest,
   options: MobileApiHubGetAppStartupDataOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -149,7 +144,7 @@ export function _getAppStartupDataSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -170,17 +165,15 @@ export async function _getAppStartupDataDeserialize(
 
 export async function getAppStartupData(
   context: Client,
-  ds: string,
   body: MobileStartupRequest,
   options: MobileApiHubGetAppStartupDataOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileStartupData> {
-  const result = await _getAppStartupDataSend(context, ds, body, options);
+  const result = await _getAppStartupDataSend(context, body, options);
   return _getAppStartupDataDeserialize(result);
 }
 
 export function _deviceLogoutSend(
   context: Client,
-  ds: string,
   body: MobileDeviceSessionRequest,
   options: MobileApiHubDeviceLogoutOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -191,7 +184,7 @@ export function _deviceLogoutSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -212,17 +205,15 @@ export async function _deviceLogoutDeserialize(
 
 export async function deviceLogout(
   context: Client,
-  ds: string,
   body: MobileDeviceSessionRequest,
   options: MobileApiHubDeviceLogoutOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseEmptyData> {
-  const result = await _deviceLogoutSend(context, ds, body, options);
+  const result = await _deviceLogoutSend(context, body, options);
   return _deviceLogoutDeserialize(result);
 }
 
 export function _deviceLoginSend(
   context: Client,
-  ds: string,
   body: MobileDeviceSessionRequest,
   options: MobileApiHubDeviceLoginOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -233,7 +224,7 @@ export function _deviceLoginSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -254,17 +245,15 @@ export async function _deviceLoginDeserialize(
 
 export async function deviceLogin(
   context: Client,
-  ds: string,
   body: MobileDeviceSessionRequest,
   options: MobileApiHubDeviceLoginOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseEmptyData> {
-  const result = await _deviceLoginSend(context, ds, body, options);
+  const result = await _deviceLoginSend(context, body, options);
   return _deviceLoginDeserialize(result);
 }
 
 export function _getUserMissionsStateSend(
   context: Client,
-  ds: string,
   options: MobileApiHubGetUserMissionsStateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -273,7 +262,7 @@ export function _getUserMissionsStateSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -293,16 +282,14 @@ export async function _getUserMissionsStateDeserialize(
 
 export async function getUserMissionsState(
   context: Client,
-  ds: string,
   options: MobileApiHubGetUserMissionsStateOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileMissionsStateData> {
-  const result = await _getUserMissionsStateSend(context, ds, options);
+  const result = await _getUserMissionsStateSend(context, options);
   return _getUserMissionsStateDeserialize(result);
 }
 
 export function _getUnreadMessageCountSend(
   context: Client,
-  ds: string,
   firstViewTs: number,
   uid: number,
   options: MobileApiHubGetUnreadMessageCountOptionalParams = { requestOptions: {} },
@@ -323,7 +310,7 @@ export function _getUnreadMessageCountSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -343,18 +330,16 @@ export async function _getUnreadMessageCountDeserialize(
 
 export async function getUnreadMessageCount(
   context: Client,
-  ds: string,
   firstViewTs: number,
   uid: number,
   options: MobileApiHubGetUnreadMessageCountOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileUnreadMessageData> {
-  const result = await _getUnreadMessageCountSend(context, ds, firstViewTs, uid, options);
+  const result = await _getUnreadMessageCountSend(context, firstViewTs, uid, options);
   return _getUnreadMessageCountDeserialize(result);
 }
 
 export function _getMyselfPageConfigSend(
   context: Client,
-  ds: string,
   options: MobileApiHubGetMyselfPageConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -363,7 +348,7 @@ export function _getMyselfPageConfigSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -383,16 +368,14 @@ export async function _getMyselfPageConfigDeserialize(
 
 export async function getMyselfPageConfig(
   context: Client,
-  ds: string,
   options: MobileApiHubGetMyselfPageConfigOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileMyselfPageConfigData> {
-  const result = await _getMyselfPageConfigSend(context, ds, options);
+  const result = await _getMyselfPageConfigSend(context, options);
   return _getMyselfPageConfigDeserialize(result);
 }
 
 export function _getGameListSend(
   context: Client,
-  ds: string,
   options: MobileApiHubGetGameListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -401,7 +384,7 @@ export function _getGameListSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -421,16 +404,14 @@ export async function _getGameListDeserialize(
 
 export async function getGameList(
   context: Client,
-  ds: string,
   options: MobileApiHubGetGameListOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileGameListData> {
-  const result = await _getGameListSend(context, ds, options);
+  const result = await _getGameListSend(context, options);
   return _getGameListDeserialize(result);
 }
 
 export function _getAppSplashSend(
   context: Client,
-  ds: string,
   options: MobileApiHubGetAppSplashOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -439,7 +420,7 @@ export function _getAppSplashSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -459,9 +440,8 @@ export async function _getAppSplashDeserialize(
 
 export async function getAppSplash(
   context: Client,
-  ds: string,
   options: MobileApiHubGetAppSplashOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileAppSplashData> {
-  const result = await _getAppSplashSend(context, ds, options);
+  const result = await _getAppSplashSend(context, options);
   return _getAppSplashDeserialize(result);
 }

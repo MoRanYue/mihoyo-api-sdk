@@ -9,17 +9,14 @@ import { ApiResponseMobileVideoPermissionData } from "../../models/uigf/mihoyo/m
 /** Interface representing a MobilePostApi operations. */
 export interface MobilePostApiOperations {
   getPublishVideoPermission: (
-    ds: string,
     options?: MobilePostApiGetPublishVideoPermissionOptionalParams,
   ) => Promise<ApiResponseMobileVideoPermissionData>;
 }
 
 function _getMobilePostApi(context: MihoyoMiYouSheMobileContext) {
   return {
-    getPublishVideoPermission: (
-      ds: string,
-      options?: MobilePostApiGetPublishVideoPermissionOptionalParams,
-    ) => getPublishVideoPermission(context, ds, options),
+    getPublishVideoPermission: (options?: MobilePostApiGetPublishVideoPermissionOptionalParams) =>
+      getPublishVideoPermission(context, options),
   };
 }
 

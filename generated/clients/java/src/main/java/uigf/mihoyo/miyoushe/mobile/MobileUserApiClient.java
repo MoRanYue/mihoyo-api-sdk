@@ -42,9 +42,9 @@ public final class MobileUserApiClient {
     /**
      * The getUserBusinesses operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -53,19 +53,19 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileBusinessesData> getUserBusinessesWithResponse(String ds, long uid, String cookie,
+    public Response<ApiResponseMobileBusinessesData> getUserBusinessesWithResponse(long uid, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getUserBusinesses", requestContext,
-            updatedContext -> this.serviceClient.getUserBusinessesWithResponse(ds, uid, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getUserBusinessesWithResponse(uid, cookie, ds, updatedContext));
     }
 
     /**
      * The getUserBusinesses operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -73,14 +73,13 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileBusinessesData getUserBusinesses(String ds, long uid, String cookie) {
-        return getUserBusinessesWithResponse(ds, uid, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileBusinessesData getUserBusinesses(long uid, String cookie, String ds) {
+        return getUserBusinessesWithResponse(uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUserBusinesses operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -89,17 +88,18 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileBusinessesData getUserBusinesses(String ds, long uid) {
+    public ApiResponseMobileBusinessesData getUserBusinesses(long uid) {
         final String cookie = null;
-        return getUserBusinessesWithResponse(ds, uid, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getUserBusinessesWithResponse(uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUserFullInfo operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -108,19 +108,19 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseCommunityUser> getUserFullInfoWithResponse(String ds, long uid, String cookie,
+    public Response<ApiResponseCommunityUser> getUserFullInfoWithResponse(long uid, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getUserFullInfo",
             requestContext,
-            updatedContext -> this.serviceClient.getUserFullInfoWithResponse(ds, uid, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getUserFullInfoWithResponse(uid, cookie, ds, updatedContext));
     }
 
     /**
      * The getUserFullInfo operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -128,14 +128,13 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseCommunityUser getUserFullInfo(String ds, long uid, String cookie) {
-        return getUserFullInfoWithResponse(ds, uid, cookie, RequestContext.none()).getValue();
+    public ApiResponseCommunityUser getUserFullInfo(long uid, String cookie, String ds) {
+        return getUserFullInfoWithResponse(uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUserFullInfo operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -144,17 +143,18 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseCommunityUser getUserFullInfo(String ds, long uid) {
+    public ApiResponseCommunityUser getUserFullInfo(long uid) {
         final String cookie = null;
-        return getUserFullInfoWithResponse(ds, uid, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getUserFullInfoWithResponse(uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getNotificationSettings operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -163,19 +163,19 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileNotificationSettingsData> getNotificationSettingsWithResponse(String ds, long uid,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileNotificationSettingsData> getNotificationSettingsWithResponse(long uid,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getNotificationSettings", requestContext,
-            updatedContext -> this.serviceClient.getNotificationSettingsWithResponse(ds, uid, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getNotificationSettingsWithResponse(uid, cookie, ds, updatedContext));
     }
 
     /**
      * The getNotificationSettings operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -183,14 +183,13 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileNotificationSettingsData getNotificationSettings(String ds, long uid, String cookie) {
-        return getNotificationSettingsWithResponse(ds, uid, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileNotificationSettingsData getNotificationSettings(long uid, String cookie, String ds) {
+        return getNotificationSettingsWithResponse(uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getNotificationSettings operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -199,16 +198,17 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileNotificationSettingsData getNotificationSettings(String ds, long uid) {
+    public ApiResponseMobileNotificationSettingsData getNotificationSettings(long uid) {
         final String cookie = null;
-        return getNotificationSettingsWithResponse(ds, uid, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getNotificationSettingsWithResponse(uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getReplyPermission operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -217,32 +217,17 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileReplyPermissionData> getReplyPermissionWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileReplyPermissionData> getReplyPermissionWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getReplyPermission", requestContext,
-            updatedContext -> this.serviceClient.getReplyPermissionWithResponse(ds, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getReplyPermissionWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getReplyPermission operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileReplyPermissionData getReplyPermission(String ds, String cookie) {
-        return getReplyPermissionWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getReplyPermission operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -251,17 +236,31 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileReplyPermissionData getReplyPermission(String ds) {
+    public ApiResponseMobileReplyPermissionData getReplyPermission(String cookie, String ds) {
+        return getReplyPermissionWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getReplyPermission operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileReplyPermissionData getReplyPermission() {
         final String cookie = null;
-        return getReplyPermissionWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getReplyPermissionWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The login operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -270,18 +269,18 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseEmptyData> loginWithResponse(String ds, MobileLoginRequest body, String cookie,
+    public Response<ApiResponseEmptyData> loginWithResponse(MobileLoginRequest body, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.login",
-            requestContext, updatedContext -> this.serviceClient.loginWithResponse(ds, body, cookie, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.loginWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The login operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -289,14 +288,13 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseEmptyData login(String ds, MobileLoginRequest body, String cookie) {
-        return loginWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseEmptyData login(MobileLoginRequest body, String cookie, String ds) {
+        return loginWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The login operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -305,8 +303,9 @@ public final class MobileUserApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseEmptyData login(String ds, MobileLoginRequest body) {
+    public ApiResponseEmptyData login(MobileLoginRequest body) {
         final String cookie = null;
-        return loginWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return loginWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 }

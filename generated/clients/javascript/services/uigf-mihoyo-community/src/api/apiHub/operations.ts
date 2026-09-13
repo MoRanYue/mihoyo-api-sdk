@@ -42,7 +42,6 @@ import {
 export function _setPostVoteSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: LikePostRequest,
   options: ApiHubSetPostVoteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -53,7 +52,7 @@ export function _setPostVoteSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -75,18 +74,16 @@ export async function _setPostVoteDeserialize(
 export async function setPostVote(
   context: Client,
   cookie: string,
-  ds: string,
   body: LikePostRequest,
   options: ApiHubSetPostVoteOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _setPostVoteSend(context, cookie, ds, body, options);
+  const result = await _setPostVoteSend(context, cookie, body, options);
   return _setPostVoteDeserialize(result);
 }
 
 export function _signInSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: SignInRequest,
   options: ApiHubSignInOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -97,7 +94,7 @@ export function _signInSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         ...(options?.challenge !== undefined ? { "x-rpc-challenge": options?.challenge } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -120,11 +117,10 @@ export async function _signInDeserialize(
 export async function signIn(
   context: Client,
   cookie: string,
-  ds: string,
   body: SignInRequest,
   options: ApiHubSignInOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _signInSend(context, cookie, ds, body, options);
+  const result = await _signInSend(context, cookie, body, options);
   return _signInDeserialize(result);
 }
 
@@ -269,7 +265,6 @@ export async function getVotes(
 export function _getMissionStateSend(
   context: Client,
   cookie: string,
-  ds: string,
   pointSn: string,
   options: ApiHubGetMissionStateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -288,7 +283,7 @@ export function _getMissionStateSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -309,18 +304,16 @@ export async function _getMissionStateDeserialize(
 export async function getMissionState(
   context: Client,
   cookie: string,
-  ds: string,
   pointSn: string,
   options: ApiHubGetMissionStateOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getMissionStateSend(context, cookie, ds, pointSn, options);
+  const result = await _getMissionStateSend(context, cookie, pointSn, options);
   return _getMissionStateDeserialize(result);
 }
 
 export function _getShareConfigSend(
   context: Client,
   cookie: string,
-  ds: string,
   entityId: string,
   entityType: number,
   options: ApiHubGetShareConfigOptionalParams = { requestOptions: {} },
@@ -341,7 +334,7 @@ export function _getShareConfigSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -362,19 +355,17 @@ export async function _getShareConfigDeserialize(
 export async function getShareConfig(
   context: Client,
   cookie: string,
-  ds: string,
   entityId: string,
   entityType: number,
   options: ApiHubGetShareConfigOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getShareConfigSend(context, cookie, ds, entityId, entityType, options);
+  const result = await _getShareConfigSend(context, cookie, entityId, entityType, options);
   return _getShareConfigDeserialize(result);
 }
 
 export function _getMissionsSend(
   context: Client,
   cookie: string,
-  ds: string,
   pointSn: string,
   options: ApiHubGetMissionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -393,7 +384,7 @@ export function _getMissionsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -414,11 +405,10 @@ export async function _getMissionsDeserialize(
 export async function getMissions(
   context: Client,
   cookie: string,
-  ds: string,
   pointSn: string,
   options: ApiHubGetMissionsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getMissionsSend(context, cookie, ds, pointSn, options);
+  const result = await _getMissionsSend(context, cookie, pointSn, options);
   return _getMissionsDeserialize(result);
 }
 

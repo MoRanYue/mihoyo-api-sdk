@@ -41,7 +41,6 @@ import {
 export function _getMatchListSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetMatchListOptionalParams = { requestOptions: {} },
@@ -62,7 +61,7 @@ export function _getMatchListSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -83,19 +82,17 @@ export async function _getMatchListDeserialize(
 export async function getMatchList(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetMatchListOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGcgMatchListData> {
-  const result = await _getMatchListSend(context, cookie, ds, roleId, server, options);
+  const result = await _getMatchListSend(context, cookie, roleId, server, options);
   return _getMatchListDeserialize(result);
 }
 
 export function _getCoversSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetCoversOptionalParams = { requestOptions: {} },
@@ -116,7 +113,7 @@ export function _getCoversSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -137,19 +134,17 @@ export async function _getCoversDeserialize(
 export async function getCovers(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetCoversOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGcgCoversData> {
-  const result = await _getCoversSend(context, cookie, ds, roleId, server, options);
+  const result = await _getCoversSend(context, cookie, roleId, server, options);
   return _getCoversDeserialize(result);
 }
 
 export function _getDeckListSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetDeckListOptionalParams = { requestOptions: {} },
@@ -170,7 +165,7 @@ export function _getDeckListSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -191,19 +186,17 @@ export async function _getDeckListDeserialize(
 export async function getDeckList(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetDeckListOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGcgDeckListData> {
-  const result = await _getDeckListSend(context, cookie, ds, roleId, server, options);
+  const result = await _getDeckListSend(context, cookie, roleId, server, options);
   return _getDeckListDeserialize(result);
 }
 
 export function _getChallengeScheduleSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetChallengeScheduleOptionalParams = { requestOptions: {} },
@@ -224,7 +217,7 @@ export function _getChallengeScheduleSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -245,19 +238,17 @@ export async function _getChallengeScheduleDeserialize(
 export async function getChallengeSchedule(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetChallengeScheduleOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGcgChallengeScheduleData> {
-  const result = await _getChallengeScheduleSend(context, cookie, ds, roleId, server, options);
+  const result = await _getChallengeScheduleSend(context, cookie, roleId, server, options);
   return _getChallengeScheduleDeserialize(result);
 }
 
 export function _getChallengeRecordSend(
   context: Client,
   cookie: string,
-  ds: string,
   scheduleId: number,
   roleId: string,
   server: string,
@@ -280,7 +271,7 @@ export function _getChallengeRecordSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -301,7 +292,6 @@ export async function _getChallengeRecordDeserialize(
 export async function getChallengeRecord(
   context: Client,
   cookie: string,
-  ds: string,
   scheduleId: number,
   roleId: string,
   server: string,
@@ -310,7 +300,6 @@ export async function getChallengeRecord(
   const result = await _getChallengeRecordSend(
     context,
     cookie,
-    ds,
     scheduleId,
     roleId,
     server,
@@ -322,7 +311,6 @@ export async function getChallengeRecord(
 export function _getCardListSend(
   context: Client,
   cookie: string,
-  ds: string,
   limit: number,
   needAction: boolean,
   needAvatar: boolean,
@@ -353,7 +341,7 @@ export function _getCardListSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -374,7 +362,6 @@ export async function _getCardListDeserialize(
 export async function getCardList(
   context: Client,
   cookie: string,
-  ds: string,
   limit: number,
   needAction: boolean,
   needAvatar: boolean,
@@ -387,7 +374,6 @@ export async function getCardList(
   const result = await _getCardListSend(
     context,
     cookie,
-    ds,
     limit,
     needAction,
     needAvatar,
@@ -403,7 +389,6 @@ export async function getCardList(
 export function _getCardBackListSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetCardBackListOptionalParams = { requestOptions: {} },
@@ -424,7 +409,7 @@ export function _getCardBackListSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -445,19 +430,17 @@ export async function _getCardBackListDeserialize(
 export async function getCardBackList(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetCardBackListOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGcgCardBackListData> {
-  const result = await _getCardBackListSend(context, cookie, ds, roleId, server, options);
+  const result = await _getCardBackListSend(context, cookie, roleId, server, options);
   return _getCardBackListDeserialize(result);
 }
 
 export function _getBasicInfoSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetBasicInfoOptionalParams = { requestOptions: {} },
@@ -478,7 +461,7 @@ export function _getBasicInfoSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -499,11 +482,10 @@ export async function _getBasicInfoDeserialize(
 export async function getBasicInfo(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GcgApiGetBasicInfoOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGcgBasicInfoData> {
-  const result = await _getBasicInfoSend(context, cookie, ds, roleId, server, options);
+  const result = await _getBasicInfoSend(context, cookie, roleId, server, options);
   return _getBasicInfoDeserialize(result);
 }

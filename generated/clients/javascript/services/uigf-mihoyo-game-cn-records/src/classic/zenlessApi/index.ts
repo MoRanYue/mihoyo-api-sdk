@@ -45,7 +45,6 @@ export interface ZenlessApiOperations {
   ) => Promise<ApiResponseJsonObject>;
   getDeadlyAssault: (
     cookie: string,
-    ds: string,
     scheduleType: number,
     region: string,
     uid: string,
@@ -53,7 +52,6 @@ export interface ZenlessApiOperations {
   ) => Promise<ApiResponseJsonObject>;
   getShiyuDefense: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: ZenlessApiGetShiyuDefenseOptionalParams,
@@ -96,19 +94,17 @@ function _getZenlessApi(context: MihoyoGameCNRecordsContext) {
     ) => getThresholdSimulationSummary(context, cookie, region, uid, options),
     getDeadlyAssault: (
       cookie: string,
-      ds: string,
       scheduleType: number,
       region: string,
       uid: string,
       options?: ZenlessApiGetDeadlyAssaultOptionalParams,
-    ) => getDeadlyAssault(context, cookie, ds, scheduleType, region, uid, options),
+    ) => getDeadlyAssault(context, cookie, scheduleType, region, uid, options),
     getShiyuDefense: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: ZenlessApiGetShiyuDefenseOptionalParams,
-    ) => getShiyuDefense(context, cookie, ds, server, roleId, options),
+    ) => getShiyuDefense(context, cookie, server, roleId, options),
     getGachaRecord: (
       cookie: string,
       uid: string,

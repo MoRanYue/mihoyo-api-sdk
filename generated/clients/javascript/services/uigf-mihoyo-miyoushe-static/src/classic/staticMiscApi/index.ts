@@ -9,17 +9,14 @@ import { ApiResponseStaticResourceVersionsData } from "../../models/uigf/mihoyo/
 /** Interface representing a StaticMiscApi operations. */
 export interface StaticMiscApiOperations {
   getAllResourceVersions: (
-    ds: string,
     options?: StaticMiscApiGetAllResourceVersionsOptionalParams,
   ) => Promise<ApiResponseStaticResourceVersionsData>;
 }
 
 function _getStaticMiscApi(context: MihoyoMiYouSheStaticContext) {
   return {
-    getAllResourceVersions: (
-      ds: string,
-      options?: StaticMiscApiGetAllResourceVersionsOptionalParams,
-    ) => getAllResourceVersions(context, ds, options),
+    getAllResourceVersions: (options?: StaticMiscApiGetAllResourceVersionsOptionalParams) =>
+      getAllResourceVersions(context, options),
   };
 }
 

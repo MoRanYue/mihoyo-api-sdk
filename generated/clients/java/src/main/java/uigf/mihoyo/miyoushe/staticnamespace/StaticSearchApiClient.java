@@ -37,9 +37,9 @@ public final class StaticSearchApiClient {
     /**
      * The getPreKeyword operation.
      * 
-     * @param ds The ds parameter.
      * @param gameId The gameId parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -48,19 +48,19 @@ public final class StaticSearchApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseStaticPreKeywordData> getPreKeywordWithResponse(String ds, int gameId, String cookie,
+    public Response<ApiResponseStaticPreKeywordData> getPreKeywordWithResponse(int gameId, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Static.StaticSearchApi.getPreKeyword",
             requestContext,
-            updatedContext -> this.serviceClient.getPreKeywordWithResponse(ds, gameId, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getPreKeywordWithResponse(gameId, cookie, ds, updatedContext));
     }
 
     /**
      * The getPreKeyword operation.
      * 
-     * @param ds The ds parameter.
      * @param gameId The gameId parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -68,14 +68,13 @@ public final class StaticSearchApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseStaticPreKeywordData getPreKeyword(String ds, int gameId, String cookie) {
-        return getPreKeywordWithResponse(ds, gameId, cookie, RequestContext.none()).getValue();
+    public ApiResponseStaticPreKeywordData getPreKeyword(int gameId, String cookie, String ds) {
+        return getPreKeywordWithResponse(gameId, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getPreKeyword operation.
      * 
-     * @param ds The ds parameter.
      * @param gameId The gameId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -84,8 +83,9 @@ public final class StaticSearchApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseStaticPreKeywordData getPreKeyword(String ds, int gameId) {
+    public ApiResponseStaticPreKeywordData getPreKeyword(int gameId) {
         final String cookie = null;
-        return getPreKeywordWithResponse(ds, gameId, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getPreKeywordWithResponse(gameId, cookie, ds, RequestContext.none()).getValue();
     }
 }

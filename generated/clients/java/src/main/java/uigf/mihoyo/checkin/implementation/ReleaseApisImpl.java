@@ -78,8 +78,8 @@ public final class ReleaseApisImpl {
     /**
      * The getLatestRelease operation.
      * 
-     * @param ds The ds parameter.
      * @param deviceCpuBitType The deviceCpuBitType parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -87,7 +87,7 @@ public final class ReleaseApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseReleaseData> getLatestReleaseWithResponse(String ds, int deviceCpuBitType,
+    public Response<ApiResponseReleaseData> getLatestReleaseWithResponse(int deviceCpuBitType, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.CN.MiYouSheAccount.ReleaseApi.getLatestRelease", requestContext, updatedContext -> {

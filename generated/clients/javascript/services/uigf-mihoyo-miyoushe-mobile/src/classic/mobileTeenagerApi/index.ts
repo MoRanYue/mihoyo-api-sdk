@@ -9,15 +9,13 @@ import { ApiResponseMobileTeenagerInfoData } from "../../models/uigf/mihoyo/mode
 /** Interface representing a MobileTeenagerApi operations. */
 export interface MobileTeenagerApiOperations {
   getInfo: (
-    ds: string,
     options?: MobileTeenagerApiGetInfoOptionalParams,
   ) => Promise<ApiResponseMobileTeenagerInfoData>;
 }
 
 function _getMobileTeenagerApi(context: MihoyoMiYouSheMobileContext) {
   return {
-    getInfo: (ds: string, options?: MobileTeenagerApiGetInfoOptionalParams) =>
-      getInfo(context, ds, options),
+    getInfo: (options?: MobileTeenagerApiGetInfoOptionalParams) => getInfo(context, options),
   };
 }
 

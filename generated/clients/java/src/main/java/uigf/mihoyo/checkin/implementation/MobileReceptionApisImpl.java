@@ -78,10 +78,10 @@ public final class MobileReceptionApisImpl {
     /**
      * The getGameCenter operation.
      * 
-     * @param ds The ds parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -89,8 +89,8 @@ public final class MobileReceptionApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileGameCenterData> getGameCenterWithResponse(String ds, String cpu, String device,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileGameCenterData> getGameCenterWithResponse(String cpu, String device, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileReceptionApi.getGameCenter", requestContext, updatedContext -> {
                 final String accept = "application/json";

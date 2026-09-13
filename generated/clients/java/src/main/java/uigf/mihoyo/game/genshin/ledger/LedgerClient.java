@@ -38,9 +38,9 @@ public final class LedgerClient {
      * The getMonthInfo operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
+     * @param ds The ds parameter.
      * @param month The month parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -50,20 +50,20 @@ public final class LedgerClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getMonthInfoWithResponse(String cookie, String ds, String bindUid,
-        String bindRegion, Integer month, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getMonthInfoWithResponse(String cookie, String bindUid, String bindRegion,
+        String ds, Integer month, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Ledger.LedgerApi.getMonthInfo",
-            requestContext, updatedContext -> this.serviceClient.getMonthInfoWithResponse(cookie, ds, bindUid,
-                bindRegion, month, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getMonthInfoWithResponse(cookie, bindUid, bindRegion,
+                ds, month, updatedContext));
     }
 
     /**
      * The getMonthInfo operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
+     * @param ds The ds parameter.
      * @param month The month parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -72,16 +72,15 @@ public final class LedgerClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getMonthInfo(String cookie, String ds, String bindUid, String bindRegion,
+    public ApiResponseJsonObject getMonthInfo(String cookie, String bindUid, String bindRegion, String ds,
         Integer month) {
-        return getMonthInfoWithResponse(cookie, ds, bindUid, bindRegion, month, RequestContext.none()).getValue();
+        return getMonthInfoWithResponse(cookie, bindUid, bindRegion, ds, month, RequestContext.none()).getValue();
     }
 
     /**
      * The getMonthInfo operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -91,21 +90,22 @@ public final class LedgerClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getMonthInfo(String cookie, String ds, String bindUid, String bindRegion) {
+    public ApiResponseJsonObject getMonthInfo(String cookie, String bindUid, String bindRegion) {
+        final String ds = null;
         final Integer month = null;
-        return getMonthInfoWithResponse(cookie, ds, bindUid, bindRegion, month, RequestContext.none()).getValue();
+        return getMonthInfoWithResponse(cookie, bindUid, bindRegion, ds, month, RequestContext.none()).getValue();
     }
 
     /**
      * The getMonthDetail operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param month The month parameter.
      * @param page The page parameter.
      * @param type The type parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
+     * @param ds The ds parameter.
      * @param limit The limit parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -115,23 +115,23 @@ public final class LedgerClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getMonthDetailWithResponse(String cookie, String ds, int month, int page,
-        int type, String bindUid, String bindRegion, Integer limit, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getMonthDetailWithResponse(String cookie, int month, int page, int type,
+        String bindUid, String bindRegion, String ds, Integer limit, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Ledger.LedgerApi.getMonthDetail",
-            requestContext, updatedContext -> this.serviceClient.getMonthDetailWithResponse(cookie, ds, month, page,
-                type, bindUid, bindRegion, limit, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getMonthDetailWithResponse(cookie, month, page, type,
+                bindUid, bindRegion, ds, limit, updatedContext));
     }
 
     /**
      * The getMonthDetail operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param month The month parameter.
      * @param page The page parameter.
      * @param type The type parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
+     * @param ds The ds parameter.
      * @param limit The limit parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -140,9 +140,9 @@ public final class LedgerClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getMonthDetail(String cookie, String ds, int month, int page, int type, String bindUid,
-        String bindRegion, Integer limit) {
-        return getMonthDetailWithResponse(cookie, ds, month, page, type, bindUid, bindRegion, limit,
+    public ApiResponseJsonObject getMonthDetail(String cookie, int month, int page, int type, String bindUid,
+        String bindRegion, String ds, Integer limit) {
+        return getMonthDetailWithResponse(cookie, month, page, type, bindUid, bindRegion, ds, limit,
             RequestContext.none()).getValue();
     }
 
@@ -150,7 +150,6 @@ public final class LedgerClient {
      * The getMonthDetail operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param month The month parameter.
      * @param page The page parameter.
      * @param type The type parameter.
@@ -163,10 +162,11 @@ public final class LedgerClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getMonthDetail(String cookie, String ds, int month, int page, int type, String bindUid,
+    public ApiResponseJsonObject getMonthDetail(String cookie, int month, int page, int type, String bindUid,
         String bindRegion) {
+        final String ds = null;
         final Integer limit = null;
-        return getMonthDetailWithResponse(cookie, ds, month, page, type, bindUid, bindRegion, limit,
+        return getMonthDetailWithResponse(cookie, month, page, type, bindUid, bindRegion, ds, limit,
             RequestContext.none()).getValue();
     }
 }

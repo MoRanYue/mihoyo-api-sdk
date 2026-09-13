@@ -5,6 +5,7 @@ import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface StarRailChallengeApiGetSimulatedUniverseOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
@@ -12,6 +13,7 @@ export interface StarRailChallengeApiGetSimulatedUniverseOptionalParams extends 
 
 /** Optional parameters. */
 export interface StarRailChallengeApiGetApocalypticShadowOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
@@ -19,6 +21,7 @@ export interface StarRailChallengeApiGetApocalypticShadowOptionalParams extends 
 
 /** Optional parameters. */
 export interface StarRailChallengeApiGetPureFictionOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
@@ -26,6 +29,7 @@ export interface StarRailChallengeApiGetPureFictionOptionalParams extends Operat
 
 /** Optional parameters. */
 export interface StarRailChallengeApiGetForgottenHallOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;

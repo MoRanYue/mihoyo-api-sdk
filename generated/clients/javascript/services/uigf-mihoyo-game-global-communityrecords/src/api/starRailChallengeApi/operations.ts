@@ -23,7 +23,6 @@ import {
 export function _getSimulatedUniverseSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetSimulatedUniverseOptionalParams = { requestOptions: {} },
@@ -47,7 +46,7 @@ export function _getSimulatedUniverseSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -68,19 +67,17 @@ export async function _getSimulatedUniverseDeserialize(
 export async function getSimulatedUniverse(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetSimulatedUniverseOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getSimulatedUniverseSend(context, cookie, ds, server, roleId, options);
+  const result = await _getSimulatedUniverseSend(context, cookie, server, roleId, options);
   return _getSimulatedUniverseDeserialize(result);
 }
 
 export function _getApocalypticShadowSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetApocalypticShadowOptionalParams = { requestOptions: {} },
@@ -104,7 +101,7 @@ export function _getApocalypticShadowSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -125,19 +122,17 @@ export async function _getApocalypticShadowDeserialize(
 export async function getApocalypticShadow(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetApocalypticShadowOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getApocalypticShadowSend(context, cookie, ds, server, roleId, options);
+  const result = await _getApocalypticShadowSend(context, cookie, server, roleId, options);
   return _getApocalypticShadowDeserialize(result);
 }
 
 export function _getPureFictionSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetPureFictionOptionalParams = { requestOptions: {} },
@@ -161,7 +156,7 @@ export function _getPureFictionSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -182,19 +177,17 @@ export async function _getPureFictionDeserialize(
 export async function getPureFiction(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetPureFictionOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getPureFictionSend(context, cookie, ds, server, roleId, options);
+  const result = await _getPureFictionSend(context, cookie, server, roleId, options);
   return _getPureFictionDeserialize(result);
 }
 
 export function _getForgottenHallSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetForgottenHallOptionalParams = { requestOptions: {} },
@@ -218,7 +211,7 @@ export function _getForgottenHallSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -239,11 +232,10 @@ export async function _getForgottenHallDeserialize(
 export async function getForgottenHall(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailChallengeApiGetForgottenHallOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getForgottenHallSend(context, cookie, ds, server, roleId, options);
+  const result = await _getForgottenHallSend(context, cookie, server, roleId, options);
   return _getForgottenHallDeserialize(result);
 }

@@ -103,9 +103,9 @@ public final class GenshinChallengeApisImpl {
      * The getSpiralAbyss operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -116,8 +116,8 @@ public final class GenshinChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getSpiralAbyssWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getSpiralAbyssWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.GenshinChallengeApi.getSpiralAbyss", requestContext,
             updatedContext -> {
@@ -131,9 +131,9 @@ public final class GenshinChallengeApisImpl {
      * The getImaginariumTheater operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -144,8 +144,9 @@ public final class GenshinChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getImaginariumTheaterWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getImaginariumTheaterWithResponse(String cookie, String server,
+        String roleId, String ds, Integer scheduleType, Boolean needDetail, Boolean needAll,
+        RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.GenshinChallengeApi.getImaginariumTheater", requestContext,
             updatedContext -> {
@@ -159,9 +160,9 @@ public final class GenshinChallengeApisImpl {
      * The getStygianOnslaught operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -172,8 +173,8 @@ public final class GenshinChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getStygianOnslaughtWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getStygianOnslaughtWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.GenshinChallengeApi.getStygianOnslaught", requestContext,
             updatedContext -> {

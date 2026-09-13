@@ -26,49 +26,42 @@ import { ApiResponseJsonObject } from "../../models/uigf/mihoyo/models.js";
 export interface StarRailApiOperations {
   getChallengePeak: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetChallengePeakOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getSimulatedUniverse: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetSimulatedUniverseOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getApocalypticShadow: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetApocalypticShadowOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getPureFiction: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetPureFictionOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getForgottenHall: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetForgottenHallOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getDailyNote: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetDailyNoteOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getIndex: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailApiGetIndexOptionalParams,
@@ -79,53 +72,46 @@ function _getStarRailApi(context: MihoyoGameCNRecordsContext) {
   return {
     getChallengePeak: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetChallengePeakOptionalParams,
-    ) => getChallengePeak(context, cookie, ds, server, roleId, options),
+    ) => getChallengePeak(context, cookie, server, roleId, options),
     getSimulatedUniverse: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetSimulatedUniverseOptionalParams,
-    ) => getSimulatedUniverse(context, cookie, ds, server, roleId, options),
+    ) => getSimulatedUniverse(context, cookie, server, roleId, options),
     getApocalypticShadow: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetApocalypticShadowOptionalParams,
-    ) => getApocalypticShadow(context, cookie, ds, server, roleId, options),
+    ) => getApocalypticShadow(context, cookie, server, roleId, options),
     getPureFiction: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetPureFictionOptionalParams,
-    ) => getPureFiction(context, cookie, ds, server, roleId, options),
+    ) => getPureFiction(context, cookie, server, roleId, options),
     getForgottenHall: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetForgottenHallOptionalParams,
-    ) => getForgottenHall(context, cookie, ds, server, roleId, options),
+    ) => getForgottenHall(context, cookie, server, roleId, options),
     getDailyNote: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetDailyNoteOptionalParams,
-    ) => getDailyNote(context, cookie, ds, server, roleId, options),
+    ) => getDailyNote(context, cookie, server, roleId, options),
     getIndex: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailApiGetIndexOptionalParams,
-    ) => getIndex(context, cookie, ds, server, roleId, options),
+    ) => getIndex(context, cookie, server, roleId, options),
   };
 }
 

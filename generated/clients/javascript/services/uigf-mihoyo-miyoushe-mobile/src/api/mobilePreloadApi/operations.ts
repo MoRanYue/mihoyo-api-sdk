@@ -20,7 +20,6 @@ import {
 
 export function _getLatestConfigSend(
   context: Client,
-  ds: string,
   body: MobilePreloadConfigRequest,
   options: MobilePreloadApiGetLatestConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -31,7 +30,7 @@ export function _getLatestConfigSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -52,10 +51,9 @@ export async function _getLatestConfigDeserialize(
 
 export async function getLatestConfig(
   context: Client,
-  ds: string,
   body: MobilePreloadConfigRequest,
   options: MobilePreloadApiGetLatestConfigOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobilePreloadConfigData> {
-  const result = await _getLatestConfigSend(context, ds, body, options);
+  const result = await _getLatestConfigSend(context, body, options);
   return _getLatestConfigDeserialize(result);
 }

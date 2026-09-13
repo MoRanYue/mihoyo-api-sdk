@@ -138,7 +138,6 @@ export async function getThresholdSimulationSummary(
 export function _getDeadlyAssaultSend(
   context: Client,
   cookie: string,
-  ds: string,
   scheduleType: number,
   region: string,
   uid: string,
@@ -161,7 +160,7 @@ export function _getDeadlyAssaultSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -182,28 +181,18 @@ export async function _getDeadlyAssaultDeserialize(
 export async function getDeadlyAssault(
   context: Client,
   cookie: string,
-  ds: string,
   scheduleType: number,
   region: string,
   uid: string,
   options: ZenlessApiGetDeadlyAssaultOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getDeadlyAssaultSend(
-    context,
-    cookie,
-    ds,
-    scheduleType,
-    region,
-    uid,
-    options,
-  );
+  const result = await _getDeadlyAssaultSend(context, cookie, scheduleType, region, uid, options);
   return _getDeadlyAssaultDeserialize(result);
 }
 
 export function _getShiyuDefenseSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: ZenlessApiGetShiyuDefenseOptionalParams = { requestOptions: {} },
@@ -228,7 +217,7 @@ export function _getShiyuDefenseSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -249,12 +238,11 @@ export async function _getShiyuDefenseDeserialize(
 export async function getShiyuDefense(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: ZenlessApiGetShiyuDefenseOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseZenlessShiyuDefenseData> {
-  const result = await _getShiyuDefenseSend(context, cookie, ds, server, roleId, options);
+  const result = await _getShiyuDefenseSend(context, cookie, server, roleId, options);
   return _getShiyuDefenseDeserialize(result);
 }
 

@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface CardApiGetGameRecordCardOptionalParams extends OperationOptions {}
+export interface CardApiGetGameRecordCardOptionalParams extends OperationOptions {
+  ds?: string;
+}

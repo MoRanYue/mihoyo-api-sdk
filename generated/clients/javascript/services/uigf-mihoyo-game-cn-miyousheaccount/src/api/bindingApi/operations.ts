@@ -17,7 +17,6 @@ import {
 export function _getRolesSend(
   context: Client,
   cookie: string,
-  ds: string,
   options: BindingApiGetRolesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -26,7 +25,7 @@ export function _getRolesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -47,9 +46,8 @@ export async function _getRolesDeserialize(
 export async function getRoles(
   context: Client,
   cookie: string,
-  ds: string,
   options: BindingApiGetRolesOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGameRoleList> {
-  const result = await _getRolesSend(context, cookie, ds, options);
+  const result = await _getRolesSend(context, cookie, options);
   return _getRolesDeserialize(result);
 }

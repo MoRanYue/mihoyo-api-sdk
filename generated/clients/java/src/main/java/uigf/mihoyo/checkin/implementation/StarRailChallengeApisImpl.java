@@ -114,9 +114,9 @@ public final class StarRailChallengeApisImpl {
      * The getForgottenHall operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -127,8 +127,8 @@ public final class StarRailChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getForgottenHallWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getForgottenHallWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getForgottenHall", requestContext,
             updatedContext -> {
@@ -142,9 +142,9 @@ public final class StarRailChallengeApisImpl {
      * The getPureFiction operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -155,8 +155,8 @@ public final class StarRailChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getPureFictionWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getPureFictionWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getPureFiction", requestContext,
             updatedContext -> {
@@ -170,9 +170,9 @@ public final class StarRailChallengeApisImpl {
      * The getApocalypticShadow operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -183,8 +183,8 @@ public final class StarRailChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getApocalypticShadowWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getApocalypticShadowWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getApocalypticShadow", requestContext,
             updatedContext -> {
@@ -198,9 +198,9 @@ public final class StarRailChallengeApisImpl {
      * The getSimulatedUniverse operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -211,8 +211,8 @@ public final class StarRailChallengeApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getSimulatedUniverseWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getSimulatedUniverseWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getSimulatedUniverse", requestContext,
             updatedContext -> {

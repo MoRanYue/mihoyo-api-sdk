@@ -437,8 +437,8 @@ public final class PostApiClient {
      * The setFavorite operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -447,17 +447,33 @@ public final class PostApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> setFavoriteWithResponse(String cookie, String ds, FavoritePostRequest body,
+    public Response<ApiResponseJsonObject> setFavoriteWithResponse(String cookie, FavoritePostRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.PostApi.setFavorite", requestContext,
-            updatedContext -> this.serviceClient.setFavoriteWithResponse(cookie, ds, body, updatedContext));
+            updatedContext -> this.serviceClient.setFavoriteWithResponse(cookie, body, ds, updatedContext));
     }
 
     /**
      * The setFavorite operation.
      * 
      * @param cookie The cookie parameter.
+     * @param body The body parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject setFavorite(String cookie, FavoritePostRequest body, String ds) {
+        return setFavoriteWithResponse(cookie, body, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The setFavorite operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -466,7 +482,8 @@ public final class PostApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject setFavorite(String cookie, String ds, FavoritePostRequest body) {
-        return setFavoriteWithResponse(cookie, ds, body, RequestContext.none()).getValue();
+    public ApiResponseJsonObject setFavorite(String cookie, FavoritePostRequest body) {
+        final String ds = null;
+        return setFavoriteWithResponse(cookie, body, ds, RequestContext.none()).getValue();
     }
 }

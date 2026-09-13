@@ -111,8 +111,8 @@ public final class CultivationApisImpl {
      * Calculates material consumption for a batch of characters and weapons.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -120,7 +120,7 @@ public final class CultivationApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> batchComputeWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> batchComputeWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.batchCompute",
             requestContext, updatedContext -> {
@@ -135,8 +135,8 @@ public final class CultivationApisImpl {
      * The listAvatars operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -144,7 +144,7 @@ public final class CultivationApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> listAvatarsWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> listAvatarsWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.listAvatars",
             requestContext, updatedContext -> {
@@ -159,8 +159,8 @@ public final class CultivationApisImpl {
      * The listWeapons operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -168,7 +168,7 @@ public final class CultivationApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> listWeaponsWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> listWeaponsWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.listWeapons",
             requestContext, updatedContext -> {
@@ -183,8 +183,8 @@ public final class CultivationApisImpl {
      * The syncAvatarList operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -192,7 +192,7 @@ public final class CultivationApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> syncAvatarListWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> syncAvatarListWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.syncAvatarList",
             requestContext, updatedContext -> {

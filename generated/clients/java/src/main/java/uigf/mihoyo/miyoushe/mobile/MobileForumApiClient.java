@@ -37,10 +37,10 @@ public final class MobileForumApiClient {
     /**
      * The getDiscussionByGame operation.
      * 
-     * @param ds The ds parameter.
      * @param gids The gids parameter.
      * @param version The version parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -49,21 +49,21 @@ public final class MobileForumApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileDiscussionData> getDiscussionByGameWithResponse(String ds, int gids, int version,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileDiscussionData> getDiscussionByGameWithResponse(int gids, int version,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileForumApi.getDiscussionByGame", requestContext,
-            updatedContext -> this.serviceClient.getDiscussionByGameWithResponse(ds, gids, version, cookie,
+            updatedContext -> this.serviceClient.getDiscussionByGameWithResponse(gids, version, cookie, ds,
                 updatedContext));
     }
 
     /**
      * The getDiscussionByGame operation.
      * 
-     * @param ds The ds parameter.
      * @param gids The gids parameter.
      * @param version The version parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -71,14 +71,13 @@ public final class MobileForumApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileDiscussionData getDiscussionByGame(String ds, int gids, int version, String cookie) {
-        return getDiscussionByGameWithResponse(ds, gids, version, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileDiscussionData getDiscussionByGame(int gids, int version, String cookie, String ds) {
+        return getDiscussionByGameWithResponse(gids, version, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getDiscussionByGame operation.
      * 
-     * @param ds The ds parameter.
      * @param gids The gids parameter.
      * @param version The version parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -88,8 +87,9 @@ public final class MobileForumApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileDiscussionData getDiscussionByGame(String ds, int gids, int version) {
+    public ApiResponseMobileDiscussionData getDiscussionByGame(int gids, int version) {
         final String cookie = null;
-        return getDiscussionByGameWithResponse(ds, gids, version, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getDiscussionByGameWithResponse(gids, version, cookie, ds, RequestContext.none()).getValue();
     }
 }

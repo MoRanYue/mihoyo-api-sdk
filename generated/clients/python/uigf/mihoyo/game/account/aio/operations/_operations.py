@@ -199,20 +199,20 @@ class ActionTicketApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_by_s_token(
-        self, *, cookie: str, ds: str, action_type: str, stoken: str, uid: str, **kwargs: Any
+        self, *, cookie: str, action_type: str, stoken: str, uid: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """get_by_s_token.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword action_type: Required.
         :paramtype action_type: str
         :keyword stoken: Required.
         :paramtype stoken: str
         :keyword uid: Required.
         :paramtype uid: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -232,10 +232,10 @@ class ActionTicketApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_action_ticket_api_get_by_s_token_request(
             cookie=cookie,
-            ds=ds,
             action_type=action_type,
             stoken=stoken,
             uid=uid,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -293,7 +293,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         body: _models3.AuthKeyRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -303,7 +303,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.AuthKeyRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -319,7 +319,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models3.AuthKeyRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -329,7 +329,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.AuthKeyRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -341,7 +341,13 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     async def generate_auth_key(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """Generates an authenticated gacha authkey for a selected game role.
 
@@ -349,7 +355,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -364,7 +370,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models3.AuthKeyRequest, _types_models3.AuthKeyRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """Generates an authenticated gacha authkey for a selected game role.
@@ -374,7 +380,7 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
          or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
@@ -660,7 +666,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -670,7 +676,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -686,7 +692,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -696,7 +702,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -708,7 +714,13 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     async def batch_compute(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """Calculates material consumption for a batch of characters and weapons.
 
@@ -716,7 +728,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -731,7 +743,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models3.CalculateRequest, _types_models3.CalculateRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """Calculates material consumption for a batch of characters and weapons.
@@ -741,7 +753,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.game.types.CalculateRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
@@ -812,7 +824,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -822,7 +834,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -838,7 +850,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -848,7 +860,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -860,7 +872,13 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     async def list_avatars(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """list_avatars.
 
@@ -868,7 +886,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -883,7 +901,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models3.CalculateRequest, _types_models3.CalculateRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """list_avatars.
@@ -893,7 +911,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.game.types.CalculateRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
@@ -964,7 +982,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -974,7 +992,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -990,7 +1008,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -1000,7 +1018,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1012,7 +1030,13 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     async def list_weapons(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """list_weapons.
 
@@ -1020,7 +1044,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1035,7 +1059,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models3.CalculateRequest, _types_models3.CalculateRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """list_weapons.
@@ -1045,7 +1069,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.game.types.CalculateRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
@@ -1116,7 +1140,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -1126,7 +1150,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1142,7 +1166,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models3.CalculateRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -1152,7 +1176,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.CalculateRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1164,7 +1188,13 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     async def sync_avatar_list(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """sync_avatar_list.
 
@@ -1172,7 +1202,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1187,7 +1217,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models3.CalculateRequest, _types_models3.CalculateRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """sync_avatar_list.
@@ -1197,7 +1227,7 @@ class CultivationApiOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.game.types.CalculateRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject

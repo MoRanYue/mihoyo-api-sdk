@@ -38,9 +38,9 @@ public final class StarRailChallengeApiClient {
      * The getForgottenHall operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -52,11 +52,11 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getForgottenHallWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getForgottenHallWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getForgottenHall", requestContext,
-            updatedContext -> this.serviceClient.getForgottenHallWithResponse(cookie, ds, server, roleId, scheduleType,
+            updatedContext -> this.serviceClient.getForgottenHallWithResponse(cookie, server, roleId, ds, scheduleType,
                 needDetail, needAll, updatedContext));
     }
 
@@ -64,9 +64,9 @@ public final class StarRailChallengeApiClient {
      * The getForgottenHall operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -77,9 +77,9 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getForgottenHall(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getForgottenHall(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getForgottenHallWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getForgottenHallWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -87,7 +87,6 @@ public final class StarRailChallengeApiClient {
      * The getForgottenHall operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -97,11 +96,12 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getForgottenHall(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getForgottenHall(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getForgottenHallWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getForgottenHallWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -109,9 +109,9 @@ public final class StarRailChallengeApiClient {
      * The getPureFiction operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -123,11 +123,11 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getPureFictionWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getPureFictionWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getPureFiction", requestContext,
-            updatedContext -> this.serviceClient.getPureFictionWithResponse(cookie, ds, server, roleId, scheduleType,
+            updatedContext -> this.serviceClient.getPureFictionWithResponse(cookie, server, roleId, ds, scheduleType,
                 needDetail, needAll, updatedContext));
     }
 
@@ -135,9 +135,9 @@ public final class StarRailChallengeApiClient {
      * The getPureFiction operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -148,9 +148,9 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getPureFiction(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getPureFiction(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getPureFictionWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getPureFictionWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -158,7 +158,6 @@ public final class StarRailChallengeApiClient {
      * The getPureFiction operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -168,11 +167,12 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getPureFiction(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getPureFiction(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getPureFictionWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getPureFictionWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -180,9 +180,9 @@ public final class StarRailChallengeApiClient {
      * The getApocalypticShadow operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -194,11 +194,11 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getApocalypticShadowWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getApocalypticShadowWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getApocalypticShadow", requestContext,
-            updatedContext -> this.serviceClient.getApocalypticShadowWithResponse(cookie, ds, server, roleId,
+            updatedContext -> this.serviceClient.getApocalypticShadowWithResponse(cookie, server, roleId, ds,
                 scheduleType, needDetail, needAll, updatedContext));
     }
 
@@ -206,9 +206,9 @@ public final class StarRailChallengeApiClient {
      * The getApocalypticShadow operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -219,9 +219,9 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getApocalypticShadow(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getApocalypticShadow(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getApocalypticShadowWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getApocalypticShadowWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -229,7 +229,6 @@ public final class StarRailChallengeApiClient {
      * The getApocalypticShadow operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -239,11 +238,12 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getApocalypticShadow(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getApocalypticShadow(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getApocalypticShadowWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getApocalypticShadowWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -251,9 +251,9 @@ public final class StarRailChallengeApiClient {
      * The getSimulatedUniverse operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -265,11 +265,11 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getSimulatedUniverseWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getSimulatedUniverseWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.StarRailChallengeApi.getSimulatedUniverse", requestContext,
-            updatedContext -> this.serviceClient.getSimulatedUniverseWithResponse(cookie, ds, server, roleId,
+            updatedContext -> this.serviceClient.getSimulatedUniverseWithResponse(cookie, server, roleId, ds,
                 scheduleType, needDetail, needAll, updatedContext));
     }
 
@@ -277,9 +277,9 @@ public final class StarRailChallengeApiClient {
      * The getSimulatedUniverse operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -290,9 +290,9 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getSimulatedUniverse(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getSimulatedUniverse(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getSimulatedUniverseWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getSimulatedUniverseWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -300,7 +300,6 @@ public final class StarRailChallengeApiClient {
      * The getSimulatedUniverse operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -310,11 +309,12 @@ public final class StarRailChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getSimulatedUniverse(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getSimulatedUniverse(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getSimulatedUniverseWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getSimulatedUniverseWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 }

@@ -9,7 +9,6 @@ import { ApiResponseStaticResourceData } from "../../models/uigf/mihoyo/models.j
 /** Interface representing a StaticApiHub operations. */
 export interface StaticApiHubOperations {
   getStaticResource: (
-    ds: string,
     clientType: number,
     options?: StaticApiHubGetStaticResourceOptionalParams,
   ) => Promise<ApiResponseStaticResourceData>;
@@ -18,10 +17,9 @@ export interface StaticApiHubOperations {
 function _getStaticApiHub(context: MihoyoMiYouSheStaticContext) {
   return {
     getStaticResource: (
-      ds: string,
       clientType: number,
       options?: StaticApiHubGetStaticResourceOptionalParams,
-    ) => getStaticResource(context, ds, clientType, options),
+    ) => getStaticResource(context, clientType, options),
   };
 }
 

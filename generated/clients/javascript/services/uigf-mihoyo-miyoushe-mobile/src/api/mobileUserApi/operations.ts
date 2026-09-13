@@ -35,7 +35,6 @@ import {
 
 export function _loginSend(
   context: Client,
-  ds: string,
   body: MobileLoginRequest,
   options: MobileUserApiLoginOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -46,7 +45,7 @@ export function _loginSend(
       contentType: "application/json",
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -67,17 +66,15 @@ export async function _loginDeserialize(
 
 export async function login(
   context: Client,
-  ds: string,
   body: MobileLoginRequest,
   options: MobileUserApiLoginOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseEmptyData> {
-  const result = await _loginSend(context, ds, body, options);
+  const result = await _loginSend(context, body, options);
   return _loginDeserialize(result);
 }
 
 export function _getReplyPermissionSend(
   context: Client,
-  ds: string,
   options: MobileUserApiGetReplyPermissionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -86,7 +83,7 @@ export function _getReplyPermissionSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -106,16 +103,14 @@ export async function _getReplyPermissionDeserialize(
 
 export async function getReplyPermission(
   context: Client,
-  ds: string,
   options: MobileUserApiGetReplyPermissionOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileReplyPermissionData> {
-  const result = await _getReplyPermissionSend(context, ds, options);
+  const result = await _getReplyPermissionSend(context, options);
   return _getReplyPermissionDeserialize(result);
 }
 
 export function _getNotificationSettingsSend(
   context: Client,
-  ds: string,
   uid: number,
   options: MobileUserApiGetNotificationSettingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -134,7 +129,7 @@ export function _getNotificationSettingsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -154,17 +149,15 @@ export async function _getNotificationSettingsDeserialize(
 
 export async function getNotificationSettings(
   context: Client,
-  ds: string,
   uid: number,
   options: MobileUserApiGetNotificationSettingsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileNotificationSettingsData> {
-  const result = await _getNotificationSettingsSend(context, ds, uid, options);
+  const result = await _getNotificationSettingsSend(context, uid, options);
   return _getNotificationSettingsDeserialize(result);
 }
 
 export function _getUserFullInfoSend(
   context: Client,
-  ds: string,
   uid: number,
   options: MobileUserApiGetUserFullInfoOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -183,7 +176,7 @@ export function _getUserFullInfoSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -203,17 +196,15 @@ export async function _getUserFullInfoDeserialize(
 
 export async function getUserFullInfo(
   context: Client,
-  ds: string,
   uid: number,
   options: MobileUserApiGetUserFullInfoOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseCommunityUser> {
-  const result = await _getUserFullInfoSend(context, ds, uid, options);
+  const result = await _getUserFullInfoSend(context, uid, options);
   return _getUserFullInfoDeserialize(result);
 }
 
 export function _getUserBusinessesSend(
   context: Client,
-  ds: string,
   uid: number,
   options: MobileUserApiGetUserBusinessesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -232,7 +223,7 @@ export function _getUserBusinessesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -252,10 +243,9 @@ export async function _getUserBusinessesDeserialize(
 
 export async function getUserBusinesses(
   context: Client,
-  ds: string,
   uid: number,
   options: MobileUserApiGetUserBusinessesOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileBusinessesData> {
-  const result = await _getUserBusinessesSend(context, ds, uid, options);
+  const result = await _getUserBusinessesSend(context, uid, options);
   return _getUserBusinessesDeserialize(result);
 }

@@ -37,10 +37,10 @@ public final class MobileReceptionApiClient {
     /**
      * The getGameCenter operation.
      * 
-     * @param ds The ds parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -49,20 +49,20 @@ public final class MobileReceptionApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileGameCenterData> getGameCenterWithResponse(String ds, String cpu, String device,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileGameCenterData> getGameCenterWithResponse(String cpu, String device, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileReceptionApi.getGameCenter", requestContext,
-            updatedContext -> this.serviceClient.getGameCenterWithResponse(ds, cpu, device, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getGameCenterWithResponse(cpu, device, cookie, ds, updatedContext));
     }
 
     /**
      * The getGameCenter operation.
      * 
-     * @param ds The ds parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -70,14 +70,13 @@ public final class MobileReceptionApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileGameCenterData getGameCenter(String ds, String cpu, String device, String cookie) {
-        return getGameCenterWithResponse(ds, cpu, device, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileGameCenterData getGameCenter(String cpu, String device, String cookie, String ds) {
+        return getGameCenterWithResponse(cpu, device, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getGameCenter operation.
      * 
-     * @param ds The ds parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -87,8 +86,9 @@ public final class MobileReceptionApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileGameCenterData getGameCenter(String ds, String cpu, String device) {
+    public ApiResponseMobileGameCenterData getGameCenter(String cpu, String device) {
         final String cookie = null;
-        return getGameCenterWithResponse(ds, cpu, device, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getGameCenterWithResponse(cpu, device, cookie, ds, RequestContext.none()).getValue();
     }
 }

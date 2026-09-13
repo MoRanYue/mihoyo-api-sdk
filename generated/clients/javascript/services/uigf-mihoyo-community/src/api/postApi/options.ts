@@ -4,7 +4,9 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface PostApiSetFavoriteOptionalParams extends OperationOptions {}
+export interface PostApiSetFavoriteOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
 export interface PostApiSearchOptionalParams extends OperationOptions {

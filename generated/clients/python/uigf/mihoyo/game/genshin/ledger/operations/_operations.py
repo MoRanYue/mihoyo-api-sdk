@@ -31,7 +31,13 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_ledger_api_get_month_info_request(
-    *, cookie: str, ds: str, bind_uid: str, bind_region: str, month: Optional[int] = None, **kwargs: Any
+    *,
+    cookie: str,
+    bind_uid: str,
+    bind_region: str,
+    ds: Optional[str] = None,
+    month: Optional[int] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -49,7 +55,8 @@ def build_ledger_api_get_month_info_request(
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -58,12 +65,12 @@ def build_ledger_api_get_month_info_request(
 def build_ledger_api_get_month_detail_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     month: int,
     page: int,
     type: int,
     bind_uid: str,
     bind_region: str,
+    ds: Optional[str] = None,
     limit: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
@@ -86,7 +93,8 @@ def build_ledger_api_get_month_detail_request(  # pylint: disable=name-too-long
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -110,18 +118,25 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_month_info(
-        self, *, cookie: str, ds: str, bind_uid: str, bind_region: str, month: Optional[int] = None, **kwargs: Any
+        self,
+        *,
+        cookie: str,
+        bind_uid: str,
+        bind_region: str,
+        ds: Optional[str] = None,
+        month: Optional[int] = None,
+        **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """get_month_info.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword bind_uid: Required.
         :paramtype bind_uid: str
         :keyword bind_region: Required.
         :paramtype bind_region: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword month: Default value is None.
         :paramtype month: int
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
@@ -143,9 +158,9 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_ledger_api_get_month_info_request(
             cookie=cookie,
-            ds=ds,
             bind_uid=bind_uid,
             bind_region=bind_region,
+            ds=ds,
             month=month,
             headers=_headers,
             params=_params,
@@ -184,12 +199,12 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         month: int,
         page: int,
         type: int,
         bind_uid: str,
         bind_region: str,
+        ds: Optional[str] = None,
         limit: Optional[int] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
@@ -197,8 +212,6 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword month: Required.
         :paramtype month: int
         :keyword page: Required.
@@ -209,6 +222,8 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
         :paramtype bind_uid: str
         :keyword bind_region: Required.
         :paramtype bind_region: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword limit: Default value is None.
         :paramtype limit: int
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
@@ -230,12 +245,12 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_ledger_api_get_month_detail_request(
             cookie=cookie,
-            ds=ds,
             month=month,
             page=page,
             type=type,
             bind_uid=bind_uid,
             bind_region=bind_region,
+            ds=ds,
             limit=limit,
             headers=_headers,
             params=_params,

@@ -17,7 +17,6 @@ import {
 
 export function _getPreKeywordSend(
   context: Client,
-  ds: string,
   gameId: number,
   options: StaticSearchApiGetPreKeywordOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -36,7 +35,7 @@ export function _getPreKeywordSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -56,10 +55,9 @@ export async function _getPreKeywordDeserialize(
 
 export async function getPreKeyword(
   context: Client,
-  ds: string,
   gameId: number,
   options: StaticSearchApiGetPreKeywordOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseStaticPreKeywordData> {
-  const result = await _getPreKeywordSend(context, ds, gameId, options);
+  const result = await _getPreKeywordSend(context, gameId, options);
   return _getPreKeywordDeserialize(result);
 }

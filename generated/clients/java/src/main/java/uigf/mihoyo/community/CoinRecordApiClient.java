@@ -38,12 +38,12 @@ public final class CoinRecordApiClient {
      * Returns MiYouShe coin earnings or spending records.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param appId The appId parameter.
      * @param pointSn The pointSn parameter.
      * @param time The time parameter.
      * @param action The action parameter.
      * @param size The size parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -52,10 +52,10 @@ public final class CoinRecordApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> listWithResponse(String cookie, String ds, String appId, String pointSn,
-        String time, ListRequestAction action, int size, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> listWithResponse(String cookie, String appId, String pointSn, String time,
+        ListRequestAction action, int size, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.CoinRecordApi.list", requestContext,
-            updatedContext -> this.serviceClient.listWithResponse(cookie, ds, appId, pointSn, time, action, size,
+            updatedContext -> this.serviceClient.listWithResponse(cookie, appId, pointSn, time, action, size, ds,
                 updatedContext));
     }
 
@@ -63,7 +63,28 @@ public final class CoinRecordApiClient {
      * Returns MiYouShe coin earnings or spending records.
      * 
      * @param cookie The cookie parameter.
+     * @param appId The appId parameter.
+     * @param pointSn The pointSn parameter.
+     * @param time The time parameter.
+     * @param action The action parameter.
+     * @param size The size parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject list(String cookie, String appId, String pointSn, String time,
+        ListRequestAction action, int size, String ds) {
+        return listWithResponse(cookie, appId, pointSn, time, action, size, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * Returns MiYouShe coin earnings or spending records.
+     * 
+     * @param cookie The cookie parameter.
      * @param appId The appId parameter.
      * @param pointSn The pointSn parameter.
      * @param time The time parameter.
@@ -76,8 +97,9 @@ public final class CoinRecordApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject list(String cookie, String ds, String appId, String pointSn, String time,
+    public ApiResponseJsonObject list(String cookie, String appId, String pointSn, String time,
         ListRequestAction action, int size) {
-        return listWithResponse(cookie, ds, appId, pointSn, time, action, size, RequestContext.none()).getValue();
+        final String ds = null;
+        return listWithResponse(cookie, appId, pointSn, time, action, size, ds, RequestContext.none()).getValue();
     }
 }

@@ -214,9 +214,9 @@ public final class ZenlessApisImpl {
      * The getShiyuDefense operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param withoutV2Detail The withoutV2Detail parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
@@ -228,9 +228,9 @@ public final class ZenlessApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseZenlessShiyuDefenseData> getShiyuDefenseWithResponse(String cookie, String ds,
-        String server, String roleId, Boolean withoutV2Detail, Integer scheduleType, Boolean needDetail,
-        Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseZenlessShiyuDefenseData> getShiyuDefenseWithResponse(String cookie, String server,
+        String roleId, String ds, Boolean withoutV2Detail, Integer scheduleType, Boolean needDetail, Boolean needAll,
+        RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.CN.Records.ZenlessApi.getShiyuDefense",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -243,10 +243,10 @@ public final class ZenlessApisImpl {
      * The getDeadlyAssault operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param region The region parameter.
      * @param uid The uid parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -254,8 +254,8 @@ public final class ZenlessApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getDeadlyAssaultWithResponse(String cookie, String ds, int scheduleType,
-        String region, String uid, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getDeadlyAssaultWithResponse(String cookie, int scheduleType, String region,
+        String uid, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.CN.Records.ZenlessApi.getDeadlyAssault",
             requestContext, updatedContext -> {
                 final String accept = "application/json";

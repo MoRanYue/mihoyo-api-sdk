@@ -6,8 +6,9 @@ from pathlib import Path
 import sys
 
 client_directory = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / "generated" / "clients" / "python"
+package_directory = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else client_directory
 if len(sys.argv) > 1:
-    sys.path.insert(0, str(client_directory))
+    sys.path.insert(0, str(package_directory))
 
 import uigf
 

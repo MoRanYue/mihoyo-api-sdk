@@ -59,7 +59,7 @@ Python 提供同步和异步客户端，例如 `from uigf.mihoyo.game.cn.records
 
 C# 可使用 `UIGF.Mihoyo.Game.CN.Records.CnGameRecordsClient`，Java 可使用 `uigf.mihoyo.game.cn.records.CnGameRecordsClientBuilder`。各 SDK 的 `services.json` 列出覆盖的服务。
 
-需要 DS 的接口接收调用者传入的 `cookie`。C# DLL 使用 `UIGF.Mihoyo.DsSigner.CreateClientOptions(salt)` 在发送请求前按操作自动计算 V1/V2 DS；便利方法中的 `ds` 参数可省略，显式传入非空值时则会保留该值。TS 版本位于 `runtime/ds.ts`。DS v2 必须与最终请求体字节和查询参数一致，SDK 不会内置或探测盐值。
+需要 DS 的接口接收调用者传入的 `cookie`。四种 SDK 都能在发送请求前按操作自动计算 V1/V2 DS：C# 使用 `UIGF.Mihoyo.DsSigner.CreateClientOptions(salt)`；JS/TS 使用 `DsSigner.createClientOptions(salt)`；Python 使用 `DsSigner.create_client_options(salt)`；Java 使用 `DsSigner.configure(builder, salt)`。便利方法中的 `ds` 参数均可省略；显式传入非空 DS 时会原样保留。DS v2 使用最终序列化的请求体和查询参数，SDK 不会内置或探测盐值。
 
 ```csharp
 using UIGF.Mihoyo.Game.Genshin.Record;
@@ -69,6 +69,32 @@ var client = new RecordClient(
     new Uri("https://api-takumi-record.mihoyo.com"),
     DsSigner.CreateClientOptions(callerSuppliedSalt));
 var card = await client.GetCardApiClient().GetGameRecordCardAsync(cookie, uid);
+```
+
+```ts
+import { DsSigner, MihoyoGameCNRecords } from "@uigf/mihoyo-client";
+
+const client = new MihoyoGameCNRecords.MihoyoGameCNRecordsClient(
+  DsSigner.createClientOptions(callerSuppliedSalt),
+);
+const data = await client.starRailApi.getSimulatedUniverse(cookie, server, roleId);
+```
+
+```python
+from uigf.mihoyo.ds import DsSigner
+from uigf.mihoyo.game.cn.records import CnGameRecordsClient
+
+client = CnGameRecordsClient(**DsSigner.create_client_options(caller_supplied_salt))
+data = client.star_rail_api.get_simulated_universe(cookie=cookie, server=server, role_id=role_id)
+```
+
+```java
+import uigf.mihoyo.DsSigner;
+import uigf.mihoyo.game.cn.records.CnGameRecordsClientBuilder;
+
+var client = DsSigner.configure(new CnGameRecordsClientBuilder(), callerSuppliedSalt)
+    .buildStarRailApiClient();
+var data = client.getSimulatedUniverse(cookie, server, roleId);
 ```
 
 ## 生成与验证
@@ -83,6 +109,8 @@ JS/TS 使用 [微软 TypeSpec Azure 的 TypeScript emitter](https://github.com/A
 npm run check
 npm test
 npm run test:csharp-ds
+npm run test:java-ds
+npm run test:python-ds
 npm run build:clients
 npm run test:clients
 ```

@@ -152,9 +152,9 @@ public final class GcgApisImpl {
      * The getBasicInfo operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -162,8 +162,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgBasicInfoData> getBasicInfoWithResponse(String cookie, String ds, String roleId,
-        String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgBasicInfoData> getBasicInfoWithResponse(String cookie, String roleId, String server,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getBasicInfo",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -176,9 +176,9 @@ public final class GcgApisImpl {
      * The getCardBackList operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -186,8 +186,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgCardBackListData> getCardBackListWithResponse(String cookie, String ds, String roleId,
-        String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgCardBackListData> getCardBackListWithResponse(String cookie, String roleId,
+        String server, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getCardBackList",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -200,7 +200,6 @@ public final class GcgApisImpl {
      * The getCardList operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param limit The limit parameter.
      * @param needAction The needAction parameter.
      * @param needAvatar The needAvatar parameter.
@@ -208,6 +207,7 @@ public final class GcgApisImpl {
      * @param offset The offset parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -215,8 +215,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgCardListData> getCardListWithResponse(String cookie, String ds, int limit,
-        boolean needAction, boolean needAvatar, boolean needStats, int offset, String roleId, String server,
+    public Response<ApiResponseGcgCardListData> getCardListWithResponse(String cookie, int limit, boolean needAction,
+        boolean needAvatar, boolean needStats, int offset, String roleId, String server, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getCardList",
             requestContext, updatedContext -> {
@@ -230,10 +230,10 @@ public final class GcgApisImpl {
      * The getChallengeRecord operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param scheduleId The scheduleId parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -241,8 +241,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgChallengeRecordData> getChallengeRecordWithResponse(String cookie, String ds,
-        long scheduleId, String roleId, String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgChallengeRecordData> getChallengeRecordWithResponse(String cookie, long scheduleId,
+        String roleId, String server, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getChallengeRecord",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -255,9 +255,9 @@ public final class GcgApisImpl {
      * The getChallengeSchedule operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -265,8 +265,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgChallengeScheduleData> getChallengeScheduleWithResponse(String cookie, String ds,
-        String roleId, String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgChallengeScheduleData> getChallengeScheduleWithResponse(String cookie, String roleId,
+        String server, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getChallengeSchedule", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -279,9 +279,9 @@ public final class GcgApisImpl {
      * The getDeckList operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -289,8 +289,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgDeckListData> getDeckListWithResponse(String cookie, String ds, String roleId,
-        String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgDeckListData> getDeckListWithResponse(String cookie, String roleId, String server,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getDeckList",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -303,9 +303,9 @@ public final class GcgApisImpl {
      * The getCovers operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -313,8 +313,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgCoversData> getCoversWithResponse(String cookie, String ds, String roleId,
-        String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgCoversData> getCoversWithResponse(String cookie, String roleId, String server,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getCovers",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -326,9 +326,9 @@ public final class GcgApisImpl {
      * The getMatchList operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -336,8 +336,8 @@ public final class GcgApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGcgMatchListData> getMatchListWithResponse(String cookie, String ds, String roleId,
-        String server, RequestContext requestContext) {
+    public Response<ApiResponseGcgMatchListData> getMatchListWithResponse(String cookie, String roleId, String server,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GcgApi.getMatchList",
             requestContext, updatedContext -> {
                 final String accept = "application/json";

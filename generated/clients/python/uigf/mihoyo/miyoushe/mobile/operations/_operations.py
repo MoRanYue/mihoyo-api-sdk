@@ -35,7 +35,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_mobile_api_hub_get_app_splash_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -47,14 +47,15 @@ def build_mobile_api_hub_get_app_splash_request(  # pylint: disable=name-too-lon
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_api_hub_get_game_list_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -66,14 +67,15 @@ def build_mobile_api_hub_get_game_list_request(  # pylint: disable=name-too-long
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_api_hub_get_myself_page_config_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -85,14 +87,15 @@ def build_mobile_api_hub_get_myself_page_config_request(  # pylint: disable=name
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_api_hub_get_unread_message_count_request(  # pylint: disable=name-too-long
-    *, ds: str, first_view_ts: int, uid: int, cookie: Optional[str] = None, **kwargs: Any
+    *, first_view_ts: int, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -109,14 +112,15 @@ def build_mobile_api_hub_get_unread_message_count_request(  # pylint: disable=na
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_api_hub_get_user_missions_state_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -128,14 +132,15 @@ def build_mobile_api_hub_get_user_missions_state_request(  # pylint: disable=nam
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_api_hub_device_login_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -148,7 +153,8 @@ def build_mobile_api_hub_device_login_request(  # pylint: disable=name-too-long
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -157,7 +163,7 @@ def build_mobile_api_hub_device_login_request(  # pylint: disable=name-too-long
 
 
 def build_mobile_api_hub_device_logout_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -170,7 +176,8 @@ def build_mobile_api_hub_device_logout_request(  # pylint: disable=name-too-long
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -179,7 +186,7 @@ def build_mobile_api_hub_device_logout_request(  # pylint: disable=name-too-long
 
 
 def build_mobile_api_hub_get_app_startup_data_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -192,7 +199,8 @@ def build_mobile_api_hub_get_app_startup_data_request(  # pylint: disable=name-t
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -201,7 +209,7 @@ def build_mobile_api_hub_get_app_startup_data_request(  # pylint: disable=name-t
 
 
 def build_mobile_api_hub_prepare_window_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -214,7 +222,8 @@ def build_mobile_api_hub_prepare_window_request(  # pylint: disable=name-too-lon
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -222,7 +231,9 @@ def build_mobile_api_hub_prepare_window_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_mobile_api_hub_show_window_request(*, ds: str, cookie: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_mobile_api_hub_show_window_request(
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -234,7 +245,8 @@ def build_mobile_api_hub_show_window_request(*, ds: str, cookie: Optional[str] =
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -243,7 +255,7 @@ def build_mobile_api_hub_show_window_request(*, ds: str, cookie: Optional[str] =
 
 
 def build_mobile_chat_api_get_user_settings_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -255,14 +267,15 @@ def build_mobile_chat_api_get_user_settings_request(  # pylint: disable=name-too
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_forum_api_get_discussion_by_game_request(  # pylint: disable=name-too-long
-    *, ds: str, gids: int, version: int, cookie: Optional[str] = None, **kwargs: Any
+    *, gids: int, version: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -279,14 +292,15 @@ def build_mobile_forum_api_get_discussion_by_game_request(  # pylint: disable=na
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_misc_api_get_recent_emoticons_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -298,7 +312,8 @@ def build_mobile_misc_api_get_recent_emoticons_request(  # pylint: disable=name-
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -306,7 +321,6 @@ def build_mobile_misc_api_get_recent_emoticons_request(  # pylint: disable=name-
 
 def build_mobile_painter_api_get_feed_posts_request(  # pylint: disable=name-too-long
     *,
-    ds: str,
     algorithm_type: int,
     cpu: str,
     device: str,
@@ -317,6 +331,7 @@ def build_mobile_painter_api_get_feed_posts_request(  # pylint: disable=name-too
     is_triggered_by_resource: bool,
     last_id: str,
     cookie: Optional[str] = None,
+    ds: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -343,7 +358,8 @@ def build_mobile_painter_api_get_feed_posts_request(  # pylint: disable=name-too
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -351,7 +367,6 @@ def build_mobile_painter_api_get_feed_posts_request(  # pylint: disable=name-too
 
 def build_mobile_painter_api_get_user_instant_list_request(  # pylint: disable=name-too-long
     *,
-    ds: str,
     game_region: str,
     game_uid: int,
     offset: int,
@@ -359,6 +374,7 @@ def build_mobile_painter_api_get_user_instant_list_request(  # pylint: disable=n
     uid: int,
     view_type: int,
     cookie: Optional[str] = None,
+    ds: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -380,14 +396,15 @@ def build_mobile_painter_api_get_user_instant_list_request(  # pylint: disable=n
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_painter_api_get_villa_site_push_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -399,14 +416,15 @@ def build_mobile_painter_api_get_villa_site_push_request(  # pylint: disable=nam
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_post_api_get_publish_video_permission_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -418,14 +436,15 @@ def build_mobile_post_api_get_publish_video_permission_request(  # pylint: disab
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_reception_api_get_game_center_request(  # pylint: disable=name-too-long
-    *, ds: str, cpu: str, device: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cpu: str, device: str, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -442,14 +461,15 @@ def build_mobile_reception_api_get_game_center_request(  # pylint: disable=name-
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_teenager_api_get_info_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -461,14 +481,15 @@ def build_mobile_teenager_api_get_info_request(  # pylint: disable=name-too-long
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_timeline_api_get_unread_info_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -480,14 +501,15 @@ def build_mobile_timeline_api_get_unread_info_request(  # pylint: disable=name-t
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_mobile_user_api_get_user_businesses_request(  # pylint: disable=name-too-long
-    *, ds: str, uid: int, cookie: Optional[str] = None, **kwargs: Any
+    *, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -503,14 +525,15 @@ def build_mobile_user_api_get_user_businesses_request(  # pylint: disable=name-t
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_user_api_get_user_full_info_request(  # pylint: disable=name-too-long
-    *, ds: str, uid: int, cookie: Optional[str] = None, **kwargs: Any
+    *, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -526,14 +549,15 @@ def build_mobile_user_api_get_user_full_info_request(  # pylint: disable=name-to
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_user_api_get_notification_settings_request(  # pylint: disable=name-too-long
-    *, ds: str, uid: int, cookie: Optional[str] = None, **kwargs: Any
+    *, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -549,14 +573,15 @@ def build_mobile_user_api_get_notification_settings_request(  # pylint: disable=
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_user_api_get_reply_permission_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -568,13 +593,16 @@ def build_mobile_user_api_get_reply_permission_request(  # pylint: disable=name-
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_mobile_user_api_login_request(*, ds: str, cookie: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_mobile_user_api_login_request(
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -586,7 +614,8 @@ def build_mobile_user_api_login_request(*, ds: str, cookie: Optional[str] = None
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -595,7 +624,7 @@ def build_mobile_user_api_login_request(*, ds: str, cookie: Optional[str] = None
 
 
 def build_mobile_user_instant_api_get_entity_review_request(  # pylint: disable=name-too-long
-    *, ds: str, offset: int, size: int, cookie: Optional[str] = None, **kwargs: Any
+    *, offset: int, size: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -612,14 +641,15 @@ def build_mobile_user_instant_api_get_entity_review_request(  # pylint: disable=
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_mobile_preload_api_get_latest_config_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -632,7 +662,8 @@ def build_mobile_preload_api_get_latest_config_request(  # pylint: disable=name-
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -658,14 +689,14 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_app_splash(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileAppSplashData:
         """get_app_splash.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileAppSplashData. The ApiResponseMobileAppSplashData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileAppSplashData
@@ -685,8 +716,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileAppSplashData] = kwargs.pop("cls", None)
 
         _request = build_mobile_api_hub_get_app_splash_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -721,14 +752,14 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_game_list(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileGameListData:
         """get_game_list.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileGameListData. The ApiResponseMobileGameListData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileGameListData
@@ -748,8 +779,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileGameListData] = kwargs.pop("cls", None)
 
         _request = build_mobile_api_hub_get_game_list_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -784,14 +815,14 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_myself_page_config(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileMyselfPageConfigData:
         """get_myself_page_config.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileMyselfPageConfigData. The ApiResponseMobileMyselfPageConfigData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileMyselfPageConfigData
@@ -811,8 +842,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileMyselfPageConfigData] = kwargs.pop("cls", None)
 
         _request = build_mobile_api_hub_get_myself_page_config_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -847,18 +878,18 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_unread_message_count(
-        self, *, ds: str, first_view_ts: int, uid: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, first_view_ts: int, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileUnreadMessageData:
         """get_unread_message_count.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword first_view_ts: Required.
         :paramtype first_view_ts: int
         :keyword uid: Required.
         :paramtype uid: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileUnreadMessageData. The ApiResponseMobileUnreadMessageData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileUnreadMessageData
@@ -878,10 +909,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileUnreadMessageData] = kwargs.pop("cls", None)
 
         _request = build_mobile_api_hub_get_unread_message_count_request(
-            ds=ds,
             first_view_ts=first_view_ts,
             uid=uid,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -916,14 +947,14 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_user_missions_state(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileMissionsStateData:
         """get_user_missions_state.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileMissionsStateData. The ApiResponseMobileMissionsStateData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileMissionsStateData
@@ -943,8 +974,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileMissionsStateData] = kwargs.pop("cls", None)
 
         _request = build_mobile_api_hub_get_user_missions_state_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -983,8 +1014,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobileDeviceSessionRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -992,10 +1023,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileDeviceSessionRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1009,8 +1040,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobileDeviceSessionRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -1018,10 +1049,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobileDeviceSessionRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1035,8 +1066,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -1044,10 +1075,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1064,8 +1095,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             IO[bytes],
         ],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
         """device_login.
@@ -1073,10 +1104,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobileDeviceSessionRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileDeviceSessionRequest or
          ~uigf.mihoyo.api.request.types.MobileDeviceSessionRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseEmptyData. The ApiResponseEmptyData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseEmptyData
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1103,8 +1134,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_api_hub_device_login_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1145,8 +1176,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobileDeviceSessionRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -1154,10 +1185,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileDeviceSessionRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1171,8 +1202,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobileDeviceSessionRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -1180,10 +1211,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobileDeviceSessionRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1197,8 +1228,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -1206,10 +1237,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1226,8 +1257,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             IO[bytes],
         ],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
         """device_logout.
@@ -1235,10 +1266,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobileDeviceSessionRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileDeviceSessionRequest or
          ~uigf.mihoyo.api.request.types.MobileDeviceSessionRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseEmptyData. The ApiResponseEmptyData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseEmptyData
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1265,8 +1296,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_api_hub_device_logout_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1307,8 +1338,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobileStartupRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileStartupData:
@@ -1316,10 +1347,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileStartupRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1334,8 +1365,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobileStartupRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileStartupData:
@@ -1343,10 +1374,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobileStartupRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1361,8 +1392,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileStartupData:
@@ -1370,10 +1401,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1389,8 +1420,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _api_request_models5.MobileStartupRequest, _types_api_request_models5.MobileStartupRequest, IO[bytes]
         ],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseMobileStartupData:
         """get_app_startup_data.
@@ -1398,10 +1429,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobileStartupRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileStartupRequest or
          ~uigf.mihoyo.api.request.types.MobileStartupRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileStartupData. The ApiResponseMobileStartupData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileStartupData
@@ -1429,8 +1460,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_api_hub_get_app_startup_data_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1471,8 +1502,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobileWindowPrepareRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowPrepareData:
@@ -1480,10 +1511,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileWindowPrepareRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1498,8 +1529,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobileWindowPrepareRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowPrepareData:
@@ -1507,10 +1538,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobileWindowPrepareRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1525,8 +1556,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowPrepareData:
@@ -1534,10 +1565,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1555,8 +1586,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             IO[bytes],
         ],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowPrepareData:
         """prepare_window.
@@ -1564,10 +1595,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobileWindowPrepareRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileWindowPrepareRequest or
          ~uigf.mihoyo.api.request.types.MobileWindowPrepareRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileWindowPrepareData. The ApiResponseMobileWindowPrepareData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileWindowPrepareData
@@ -1595,8 +1626,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_api_hub_prepare_window_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1637,8 +1668,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobileWindowShowRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowShowData:
@@ -1646,10 +1677,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileWindowShowRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1664,8 +1695,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobileWindowShowRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowShowData:
@@ -1673,10 +1704,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobileWindowShowRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1691,8 +1722,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowShowData:
@@ -1700,10 +1731,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1719,8 +1750,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _api_request_models5.MobileWindowShowRequest, _types_api_request_models5.MobileWindowShowRequest, IO[bytes]
         ],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseMobileWindowShowData:
         """show_window.
@@ -1728,10 +1759,10 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobileWindowShowRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileWindowShowRequest or
          ~uigf.mihoyo.api.request.types.MobileWindowShowRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileWindowShowData. The ApiResponseMobileWindowShowData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileWindowShowData
@@ -1759,8 +1790,8 @@ class MobileApiHubOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_api_hub_show_window_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1815,14 +1846,14 @@ class MobileChatApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_user_settings(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileUserSettingsData:
         """get_user_settings.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileUserSettingsData. The ApiResponseMobileUserSettingsData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileUserSettingsData
@@ -1842,8 +1873,8 @@ class MobileChatApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileUserSettingsData] = kwargs.pop("cls", None)
 
         _request = build_mobile_chat_api_get_user_settings_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -1896,18 +1927,18 @@ class MobileForumApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_discussion_by_game(
-        self, *, ds: str, gids: int, version: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, gids: int, version: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileDiscussionData:
         """get_discussion_by_game.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword gids: Required.
         :paramtype gids: int
         :keyword version: Required.
         :paramtype version: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileDiscussionData. The ApiResponseMobileDiscussionData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileDiscussionData
@@ -1927,10 +1958,10 @@ class MobileForumApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileDiscussionData] = kwargs.pop("cls", None)
 
         _request = build_mobile_forum_api_get_discussion_by_game_request(
-            ds=ds,
             gids=gids,
             version=version,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -1983,14 +2014,14 @@ class MobileMiscApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_recent_emoticons(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileEmoticonData:
         """get_recent_emoticons.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileEmoticonData. The ApiResponseMobileEmoticonData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileEmoticonData
@@ -2010,8 +2041,8 @@ class MobileMiscApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileEmoticonData] = kwargs.pop("cls", None)
 
         _request = build_mobile_misc_api_get_recent_emoticons_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2066,7 +2097,6 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
     def get_feed_posts(
         self,
         *,
-        ds: str,
         algorithm_type: int,
         cpu: str,
         device: str,
@@ -2077,12 +2107,11 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         is_triggered_by_resource: bool,
         last_id: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseMobileFeedPostsData:
         """get_feed_posts.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword algorithm_type: Required.
         :paramtype algorithm_type: int
         :keyword cpu: Required.
@@ -2103,6 +2132,8 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         :paramtype last_id: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileFeedPostsData. The ApiResponseMobileFeedPostsData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileFeedPostsData
@@ -2122,7 +2153,6 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileFeedPostsData] = kwargs.pop("cls", None)
 
         _request = build_mobile_painter_api_get_feed_posts_request(
-            ds=ds,
             algorithm_type=algorithm_type,
             cpu=cpu,
             device=device,
@@ -2133,6 +2163,7 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
             is_triggered_by_resource=is_triggered_by_resource,
             last_id=last_id,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2169,7 +2200,6 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
     def get_user_instant_list(
         self,
         *,
-        ds: str,
         game_region: str,
         game_uid: int,
         offset: int,
@@ -2177,12 +2207,11 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         uid: int,
         view_type: int,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseMobileUserInstantListData:
         """get_user_instant_list.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword game_region: Required.
         :paramtype game_region: str
         :keyword game_uid: Required.
@@ -2197,6 +2226,8 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         :paramtype view_type: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileUserInstantListData. The ApiResponseMobileUserInstantListData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileUserInstantListData
@@ -2216,7 +2247,6 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileUserInstantListData] = kwargs.pop("cls", None)
 
         _request = build_mobile_painter_api_get_user_instant_list_request(
-            ds=ds,
             game_region=game_region,
             game_uid=game_uid,
             offset=offset,
@@ -2224,6 +2254,7 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
             uid=uid,
             view_type=view_type,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2258,14 +2289,14 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_villa_site_push(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileVillaSitePushData:
         """get_villa_site_push.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileVillaSitePushData. The ApiResponseMobileVillaSitePushData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileVillaSitePushData
@@ -2285,8 +2316,8 @@ class MobilePainterApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileVillaSitePushData] = kwargs.pop("cls", None)
 
         _request = build_mobile_painter_api_get_villa_site_push_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2339,14 +2370,14 @@ class MobilePostApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_publish_video_permission(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileVideoPermissionData:
         """get_publish_video_permission.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileVideoPermissionData. The ApiResponseMobileVideoPermissionData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileVideoPermissionData
@@ -2366,8 +2397,8 @@ class MobilePostApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileVideoPermissionData] = kwargs.pop("cls", None)
 
         _request = build_mobile_post_api_get_publish_video_permission_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2420,18 +2451,18 @@ class MobileReceptionApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_game_center(
-        self, *, ds: str, cpu: str, device: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cpu: str, device: str, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileGameCenterData:
         """get_game_center.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cpu: Required.
         :paramtype cpu: str
         :keyword device: Required.
         :paramtype device: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileGameCenterData. The ApiResponseMobileGameCenterData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileGameCenterData
@@ -2451,10 +2482,10 @@ class MobileReceptionApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileGameCenterData] = kwargs.pop("cls", None)
 
         _request = build_mobile_reception_api_get_game_center_request(
-            ds=ds,
             cpu=cpu,
             device=device,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2507,14 +2538,14 @@ class MobileTeenagerApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_info(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileTeenagerInfoData:
         """get_info.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileTeenagerInfoData. The ApiResponseMobileTeenagerInfoData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileTeenagerInfoData
@@ -2534,8 +2565,8 @@ class MobileTeenagerApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileTeenagerInfoData] = kwargs.pop("cls", None)
 
         _request = build_mobile_teenager_api_get_info_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2588,14 +2619,14 @@ class MobileTimelineApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_unread_info(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileUnreadInfoData:
         """get_unread_info.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileUnreadInfoData. The ApiResponseMobileUnreadInfoData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileUnreadInfoData
@@ -2615,8 +2646,8 @@ class MobileTimelineApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileUnreadInfoData] = kwargs.pop("cls", None)
 
         _request = build_mobile_timeline_api_get_unread_info_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2669,16 +2700,16 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_user_businesses(
-        self, *, ds: str, uid: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileBusinessesData:
         """get_user_businesses.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword uid: Required.
         :paramtype uid: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileBusinessesData. The ApiResponseMobileBusinessesData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileBusinessesData
@@ -2698,9 +2729,9 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileBusinessesData] = kwargs.pop("cls", None)
 
         _request = build_mobile_user_api_get_user_businesses_request(
-            ds=ds,
             uid=uid,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2735,16 +2766,16 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_user_full_info(
-        self, *, ds: str, uid: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseCommunityUser:
         """get_user_full_info.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword uid: Required.
         :paramtype uid: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseCommunityUser. The ApiResponseCommunityUser is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseCommunityUser
@@ -2764,9 +2795,9 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseCommunityUser] = kwargs.pop("cls", None)
 
         _request = build_mobile_user_api_get_user_full_info_request(
-            ds=ds,
             uid=uid,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2801,16 +2832,16 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_notification_settings(
-        self, *, ds: str, uid: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, uid: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileNotificationSettingsData:
         """get_notification_settings.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword uid: Required.
         :paramtype uid: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileNotificationSettingsData. The
          ApiResponseMobileNotificationSettingsData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileNotificationSettingsData
@@ -2830,9 +2861,9 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileNotificationSettingsData] = kwargs.pop("cls", None)
 
         _request = build_mobile_user_api_get_notification_settings_request(
-            ds=ds,
             uid=uid,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2867,14 +2898,14 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_reply_permission(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileReplyPermissionData:
         """get_reply_permission.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileReplyPermissionData. The ApiResponseMobileReplyPermissionData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileReplyPermissionData
@@ -2894,8 +2925,8 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileReplyPermissionData] = kwargs.pop("cls", None)
 
         _request = build_mobile_user_api_get_reply_permission_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2934,8 +2965,8 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobileLoginRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -2943,10 +2974,10 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileLoginRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2960,8 +2991,8 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobileLoginRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -2969,10 +3000,10 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobileLoginRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2986,8 +3017,8 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
@@ -2995,10 +3026,10 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3011,8 +3042,8 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: Union[_api_request_models5.MobileLoginRequest, _types_api_request_models5.MobileLoginRequest, IO[bytes]],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseEmptyData:
         """login.
@@ -3020,10 +3051,10 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobileLoginRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobileLoginRequest or
          ~uigf.mihoyo.api.request.types.MobileLoginRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseEmptyData. The ApiResponseEmptyData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseEmptyData
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3050,8 +3081,8 @@ class MobileUserApiOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_user_api_login_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3106,18 +3137,18 @@ class MobileUserInstantApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_entity_review(
-        self, *, ds: str, offset: int, size: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, offset: int, size: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseMobileEntityReviewData:
         """get_entity_review.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword offset: Required.
         :paramtype offset: int
         :keyword size: Required.
         :paramtype size: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobileEntityReviewData. The ApiResponseMobileEntityReviewData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobileEntityReviewData
@@ -3137,10 +3168,10 @@ class MobileUserInstantApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseMobileEntityReviewData] = kwargs.pop("cls", None)
 
         _request = build_mobile_user_instant_api_get_entity_review_request(
-            ds=ds,
             offset=offset,
             size=size,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -3197,8 +3228,8 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _api_request_models5.MobilePreloadConfigRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobilePreloadConfigData:
@@ -3206,10 +3237,10 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.models.MobilePreloadConfigRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3224,8 +3255,8 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: _types_api_request_models5.MobilePreloadConfigRequest,
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobilePreloadConfigData:
@@ -3233,10 +3264,10 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: ~uigf.mihoyo.api.request.types.MobilePreloadConfigRequest
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3251,8 +3282,8 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
         self,
         body: IO[bytes],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models3.ApiResponseMobilePreloadConfigData:
@@ -3260,10 +3291,10 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
 
         :param body: Required.
         :type body: IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3281,8 +3312,8 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
             IO[bytes],
         ],
         *,
-        ds: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models3.ApiResponseMobilePreloadConfigData:
         """get_latest_config.
@@ -3290,10 +3321,10 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
         :param body: Is either a MobilePreloadConfigRequest type or a IO[bytes] type. Required.
         :type body: ~uigf.mihoyo.api.request.models.MobilePreloadConfigRequest or
          ~uigf.mihoyo.api.request.types.MobilePreloadConfigRequest or IO[bytes]
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseMobilePreloadConfigData. The ApiResponseMobilePreloadConfigData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseMobilePreloadConfigData
@@ -3321,8 +3352,8 @@ class MobilePreloadApiOperations:  # pylint: disable=docstring-missing-param
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_mobile_preload_api_get_latest_config_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -31,7 +31,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_static_api_hub_get_static_resource_request(  # pylint: disable=name-too-long
-    *, ds: str, client_type: int, cookie: Optional[str] = None, **kwargs: Any
+    *, client_type: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -47,14 +47,15 @@ def build_static_api_hub_get_static_resource_request(  # pylint: disable=name-to
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_static_misc_api_get_all_resource_versions_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -66,14 +67,15 @@ def build_static_misc_api_get_all_resource_versions_request(  # pylint: disable=
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_static_preload_api_get_latest_version_request(  # pylint: disable=name-too-long
-    *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+    *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -85,14 +87,15 @@ def build_static_preload_api_get_latest_version_request(  # pylint: disable=name
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_static_search_api_get_pre_keyword_request(  # pylint: disable=name-too-long
-    *, ds: str, game_id: int, cookie: Optional[str] = None, **kwargs: Any
+    *, game_id: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -108,7 +111,8 @@ def build_static_search_api_get_pre_keyword_request(  # pylint: disable=name-too
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -132,16 +136,16 @@ class StaticApiHubOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_static_resource(
-        self, *, ds: str, client_type: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, client_type: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseStaticResourceData:
         """get_static_resource.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword client_type: Required.
         :paramtype client_type: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseStaticResourceData. The ApiResponseStaticResourceData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseStaticResourceData
@@ -161,9 +165,9 @@ class StaticApiHubOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseStaticResourceData] = kwargs.pop("cls", None)
 
         _request = build_static_api_hub_get_static_resource_request(
-            ds=ds,
             client_type=client_type,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -216,14 +220,14 @@ class StaticMiscApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_all_resource_versions(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseStaticResourceVersionsData:
         """get_all_resource_versions.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseStaticResourceVersionsData. The ApiResponseStaticResourceVersionsData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseStaticResourceVersionsData
@@ -243,8 +247,8 @@ class StaticMiscApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseStaticResourceVersionsData] = kwargs.pop("cls", None)
 
         _request = build_static_misc_api_get_all_resource_versions_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -297,14 +301,14 @@ class StaticPreloadApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_latest_version(
-        self, *, ds: str, cookie: Optional[str] = None, **kwargs: Any
+        self, *, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseStaticLatestVersionData:
         """get_latest_version.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseStaticLatestVersionData. The ApiResponseStaticLatestVersionData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseStaticLatestVersionData
@@ -324,8 +328,8 @@ class StaticPreloadApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseStaticLatestVersionData] = kwargs.pop("cls", None)
 
         _request = build_static_preload_api_get_latest_version_request(
-            ds=ds,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -378,16 +382,16 @@ class StaticSearchApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_pre_keyword(
-        self, *, ds: str, game_id: int, cookie: Optional[str] = None, **kwargs: Any
+        self, *, game_id: int, cookie: Optional[str] = None, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponseStaticPreKeywordData:
         """get_pre_keyword.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword game_id: Required.
         :paramtype game_id: int
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseStaticPreKeywordData. The ApiResponseStaticPreKeywordData is compatible
          with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseStaticPreKeywordData
@@ -407,9 +411,9 @@ class StaticSearchApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponseStaticPreKeywordData] = kwargs.pop("cls", None)
 
         _request = build_static_search_api_get_pre_keyword_request(
-            ds=ds,
             game_id=game_id,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

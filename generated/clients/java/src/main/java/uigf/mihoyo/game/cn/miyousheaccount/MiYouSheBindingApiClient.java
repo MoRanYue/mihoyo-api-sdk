@@ -68,4 +68,20 @@ public final class MiYouSheBindingApiClient {
     public ApiResponseGameRoleList getRoles(String cookie, String ds) {
         return getRolesWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
+
+    /**
+     * The getRoles operation.
+     * 
+     * @param cookie The cookie parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseGameRoleList getRoles(String cookie) {
+        final String ds = null;
+        return getRolesWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
 }

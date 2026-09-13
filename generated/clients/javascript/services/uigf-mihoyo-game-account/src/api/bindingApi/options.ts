@@ -10,4 +10,6 @@ export interface BindingApiGetRolesOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface BindingApiGenerateAuthKeyOptionalParams extends OperationOptions {}
+export interface BindingApiGenerateAuthKeyOptionalParams extends OperationOptions {
+  ds?: string;
+}

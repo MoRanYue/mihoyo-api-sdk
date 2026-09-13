@@ -40,13 +40,11 @@ import {
 export interface ApiHubOperations {
   setPostVote: (
     cookie: string,
-    ds: string,
     body: LikePostRequest,
     options?: ApiHubSetPostVoteOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   signIn: (
     cookie: string,
-    ds: string,
     body: SignInRequest,
     options?: ApiHubSignInOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
@@ -66,20 +64,17 @@ export interface ApiHubOperations {
   ) => Promise<ApiResponseJsonObject>;
   getMissionState: (
     cookie: string,
-    ds: string,
     pointSn: string,
     options?: ApiHubGetMissionStateOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getShareConfig: (
     cookie: string,
-    ds: string,
     entityId: string,
     entityType: number,
     options?: ApiHubGetShareConfigOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getMissions: (
     cookie: string,
-    ds: string,
     pointSn: string,
     options?: ApiHubGetMissionsOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
@@ -96,16 +91,11 @@ function _getApiHub(context: MihoyoCommunityContext) {
   return {
     setPostVote: (
       cookie: string,
-      ds: string,
       body: LikePostRequest,
       options?: ApiHubSetPostVoteOptionalParams,
-    ) => setPostVote(context, cookie, ds, body, options),
-    signIn: (
-      cookie: string,
-      ds: string,
-      body: SignInRequest,
-      options?: ApiHubSignInOptionalParams,
-    ) => signIn(context, cookie, ds, body, options),
+    ) => setPostVote(context, cookie, body, options),
+    signIn: (cookie: string, body: SignInRequest, options?: ApiHubSignInOptionalParams) =>
+      signIn(context, cookie, body, options),
     getHome: (gids: number, options?: ApiHubGetHomeOptionalParams) =>
       getHome(context, gids, options),
     getVoteResults: (
@@ -117,23 +107,17 @@ function _getApiHub(context: MihoyoCommunityContext) {
       getVotes(context, ownerUid, voteIds, options),
     getMissionState: (
       cookie: string,
-      ds: string,
       pointSn: string,
       options?: ApiHubGetMissionStateOptionalParams,
-    ) => getMissionState(context, cookie, ds, pointSn, options),
+    ) => getMissionState(context, cookie, pointSn, options),
     getShareConfig: (
       cookie: string,
-      ds: string,
       entityId: string,
       entityType: number,
       options?: ApiHubGetShareConfigOptionalParams,
-    ) => getShareConfig(context, cookie, ds, entityId, entityType, options),
-    getMissions: (
-      cookie: string,
-      ds: string,
-      pointSn: string,
-      options?: ApiHubGetMissionsOptionalParams,
-    ) => getMissions(context, cookie, ds, pointSn, options),
+    ) => getShareConfig(context, cookie, entityId, entityType, options),
+    getMissions: (cookie: string, pointSn: string, options?: ApiHubGetMissionsOptionalParams) =>
+      getMissions(context, cookie, pointSn, options),
     getGameList: (options?: ApiHubGetGameListOptionalParams) => getGameList(context, options),
     getAppConfig: (options?: ApiHubGetAppConfigOptionalParams) => getAppConfig(context, options),
     getAllGamesForums: (options?: ApiHubGetAllGamesForumsOptionalParams) =>

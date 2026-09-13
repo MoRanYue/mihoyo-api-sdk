@@ -22,7 +22,6 @@ import {
 export function _getStygianOnslaughtSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GenshinChallengeApiGetStygianOnslaughtOptionalParams = { requestOptions: {} },
@@ -46,7 +45,7 @@ export function _getStygianOnslaughtSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -67,19 +66,17 @@ export async function _getStygianOnslaughtDeserialize(
 export async function getStygianOnslaught(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GenshinChallengeApiGetStygianOnslaughtOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getStygianOnslaughtSend(context, cookie, ds, server, roleId, options);
+  const result = await _getStygianOnslaughtSend(context, cookie, server, roleId, options);
   return _getStygianOnslaughtDeserialize(result);
 }
 
 export function _getImaginariumTheaterSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GenshinChallengeApiGetImaginariumTheaterOptionalParams = { requestOptions: {} },
@@ -103,7 +100,7 @@ export function _getImaginariumTheaterSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -124,19 +121,17 @@ export async function _getImaginariumTheaterDeserialize(
 export async function getImaginariumTheater(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GenshinChallengeApiGetImaginariumTheaterOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getImaginariumTheaterSend(context, cookie, ds, server, roleId, options);
+  const result = await _getImaginariumTheaterSend(context, cookie, server, roleId, options);
   return _getImaginariumTheaterDeserialize(result);
 }
 
 export function _getSpiralAbyssSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GenshinChallengeApiGetSpiralAbyssOptionalParams = { requestOptions: {} },
@@ -160,7 +155,7 @@ export function _getSpiralAbyssSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -181,11 +176,10 @@ export async function _getSpiralAbyssDeserialize(
 export async function getSpiralAbyss(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GenshinChallengeApiGetSpiralAbyssOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getSpiralAbyssSend(context, cookie, ds, server, roleId, options);
+  const result = await _getSpiralAbyssSend(context, cookie, server, roleId, options);
   return _getSpiralAbyssDeserialize(result);
 }

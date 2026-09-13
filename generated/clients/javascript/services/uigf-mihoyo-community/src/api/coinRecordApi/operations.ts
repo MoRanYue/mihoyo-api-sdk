@@ -18,7 +18,6 @@ import {
 export function _listSend(
   context: Client,
   cookie: string,
-  ds: string,
   appId: string,
   pointSn: string,
   time: string,
@@ -45,7 +44,7 @@ export function _listSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -67,7 +66,6 @@ export async function _listDeserialize(
 export async function list(
   context: Client,
   cookie: string,
-  ds: string,
   appId: string,
   pointSn: string,
   time: string,
@@ -75,6 +73,6 @@ export async function list(
   size: number,
   options: CoinRecordApiListOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _listSend(context, cookie, ds, appId, pointSn, time, action, size, options);
+  const result = await _listSend(context, cookie, appId, pointSn, time, action, size, options);
   return _listDeserialize(result);
 }

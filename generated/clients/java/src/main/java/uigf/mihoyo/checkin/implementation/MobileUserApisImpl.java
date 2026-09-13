@@ -118,9 +118,9 @@ public final class MobileUserApisImpl {
     /**
      * The getUserBusinesses operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -128,7 +128,7 @@ public final class MobileUserApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileBusinessesData> getUserBusinessesWithResponse(String ds, long uid, String cookie,
+    public Response<ApiResponseMobileBusinessesData> getUserBusinessesWithResponse(long uid, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getUserBusinesses", requestContext, updatedContext -> {
@@ -140,9 +140,9 @@ public final class MobileUserApisImpl {
     /**
      * The getUserFullInfo operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -150,7 +150,7 @@ public final class MobileUserApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseCommunityUser> getUserFullInfoWithResponse(String ds, long uid, String cookie,
+    public Response<ApiResponseCommunityUser> getUserFullInfoWithResponse(long uid, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getUserFullInfo",
             requestContext, updatedContext -> {
@@ -162,9 +162,9 @@ public final class MobileUserApisImpl {
     /**
      * The getNotificationSettings operation.
      * 
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -172,8 +172,8 @@ public final class MobileUserApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileNotificationSettingsData> getNotificationSettingsWithResponse(String ds, long uid,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileNotificationSettingsData> getNotificationSettingsWithResponse(long uid,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getNotificationSettings", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -185,8 +185,8 @@ public final class MobileUserApisImpl {
     /**
      * The getReplyPermission operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -194,7 +194,7 @@ public final class MobileUserApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileReplyPermissionData> getReplyPermissionWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileReplyPermissionData> getReplyPermissionWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.getReplyPermission", requestContext, updatedContext -> {
@@ -206,9 +206,9 @@ public final class MobileUserApisImpl {
     /**
      * The login operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -216,7 +216,7 @@ public final class MobileUserApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseEmptyData> loginWithResponse(String ds, MobileLoginRequest body, String cookie,
+    public Response<ApiResponseEmptyData> loginWithResponse(MobileLoginRequest body, String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileUserApi.login",
             requestContext, updatedContext -> {

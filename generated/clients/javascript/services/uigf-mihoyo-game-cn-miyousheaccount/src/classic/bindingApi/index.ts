@@ -10,15 +10,14 @@ import { ApiResponseGameRoleList } from "../../models/uigf/mihoyo/models.js";
 export interface BindingApiOperations {
   getRoles: (
     cookie: string,
-    ds: string,
     options?: BindingApiGetRolesOptionalParams,
   ) => Promise<ApiResponseGameRoleList>;
 }
 
 function _getBindingApi(context: MihoyoGameCNMiYouSheAccountContext) {
   return {
-    getRoles: (cookie: string, ds: string, options?: BindingApiGetRolesOptionalParams) =>
-      getRoles(context, cookie, ds, options),
+    getRoles: (cookie: string, options?: BindingApiGetRolesOptionalParams) =>
+      getRoles(context, cookie, options),
   };
 }
 

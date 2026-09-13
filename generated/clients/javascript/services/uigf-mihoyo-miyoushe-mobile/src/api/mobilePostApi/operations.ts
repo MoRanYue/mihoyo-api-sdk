@@ -16,7 +16,6 @@ import {
 
 export function _getPublishVideoPermissionSend(
   context: Client,
-  ds: string,
   options: MobilePostApiGetPublishVideoPermissionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -25,7 +24,7 @@ export function _getPublishVideoPermissionSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -45,9 +44,8 @@ export async function _getPublishVideoPermissionDeserialize(
 
 export async function getPublishVideoPermission(
   context: Client,
-  ds: string,
   options: MobilePostApiGetPublishVideoPermissionOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileVideoPermissionData> {
-  const result = await _getPublishVideoPermissionSend(context, ds, options);
+  const result = await _getPublishVideoPermissionSend(context, options);
   return _getPublishVideoPermissionDeserialize(result);
 }

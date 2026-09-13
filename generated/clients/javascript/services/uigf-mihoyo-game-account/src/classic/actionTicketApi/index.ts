@@ -10,7 +10,6 @@ import { ApiResponseJsonObject } from "../../models/uigf/mihoyo/models.js";
 export interface ActionTicketApiOperations {
   getBySToken: (
     cookie: string,
-    ds: string,
     actionType: string,
     stoken: string,
     uid: string,
@@ -22,12 +21,11 @@ function _getActionTicketApi(context: MihoyoGameAccountContext) {
   return {
     getBySToken: (
       cookie: string,
-      ds: string,
       actionType: string,
       stoken: string,
       uid: string,
       options?: ActionTicketApiGetBySTokenOptionalParams,
-    ) => getBySToken(context, cookie, ds, actionType, stoken, uid, options),
+    ) => getBySToken(context, cookie, actionType, stoken, uid, options),
   };
 }
 

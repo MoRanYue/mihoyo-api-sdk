@@ -78,8 +78,8 @@ public final class CardApisImpl {
      * The getGameRecordCard operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -87,8 +87,8 @@ public final class CardApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinGameRecordCardData> getGameRecordCardWithResponse(String cookie, String ds,
-        String uid, RequestContext requestContext) {
+    public Response<ApiResponseGenshinGameRecordCardData> getGameRecordCardWithResponse(String cookie, String uid,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.CardApi.getGameRecordCard",
             requestContext, updatedContext -> {
                 final String accept = "application/json";

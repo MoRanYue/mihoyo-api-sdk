@@ -21,11 +21,9 @@ import {
 /** Interface representing a MobilePainterApi operations. */
 export interface MobilePainterApiOperations {
   getVillaSitePush: (
-    ds: string,
     options?: MobilePainterApiGetVillaSitePushOptionalParams,
   ) => Promise<ApiResponseMobileVillaSitePushData>;
   getUserInstantList: (
-    ds: string,
     gameRegion: string,
     gameUid: number,
     offset: number,
@@ -35,7 +33,6 @@ export interface MobilePainterApiOperations {
     options?: MobilePainterApiGetUserInstantListOptionalParams,
   ) => Promise<ApiResponseMobileUserInstantListData>;
   getFeedPosts: (
-    ds: string,
     algorithmType: number,
     cpu: string,
     device: string,
@@ -51,10 +48,9 @@ export interface MobilePainterApiOperations {
 
 function _getMobilePainterApi(context: MihoyoMiYouSheMobileContext) {
   return {
-    getVillaSitePush: (ds: string, options?: MobilePainterApiGetVillaSitePushOptionalParams) =>
-      getVillaSitePush(context, ds, options),
+    getVillaSitePush: (options?: MobilePainterApiGetVillaSitePushOptionalParams) =>
+      getVillaSitePush(context, options),
     getUserInstantList: (
-      ds: string,
       gameRegion: string,
       gameUid: number,
       offset: number,
@@ -62,9 +58,8 @@ function _getMobilePainterApi(context: MihoyoMiYouSheMobileContext) {
       uid: number,
       viewType: number,
       options?: MobilePainterApiGetUserInstantListOptionalParams,
-    ) => getUserInstantList(context, ds, gameRegion, gameUid, offset, size, uid, viewType, options),
+    ) => getUserInstantList(context, gameRegion, gameUid, offset, size, uid, viewType, options),
     getFeedPosts: (
-      ds: string,
       algorithmType: number,
       cpu: string,
       device: string,
@@ -78,7 +73,6 @@ function _getMobilePainterApi(context: MihoyoMiYouSheMobileContext) {
     ) =>
       getFeedPosts(
         context,
-        ds,
         algorithmType,
         cpu,
         device,

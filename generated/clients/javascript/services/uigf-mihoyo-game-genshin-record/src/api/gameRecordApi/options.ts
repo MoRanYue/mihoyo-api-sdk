@@ -5,20 +5,28 @@ import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface GameRecordApiGetToolOptionalParams extends OperationOptions {
+  ds?: string;
   challenge?: string;
 }
 
 /** Optional parameters. */
-export interface GameRecordApiGetRoleBasicInfoOptionalParams extends OperationOptions {}
+export interface GameRecordApiGetRoleBasicInfoOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GameRecordApiGetExternalContentOptionalParams extends OperationOptions {}
+export interface GameRecordApiGetExternalContentOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GameRecordApiGetCharacterTpsOptionalParams extends OperationOptions {}
+export interface GameRecordApiGetCharacterTpsOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
 export interface GameRecordApiGetActivityCalendarOptionalParams extends OperationOptions {
+  ds?: string;
   challenge?: string;
 }
 
@@ -27,16 +35,20 @@ export interface GameRecordApiGetStygianPopularityOptionalParams extends Operati
 
 /** Optional parameters. */
 export interface GameRecordApiGetStygianOnslaughtOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
 }
 
 /** Optional parameters. */
-export interface GameRecordApiGetCharacterMasterOptionalParams extends OperationOptions {}
+export interface GameRecordApiGetCharacterMasterOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
 export interface GameRecordApiGetImaginariumTheaterOptionalParams extends OperationOptions {
+  ds?: string;
   active?: number;
   scheduleType?: number;
   needDetail?: boolean;
@@ -45,21 +57,29 @@ export interface GameRecordApiGetImaginariumTheaterOptionalParams extends Operat
 
 /** Optional parameters. */
 export interface GameRecordApiGetSpiralAbyssOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
 }
 
 /** Optional parameters. */
-export interface GameRecordApiGetDailyNoteOptionalParams extends OperationOptions {}
+export interface GameRecordApiGetDailyNoteOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GameRecordApiGetCharacterDetailsOptionalParams extends OperationOptions {}
+export interface GameRecordApiGetCharacterDetailsOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GameRecordApiListCharactersOptionalParams extends OperationOptions {}
+export interface GameRecordApiListCharactersOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
 export interface GameRecordApiGetIndexOptionalParams extends OperationOptions {
+  ds?: string;
   avatarListType?: number;
 }

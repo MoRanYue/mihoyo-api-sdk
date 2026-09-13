@@ -9,15 +9,14 @@ import { ApiResponseMobileUnreadInfoData } from "../../models/uigf/mihoyo/models
 /** Interface representing a MobileTimelineApi operations. */
 export interface MobileTimelineApiOperations {
   getUnreadInfo: (
-    ds: string,
     options?: MobileTimelineApiGetUnreadInfoOptionalParams,
   ) => Promise<ApiResponseMobileUnreadInfoData>;
 }
 
 function _getMobileTimelineApi(context: MihoyoMiYouSheMobileContext) {
   return {
-    getUnreadInfo: (ds: string, options?: MobileTimelineApiGetUnreadInfoOptionalParams) =>
-      getUnreadInfo(context, ds, options),
+    getUnreadInfo: (options?: MobileTimelineApiGetUnreadInfoOptionalParams) =>
+      getUnreadInfo(context, options),
   };
 }
 

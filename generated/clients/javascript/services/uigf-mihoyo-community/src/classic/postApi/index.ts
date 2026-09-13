@@ -33,7 +33,6 @@ import {
 export interface PostApiOperations {
   setFavorite: (
     cookie: string,
-    ds: string,
     body: FavoritePostRequest,
     options?: PostApiSetFavoriteOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
@@ -74,10 +73,9 @@ function _getPostApi(context: MihoyoCommunityContext) {
   return {
     setFavorite: (
       cookie: string,
-      ds: string,
       body: FavoritePostRequest,
       options?: PostApiSetFavoriteOptionalParams,
-    ) => setFavorite(context, cookie, ds, body, options),
+    ) => setFavorite(context, cookie, body, options),
     search: (gids: string, keyword: string, options?: PostApiSearchOptionalParams) =>
       search(context, gids, keyword, options),
     getUserPosts: (uid: string, gids: string, options?: PostApiGetUserPostsOptionalParams) =>

@@ -37,8 +37,8 @@ public final class ReleaseApiClient {
     /**
      * The getLatestRelease operation.
      * 
-     * @param ds The ds parameter.
      * @param deviceCpuBitType The deviceCpuBitType parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -47,17 +47,32 @@ public final class ReleaseApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseReleaseData> getLatestReleaseWithResponse(String ds, int deviceCpuBitType,
+    public Response<ApiResponseReleaseData> getLatestReleaseWithResponse(int deviceCpuBitType, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.CN.MiYouSheAccount.ReleaseApi.getLatestRelease", requestContext,
-            updatedContext -> this.serviceClient.getLatestReleaseWithResponse(ds, deviceCpuBitType, updatedContext));
+            updatedContext -> this.serviceClient.getLatestReleaseWithResponse(deviceCpuBitType, ds, updatedContext));
     }
 
     /**
      * The getLatestRelease operation.
      * 
+     * @param deviceCpuBitType The deviceCpuBitType parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseReleaseData getLatestRelease(int deviceCpuBitType, String ds) {
+        return getLatestReleaseWithResponse(deviceCpuBitType, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getLatestRelease operation.
+     * 
      * @param deviceCpuBitType The deviceCpuBitType parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -66,7 +81,8 @@ public final class ReleaseApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseReleaseData getLatestRelease(String ds, int deviceCpuBitType) {
-        return getLatestReleaseWithResponse(ds, deviceCpuBitType, RequestContext.none()).getValue();
+    public ApiResponseReleaseData getLatestRelease(int deviceCpuBitType) {
+        final String ds = null;
+        return getLatestReleaseWithResponse(deviceCpuBitType, ds, RequestContext.none()).getValue();
     }
 }

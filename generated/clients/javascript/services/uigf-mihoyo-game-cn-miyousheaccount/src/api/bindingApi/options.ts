@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface BindingApiGetRolesOptionalParams extends OperationOptions {}
+export interface BindingApiGetRolesOptionalParams extends OperationOptions {
+  ds?: string;
+}

@@ -17,7 +17,6 @@ import {
 
 export function _getDiscussionByGameSend(
   context: Client,
-  ds: string,
   gids: number,
   version: number,
   options: MobileForumApiGetDiscussionByGameOptionalParams = { requestOptions: {} },
@@ -38,7 +37,7 @@ export function _getDiscussionByGameSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -58,11 +57,10 @@ export async function _getDiscussionByGameDeserialize(
 
 export async function getDiscussionByGame(
   context: Client,
-  ds: string,
   gids: number,
   version: number,
   options: MobileForumApiGetDiscussionByGameOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileDiscussionData> {
-  const result = await _getDiscussionByGameSend(context, ds, gids, version, options);
+  const result = await _getDiscussionByGameSend(context, gids, version, options);
   return _getDiscussionByGameDeserialize(result);
 }

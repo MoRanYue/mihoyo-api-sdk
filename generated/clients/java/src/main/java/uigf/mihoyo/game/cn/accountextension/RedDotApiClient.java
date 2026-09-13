@@ -37,13 +37,13 @@ public final class RedDotApiClient {
     /**
      * The getBatch operation.
      * 
-     * @param ds The ds parameter.
      * @param authkey The authkey parameter.
      * @param authkeyVer The authkeyVer parameter.
      * @param gameBiz The gameBiz parameter.
      * @param signType The signType parameter.
      * @param users The users parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -52,23 +52,23 @@ public final class RedDotApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseRedDotBatchData> getBatchWithResponse(String ds, String authkey, int authkeyVer,
-        String gameBiz, int signType, String users, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseRedDotBatchData> getBatchWithResponse(String authkey, int authkeyVer, String gameBiz,
+        int signType, String users, String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.CN.AccountExtension.RedDotApi.getBatch",
-            requestContext, updatedContext -> this.serviceClient.getBatchWithResponse(ds, authkey, authkeyVer, gameBiz,
-                signType, users, cookie, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getBatchWithResponse(authkey, authkeyVer, gameBiz,
+                signType, users, cookie, ds, updatedContext));
     }
 
     /**
      * The getBatch operation.
      * 
-     * @param ds The ds parameter.
      * @param authkey The authkey parameter.
      * @param authkeyVer The authkeyVer parameter.
      * @param gameBiz The gameBiz parameter.
      * @param signType The signType parameter.
      * @param users The users parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -76,16 +76,15 @@ public final class RedDotApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseRedDotBatchData getBatch(String ds, String authkey, int authkeyVer, String gameBiz, int signType,
-        String users, String cookie) {
-        return getBatchWithResponse(ds, authkey, authkeyVer, gameBiz, signType, users, cookie, RequestContext.none())
+    public ApiResponseRedDotBatchData getBatch(String authkey, int authkeyVer, String gameBiz, int signType,
+        String users, String cookie, String ds) {
+        return getBatchWithResponse(authkey, authkeyVer, gameBiz, signType, users, cookie, ds, RequestContext.none())
             .getValue();
     }
 
     /**
      * The getBatch operation.
      * 
-     * @param ds The ds parameter.
      * @param authkey The authkey parameter.
      * @param authkeyVer The authkeyVer parameter.
      * @param gameBiz The gameBiz parameter.
@@ -98,10 +97,11 @@ public final class RedDotApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseRedDotBatchData getBatch(String ds, String authkey, int authkeyVer, String gameBiz, int signType,
+    public ApiResponseRedDotBatchData getBatch(String authkey, int authkeyVer, String gameBiz, int signType,
         String users) {
         final String cookie = null;
-        return getBatchWithResponse(ds, authkey, authkeyVer, gameBiz, signType, users, cookie, RequestContext.none())
+        final String ds = null;
+        return getBatchWithResponse(authkey, authkeyVer, gameBiz, signType, users, cookie, ds, RequestContext.none())
             .getValue();
     }
 }

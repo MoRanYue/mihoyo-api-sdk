@@ -33,7 +33,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_binding_api_get_roles_request(*, cookie: str, ds: str, **kwargs: Any) -> HttpRequest:
+def build_binding_api_get_roles_request(*, cookie: str, ds: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -43,13 +43,14 @@ def build_binding_api_get_roles_request(*, cookie: str, ds: str, **kwargs: Any) 
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_auth_key_api_generate_request(*, cookie: str, ds: str, **kwargs: Any) -> HttpRequest:
+def build_auth_key_api_generate_request(*, cookie: str, ds: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -60,7 +61,8 @@ def build_auth_key_api_generate_request(*, cookie: str, ds: str, **kwargs: Any) 
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -69,7 +71,7 @@ def build_auth_key_api_generate_request(*, cookie: str, ds: str, **kwargs: Any) 
 
 
 def build_release_api_get_latest_release_request(  # pylint: disable=name-too-long
-    *, ds: str, device_cpu_bit_type: int, **kwargs: Any
+    *, device_cpu_bit_type: int, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -83,7 +85,8 @@ def build_release_api_get_latest_release_request(  # pylint: disable=name-too-lo
     _params["device_cpu_bit_type"] = _SERIALIZER.query("device_cpu_bit_type", device_cpu_bit_type, "int")
 
     # Construct headers
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -106,12 +109,12 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get_roles(self, *, cookie: str, ds: str, **kwargs: Any) -> _models4.ApiResponseGameRoleList:
+    def get_roles(self, *, cookie: str, ds: Optional[str] = None, **kwargs: Any) -> _models4.ApiResponseGameRoleList:
         """get_roles.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseGameRoleList. The ApiResponseGameRoleList is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseGameRoleList
@@ -190,7 +193,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         body: _models3.AuthKeyRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseAuthKeyData:
@@ -200,7 +203,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.AuthKeyRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -216,7 +219,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models3.AuthKeyRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models4.ApiResponseAuthKeyData:
@@ -226,7 +229,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.AuthKeyRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -238,7 +241,13 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     def generate(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models4.ApiResponseAuthKeyData:
         """generate.
 
@@ -246,7 +255,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -261,7 +270,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models3.AuthKeyRequest, _types_models3.AuthKeyRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseAuthKeyData:
         """generate.
@@ -271,7 +280,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
          or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseAuthKeyData. The ApiResponseAuthKeyData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseAuthKeyData
@@ -355,14 +364,14 @@ class ReleaseApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_latest_release(
-        self, *, ds: str, device_cpu_bit_type: int, **kwargs: Any
+        self, *, device_cpu_bit_type: int, ds: Optional[str] = None, **kwargs: Any
     ) -> _models4.ApiResponseReleaseData:
         """get_latest_release.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword device_cpu_bit_type: Required.
         :paramtype device_cpu_bit_type: int
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseReleaseData. The ApiResponseReleaseData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseReleaseData
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -381,8 +390,8 @@ class ReleaseApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models4.ApiResponseReleaseData] = kwargs.pop("cls", None)
 
         _request = build_release_api_get_latest_release_request(
-            ds=ds,
             device_cpu_bit_type=device_cpu_bit_type,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

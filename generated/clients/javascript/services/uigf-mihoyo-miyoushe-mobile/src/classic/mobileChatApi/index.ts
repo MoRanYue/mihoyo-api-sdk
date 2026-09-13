@@ -9,15 +9,14 @@ import { ApiResponseMobileUserSettingsData } from "../../models/uigf/mihoyo/mode
 /** Interface representing a MobileChatApi operations. */
 export interface MobileChatApiOperations {
   getUserSettings: (
-    ds: string,
     options?: MobileChatApiGetUserSettingsOptionalParams,
   ) => Promise<ApiResponseMobileUserSettingsData>;
 }
 
 function _getMobileChatApi(context: MihoyoMiYouSheMobileContext) {
   return {
-    getUserSettings: (ds: string, options?: MobileChatApiGetUserSettingsOptionalParams) =>
-      getUserSettings(context, ds, options),
+    getUserSettings: (options?: MobileChatApiGetUserSettingsOptionalParams) =>
+      getUserSettings(context, options),
   };
 }
 

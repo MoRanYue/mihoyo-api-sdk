@@ -9,15 +9,14 @@ import { ApiResponseStaticLatestVersionData } from "../../models/uigf/mihoyo/mod
 /** Interface representing a StaticPreloadApi operations. */
 export interface StaticPreloadApiOperations {
   getLatestVersion: (
-    ds: string,
     options?: StaticPreloadApiGetLatestVersionOptionalParams,
   ) => Promise<ApiResponseStaticLatestVersionData>;
 }
 
 function _getStaticPreloadApi(context: MihoyoMiYouSheStaticContext) {
   return {
-    getLatestVersion: (ds: string, options?: StaticPreloadApiGetLatestVersionOptionalParams) =>
-      getLatestVersion(context, ds, options),
+    getLatestVersion: (options?: StaticPreloadApiGetLatestVersionOptionalParams) =>
+      getLatestVersion(context, options),
   };
 }
 

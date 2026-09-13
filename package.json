@@ -27,6 +27,8 @@
     "build:clients": "node tools/build-clients.mjs",
     "compare:har": "node tools/compare-har.mjs",
     "test:csharp-ds": "node --test tools/csharp-ds.test.mjs",
+    "test:java-ds": "node --test tools/java-ds.test.mjs",
+    "test:python-ds": "python tools/python-ds.test.py generated/clients/python",
     "test:clients": "node --test tools/clients.test.mjs",
     "test": "npm run build:runtime && node --test dist/ds.test.js tools/compare-har.test.mjs && npm run test:emitter",
     "test:emitter": "npm run build:spec && node tools/verify-ds-openapi.mjs generated"

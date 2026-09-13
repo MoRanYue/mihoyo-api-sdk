@@ -49,8 +49,8 @@ public final class MobileApiHubClient {
     /**
      * The getAppSplash operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -59,31 +59,16 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileAppSplashData> getAppSplashWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileAppSplashData> getAppSplashWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getAppSplash",
-            requestContext, updatedContext -> this.serviceClient.getAppSplashWithResponse(ds, cookie, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getAppSplashWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getAppSplash operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileAppSplashData getAppSplash(String ds, String cookie) {
-        return getAppSplashWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getAppSplash operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -92,16 +77,30 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileAppSplashData getAppSplash(String ds) {
+    public ApiResponseMobileAppSplashData getAppSplash(String cookie, String ds) {
+        return getAppSplashWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getAppSplash operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileAppSplashData getAppSplash() {
         final String cookie = null;
-        return getAppSplashWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getAppSplashWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getGameList operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -110,31 +109,16 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileGameListData> getGameListWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileGameListData> getGameListWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getGameList",
-            requestContext, updatedContext -> this.serviceClient.getGameListWithResponse(ds, cookie, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getGameListWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getGameList operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileGameListData getGameList(String ds, String cookie) {
-        return getGameListWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getGameList operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -143,16 +127,30 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileGameListData getGameList(String ds) {
+    public ApiResponseMobileGameListData getGameList(String cookie, String ds) {
+        return getGameListWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getGameList operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileGameListData getGameList() {
         final String cookie = null;
-        return getGameListWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getGameListWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getMyselfPageConfig operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -161,32 +159,17 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileMyselfPageConfigData> getMyselfPageConfigWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileMyselfPageConfigData> getMyselfPageConfigWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getMyselfPageConfig", requestContext,
-            updatedContext -> this.serviceClient.getMyselfPageConfigWithResponse(ds, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getMyselfPageConfigWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getMyselfPageConfig operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileMyselfPageConfigData getMyselfPageConfig(String ds, String cookie) {
-        return getMyselfPageConfigWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getMyselfPageConfig operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -195,18 +178,32 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileMyselfPageConfigData getMyselfPageConfig(String ds) {
+    public ApiResponseMobileMyselfPageConfigData getMyselfPageConfig(String cookie, String ds) {
+        return getMyselfPageConfigWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getMyselfPageConfig operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileMyselfPageConfigData getMyselfPageConfig() {
         final String cookie = null;
-        return getMyselfPageConfigWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getMyselfPageConfigWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUnreadMessageCount operation.
      * 
-     * @param ds The ds parameter.
      * @param firstViewTs The firstViewTs parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -215,21 +212,21 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileUnreadMessageData> getUnreadMessageCountWithResponse(String ds, long firstViewTs,
-        long uid, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileUnreadMessageData> getUnreadMessageCountWithResponse(long firstViewTs, long uid,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getUnreadMessageCount", requestContext,
-            updatedContext -> this.serviceClient.getUnreadMessageCountWithResponse(ds, firstViewTs, uid, cookie,
+            updatedContext -> this.serviceClient.getUnreadMessageCountWithResponse(firstViewTs, uid, cookie, ds,
                 updatedContext));
     }
 
     /**
      * The getUnreadMessageCount operation.
      * 
-     * @param ds The ds parameter.
      * @param firstViewTs The firstViewTs parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -237,15 +234,14 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileUnreadMessageData getUnreadMessageCount(String ds, long firstViewTs, long uid,
-        String cookie) {
-        return getUnreadMessageCountWithResponse(ds, firstViewTs, uid, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileUnreadMessageData getUnreadMessageCount(long firstViewTs, long uid, String cookie,
+        String ds) {
+        return getUnreadMessageCountWithResponse(firstViewTs, uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUnreadMessageCount operation.
      * 
-     * @param ds The ds parameter.
      * @param firstViewTs The firstViewTs parameter.
      * @param uid The uid parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -255,16 +251,17 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileUnreadMessageData getUnreadMessageCount(String ds, long firstViewTs, long uid) {
+    public ApiResponseMobileUnreadMessageData getUnreadMessageCount(long firstViewTs, long uid) {
         final String cookie = null;
-        return getUnreadMessageCountWithResponse(ds, firstViewTs, uid, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getUnreadMessageCountWithResponse(firstViewTs, uid, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUserMissionsState operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -273,32 +270,17 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileMissionsStateData> getUserMissionsStateWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileMissionsStateData> getUserMissionsStateWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getUserMissionsState", requestContext,
-            updatedContext -> this.serviceClient.getUserMissionsStateWithResponse(ds, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getUserMissionsStateWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getUserMissionsState operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileMissionsStateData getUserMissionsState(String ds, String cookie) {
-        return getUserMissionsStateWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getUserMissionsState operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -307,17 +289,31 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileMissionsStateData getUserMissionsState(String ds) {
+    public ApiResponseMobileMissionsStateData getUserMissionsState(String cookie, String ds) {
+        return getUserMissionsStateWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getUserMissionsState operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileMissionsStateData getUserMissionsState() {
         final String cookie = null;
-        return getUserMissionsStateWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getUserMissionsStateWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The deviceLogin operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -326,19 +322,19 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseEmptyData> deviceLoginWithResponse(String ds, MobileDeviceSessionRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseEmptyData> deviceLoginWithResponse(MobileDeviceSessionRequest body, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.deviceLogin",
             requestContext,
-            updatedContext -> this.serviceClient.deviceLoginWithResponse(ds, body, cookie, updatedContext));
+            updatedContext -> this.serviceClient.deviceLoginWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The deviceLogin operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -346,14 +342,13 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseEmptyData deviceLogin(String ds, MobileDeviceSessionRequest body, String cookie) {
-        return deviceLoginWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseEmptyData deviceLogin(MobileDeviceSessionRequest body, String cookie, String ds) {
+        return deviceLoginWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The deviceLogin operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -362,17 +357,18 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseEmptyData deviceLogin(String ds, MobileDeviceSessionRequest body) {
+    public ApiResponseEmptyData deviceLogin(MobileDeviceSessionRequest body) {
         final String cookie = null;
-        return deviceLoginWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return deviceLoginWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The deviceLogout operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -381,19 +377,19 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseEmptyData> deviceLogoutWithResponse(String ds, MobileDeviceSessionRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseEmptyData> deviceLogoutWithResponse(MobileDeviceSessionRequest body, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.deviceLogout",
             requestContext,
-            updatedContext -> this.serviceClient.deviceLogoutWithResponse(ds, body, cookie, updatedContext));
+            updatedContext -> this.serviceClient.deviceLogoutWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The deviceLogout operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -401,14 +397,13 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseEmptyData deviceLogout(String ds, MobileDeviceSessionRequest body, String cookie) {
-        return deviceLogoutWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseEmptyData deviceLogout(MobileDeviceSessionRequest body, String cookie, String ds) {
+        return deviceLogoutWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The deviceLogout operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -417,17 +412,18 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseEmptyData deviceLogout(String ds, MobileDeviceSessionRequest body) {
+    public ApiResponseEmptyData deviceLogout(MobileDeviceSessionRequest body) {
         final String cookie = null;
-        return deviceLogoutWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return deviceLogoutWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getAppStartupData operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -436,19 +432,19 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileStartupData> getAppStartupDataWithResponse(String ds, MobileStartupRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileStartupData> getAppStartupDataWithResponse(MobileStartupRequest body,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getAppStartupData",
             requestContext,
-            updatedContext -> this.serviceClient.getAppStartupDataWithResponse(ds, body, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getAppStartupDataWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The getAppStartupData operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -456,14 +452,13 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileStartupData getAppStartupData(String ds, MobileStartupRequest body, String cookie) {
-        return getAppStartupDataWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileStartupData getAppStartupData(MobileStartupRequest body, String cookie, String ds) {
+        return getAppStartupDataWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getAppStartupData operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -472,17 +467,18 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileStartupData getAppStartupData(String ds, MobileStartupRequest body) {
+    public ApiResponseMobileStartupData getAppStartupData(MobileStartupRequest body) {
         final String cookie = null;
-        return getAppStartupDataWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getAppStartupDataWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The prepareWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -491,19 +487,19 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileWindowPrepareData> prepareWindowWithResponse(String ds,
-        MobileWindowPrepareRequest body, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileWindowPrepareData> prepareWindowWithResponse(MobileWindowPrepareRequest body,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.prepareWindow",
             requestContext,
-            updatedContext -> this.serviceClient.prepareWindowWithResponse(ds, body, cookie, updatedContext));
+            updatedContext -> this.serviceClient.prepareWindowWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The prepareWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -511,14 +507,13 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileWindowPrepareData prepareWindow(String ds, MobileWindowPrepareRequest body, String cookie) {
-        return prepareWindowWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileWindowPrepareData prepareWindow(MobileWindowPrepareRequest body, String cookie, String ds) {
+        return prepareWindowWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The prepareWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -527,17 +522,18 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileWindowPrepareData prepareWindow(String ds, MobileWindowPrepareRequest body) {
+    public ApiResponseMobileWindowPrepareData prepareWindow(MobileWindowPrepareRequest body) {
         final String cookie = null;
-        return prepareWindowWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return prepareWindowWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The showWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -546,19 +542,19 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileWindowShowData> showWindowWithResponse(String ds, MobileWindowShowRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileWindowShowData> showWindowWithResponse(MobileWindowShowRequest body, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.showWindow",
             requestContext,
-            updatedContext -> this.serviceClient.showWindowWithResponse(ds, body, cookie, updatedContext));
+            updatedContext -> this.serviceClient.showWindowWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The showWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -566,14 +562,13 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileWindowShowData showWindow(String ds, MobileWindowShowRequest body, String cookie) {
-        return showWindowWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileWindowShowData showWindow(MobileWindowShowRequest body, String cookie, String ds) {
+        return showWindowWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The showWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -582,8 +577,9 @@ public final class MobileApiHubClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileWindowShowData showWindow(String ds, MobileWindowShowRequest body) {
+    public ApiResponseMobileWindowShowData showWindow(MobileWindowShowRequest body) {
         final String cookie = null;
-        return showWindowWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return showWindowWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 }

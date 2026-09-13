@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface AuthKeyApiGenerateOptionalParams extends OperationOptions {}
+export interface AuthKeyApiGenerateOptionalParams extends OperationOptions {
+  ds?: string;
+}

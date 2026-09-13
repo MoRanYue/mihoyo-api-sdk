@@ -6,6 +6,7 @@
     "strict": true,
     "declaration": true,
     "resolveJsonModule": true,
+    "types": ["node"],
     "rootDir": ".",
     "outDir": "dist",
     "skipLibCheck": true

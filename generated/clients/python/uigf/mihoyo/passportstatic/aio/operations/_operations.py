@@ -45,16 +45,16 @@ class SwitchApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_switch_status(
-        self, *, ds: str, app_id: str, platform: int, **kwargs: Any
+        self, *, app_id: str, platform: int, ds: Optional[str] = None, **kwargs: Any
     ) -> _models3.ApiResponsePassportSwitchStatusData:
         """get_switch_status.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword app_id: Required.
         :paramtype app_id: str
         :keyword platform: Required.
         :paramtype platform: int
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponsePassportSwitchStatusData. The ApiResponsePassportSwitchStatusData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponsePassportSwitchStatusData
@@ -74,9 +74,9 @@ class SwitchApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models3.ApiResponsePassportSwitchStatusData] = kwargs.pop("cls", None)
 
         _request = build_switch_api_get_switch_status_request(
-            ds=ds,
             app_id=app_id,
             platform=platform,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

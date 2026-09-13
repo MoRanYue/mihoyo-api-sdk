@@ -25,7 +25,6 @@ import {
 
 export function _getVillaSitePushSend(
   context: Client,
-  ds: string,
   options: MobilePainterApiGetVillaSitePushOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -34,7 +33,7 @@ export function _getVillaSitePushSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -54,16 +53,14 @@ export async function _getVillaSitePushDeserialize(
 
 export async function getVillaSitePush(
   context: Client,
-  ds: string,
   options: MobilePainterApiGetVillaSitePushOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileVillaSitePushData> {
-  const result = await _getVillaSitePushSend(context, ds, options);
+  const result = await _getVillaSitePushSend(context, options);
   return _getVillaSitePushDeserialize(result);
 }
 
 export function _getUserInstantListSend(
   context: Client,
-  ds: string,
   gameRegion: string,
   gameUid: number,
   offset: number,
@@ -92,7 +89,7 @@ export function _getUserInstantListSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -112,7 +109,6 @@ export async function _getUserInstantListDeserialize(
 
 export async function getUserInstantList(
   context: Client,
-  ds: string,
   gameRegion: string,
   gameUid: number,
   offset: number,
@@ -123,7 +119,6 @@ export async function getUserInstantList(
 ): Promise<ApiResponseMobileUserInstantListData> {
   const result = await _getUserInstantListSend(
     context,
-    ds,
     gameRegion,
     gameUid,
     offset,
@@ -137,7 +132,6 @@ export async function getUserInstantList(
 
 export function _getFeedPostsSend(
   context: Client,
-  ds: string,
   algorithmType: number,
   cpu: string,
   device: string,
@@ -172,7 +166,7 @@ export function _getFeedPostsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -192,7 +186,6 @@ export async function _getFeedPostsDeserialize(
 
 export async function getFeedPosts(
   context: Client,
-  ds: string,
   algorithmType: number,
   cpu: string,
   device: string,
@@ -206,7 +199,6 @@ export async function getFeedPosts(
 ): Promise<ApiResponseMobileFeedPostsData> {
   const result = await _getFeedPostsSend(
     context,
-    ds,
     algorithmType,
     cpu,
     device,

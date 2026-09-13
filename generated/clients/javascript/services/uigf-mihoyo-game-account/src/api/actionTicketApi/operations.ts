@@ -18,7 +18,6 @@ import {
 export function _getBySTokenSend(
   context: Client,
   cookie: string,
-  ds: string,
   actionType: string,
   stoken: string,
   uid: string,
@@ -41,7 +40,7 @@ export function _getBySTokenSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -62,12 +61,11 @@ export async function _getBySTokenDeserialize(
 export async function getBySToken(
   context: Client,
   cookie: string,
-  ds: string,
   actionType: string,
   stoken: string,
   uid: string,
   options: ActionTicketApiGetBySTokenOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getBySTokenSend(context, cookie, ds, actionType, stoken, uid, options);
+  const result = await _getBySTokenSend(context, cookie, actionType, stoken, uid, options);
   return _getBySTokenDeserialize(result);
 }

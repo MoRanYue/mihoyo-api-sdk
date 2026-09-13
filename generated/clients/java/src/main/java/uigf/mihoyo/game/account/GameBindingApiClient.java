@@ -40,8 +40,8 @@ public final class GameBindingApiClient {
      * Generates an authenticated gacha authkey for a selected game role.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -50,18 +50,34 @@ public final class GameBindingApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> generateAuthKeyWithResponse(String cookie, String ds, AuthKeyRequest body,
+    public Response<ApiResponseJsonObject> generateAuthKeyWithResponse(String cookie, AuthKeyRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.BindingApi.generateAuthKey",
             requestContext,
-            updatedContext -> this.serviceClient.generateAuthKeyWithResponse(cookie, ds, body, updatedContext));
+            updatedContext -> this.serviceClient.generateAuthKeyWithResponse(cookie, body, ds, updatedContext));
     }
 
     /**
      * Generates an authenticated gacha authkey for a selected game role.
      * 
      * @param cookie The cookie parameter.
+     * @param body The body parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject generateAuthKey(String cookie, AuthKeyRequest body, String ds) {
+        return generateAuthKeyWithResponse(cookie, body, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * Generates an authenticated gacha authkey for a selected game role.
+     * 
+     * @param cookie The cookie parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -70,8 +86,9 @@ public final class GameBindingApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject generateAuthKey(String cookie, String ds, AuthKeyRequest body) {
-        return generateAuthKeyWithResponse(cookie, ds, body, RequestContext.none()).getValue();
+    public ApiResponseJsonObject generateAuthKey(String cookie, AuthKeyRequest body) {
+        final String ds = null;
+        return generateAuthKeyWithResponse(cookie, body, ds, RequestContext.none()).getValue();
     }
 
     /**

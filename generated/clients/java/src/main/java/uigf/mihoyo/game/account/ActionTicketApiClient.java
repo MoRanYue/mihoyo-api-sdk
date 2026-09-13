@@ -38,10 +38,10 @@ public final class ActionTicketApiClient {
      * The getBySToken operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param actionType The actionType parameter.
      * @param stoken The stoken parameter.
      * @param uid The uid parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -50,18 +50,36 @@ public final class ActionTicketApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getBySTokenWithResponse(String cookie, String ds, String actionType,
-        String stoken, String uid, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getBySTokenWithResponse(String cookie, String actionType, String stoken,
+        String uid, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.ActionTicketApi.getBySToken",
-            requestContext, updatedContext -> this.serviceClient.getBySTokenWithResponse(cookie, ds, actionType, stoken,
-                uid, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getBySTokenWithResponse(cookie, actionType, stoken,
+                uid, ds, updatedContext));
     }
 
     /**
      * The getBySToken operation.
      * 
      * @param cookie The cookie parameter.
+     * @param actionType The actionType parameter.
+     * @param stoken The stoken parameter.
+     * @param uid The uid parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject getBySToken(String cookie, String actionType, String stoken, String uid, String ds) {
+        return getBySTokenWithResponse(cookie, actionType, stoken, uid, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getBySToken operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param actionType The actionType parameter.
      * @param stoken The stoken parameter.
      * @param uid The uid parameter.
@@ -72,7 +90,8 @@ public final class ActionTicketApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getBySToken(String cookie, String ds, String actionType, String stoken, String uid) {
-        return getBySTokenWithResponse(cookie, ds, actionType, stoken, uid, RequestContext.none()).getValue();
+    public ApiResponseJsonObject getBySToken(String cookie, String actionType, String stoken, String uid) {
+        final String ds = null;
+        return getBySTokenWithResponse(cookie, actionType, stoken, uid, ds, RequestContext.none()).getValue();
     }
 }

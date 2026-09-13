@@ -11,7 +11,6 @@ import { ApiResponseAuthKeyData } from "../../models/uigf/mihoyo/models.js";
 export interface AuthKeyApiOperations {
   generate: (
     cookie: string,
-    ds: string,
     body: AuthKeyRequest,
     options?: AuthKeyApiGenerateOptionalParams,
   ) => Promise<ApiResponseAuthKeyData>;
@@ -19,12 +18,8 @@ export interface AuthKeyApiOperations {
 
 function _getAuthKeyApi(context: MihoyoGameCNMiYouSheAccountContext) {
   return {
-    generate: (
-      cookie: string,
-      ds: string,
-      body: AuthKeyRequest,
-      options?: AuthKeyApiGenerateOptionalParams,
-    ) => generate(context, cookie, ds, body, options),
+    generate: (cookie: string, body: AuthKeyRequest, options?: AuthKeyApiGenerateOptionalParams) =>
+      generate(context, cookie, body, options),
   };
 }
 

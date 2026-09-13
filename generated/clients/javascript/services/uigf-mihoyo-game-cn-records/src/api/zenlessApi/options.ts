@@ -10,10 +10,13 @@ export interface ZenlessApiGetThresholdSimulationDetailOptionalParams extends Op
 export interface ZenlessApiGetThresholdSimulationSummaryOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ZenlessApiGetDeadlyAssaultOptionalParams extends OperationOptions {}
+export interface ZenlessApiGetDeadlyAssaultOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
 export interface ZenlessApiGetShiyuDefenseOptionalParams extends OperationOptions {
+  ds?: string;
   withoutV2Detail?: boolean;
   scheduleType?: number;
   needDetail?: boolean;

@@ -26,7 +26,6 @@ import {
 export function _syncAvatarListSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiSyncAvatarListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -37,7 +36,7 @@ export function _syncAvatarListSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -59,18 +58,16 @@ export async function _syncAvatarListDeserialize(
 export async function syncAvatarList(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiSyncAvatarListOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _syncAvatarListSend(context, cookie, ds, body, options);
+  const result = await _syncAvatarListSend(context, cookie, body, options);
   return _syncAvatarListDeserialize(result);
 }
 
 export function _listWeaponsSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiListWeaponsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -81,7 +78,7 @@ export function _listWeaponsSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -103,18 +100,16 @@ export async function _listWeaponsDeserialize(
 export async function listWeapons(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiListWeaponsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _listWeaponsSend(context, cookie, ds, body, options);
+  const result = await _listWeaponsSend(context, cookie, body, options);
   return _listWeaponsDeserialize(result);
 }
 
 export function _listAvatarsSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiListAvatarsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -125,7 +120,7 @@ export function _listAvatarsSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -147,18 +142,16 @@ export async function _listAvatarsDeserialize(
 export async function listAvatars(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiListAvatarsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _listAvatarsSend(context, cookie, ds, body, options);
+  const result = await _listAvatarsSend(context, cookie, body, options);
   return _listAvatarsDeserialize(result);
 }
 
 export function _batchComputeSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiBatchComputeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -169,7 +162,7 @@ export function _batchComputeSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -192,10 +185,9 @@ export async function _batchComputeDeserialize(
 export async function batchCompute(
   context: Client,
   cookie: string,
-  ds: string,
   body: CalculateRequest,
   options: CultivationApiBatchComputeOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _batchComputeSend(context, cookie, ds, body, options);
+  const result = await _batchComputeSend(context, cookie, body, options);
   return _batchComputeDeserialize(result);
 }

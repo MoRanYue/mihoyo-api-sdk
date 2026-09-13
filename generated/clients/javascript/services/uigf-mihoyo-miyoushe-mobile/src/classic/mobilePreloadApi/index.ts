@@ -10,7 +10,6 @@ import { ApiResponseMobilePreloadConfigData } from "../../models/uigf/mihoyo/mod
 /** Interface representing a MobilePreloadApi operations. */
 export interface MobilePreloadApiOperations {
   getLatestConfig: (
-    ds: string,
     body: MobilePreloadConfigRequest,
     options?: MobilePreloadApiGetLatestConfigOptionalParams,
   ) => Promise<ApiResponseMobilePreloadConfigData>;
@@ -19,10 +18,9 @@ export interface MobilePreloadApiOperations {
 function _getMobilePreloadApi(context: MihoyoMiYouSheMobileContext) {
   return {
     getLatestConfig: (
-      ds: string,
       body: MobilePreloadConfigRequest,
       options?: MobilePreloadApiGetLatestConfigOptionalParams,
-    ) => getLatestConfig(context, ds, body, options),
+    ) => getLatestConfig(context, body, options),
   };
 }
 

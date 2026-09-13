@@ -9,7 +9,6 @@ import { ApiResponseStaticPreKeywordData } from "../../models/uigf/mihoyo/models
 /** Interface representing a StaticSearchApi operations. */
 export interface StaticSearchApiOperations {
   getPreKeyword: (
-    ds: string,
     gameId: number,
     options?: StaticSearchApiGetPreKeywordOptionalParams,
   ) => Promise<ApiResponseStaticPreKeywordData>;
@@ -17,11 +16,8 @@ export interface StaticSearchApiOperations {
 
 function _getStaticSearchApi(context: MihoyoMiYouSheStaticContext) {
   return {
-    getPreKeyword: (
-      ds: string,
-      gameId: number,
-      options?: StaticSearchApiGetPreKeywordOptionalParams,
-    ) => getPreKeyword(context, ds, gameId, options),
+    getPreKeyword: (gameId: number, options?: StaticSearchApiGetPreKeywordOptionalParams) =>
+      getPreKeyword(context, gameId, options),
   };
 }
 

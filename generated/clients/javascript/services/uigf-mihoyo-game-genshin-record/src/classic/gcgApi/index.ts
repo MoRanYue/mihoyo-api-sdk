@@ -37,35 +37,30 @@ import {
 export interface GcgApiOperations {
   getMatchList: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GcgApiGetMatchListOptionalParams,
   ) => Promise<ApiResponseGcgMatchListData>;
   getCovers: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GcgApiGetCoversOptionalParams,
   ) => Promise<ApiResponseGcgCoversData>;
   getDeckList: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GcgApiGetDeckListOptionalParams,
   ) => Promise<ApiResponseGcgDeckListData>;
   getChallengeSchedule: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GcgApiGetChallengeScheduleOptionalParams,
   ) => Promise<ApiResponseGcgChallengeScheduleData>;
   getChallengeRecord: (
     cookie: string,
-    ds: string,
     scheduleId: number,
     roleId: string,
     server: string,
@@ -73,7 +68,6 @@ export interface GcgApiOperations {
   ) => Promise<ApiResponseGcgChallengeRecordData>;
   getCardList: (
     cookie: string,
-    ds: string,
     limit: number,
     needAction: boolean,
     needAvatar: boolean,
@@ -85,14 +79,12 @@ export interface GcgApiOperations {
   ) => Promise<ApiResponseGcgCardListData>;
   getCardBackList: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GcgApiGetCardBackListOptionalParams,
   ) => Promise<ApiResponseGcgCardBackListData>;
   getBasicInfo: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GcgApiGetBasicInfoOptionalParams,
@@ -103,43 +95,37 @@ function _getGcgApi(context: MihoyoGameGenshinRecordContext) {
   return {
     getMatchList: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GcgApiGetMatchListOptionalParams,
-    ) => getMatchList(context, cookie, ds, roleId, server, options),
+    ) => getMatchList(context, cookie, roleId, server, options),
     getCovers: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GcgApiGetCoversOptionalParams,
-    ) => getCovers(context, cookie, ds, roleId, server, options),
+    ) => getCovers(context, cookie, roleId, server, options),
     getDeckList: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GcgApiGetDeckListOptionalParams,
-    ) => getDeckList(context, cookie, ds, roleId, server, options),
+    ) => getDeckList(context, cookie, roleId, server, options),
     getChallengeSchedule: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GcgApiGetChallengeScheduleOptionalParams,
-    ) => getChallengeSchedule(context, cookie, ds, roleId, server, options),
+    ) => getChallengeSchedule(context, cookie, roleId, server, options),
     getChallengeRecord: (
       cookie: string,
-      ds: string,
       scheduleId: number,
       roleId: string,
       server: string,
       options?: GcgApiGetChallengeRecordOptionalParams,
-    ) => getChallengeRecord(context, cookie, ds, scheduleId, roleId, server, options),
+    ) => getChallengeRecord(context, cookie, scheduleId, roleId, server, options),
     getCardList: (
       cookie: string,
-      ds: string,
       limit: number,
       needAction: boolean,
       needAvatar: boolean,
@@ -152,7 +138,6 @@ function _getGcgApi(context: MihoyoGameGenshinRecordContext) {
       getCardList(
         context,
         cookie,
-        ds,
         limit,
         needAction,
         needAvatar,
@@ -164,18 +149,16 @@ function _getGcgApi(context: MihoyoGameGenshinRecordContext) {
       ),
     getCardBackList: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GcgApiGetCardBackListOptionalParams,
-    ) => getCardBackList(context, cookie, ds, roleId, server, options),
+    ) => getCardBackList(context, cookie, roleId, server, options),
     getBasicInfo: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GcgApiGetBasicInfoOptionalParams,
-    ) => getBasicInfo(context, cookie, ds, roleId, server, options),
+    ) => getBasicInfo(context, cookie, roleId, server, options),
   };
 }
 

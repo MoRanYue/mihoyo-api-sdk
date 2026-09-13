@@ -17,7 +17,6 @@ import {
 
 export function _getGameCenterSend(
   context: Client,
-  ds: string,
   cpu: string,
   device: string,
   options: MobileReceptionApiGetGameCenterOptionalParams = { requestOptions: {} },
@@ -38,7 +37,7 @@ export function _getGameCenterSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -58,11 +57,10 @@ export async function _getGameCenterDeserialize(
 
 export async function getGameCenter(
   context: Client,
-  ds: string,
   cpu: string,
   device: string,
   options: MobileReceptionApiGetGameCenterOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileGameCenterData> {
-  const result = await _getGameCenterSend(context, ds, cpu, device, options);
+  const result = await _getGameCenterSend(context, cpu, device, options);
   return _getGameCenterDeserialize(result);
 }

@@ -5,6 +5,7 @@ import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface GenshinChallengeApiGetStygianOnslaughtOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
@@ -12,6 +13,7 @@ export interface GenshinChallengeApiGetStygianOnslaughtOptionalParams extends Op
 
 /** Optional parameters. */
 export interface GenshinChallengeApiGetImaginariumTheaterOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;
@@ -19,6 +21,7 @@ export interface GenshinChallengeApiGetImaginariumTheaterOptionalParams extends 
 
 /** Optional parameters. */
 export interface GenshinChallengeApiGetSpiralAbyssOptionalParams extends OperationOptions {
+  ds?: string;
   scheduleType?: number;
   needDetail?: boolean;
   needAll?: boolean;

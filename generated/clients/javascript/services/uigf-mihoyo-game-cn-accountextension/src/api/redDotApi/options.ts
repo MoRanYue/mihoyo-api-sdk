@@ -6,4 +6,5 @@ import { OperationOptions } from "@azure-rest/core-client";
 /** Optional parameters. */
 export interface RedDotApiGetBatchOptionalParams extends OperationOptions {
   cookie?: string;
+  ds?: string;
 }

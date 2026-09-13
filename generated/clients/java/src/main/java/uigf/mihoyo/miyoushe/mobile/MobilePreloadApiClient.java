@@ -38,9 +38,9 @@ public final class MobilePreloadApiClient {
     /**
      * The getLatestConfig operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -49,19 +49,19 @@ public final class MobilePreloadApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobilePreloadConfigData> getLatestConfigWithResponse(String ds,
-        MobilePreloadConfigRequest body, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobilePreloadConfigData> getLatestConfigWithResponse(MobilePreloadConfigRequest body,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobilePreloadApi.getLatestConfig", requestContext,
-            updatedContext -> this.serviceClient.getLatestConfigWithResponse(ds, body, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getLatestConfigWithResponse(body, cookie, ds, updatedContext));
     }
 
     /**
      * The getLatestConfig operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -69,15 +69,14 @@ public final class MobilePreloadApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobilePreloadConfigData getLatestConfig(String ds, MobilePreloadConfigRequest body,
-        String cookie) {
-        return getLatestConfigWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobilePreloadConfigData getLatestConfig(MobilePreloadConfigRequest body, String cookie,
+        String ds) {
+        return getLatestConfigWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getLatestConfig operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -86,8 +85,9 @@ public final class MobilePreloadApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobilePreloadConfigData getLatestConfig(String ds, MobilePreloadConfigRequest body) {
+    public ApiResponseMobilePreloadConfigData getLatestConfig(MobilePreloadConfigRequest body) {
         final String cookie = null;
-        return getLatestConfigWithResponse(ds, body, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getLatestConfigWithResponse(body, cookie, ds, RequestContext.none()).getValue();
     }
 }

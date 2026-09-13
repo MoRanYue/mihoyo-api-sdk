@@ -10,7 +10,6 @@ import { ApiResponseGenshinGameRecordCardData } from "../../models/uigf/mihoyo/m
 export interface LegacyCardApiOperations {
   getGameRecordCard: (
     cookie: string,
-    ds: string,
     uid: string,
     options?: LegacyCardApiGetGameRecordCardOptionalParams,
   ) => Promise<ApiResponseGenshinGameRecordCardData>;
@@ -20,10 +19,9 @@ function _getLegacyCardApi(context: MihoyoGameGenshinLegacyRecordContext) {
   return {
     getGameRecordCard: (
       cookie: string,
-      ds: string,
       uid: string,
       options?: LegacyCardApiGetGameRecordCardOptionalParams,
-    ) => getGameRecordCard(context, cookie, ds, uid, options),
+    ) => getGameRecordCard(context, cookie, uid, options),
   };
 }
 

@@ -178,8 +178,8 @@ public final class MobileApiHubsImpl {
     /**
      * The getAppSplash operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -187,7 +187,7 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileAppSplashData> getAppSplashWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileAppSplashData> getAppSplashWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getAppSplash",
             requestContext, updatedContext -> {
@@ -199,8 +199,8 @@ public final class MobileApiHubsImpl {
     /**
      * The getGameList operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -208,7 +208,7 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileGameListData> getGameListWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileGameListData> getGameListWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getGameList",
             requestContext, updatedContext -> {
@@ -220,8 +220,8 @@ public final class MobileApiHubsImpl {
     /**
      * The getMyselfPageConfig operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -229,7 +229,7 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileMyselfPageConfigData> getMyselfPageConfigWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileMyselfPageConfigData> getMyselfPageConfigWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getMyselfPageConfig", requestContext, updatedContext -> {
@@ -241,10 +241,10 @@ public final class MobileApiHubsImpl {
     /**
      * The getUnreadMessageCount operation.
      * 
-     * @param ds The ds parameter.
      * @param firstViewTs The firstViewTs parameter.
      * @param uid The uid parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -252,8 +252,8 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileUnreadMessageData> getUnreadMessageCountWithResponse(String ds, long firstViewTs,
-        long uid, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileUnreadMessageData> getUnreadMessageCountWithResponse(long firstViewTs, long uid,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getUnreadMessageCount", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -265,8 +265,8 @@ public final class MobileApiHubsImpl {
     /**
      * The getUserMissionsState operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -274,7 +274,7 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileMissionsStateData> getUserMissionsStateWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileMissionsStateData> getUserMissionsStateWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getUserMissionsState", requestContext, updatedContext -> {
@@ -286,9 +286,9 @@ public final class MobileApiHubsImpl {
     /**
      * The deviceLogin operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -296,8 +296,8 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseEmptyData> deviceLoginWithResponse(String ds, MobileDeviceSessionRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseEmptyData> deviceLoginWithResponse(MobileDeviceSessionRequest body, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.deviceLogin",
             requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -310,9 +310,9 @@ public final class MobileApiHubsImpl {
     /**
      * The deviceLogout operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -320,8 +320,8 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseEmptyData> deviceLogoutWithResponse(String ds, MobileDeviceSessionRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseEmptyData> deviceLogoutWithResponse(MobileDeviceSessionRequest body, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.deviceLogout",
             requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -334,9 +334,9 @@ public final class MobileApiHubsImpl {
     /**
      * The getAppStartupData operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -344,8 +344,8 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileStartupData> getAppStartupDataWithResponse(String ds, MobileStartupRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileStartupData> getAppStartupDataWithResponse(MobileStartupRequest body,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.getAppStartupData",
             requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -358,9 +358,9 @@ public final class MobileApiHubsImpl {
     /**
      * The prepareWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -368,8 +368,8 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileWindowPrepareData> prepareWindowWithResponse(String ds,
-        MobileWindowPrepareRequest body, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileWindowPrepareData> prepareWindowWithResponse(MobileWindowPrepareRequest body,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.prepareWindow",
             requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -382,9 +382,9 @@ public final class MobileApiHubsImpl {
     /**
      * The showWindow operation.
      * 
-     * @param ds The ds parameter.
      * @param body The body parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -392,8 +392,8 @@ public final class MobileApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileWindowShowData> showWindowWithResponse(String ds, MobileWindowShowRequest body,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileWindowShowData> showWindowWithResponse(MobileWindowShowRequest body, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileApiHub.showWindow",
             requestContext, updatedContext -> {
                 final String contentType = "application/json";

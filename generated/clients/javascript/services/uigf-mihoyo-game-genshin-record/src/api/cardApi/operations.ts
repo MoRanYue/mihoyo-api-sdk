@@ -18,7 +18,6 @@ import {
 export function _getGameRecordCardSend(
   context: Client,
   cookie: string,
-  ds: string,
   uid: string,
   options: CardApiGetGameRecordCardOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -37,7 +36,7 @@ export function _getGameRecordCardSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -58,10 +57,9 @@ export async function _getGameRecordCardDeserialize(
 export async function getGameRecordCard(
   context: Client,
   cookie: string,
-  ds: string,
   uid: string,
   options: CardApiGetGameRecordCardOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinGameRecordCardData> {
-  const result = await _getGameRecordCardSend(context, cookie, ds, uid, options);
+  const result = await _getGameRecordCardSend(context, cookie, uid, options);
   return _getGameRecordCardDeserialize(result);
 }

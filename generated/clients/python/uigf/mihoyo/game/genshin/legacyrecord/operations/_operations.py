@@ -31,7 +31,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_legacy_card_api_get_game_record_card_request(  # pylint: disable=name-too-long
-    *, cookie: str, ds: str, uid: str, **kwargs: Any
+    *, cookie: str, uid: str, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -46,7 +46,8 @@ def build_legacy_card_api_get_game_record_card_request(  # pylint: disable=name-
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -92,16 +93,16 @@ class LegacyCardApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_game_record_card(
-        self, *, cookie: str, ds: str, uid: str, **kwargs: Any
+        self, *, cookie: str, uid: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models4.ApiResponseGenshinGameRecordCardData:
         """get_game_record_card.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword uid: Required.
         :paramtype uid: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseGenshinGameRecordCardData. The ApiResponseGenshinGameRecordCardData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseGenshinGameRecordCardData
@@ -122,8 +123,8 @@ class LegacyCardApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_legacy_card_api_get_game_record_card_request(
             cookie=cookie,
-            ds=ds,
             uid=uid,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

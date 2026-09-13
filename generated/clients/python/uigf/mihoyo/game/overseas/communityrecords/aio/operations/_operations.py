@@ -140,9 +140,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -152,12 +152,12 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -183,9 +183,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_genshin_challenge_api_get_spiral_abyss_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -226,9 +226,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -238,12 +238,12 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -269,9 +269,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_genshin_challenge_api_get_imaginarium_theater_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -312,9 +312,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -324,12 +324,12 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -355,9 +355,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_genshin_challenge_api_get_stygian_onslaught_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -416,9 +416,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -428,12 +428,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -459,9 +459,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_forgotten_hall_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -502,9 +502,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -514,12 +514,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -545,9 +545,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_pure_fiction_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -588,9 +588,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -600,12 +600,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -631,9 +631,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_apocalyptic_shadow_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -674,9 +674,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -686,12 +686,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -717,9 +717,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_simulated_universe_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,

@@ -37,10 +37,10 @@ public final class MobileUserInstantApiClient {
     /**
      * The getEntityReview operation.
      * 
-     * @param ds The ds parameter.
      * @param offset The offset parameter.
      * @param size The size parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -49,20 +49,20 @@ public final class MobileUserInstantApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileEntityReviewData> getEntityReviewWithResponse(String ds, int offset, int size,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileEntityReviewData> getEntityReviewWithResponse(int offset, int size, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserInstantApi.getEntityReview", requestContext,
-            updatedContext -> this.serviceClient.getEntityReviewWithResponse(ds, offset, size, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getEntityReviewWithResponse(offset, size, cookie, ds, updatedContext));
     }
 
     /**
      * The getEntityReview operation.
      * 
-     * @param ds The ds parameter.
      * @param offset The offset parameter.
      * @param size The size parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -70,14 +70,13 @@ public final class MobileUserInstantApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileEntityReviewData getEntityReview(String ds, int offset, int size, String cookie) {
-        return getEntityReviewWithResponse(ds, offset, size, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileEntityReviewData getEntityReview(int offset, int size, String cookie, String ds) {
+        return getEntityReviewWithResponse(offset, size, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getEntityReview operation.
      * 
-     * @param ds The ds parameter.
      * @param offset The offset parameter.
      * @param size The size parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -87,8 +86,9 @@ public final class MobileUserInstantApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileEntityReviewData getEntityReview(String ds, int offset, int size) {
+    public ApiResponseMobileEntityReviewData getEntityReview(int offset, int size) {
         final String cookie = null;
-        return getEntityReviewWithResponse(ds, offset, size, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getEntityReviewWithResponse(offset, size, cookie, ds, RequestContext.none()).getValue();
     }
 }

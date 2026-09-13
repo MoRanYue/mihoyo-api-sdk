@@ -20,28 +20,24 @@ import { ApiResponseJsonObject } from "../../models/uigf/mihoyo/models.js";
 export interface StarRailChallengeApiOperations {
   getSimulatedUniverse: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailChallengeApiGetSimulatedUniverseOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getApocalypticShadow: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailChallengeApiGetApocalypticShadowOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getPureFiction: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailChallengeApiGetPureFictionOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getForgottenHall: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: StarRailChallengeApiGetForgottenHallOptionalParams,
@@ -52,32 +48,28 @@ function _getStarRailChallengeApi(context: MihoyoGameGlobalCommunityRecordsConte
   return {
     getSimulatedUniverse: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailChallengeApiGetSimulatedUniverseOptionalParams,
-    ) => getSimulatedUniverse(context, cookie, ds, server, roleId, options),
+    ) => getSimulatedUniverse(context, cookie, server, roleId, options),
     getApocalypticShadow: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailChallengeApiGetApocalypticShadowOptionalParams,
-    ) => getApocalypticShadow(context, cookie, ds, server, roleId, options),
+    ) => getApocalypticShadow(context, cookie, server, roleId, options),
     getPureFiction: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailChallengeApiGetPureFictionOptionalParams,
-    ) => getPureFiction(context, cookie, ds, server, roleId, options),
+    ) => getPureFiction(context, cookie, server, roleId, options),
     getForgottenHall: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: StarRailChallengeApiGetForgottenHallOptionalParams,
-    ) => getForgottenHall(context, cookie, ds, server, roleId, options),
+    ) => getForgottenHall(context, cookie, server, roleId, options),
   };
 }
 

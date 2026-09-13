@@ -81,8 +81,8 @@ public final class AuthKeyApisImpl {
      * The generate operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -90,7 +90,7 @@ public final class AuthKeyApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseAuthKeyData> generateWithResponse(String cookie, String ds, AuthKeyRequest body,
+    public Response<ApiResponseAuthKeyData> generateWithResponse(String cookie, AuthKeyRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.CN.MiYouSheAccount.AuthKeyApi.generate",
             requestContext, updatedContext -> {

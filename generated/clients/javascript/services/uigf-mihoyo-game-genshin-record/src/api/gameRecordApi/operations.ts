@@ -63,7 +63,6 @@ import {
 export function _getToolSend(
   context: Client,
   cookie: string,
-  ds: string,
   options: GameRecordApiGetToolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -72,7 +71,7 @@ export function _getToolSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         ...(options?.challenge !== undefined ? { "x-rpc-challenge": options?.challenge } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -94,17 +93,15 @@ export async function _getToolDeserialize(
 export async function getTool(
   context: Client,
   cookie: string,
-  ds: string,
   options: GameRecordApiGetToolOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinToolData> {
-  const result = await _getToolSend(context, cookie, ds, options);
+  const result = await _getToolSend(context, cookie, options);
   return _getToolDeserialize(result);
 }
 
 export function _getRoleBasicInfoSend(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GameRecordApiGetRoleBasicInfoOptionalParams = { requestOptions: {} },
@@ -125,7 +122,7 @@ export function _getRoleBasicInfoSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -146,19 +143,17 @@ export async function _getRoleBasicInfoDeserialize(
 export async function getRoleBasicInfo(
   context: Client,
   cookie: string,
-  ds: string,
   roleId: string,
   server: string,
   options: GameRecordApiGetRoleBasicInfoOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinRoleBasicInfoData> {
-  const result = await _getRoleBasicInfoSend(context, cookie, ds, roleId, server, options);
+  const result = await _getRoleBasicInfoSend(context, cookie, roleId, server, options);
   return _getRoleBasicInfoDeserialize(result);
 }
 
 export function _getExternalContentSend(
   context: Client,
   cookie: string,
-  ds: string,
   itemId: number,
   itemType: number,
   options: GameRecordApiGetExternalContentOptionalParams = { requestOptions: {} },
@@ -179,7 +174,7 @@ export function _getExternalContentSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -200,19 +195,17 @@ export async function _getExternalContentDeserialize(
 export async function getExternalContent(
   context: Client,
   cookie: string,
-  ds: string,
   itemId: number,
   itemType: number,
   options: GameRecordApiGetExternalContentOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinExternalContentData> {
-  const result = await _getExternalContentSend(context, cookie, ds, itemId, itemType, options);
+  const result = await _getExternalContentSend(context, cookie, itemId, itemType, options);
   return _getExternalContentDeserialize(result);
 }
 
 export function _getCharacterTpsSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetCharacterTpsOptionalParams = { requestOptions: {} },
@@ -233,7 +226,7 @@ export function _getCharacterTpsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -254,19 +247,17 @@ export async function _getCharacterTpsDeserialize(
 export async function getCharacterTps(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetCharacterTpsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getCharacterTpsSend(context, cookie, ds, server, roleId, options);
+  const result = await _getCharacterTpsSend(context, cookie, server, roleId, options);
   return _getCharacterTpsDeserialize(result);
 }
 
 export function _getActivityCalendarSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CharacterListRequest,
   options: GameRecordApiGetActivityCalendarOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -277,7 +268,7 @@ export function _getActivityCalendarSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         ...(options?.challenge !== undefined ? { "x-rpc-challenge": options?.challenge } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -300,11 +291,10 @@ export async function _getActivityCalendarDeserialize(
 export async function getActivityCalendar(
   context: Client,
   cookie: string,
-  ds: string,
   body: CharacterListRequest,
   options: GameRecordApiGetActivityCalendarOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinActivityCalendarData> {
-  const result = await _getActivityCalendarSend(context, cookie, ds, body, options);
+  const result = await _getActivityCalendarSend(context, cookie, body, options);
   return _getActivityCalendarDeserialize(result);
 }
 
@@ -356,7 +346,6 @@ export async function getStygianPopularity(
 export function _getStygianOnslaughtSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetStygianOnslaughtOptionalParams = { requestOptions: {} },
@@ -380,7 +369,7 @@ export function _getStygianOnslaughtSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -401,19 +390,17 @@ export async function _getStygianOnslaughtDeserialize(
 export async function getStygianOnslaught(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetStygianOnslaughtOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinStygianData> {
-  const result = await _getStygianOnslaughtSend(context, cookie, ds, server, roleId, options);
+  const result = await _getStygianOnslaughtSend(context, cookie, server, roleId, options);
   return _getStygianOnslaughtDeserialize(result);
 }
 
 export function _getCharacterMasterSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetCharacterMasterOptionalParams = { requestOptions: {} },
@@ -434,7 +421,7 @@ export function _getCharacterMasterSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -455,19 +442,17 @@ export async function _getCharacterMasterDeserialize(
 export async function getCharacterMaster(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetCharacterMasterOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinCharacterMasterData> {
-  const result = await _getCharacterMasterSend(context, cookie, ds, server, roleId, options);
+  const result = await _getCharacterMasterSend(context, cookie, server, roleId, options);
   return _getCharacterMasterDeserialize(result);
 }
 
 export function _getImaginariumTheaterSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetImaginariumTheaterOptionalParams = { requestOptions: {} },
@@ -492,7 +477,7 @@ export function _getImaginariumTheaterSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -513,19 +498,17 @@ export async function _getImaginariumTheaterDeserialize(
 export async function getImaginariumTheater(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetImaginariumTheaterOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinTheaterData> {
-  const result = await _getImaginariumTheaterSend(context, cookie, ds, server, roleId, options);
+  const result = await _getImaginariumTheaterSend(context, cookie, server, roleId, options);
   return _getImaginariumTheaterDeserialize(result);
 }
 
 export function _getSpiralAbyssSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetSpiralAbyssOptionalParams = { requestOptions: {} },
@@ -549,7 +532,7 @@ export function _getSpiralAbyssSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -570,19 +553,17 @@ export async function _getSpiralAbyssDeserialize(
 export async function getSpiralAbyss(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetSpiralAbyssOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinSpiralAbyssData> {
-  const result = await _getSpiralAbyssSend(context, cookie, ds, server, roleId, options);
+  const result = await _getSpiralAbyssSend(context, cookie, server, roleId, options);
   return _getSpiralAbyssDeserialize(result);
 }
 
 export function _getDailyNoteSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetDailyNoteOptionalParams = { requestOptions: {} },
@@ -603,7 +584,7 @@ export function _getDailyNoteSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -624,19 +605,17 @@ export async function _getDailyNoteDeserialize(
 export async function getDailyNote(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetDailyNoteOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinDailyNoteData> {
-  const result = await _getDailyNoteSend(context, cookie, ds, server, roleId, options);
+  const result = await _getDailyNoteSend(context, cookie, server, roleId, options);
   return _getDailyNoteDeserialize(result);
 }
 
 export function _getCharacterDetailsSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CharacterDetailRequest,
   options: GameRecordApiGetCharacterDetailsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -647,7 +626,7 @@ export function _getCharacterDetailsSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -670,18 +649,16 @@ export async function _getCharacterDetailsDeserialize(
 export async function getCharacterDetails(
   context: Client,
   cookie: string,
-  ds: string,
   body: CharacterDetailRequest,
   options: GameRecordApiGetCharacterDetailsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseCharacterList> {
-  const result = await _getCharacterDetailsSend(context, cookie, ds, body, options);
+  const result = await _getCharacterDetailsSend(context, cookie, body, options);
   return _getCharacterDetailsDeserialize(result);
 }
 
 export function _listCharactersSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: CharacterListRequest,
   options: GameRecordApiListCharactersOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -692,7 +669,7 @@ export function _listCharactersSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -714,18 +691,16 @@ export async function _listCharactersDeserialize(
 export async function listCharacters(
   context: Client,
   cookie: string,
-  ds: string,
   body: CharacterListRequest,
   options: GameRecordApiListCharactersOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseCharacterList> {
-  const result = await _listCharactersSend(context, cookie, ds, body, options);
+  const result = await _listCharactersSend(context, cookie, body, options);
   return _listCharactersDeserialize(result);
 }
 
 export function _getIndexSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetIndexOptionalParams = { requestOptions: {} },
@@ -747,7 +722,7 @@ export function _getIndexSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -768,11 +743,10 @@ export async function _getIndexDeserialize(
 export async function getIndex(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: GameRecordApiGetIndexOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseGenshinRecordIndexData> {
-  const result = await _getIndexSend(context, cookie, ds, server, roleId, options);
+  const result = await _getIndexSend(context, cookie, server, roleId, options);
   return _getIndexDeserialize(result);
 }

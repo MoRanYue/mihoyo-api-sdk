@@ -205,9 +205,9 @@ public final class ZenlessApiClient {
      * The getShiyuDefense operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param withoutV2Detail The withoutV2Detail parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
@@ -220,11 +220,11 @@ public final class ZenlessApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseZenlessShiyuDefenseData> getShiyuDefenseWithResponse(String cookie, String ds,
-        String server, String roleId, Boolean withoutV2Detail, Integer scheduleType, Boolean needDetail,
-        Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseZenlessShiyuDefenseData> getShiyuDefenseWithResponse(String cookie, String server,
+        String roleId, String ds, Boolean withoutV2Detail, Integer scheduleType, Boolean needDetail, Boolean needAll,
+        RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.CN.Records.ZenlessApi.getShiyuDefense",
-            requestContext, updatedContext -> this.serviceClient.getShiyuDefenseWithResponse(cookie, ds, server, roleId,
+            requestContext, updatedContext -> this.serviceClient.getShiyuDefenseWithResponse(cookie, server, roleId, ds,
                 withoutV2Detail, scheduleType, needDetail, needAll, updatedContext));
     }
 
@@ -232,9 +232,9 @@ public final class ZenlessApiClient {
      * The getShiyuDefense operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param withoutV2Detail The withoutV2Detail parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
@@ -246,9 +246,9 @@ public final class ZenlessApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseZenlessShiyuDefenseData getShiyuDefense(String cookie, String ds, String server, String roleId,
+    public ApiResponseZenlessShiyuDefenseData getShiyuDefense(String cookie, String server, String roleId, String ds,
         Boolean withoutV2Detail, Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getShiyuDefenseWithResponse(cookie, ds, server, roleId, withoutV2Detail, scheduleType, needDetail,
+        return getShiyuDefenseWithResponse(cookie, server, roleId, ds, withoutV2Detail, scheduleType, needDetail,
             needAll, RequestContext.none()).getValue();
     }
 
@@ -256,7 +256,6 @@ public final class ZenlessApiClient {
      * The getShiyuDefense operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -266,12 +265,13 @@ public final class ZenlessApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseZenlessShiyuDefenseData getShiyuDefense(String cookie, String ds, String server, String roleId) {
+    public ApiResponseZenlessShiyuDefenseData getShiyuDefense(String cookie, String server, String roleId) {
+        final String ds = null;
         final Boolean withoutV2Detail = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getShiyuDefenseWithResponse(cookie, ds, server, roleId, withoutV2Detail, scheduleType, needDetail,
+        return getShiyuDefenseWithResponse(cookie, server, roleId, ds, withoutV2Detail, scheduleType, needDetail,
             needAll, RequestContext.none()).getValue();
     }
 
@@ -279,10 +279,10 @@ public final class ZenlessApiClient {
      * The getDeadlyAssault operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param region The region parameter.
      * @param uid The uid parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -291,18 +291,37 @@ public final class ZenlessApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getDeadlyAssaultWithResponse(String cookie, String ds, int scheduleType,
-        String region, String uid, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getDeadlyAssaultWithResponse(String cookie, int scheduleType, String region,
+        String uid, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.CN.Records.ZenlessApi.getDeadlyAssault",
-            requestContext, updatedContext -> this.serviceClient.getDeadlyAssaultWithResponse(cookie, ds, scheduleType,
-                region, uid, updatedContext));
+            requestContext, updatedContext -> this.serviceClient.getDeadlyAssaultWithResponse(cookie, scheduleType,
+                region, uid, ds, updatedContext));
     }
 
     /**
      * The getDeadlyAssault operation.
      * 
      * @param cookie The cookie parameter.
+     * @param scheduleType The scheduleType parameter.
+     * @param region The region parameter.
+     * @param uid The uid parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject getDeadlyAssault(String cookie, int scheduleType, String region, String uid,
+        String ds) {
+        return getDeadlyAssaultWithResponse(cookie, scheduleType, region, uid, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getDeadlyAssault operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param scheduleType The scheduleType parameter.
      * @param region The region parameter.
      * @param uid The uid parameter.
@@ -313,9 +332,9 @@ public final class ZenlessApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getDeadlyAssault(String cookie, String ds, int scheduleType, String region,
-        String uid) {
-        return getDeadlyAssaultWithResponse(cookie, ds, scheduleType, region, uid, RequestContext.none()).getValue();
+    public ApiResponseJsonObject getDeadlyAssault(String cookie, int scheduleType, String region, String uid) {
+        final String ds = null;
+        return getDeadlyAssaultWithResponse(cookie, scheduleType, region, uid, ds, RequestContext.none()).getValue();
     }
 
     /**

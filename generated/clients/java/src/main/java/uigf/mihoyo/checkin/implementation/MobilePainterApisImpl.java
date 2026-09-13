@@ -105,7 +105,6 @@ public final class MobilePainterApisImpl {
     /**
      * The getFeedPosts operation.
      * 
-     * @param ds The ds parameter.
      * @param algorithmType The algorithmType parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
@@ -116,6 +115,7 @@ public final class MobilePainterApisImpl {
      * @param isTriggeredByResource The isTriggeredByResource parameter.
      * @param lastId The lastId parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -123,9 +123,9 @@ public final class MobilePainterApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileFeedPostsData> getFeedPostsWithResponse(String ds, int algorithmType, String cpu,
+    public Response<ApiResponseMobileFeedPostsData> getFeedPostsWithResponse(int algorithmType, String cpu,
         String device, String filter, int freshAction, int gids, boolean isFirstInitialize,
-        boolean isTriggeredByResource, String lastId, String cookie, RequestContext requestContext) {
+        boolean isTriggeredByResource, String lastId, String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobilePainterApi.getFeedPosts",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -137,7 +137,6 @@ public final class MobilePainterApisImpl {
     /**
      * The getUserInstantList operation.
      * 
-     * @param ds The ds parameter.
      * @param gameRegion The gameRegion parameter.
      * @param gameUid The gameUid parameter.
      * @param offset The offset parameter.
@@ -145,6 +144,7 @@ public final class MobilePainterApisImpl {
      * @param uid The uid parameter.
      * @param viewType The viewType parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -152,8 +152,9 @@ public final class MobilePainterApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileUserInstantListData> getUserInstantListWithResponse(String ds, String gameRegion,
-        long gameUid, int offset, int size, long uid, int viewType, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileUserInstantListData> getUserInstantListWithResponse(String gameRegion,
+        long gameUid, int offset, int size, long uid, int viewType, String cookie, String ds,
+        RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobilePainterApi.getUserInstantList", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -165,8 +166,8 @@ public final class MobilePainterApisImpl {
     /**
      * The getVillaSitePush operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -174,7 +175,7 @@ public final class MobilePainterApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileVillaSitePushData> getVillaSitePushWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileVillaSitePushData> getVillaSitePushWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobilePainterApi.getVillaSitePush", requestContext, updatedContext -> {

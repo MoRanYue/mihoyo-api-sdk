@@ -39,8 +39,8 @@ public final class CultivationApiClient {
      * Calculates material consumption for a batch of characters and weapons.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -49,18 +49,34 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> batchComputeWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> batchComputeWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.batchCompute",
             requestContext,
-            updatedContext -> this.serviceClient.batchComputeWithResponse(cookie, ds, body, updatedContext));
+            updatedContext -> this.serviceClient.batchComputeWithResponse(cookie, body, ds, updatedContext));
     }
 
     /**
      * Calculates material consumption for a batch of characters and weapons.
      * 
      * @param cookie The cookie parameter.
+     * @param body The body parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject batchCompute(String cookie, CalculateRequest body, String ds) {
+        return batchComputeWithResponse(cookie, body, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * Calculates material consumption for a batch of characters and weapons.
+     * 
+     * @param cookie The cookie parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -69,16 +85,17 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject batchCompute(String cookie, String ds, CalculateRequest body) {
-        return batchComputeWithResponse(cookie, ds, body, RequestContext.none()).getValue();
+    public ApiResponseJsonObject batchCompute(String cookie, CalculateRequest body) {
+        final String ds = null;
+        return batchComputeWithResponse(cookie, body, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The listAvatars operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -87,18 +104,34 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> listAvatarsWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> listAvatarsWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.listAvatars",
             requestContext,
-            updatedContext -> this.serviceClient.listAvatarsWithResponse(cookie, ds, body, updatedContext));
+            updatedContext -> this.serviceClient.listAvatarsWithResponse(cookie, body, ds, updatedContext));
     }
 
     /**
      * The listAvatars operation.
      * 
      * @param cookie The cookie parameter.
+     * @param body The body parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject listAvatars(String cookie, CalculateRequest body, String ds) {
+        return listAvatarsWithResponse(cookie, body, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The listAvatars operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -107,16 +140,17 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject listAvatars(String cookie, String ds, CalculateRequest body) {
-        return listAvatarsWithResponse(cookie, ds, body, RequestContext.none()).getValue();
+    public ApiResponseJsonObject listAvatars(String cookie, CalculateRequest body) {
+        final String ds = null;
+        return listAvatarsWithResponse(cookie, body, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The listWeapons operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -125,18 +159,34 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> listWeaponsWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> listWeaponsWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.listWeapons",
             requestContext,
-            updatedContext -> this.serviceClient.listWeaponsWithResponse(cookie, ds, body, updatedContext));
+            updatedContext -> this.serviceClient.listWeaponsWithResponse(cookie, body, ds, updatedContext));
     }
 
     /**
      * The listWeapons operation.
      * 
      * @param cookie The cookie parameter.
+     * @param body The body parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject listWeapons(String cookie, CalculateRequest body, String ds) {
+        return listWeaponsWithResponse(cookie, body, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The listWeapons operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -145,16 +195,17 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject listWeapons(String cookie, String ds, CalculateRequest body) {
-        return listWeaponsWithResponse(cookie, ds, body, RequestContext.none()).getValue();
+    public ApiResponseJsonObject listWeapons(String cookie, CalculateRequest body) {
+        final String ds = null;
+        return listWeaponsWithResponse(cookie, body, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The syncAvatarList operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -163,18 +214,34 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> syncAvatarListWithResponse(String cookie, String ds, CalculateRequest body,
+    public Response<ApiResponseJsonObject> syncAvatarListWithResponse(String cookie, CalculateRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Account.CultivationApi.syncAvatarList",
             requestContext,
-            updatedContext -> this.serviceClient.syncAvatarListWithResponse(cookie, ds, body, updatedContext));
+            updatedContext -> this.serviceClient.syncAvatarListWithResponse(cookie, body, ds, updatedContext));
     }
 
     /**
      * The syncAvatarList operation.
      * 
      * @param cookie The cookie parameter.
+     * @param body The body parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseJsonObject syncAvatarList(String cookie, CalculateRequest body, String ds) {
+        return syncAvatarListWithResponse(cookie, body, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The syncAvatarList operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -183,7 +250,8 @@ public final class CultivationApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject syncAvatarList(String cookie, String ds, CalculateRequest body) {
-        return syncAvatarListWithResponse(cookie, ds, body, RequestContext.none()).getValue();
+    public ApiResponseJsonObject syncAvatarList(String cookie, CalculateRequest body) {
+        final String ds = null;
+        return syncAvatarListWithResponse(cookie, body, ds, RequestContext.none()).getValue();
     }
 }

@@ -9,15 +9,14 @@ import { ApiResponseMobileEmoticonData } from "../../models/uigf/mihoyo/models.j
 /** Interface representing a MobileMiscApi operations. */
 export interface MobileMiscApiOperations {
   getRecentEmoticons: (
-    ds: string,
     options?: MobileMiscApiGetRecentEmoticonsOptionalParams,
   ) => Promise<ApiResponseMobileEmoticonData>;
 }
 
 function _getMobileMiscApi(context: MihoyoMiYouSheMobileContext) {
   return {
-    getRecentEmoticons: (ds: string, options?: MobileMiscApiGetRecentEmoticonsOptionalParams) =>
-      getRecentEmoticons(context, ds, options),
+    getRecentEmoticons: (options?: MobileMiscApiGetRecentEmoticonsOptionalParams) =>
+      getRecentEmoticons(context, options),
   };
 }
 

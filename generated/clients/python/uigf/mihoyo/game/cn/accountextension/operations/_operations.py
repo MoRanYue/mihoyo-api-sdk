@@ -32,13 +32,13 @@ _SERIALIZER.client_side_validation = False
 
 def build_red_dot_api_get_batch_request(
     *,
-    ds: str,
     authkey: str,
     authkey_ver: int,
     game_biz: str,
     sign_type: int,
     users: str,
     cookie: Optional[str] = None,
+    ds: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -59,7 +59,8 @@ def build_red_dot_api_get_batch_request(
     # Construct headers
     if cookie is not None:
         _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -108,19 +109,17 @@ class RedDotApiOperations:  # pylint: disable=docstring-missing-param
     def get_batch(
         self,
         *,
-        ds: str,
         authkey: str,
         authkey_ver: int,
         game_biz: str,
         sign_type: int,
         users: str,
         cookie: Optional[str] = None,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models4.ApiResponseRedDotBatchData:
         """get_batch.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword authkey: Required.
         :paramtype authkey: str
         :keyword authkey_ver: Required.
@@ -133,6 +132,8 @@ class RedDotApiOperations:  # pylint: disable=docstring-missing-param
         :paramtype users: str
         :keyword cookie: Default value is None.
         :paramtype cookie: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseRedDotBatchData. The ApiResponseRedDotBatchData is compatible with
          MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseRedDotBatchData
@@ -152,13 +153,13 @@ class RedDotApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models4.ApiResponseRedDotBatchData] = kwargs.pop("cls", None)
 
         _request = build_red_dot_api_get_batch_request(
-            ds=ds,
             authkey=authkey,
             authkey_ver=authkey_ver,
             game_biz=game_biz,
             sign_type=sign_type,
             users=users,
             cookie=cookie,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

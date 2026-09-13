@@ -16,7 +16,6 @@ import {
 
 export function _getUnreadInfoSend(
   context: Client,
-  ds: string,
   options: MobileTimelineApiGetUnreadInfoOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -25,7 +24,7 @@ export function _getUnreadInfoSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -45,9 +44,8 @@ export async function _getUnreadInfoDeserialize(
 
 export async function getUnreadInfo(
   context: Client,
-  ds: string,
   options: MobileTimelineApiGetUnreadInfoOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileUnreadInfoData> {
-  const result = await _getUnreadInfoSend(context, ds, options);
+  const result = await _getUnreadInfoSend(context, options);
   return _getUnreadInfoDeserialize(result);
 }

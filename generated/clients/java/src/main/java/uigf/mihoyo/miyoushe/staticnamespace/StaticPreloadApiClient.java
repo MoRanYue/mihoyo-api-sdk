@@ -37,8 +37,8 @@ public final class StaticPreloadApiClient {
     /**
      * The getLatestVersion operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -47,32 +47,17 @@ public final class StaticPreloadApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseStaticLatestVersionData> getLatestVersionWithResponse(String ds, String cookie,
+    public Response<ApiResponseStaticLatestVersionData> getLatestVersionWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Static.StaticPreloadApi.getLatestVersion", requestContext,
-            updatedContext -> this.serviceClient.getLatestVersionWithResponse(ds, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getLatestVersionWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getLatestVersion operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseStaticLatestVersionData getLatestVersion(String ds, String cookie) {
-        return getLatestVersionWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getLatestVersion operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -81,8 +66,22 @@ public final class StaticPreloadApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseStaticLatestVersionData getLatestVersion(String ds) {
+    public ApiResponseStaticLatestVersionData getLatestVersion(String cookie, String ds) {
+        return getLatestVersionWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getLatestVersion operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseStaticLatestVersionData getLatestVersion() {
         final String cookie = null;
-        return getLatestVersionWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getLatestVersionWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 }

@@ -17,7 +17,6 @@ import {
 
 export function _getStaticResourceSend(
   context: Client,
-  ds: string,
   clientType: number,
   options: StaticApiHubGetStaticResourceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -36,7 +35,7 @@ export function _getStaticResourceSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -56,10 +55,9 @@ export async function _getStaticResourceDeserialize(
 
 export async function getStaticResource(
   context: Client,
-  ds: string,
   clientType: number,
   options: StaticApiHubGetStaticResourceOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseStaticResourceData> {
-  const result = await _getStaticResourceSend(context, ds, clientType, options);
+  const result = await _getStaticResourceSend(context, clientType, options);
   return _getStaticResourceDeserialize(result);
 }

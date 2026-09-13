@@ -31,7 +31,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_switch_api_get_switch_status_request(  # pylint: disable=name-too-long
-    *, ds: str, app_id: str, platform: int, **kwargs: Any
+    *, app_id: str, platform: int, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -46,7 +46,8 @@ def build_switch_api_get_switch_status_request(  # pylint: disable=name-too-long
     _params["platform"] = _SERIALIZER.query("platform", platform, "int")
 
     # Construct headers
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -70,16 +71,16 @@ class SwitchApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_switch_status(
-        self, *, ds: str, app_id: str, platform: int, **kwargs: Any
+        self, *, app_id: str, platform: int, ds: Optional[str] = None, **kwargs: Any
     ) -> _models2.ApiResponsePassportSwitchStatusData:
         """get_switch_status.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword app_id: Required.
         :paramtype app_id: str
         :keyword platform: Required.
         :paramtype platform: int
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponsePassportSwitchStatusData. The ApiResponsePassportSwitchStatusData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponsePassportSwitchStatusData
@@ -99,9 +100,9 @@ class SwitchApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models2.ApiResponsePassportSwitchStatusData] = kwargs.pop("cls", None)
 
         _request = build_switch_api_get_switch_status_request(
-            ds=ds,
             app_id=app_id,
             platform=platform,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

@@ -21,7 +21,6 @@ import {
 export function _getMonthDetailSend(
   context: Client,
   cookie: string,
-  ds: string,
   month: number,
   page: number,
   typeParam: number,
@@ -49,7 +48,7 @@ export function _getMonthDetailSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -70,7 +69,6 @@ export async function _getMonthDetailDeserialize(
 export async function getMonthDetail(
   context: Client,
   cookie: string,
-  ds: string,
   month: number,
   page: number,
   typeParam: number,
@@ -81,7 +79,6 @@ export async function getMonthDetail(
   const result = await _getMonthDetailSend(
     context,
     cookie,
-    ds,
     month,
     page,
     typeParam,
@@ -95,7 +92,6 @@ export async function getMonthDetail(
 export function _getMonthInfoSend(
   context: Client,
   cookie: string,
-  ds: string,
   bindUid: string,
   bindRegion: string,
   options: LedgerApiGetMonthInfoOptionalParams = { requestOptions: {} },
@@ -117,7 +113,7 @@ export function _getMonthInfoSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -138,11 +134,10 @@ export async function _getMonthInfoDeserialize(
 export async function getMonthInfo(
   context: Client,
   cookie: string,
-  ds: string,
   bindUid: string,
   bindRegion: string,
   options: LedgerApiGetMonthInfoOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getMonthInfoSend(context, cookie, ds, bindUid, bindRegion, options);
+  const result = await _getMonthInfoSend(context, cookie, bindUid, bindRegion, options);
   return _getMonthInfoDeserialize(result);
 }

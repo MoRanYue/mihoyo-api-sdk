@@ -9,7 +9,6 @@ import { ApiResponseReleaseData } from "../../models/uigf/mihoyo/models.js";
 /** Interface representing a ReleaseApi operations. */
 export interface ReleaseApiOperations {
   getLatestRelease: (
-    ds: string,
     deviceCpuBitType: number,
     options?: ReleaseApiGetLatestReleaseOptionalParams,
   ) => Promise<ApiResponseReleaseData>;
@@ -18,10 +17,9 @@ export interface ReleaseApiOperations {
 function _getReleaseApi(context: MihoyoGameCNMiYouSheAccountContext) {
   return {
     getLatestRelease: (
-      ds: string,
       deviceCpuBitType: number,
       options?: ReleaseApiGetLatestReleaseOptionalParams,
-    ) => getLatestRelease(context, ds, deviceCpuBitType, options),
+    ) => getLatestRelease(context, deviceCpuBitType, options),
   };
 }
 

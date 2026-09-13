@@ -38,9 +38,9 @@ public final class GenshinChallengeApiClient {
      * The getSpiralAbyss operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -52,11 +52,11 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getSpiralAbyssWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getSpiralAbyssWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.GenshinChallengeApi.getSpiralAbyss", requestContext,
-            updatedContext -> this.serviceClient.getSpiralAbyssWithResponse(cookie, ds, server, roleId, scheduleType,
+            updatedContext -> this.serviceClient.getSpiralAbyssWithResponse(cookie, server, roleId, ds, scheduleType,
                 needDetail, needAll, updatedContext));
     }
 
@@ -64,9 +64,9 @@ public final class GenshinChallengeApiClient {
      * The getSpiralAbyss operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -77,9 +77,9 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getSpiralAbyss(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getSpiralAbyss(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getSpiralAbyssWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getSpiralAbyssWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -87,7 +87,6 @@ public final class GenshinChallengeApiClient {
      * The getSpiralAbyss operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -97,11 +96,12 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getSpiralAbyss(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getSpiralAbyss(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getSpiralAbyssWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getSpiralAbyssWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -109,9 +109,9 @@ public final class GenshinChallengeApiClient {
      * The getImaginariumTheater operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -123,11 +123,12 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getImaginariumTheaterWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getImaginariumTheaterWithResponse(String cookie, String server,
+        String roleId, String ds, Integer scheduleType, Boolean needDetail, Boolean needAll,
+        RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.GenshinChallengeApi.getImaginariumTheater", requestContext,
-            updatedContext -> this.serviceClient.getImaginariumTheaterWithResponse(cookie, ds, server, roleId,
+            updatedContext -> this.serviceClient.getImaginariumTheaterWithResponse(cookie, server, roleId, ds,
                 scheduleType, needDetail, needAll, updatedContext));
     }
 
@@ -135,9 +136,9 @@ public final class GenshinChallengeApiClient {
      * The getImaginariumTheater operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -148,9 +149,9 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getImaginariumTheater(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getImaginariumTheater(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getImaginariumTheaterWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getImaginariumTheaterWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -158,7 +159,6 @@ public final class GenshinChallengeApiClient {
      * The getImaginariumTheater operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -168,11 +168,12 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getImaginariumTheater(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getImaginariumTheater(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getImaginariumTheaterWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getImaginariumTheaterWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -180,9 +181,9 @@ public final class GenshinChallengeApiClient {
      * The getStygianOnslaught operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -194,11 +195,11 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getStygianOnslaughtWithResponse(String cookie, String ds, String server,
-        String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getStygianOnslaughtWithResponse(String cookie, String server, String roleId,
+        String ds, Integer scheduleType, Boolean needDetail, Boolean needAll, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Global.CommunityRecords.GenshinChallengeApi.getStygianOnslaught", requestContext,
-            updatedContext -> this.serviceClient.getStygianOnslaughtWithResponse(cookie, ds, server, roleId,
+            updatedContext -> this.serviceClient.getStygianOnslaughtWithResponse(cookie, server, roleId, ds,
                 scheduleType, needDetail, needAll, updatedContext));
     }
 
@@ -206,9 +207,9 @@ public final class GenshinChallengeApiClient {
      * The getStygianOnslaught operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -219,9 +220,9 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getStygianOnslaught(String cookie, String ds, String server, String roleId,
+    public ApiResponseJsonObject getStygianOnslaught(String cookie, String server, String roleId, String ds,
         Integer scheduleType, Boolean needDetail, Boolean needAll) {
-        return getStygianOnslaughtWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getStygianOnslaughtWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 
@@ -229,7 +230,6 @@ public final class GenshinChallengeApiClient {
      * The getStygianOnslaught operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -239,11 +239,12 @@ public final class GenshinChallengeApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseJsonObject getStygianOnslaught(String cookie, String ds, String server, String roleId) {
+    public ApiResponseJsonObject getStygianOnslaught(String cookie, String server, String roleId) {
+        final String ds = null;
         final Integer scheduleType = null;
         final Boolean needDetail = null;
         final Boolean needAll = null;
-        return getStygianOnslaughtWithResponse(cookie, ds, server, roleId, scheduleType, needDetail, needAll,
+        return getStygianOnslaughtWithResponse(cookie, server, roleId, ds, scheduleType, needDetail, needAll,
             RequestContext.none()).getValue();
     }
 }

@@ -17,7 +17,6 @@ import {
 
 export function _getSwitchStatusSend(
   context: Client,
-  ds: string,
   appId: string,
   platform: number,
   options: SwitchApiGetSwitchStatusOptionalParams = { requestOptions: {} },
@@ -36,7 +35,11 @@ export function _getSwitchStatusSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { ds: ds, accept: "application/json", ...options.requestOptions?.headers },
+      headers: {
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -53,11 +56,10 @@ export async function _getSwitchStatusDeserialize(
 
 export async function getSwitchStatus(
   context: Client,
-  ds: string,
   appId: string,
   platform: number,
   options: SwitchApiGetSwitchStatusOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponsePassportSwitchStatusData> {
-  const result = await _getSwitchStatusSend(context, ds, appId, platform, options);
+  const result = await _getSwitchStatusSend(context, appId, platform, options);
   return _getSwitchStatusDeserialize(result);
 }

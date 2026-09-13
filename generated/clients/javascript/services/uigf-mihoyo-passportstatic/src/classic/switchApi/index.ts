@@ -9,7 +9,6 @@ import { ApiResponsePassportSwitchStatusData } from "../../models/uigf/mihoyo/mo
 /** Interface representing a SwitchApi operations. */
 export interface SwitchApiOperations {
   getSwitchStatus: (
-    ds: string,
     appId: string,
     platform: number,
     options?: SwitchApiGetSwitchStatusOptionalParams,
@@ -19,11 +18,10 @@ export interface SwitchApiOperations {
 function _getSwitchApi(context: MihoyoPassportStaticContext) {
   return {
     getSwitchStatus: (
-      ds: string,
       appId: string,
       platform: number,
       options?: SwitchApiGetSwitchStatusOptionalParams,
-    ) => getSwitchStatus(context, ds, appId, platform, options),
+    ) => getSwitchStatus(context, appId, platform, options),
   };
 }
 

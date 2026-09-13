@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
@@ -35,7 +36,7 @@ test("all four SDKs cover every TypeSpec service, and all JS clients can be cons
     const manifest = JSON.parse(await readFile(new URL(`../generated/clients/${language}/services.json`, import.meta.url)));
     assert.deepEqual(manifest.services, services, language);
   }
-  assert.equal(Object.keys(sdk).length, services.length);
+  assert.equal(Object.keys(sdk).filter((name) => name.startsWith("Mihoyo")).length, services.length);
   const [httpServices] = getAllHttpServices(program);
   const normalize = (name) => name.replaceAll("_", "").toLowerCase();
   for (const service of services) {
@@ -61,8 +62,8 @@ test("all four SDKs cover every TypeSpec service, and all JS clients can be cons
 test("signed requests preserve wire names, false and zero query values", async () => {
   const mock = mockResponse();
   const client = new sdk.MihoyoGameCNRecords.MihoyoGameCNRecordsClient(mock.options);
-  const response = await client.starRailApi.getSimulatedUniverse("cookie-placeholder", "ds-placeholder", "prod_gf_cn", "123456", {
-    scheduleType: 0, needDetail: false, needAll: false,
+  const response = await client.starRailApi.getSimulatedUniverse("cookie-placeholder", "prod_gf_cn", "123456", {
+    ds: "ds-placeholder", scheduleType: 0, needDetail: false, needAll: false,
   });
   const request = mock.requests[0];
   const url = new URL(request.url);
@@ -76,6 +77,24 @@ test("signed requests preserve wire names, false and zero query values", async (
   assert.equal(request.headers.get("Cookie"), "cookie-placeholder");
   assert.equal(request.headers.get("DS"), "ds-placeholder");
   assert.equal(response.data.additionalProperties.preserved_vendor_field, true);
+});
+
+test("JS clients automatically sign omitted DS headers without replacing explicit values", async () => {
+  const mock = mockResponse();
+  const client = new sdk.MihoyoGameCNRecords.MihoyoGameCNRecordsClient(
+    sdk.DsSigner.configure(mock.options, "caller-provided-salt"),
+  );
+  await client.starRailApi.getSimulatedUniverse("cookie-placeholder", "prod_gf_cn", "123456", {
+    scheduleType: 0, needDetail: false, needAll: false,
+  });
+
+  const request = mock.requests[0];
+  const ds = request.headers.get("DS");
+  assert.match(ds ?? "", /^\d+,\d+,[0-9a-f]{32}$/);
+  const [timestamp, nonce, digest] = ds.split(",");
+  const query = new URL(request.url).search.slice(1).split("&").sort().join("&");
+  assert.equal(digest, createHash("md5")
+    .update(`salt=caller-provided-salt&t=${timestamp}&r=${nonce}&b=&q=${query}`, "utf8").digest("hex"));
 });
 
 test("POST sends arbitrary JSON payloads and Cookie to the correct service", async () => {

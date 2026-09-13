@@ -72,7 +72,6 @@ export async function getRoles(
 export function _generateAuthKeySend(
   context: Client,
   cookie: string,
-  ds: string,
   body: AuthKeyRequest,
   options: BindingApiGenerateAuthKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -83,7 +82,7 @@ export function _generateAuthKeySend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -106,10 +105,9 @@ export async function _generateAuthKeyDeserialize(
 export async function generateAuthKey(
   context: Client,
   cookie: string,
-  ds: string,
   body: AuthKeyRequest,
   options: BindingApiGenerateAuthKeyOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _generateAuthKeySend(context, cookie, ds, body, options);
+  const result = await _generateAuthKeySend(context, cookie, body, options);
   return _generateAuthKeyDeserialize(result);
 }

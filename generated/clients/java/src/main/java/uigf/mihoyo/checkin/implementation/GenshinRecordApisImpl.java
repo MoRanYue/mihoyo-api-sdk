@@ -223,9 +223,9 @@ public final class GenshinRecordApisImpl {
      * The getIndex operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param avatarListType The avatarListType parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -234,8 +234,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinRecordIndexData> getIndexWithResponse(String cookie, String ds, String server,
-        String roleId, Integer avatarListType, RequestContext requestContext) {
+    public Response<ApiResponseGenshinRecordIndexData> getIndexWithResponse(String cookie, String server, String roleId,
+        String ds, Integer avatarListType, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getIndex",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -248,8 +248,8 @@ public final class GenshinRecordApisImpl {
      * The listCharacters operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -257,8 +257,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseCharacterList> listCharactersWithResponse(String cookie, String ds,
-        CharacterListRequest body, RequestContext requestContext) {
+    public Response<ApiResponseCharacterList> listCharactersWithResponse(String cookie, CharacterListRequest body,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.listCharacters", requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -272,8 +272,8 @@ public final class GenshinRecordApisImpl {
      * Character IDs should be sent in batches of at most 40, as used by TeyvatGuide.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -281,8 +281,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseCharacterList> getCharacterDetailsWithResponse(String cookie, String ds,
-        CharacterDetailRequest body, RequestContext requestContext) {
+    public Response<ApiResponseCharacterList> getCharacterDetailsWithResponse(String cookie,
+        CharacterDetailRequest body, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getCharacterDetails", requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -296,9 +296,9 @@ public final class GenshinRecordApisImpl {
      * The getDailyNote operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -306,8 +306,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinDailyNoteData> getDailyNoteWithResponse(String cookie, String ds, String server,
-        String roleId, RequestContext requestContext) {
+    public Response<ApiResponseGenshinDailyNoteData> getDailyNoteWithResponse(String cookie, String server,
+        String roleId, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getDailyNote",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -320,9 +320,9 @@ public final class GenshinRecordApisImpl {
      * The getSpiralAbyss operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -333,8 +333,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinSpiralAbyssData> getSpiralAbyssWithResponse(String cookie, String ds,
-        String server, String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll,
+    public Response<ApiResponseGenshinSpiralAbyssData> getSpiralAbyssWithResponse(String cookie, String server,
+        String roleId, String ds, Integer scheduleType, Boolean needDetail, Boolean needAll,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getSpiralAbyss", requestContext, updatedContext -> {
@@ -348,9 +348,9 @@ public final class GenshinRecordApisImpl {
      * The getImaginariumTheater operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param active The active parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
@@ -362,8 +362,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinTheaterData> getImaginariumTheaterWithResponse(String cookie, String ds,
-        String server, String roleId, Integer active, Integer scheduleType, Boolean needDetail, Boolean needAll,
+    public Response<ApiResponseGenshinTheaterData> getImaginariumTheaterWithResponse(String cookie, String server,
+        String roleId, String ds, Integer active, Integer scheduleType, Boolean needDetail, Boolean needAll,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getImaginariumTheater", requestContext, updatedContext -> {
@@ -377,9 +377,9 @@ public final class GenshinRecordApisImpl {
      * The getCharacterMaster operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -387,8 +387,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinCharacterMasterData> getCharacterMasterWithResponse(String cookie, String ds,
-        String server, String roleId, RequestContext requestContext) {
+    public Response<ApiResponseGenshinCharacterMasterData> getCharacterMasterWithResponse(String cookie, String server,
+        String roleId, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getCharacterMaster", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -401,9 +401,9 @@ public final class GenshinRecordApisImpl {
      * The getStygianOnslaught operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param scheduleType The scheduleType parameter.
      * @param needDetail The needDetail parameter.
      * @param needAll The needAll parameter.
@@ -414,8 +414,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinStygianData> getStygianOnslaughtWithResponse(String cookie, String ds,
-        String server, String roleId, Integer scheduleType, Boolean needDetail, Boolean needAll,
+    public Response<ApiResponseGenshinStygianData> getStygianOnslaughtWithResponse(String cookie, String server,
+        String roleId, String ds, Integer scheduleType, Boolean needDetail, Boolean needAll,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getStygianOnslaught", requestContext, updatedContext -> {
@@ -450,8 +450,8 @@ public final class GenshinRecordApisImpl {
      * The getActivityCalendar operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param challenge The challenge parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -460,8 +460,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinActivityCalendarData> getActivityCalendarWithResponse(String cookie, String ds,
-        CharacterListRequest body, String challenge, RequestContext requestContext) {
+    public Response<ApiResponseGenshinActivityCalendarData> getActivityCalendarWithResponse(String cookie,
+        CharacterListRequest body, String ds, String challenge, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getActivityCalendar", requestContext, updatedContext -> {
                 final String contentType = "application/json";
@@ -475,9 +475,9 @@ public final class GenshinRecordApisImpl {
      * The getCharacterTps operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param server The server parameter.
      * @param roleId The roleId parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -485,8 +485,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getCharacterTpsWithResponse(String cookie, String ds, String server,
-        String roleId, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getCharacterTpsWithResponse(String cookie, String server, String roleId,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getCharacterTps", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -499,9 +499,9 @@ public final class GenshinRecordApisImpl {
      * The getExternalContent operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param itemId The itemId parameter.
      * @param itemType The itemType parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -509,8 +509,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinExternalContentData> getExternalContentWithResponse(String cookie, String ds,
-        long itemId, int itemType, RequestContext requestContext) {
+    public Response<ApiResponseGenshinExternalContentData> getExternalContentWithResponse(String cookie, long itemId,
+        int itemType, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getExternalContent", requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -523,9 +523,9 @@ public final class GenshinRecordApisImpl {
      * The getRoleBasicInfo operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param roleId The roleId parameter.
      * @param server The server parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -533,8 +533,8 @@ public final class GenshinRecordApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinRoleBasicInfoData> getRoleBasicInfoWithResponse(String cookie, String ds,
-        String roleId, String server, RequestContext requestContext) {
+    public Response<ApiResponseGenshinRoleBasicInfoData> getRoleBasicInfoWithResponse(String cookie, String roleId,
+        String server, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.Record.GameRecordApi.getRoleBasicInfo", requestContext, updatedContext -> {
                 final String accept = "application/json";

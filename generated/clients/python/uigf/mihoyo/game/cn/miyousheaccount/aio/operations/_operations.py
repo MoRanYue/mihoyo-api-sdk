@@ -52,12 +52,14 @@ class BindingApiOperations:  # pylint: disable=docstring-missing-param
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get_roles(self, *, cookie: str, ds: str, **kwargs: Any) -> _models5.ApiResponseGameRoleList:
+    async def get_roles(
+        self, *, cookie: str, ds: Optional[str] = None, **kwargs: Any
+    ) -> _models5.ApiResponseGameRoleList:
         """get_roles.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseGameRoleList. The ApiResponseGameRoleList is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseGameRoleList
@@ -136,7 +138,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         body: _models4.AuthKeyRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models5.ApiResponseAuthKeyData:
@@ -146,7 +148,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.models.AuthKeyRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -162,7 +164,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models4.AuthKeyRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models5.ApiResponseAuthKeyData:
@@ -172,7 +174,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.game.types.AuthKeyRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -184,7 +186,13 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     async def generate(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models5.ApiResponseAuthKeyData:
         """generate.
 
@@ -192,7 +200,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -207,7 +215,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models4.AuthKeyRequest, _types_models4.AuthKeyRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models5.ApiResponseAuthKeyData:
         """generate.
@@ -217,7 +225,7 @@ class AuthKeyApiOperations:  # pylint: disable=docstring-missing-param
          or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseAuthKeyData. The ApiResponseAuthKeyData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseAuthKeyData
@@ -301,14 +309,14 @@ class ReleaseApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_latest_release(
-        self, *, ds: str, device_cpu_bit_type: int, **kwargs: Any
+        self, *, device_cpu_bit_type: int, ds: Optional[str] = None, **kwargs: Any
     ) -> _models5.ApiResponseReleaseData:
         """get_latest_release.
 
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword device_cpu_bit_type: Required.
         :paramtype device_cpu_bit_type: int
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseReleaseData. The ApiResponseReleaseData is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseReleaseData
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -327,8 +335,8 @@ class ReleaseApiOperations:  # pylint: disable=docstring-missing-param
         cls: ClsType[_models5.ApiResponseReleaseData] = kwargs.pop("cls", None)
 
         _request = build_release_api_get_latest_release_request(
-            ds=ds,
             device_cpu_bit_type=device_cpu_bit_type,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

@@ -20,7 +20,6 @@ export interface BindingApiOperations {
   /** Generates an authenticated gacha authkey for a selected game role. */
   generateAuthKey: (
     cookie: string,
-    ds: string,
     body: AuthKeyRequest,
     options?: BindingApiGenerateAuthKeyOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
@@ -32,10 +31,9 @@ function _getBindingApi(context: MihoyoGameAccountContext) {
       getRoles(context, cookie, options),
     generateAuthKey: (
       cookie: string,
-      ds: string,
       body: AuthKeyRequest,
       options?: BindingApiGenerateAuthKeyOptionalParams,
-    ) => generateAuthKey(context, cookie, ds, body, options),
+    ) => generateAuthKey(context, cookie, body, options),
   };
 }
 

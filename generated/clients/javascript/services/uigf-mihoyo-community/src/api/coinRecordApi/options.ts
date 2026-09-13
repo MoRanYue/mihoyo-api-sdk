@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface CoinRecordApiListOptionalParams extends OperationOptions {}
+export interface CoinRecordApiListOptionalParams extends OperationOptions {
+  ds?: string;
+}

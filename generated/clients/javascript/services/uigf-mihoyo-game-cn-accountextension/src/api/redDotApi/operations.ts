@@ -17,7 +17,6 @@ import {
 
 export function _getBatchSend(
   context: Client,
-  ds: string,
   authkey: string,
   authkeyVer: number,
   gameBiz: string,
@@ -44,7 +43,7 @@ export function _getBatchSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -64,7 +63,6 @@ export async function _getBatchDeserialize(
 
 export async function getBatch(
   context: Client,
-  ds: string,
   authkey: string,
   authkeyVer: number,
   gameBiz: string,
@@ -74,7 +72,6 @@ export async function getBatch(
 ): Promise<ApiResponseRedDotBatchData> {
   const result = await _getBatchSend(
     context,
-    ds,
     authkey,
     authkeyVer,
     gameBiz,

@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ReleaseApiGetLatestReleaseOptionalParams extends OperationOptions {}
+export interface ReleaseApiGetLatestReleaseOptionalParams extends OperationOptions {
+  ds?: string;
+}

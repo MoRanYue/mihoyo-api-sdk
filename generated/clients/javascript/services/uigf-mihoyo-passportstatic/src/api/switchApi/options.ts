@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface SwitchApiGetSwitchStatusOptionalParams extends OperationOptions {}
+export interface SwitchApiGetSwitchStatusOptionalParams extends OperationOptions {
+  ds?: string;
+}

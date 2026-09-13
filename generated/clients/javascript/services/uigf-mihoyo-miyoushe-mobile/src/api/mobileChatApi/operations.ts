@@ -16,7 +16,6 @@ import {
 
 export function _getUserSettingsSend(
   context: Client,
-  ds: string,
   options: MobileChatApiGetUserSettingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -25,7 +24,7 @@ export function _getUserSettingsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -45,9 +44,8 @@ export async function _getUserSettingsDeserialize(
 
 export async function getUserSettings(
   context: Client,
-  ds: string,
   options: MobileChatApiGetUserSettingsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileUserSettingsData> {
-  const result = await _getUserSettingsSend(context, ds, options);
+  const result = await _getUserSettingsSend(context, options);
   return _getUserSettingsDeserialize(result);
 }

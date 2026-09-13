@@ -56,7 +56,7 @@ def build_honkai_impact_api_get_index_request(  # pylint: disable=name-too-long
 
 
 def build_star_rail_api_get_index_request(
-    *, cookie: str, ds: str, server: str, role_id: str, **kwargs: Any
+    *, cookie: str, server: str, role_id: str, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -72,14 +72,15 @@ def build_star_rail_api_get_index_request(
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_star_rail_api_get_daily_note_request(  # pylint: disable=name-too-long
-    *, cookie: str, ds: str, server: str, role_id: str, **kwargs: Any
+    *, cookie: str, server: str, role_id: str, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -95,7 +96,8 @@ def build_star_rail_api_get_daily_note_request(  # pylint: disable=name-too-long
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -104,9 +106,9 @@ def build_star_rail_api_get_daily_note_request(  # pylint: disable=name-too-long
 def build_star_rail_api_get_forgotten_hall_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -132,7 +134,8 @@ def build_star_rail_api_get_forgotten_hall_request(  # pylint: disable=name-too-
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -141,9 +144,9 @@ def build_star_rail_api_get_forgotten_hall_request(  # pylint: disable=name-too-
 def build_star_rail_api_get_pure_fiction_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -169,7 +172,8 @@ def build_star_rail_api_get_pure_fiction_request(  # pylint: disable=name-too-lo
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -178,9 +182,9 @@ def build_star_rail_api_get_pure_fiction_request(  # pylint: disable=name-too-lo
 def build_star_rail_api_get_apocalyptic_shadow_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -206,7 +210,8 @@ def build_star_rail_api_get_apocalyptic_shadow_request(  # pylint: disable=name-
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -215,9 +220,9 @@ def build_star_rail_api_get_apocalyptic_shadow_request(  # pylint: disable=name-
 def build_star_rail_api_get_simulated_universe_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -243,7 +248,8 @@ def build_star_rail_api_get_simulated_universe_request(  # pylint: disable=name-
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -252,9 +258,9 @@ def build_star_rail_api_get_simulated_universe_request(  # pylint: disable=name-
 def build_star_rail_api_get_challenge_peak_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -280,7 +286,8 @@ def build_star_rail_api_get_challenge_peak_request(  # pylint: disable=name-too-
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -367,9 +374,9 @@ def build_zenless_api_get_gacha_record_request(  # pylint: disable=name-too-long
 def build_zenless_api_get_shiyu_defense_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     without_v2_detail: Optional[bool] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
@@ -398,14 +405,15 @@ def build_zenless_api_get_shiyu_defense_request(  # pylint: disable=name-too-lon
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_zenless_api_get_deadly_assault_request(  # pylint: disable=name-too-long
-    *, cookie: str, ds: str, schedule_type: int, region: str, uid: str, **kwargs: Any
+    *, cookie: str, schedule_type: int, region: str, uid: str, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -422,7 +430,8 @@ def build_zenless_api_get_deadly_assault_request(  # pylint: disable=name-too-lo
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -763,18 +772,18 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_index(
-        self, *, cookie: str, ds: str, server: str, role_id: str, **kwargs: Any
+        self, *, cookie: str, server: str, role_id: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """get_index.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -794,9 +803,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_index_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -831,18 +840,18 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_daily_note(
-        self, *, cookie: str, ds: str, server: str, role_id: str, **kwargs: Any
+        self, *, cookie: str, server: str, role_id: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """get_daily_note.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -862,9 +871,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_daily_note_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -902,9 +911,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -914,12 +923,12 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -945,9 +954,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_forgotten_hall_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -988,9 +997,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -1000,12 +1009,12 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -1031,9 +1040,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_pure_fiction_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -1074,9 +1083,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -1086,12 +1095,12 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -1117,9 +1126,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_apocalyptic_shadow_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -1160,9 +1169,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -1172,12 +1181,12 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -1203,9 +1212,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_simulated_universe_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -1246,9 +1255,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -1258,12 +1267,12 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -1289,9 +1298,9 @@ class StarRailApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_api_get_challenge_peak_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -1567,9 +1576,9 @@ class ZenlessApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         without_v2_detail: Optional[bool] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
@@ -1580,12 +1589,12 @@ class ZenlessApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword without_v2_detail: Default value is None.
         :paramtype without_v2_detail: bool
         :keyword schedule_type: Default value is None.
@@ -1614,9 +1623,9 @@ class ZenlessApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_zenless_api_get_shiyu_defense_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             without_v2_detail=without_v2_detail,
             schedule_type=schedule_type,
             need_detail=need_detail,
@@ -1655,20 +1664,20 @@ class ZenlessApiOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_deadly_assault(
-        self, *, cookie: str, ds: str, schedule_type: int, region: str, uid: str, **kwargs: Any
+        self, *, cookie: str, schedule_type: int, region: str, uid: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models4.ApiResponseJsonObject:
         """get_deadly_assault.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword schedule_type: Required.
         :paramtype schedule_type: int
         :keyword region: Required.
         :paramtype region: str
         :keyword uid: Required.
         :paramtype uid: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1688,10 +1697,10 @@ class ZenlessApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_zenless_api_get_deadly_assault_request(
             cookie=cookie,
-            ds=ds,
             schedule_type=schedule_type,
             region=region,
             uid=uid,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

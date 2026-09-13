@@ -17,7 +17,6 @@ import {
 
 export function _getEntityReviewSend(
   context: Client,
-  ds: string,
   offset: number,
   size: number,
   options: MobileUserInstantApiGetEntityReviewOptionalParams = { requestOptions: {} },
@@ -38,7 +37,7 @@ export function _getEntityReviewSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -58,11 +57,10 @@ export async function _getEntityReviewDeserialize(
 
 export async function getEntityReview(
   context: Client,
-  ds: string,
   offset: number,
   size: number,
   options: MobileUserInstantApiGetEntityReviewOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileEntityReviewData> {
-  const result = await _getEntityReviewSend(context, ds, offset, size, options);
+  const result = await _getEntityReviewSend(context, offset, size, options);
   return _getEntityReviewDeserialize(result);
 }

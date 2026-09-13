@@ -58,33 +58,28 @@ import {
 export interface GameRecordApiOperations {
   getTool: (
     cookie: string,
-    ds: string,
     options?: GameRecordApiGetToolOptionalParams,
   ) => Promise<ApiResponseGenshinToolData>;
   getRoleBasicInfo: (
     cookie: string,
-    ds: string,
     roleId: string,
     server: string,
     options?: GameRecordApiGetRoleBasicInfoOptionalParams,
   ) => Promise<ApiResponseGenshinRoleBasicInfoData>;
   getExternalContent: (
     cookie: string,
-    ds: string,
     itemId: number,
     itemType: number,
     options?: GameRecordApiGetExternalContentOptionalParams,
   ) => Promise<ApiResponseGenshinExternalContentData>;
   getCharacterTps: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetCharacterTpsOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getActivityCalendar: (
     cookie: string,
-    ds: string,
     body: CharacterListRequest,
     options?: GameRecordApiGetActivityCalendarOptionalParams,
   ) => Promise<ApiResponseGenshinActivityCalendarData>;
@@ -95,35 +90,30 @@ export interface GameRecordApiOperations {
   ) => Promise<ApiResponseGenshinStygianPopularityData>;
   getStygianOnslaught: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetStygianOnslaughtOptionalParams,
   ) => Promise<ApiResponseGenshinStygianData>;
   getCharacterMaster: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetCharacterMasterOptionalParams,
   ) => Promise<ApiResponseGenshinCharacterMasterData>;
   getImaginariumTheater: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetImaginariumTheaterOptionalParams,
   ) => Promise<ApiResponseGenshinTheaterData>;
   getSpiralAbyss: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetSpiralAbyssOptionalParams,
   ) => Promise<ApiResponseGenshinSpiralAbyssData>;
   getDailyNote: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetDailyNoteOptionalParams,
@@ -131,19 +121,16 @@ export interface GameRecordApiOperations {
   /** Character IDs should be sent in batches of at most 40, as used by TeyvatGuide. */
   getCharacterDetails: (
     cookie: string,
-    ds: string,
     body: CharacterDetailRequest,
     options?: GameRecordApiGetCharacterDetailsOptionalParams,
   ) => Promise<ApiResponseCharacterList>;
   listCharacters: (
     cookie: string,
-    ds: string,
     body: CharacterListRequest,
     options?: GameRecordApiListCharactersOptionalParams,
   ) => Promise<ApiResponseCharacterList>;
   getIndex: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GameRecordApiGetIndexOptionalParams,
@@ -152,35 +139,31 @@ export interface GameRecordApiOperations {
 
 function _getGameRecordApi(context: MihoyoGameGenshinRecordContext) {
   return {
-    getTool: (cookie: string, ds: string, options?: GameRecordApiGetToolOptionalParams) =>
-      getTool(context, cookie, ds, options),
+    getTool: (cookie: string, options?: GameRecordApiGetToolOptionalParams) =>
+      getTool(context, cookie, options),
     getRoleBasicInfo: (
       cookie: string,
-      ds: string,
       roleId: string,
       server: string,
       options?: GameRecordApiGetRoleBasicInfoOptionalParams,
-    ) => getRoleBasicInfo(context, cookie, ds, roleId, server, options),
+    ) => getRoleBasicInfo(context, cookie, roleId, server, options),
     getExternalContent: (
       cookie: string,
-      ds: string,
       itemId: number,
       itemType: number,
       options?: GameRecordApiGetExternalContentOptionalParams,
-    ) => getExternalContent(context, cookie, ds, itemId, itemType, options),
+    ) => getExternalContent(context, cookie, itemId, itemType, options),
     getCharacterTps: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetCharacterTpsOptionalParams,
-    ) => getCharacterTps(context, cookie, ds, server, roleId, options),
+    ) => getCharacterTps(context, cookie, server, roleId, options),
     getActivityCalendar: (
       cookie: string,
-      ds: string,
       body: CharacterListRequest,
       options?: GameRecordApiGetActivityCalendarOptionalParams,
-    ) => getActivityCalendar(context, cookie, ds, body, options),
+    ) => getActivityCalendar(context, cookie, body, options),
     getStygianPopularity: (
       server: string,
       roleId: number,
@@ -188,58 +171,50 @@ function _getGameRecordApi(context: MihoyoGameGenshinRecordContext) {
     ) => getStygianPopularity(context, server, roleId, options),
     getStygianOnslaught: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetStygianOnslaughtOptionalParams,
-    ) => getStygianOnslaught(context, cookie, ds, server, roleId, options),
+    ) => getStygianOnslaught(context, cookie, server, roleId, options),
     getCharacterMaster: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetCharacterMasterOptionalParams,
-    ) => getCharacterMaster(context, cookie, ds, server, roleId, options),
+    ) => getCharacterMaster(context, cookie, server, roleId, options),
     getImaginariumTheater: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetImaginariumTheaterOptionalParams,
-    ) => getImaginariumTheater(context, cookie, ds, server, roleId, options),
+    ) => getImaginariumTheater(context, cookie, server, roleId, options),
     getSpiralAbyss: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetSpiralAbyssOptionalParams,
-    ) => getSpiralAbyss(context, cookie, ds, server, roleId, options),
+    ) => getSpiralAbyss(context, cookie, server, roleId, options),
     getDailyNote: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetDailyNoteOptionalParams,
-    ) => getDailyNote(context, cookie, ds, server, roleId, options),
+    ) => getDailyNote(context, cookie, server, roleId, options),
     getCharacterDetails: (
       cookie: string,
-      ds: string,
       body: CharacterDetailRequest,
       options?: GameRecordApiGetCharacterDetailsOptionalParams,
-    ) => getCharacterDetails(context, cookie, ds, body, options),
+    ) => getCharacterDetails(context, cookie, body, options),
     listCharacters: (
       cookie: string,
-      ds: string,
       body: CharacterListRequest,
       options?: GameRecordApiListCharactersOptionalParams,
-    ) => listCharacters(context, cookie, ds, body, options),
+    ) => listCharacters(context, cookie, body, options),
     getIndex: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GameRecordApiGetIndexOptionalParams,
-    ) => getIndex(context, cookie, ds, server, roleId, options),
+    ) => getIndex(context, cookie, server, roleId, options),
   };
 }
 

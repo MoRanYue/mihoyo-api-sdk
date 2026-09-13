@@ -35,7 +35,6 @@ import {
 export function _setFavoriteSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: FavoritePostRequest,
   options: PostApiSetFavoriteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -46,7 +45,7 @@ export function _setFavoriteSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -68,11 +67,10 @@ export async function _setFavoriteDeserialize(
 export async function setFavorite(
   context: Client,
   cookie: string,
-  ds: string,
   body: FavoritePostRequest,
   options: PostApiSetFavoriteOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _setFavoriteSend(context, cookie, ds, body, options);
+  const result = await _setFavoriteSend(context, cookie, body, options);
   return _setFavoriteDeserialize(result);
 }
 

@@ -38,8 +38,8 @@ public final class LegacyCardApiClient {
      * The getGameRecordCard operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param uid The uid parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -48,18 +48,34 @@ public final class LegacyCardApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseGenshinGameRecordCardData> getGameRecordCardWithResponse(String cookie, String ds,
-        String uid, RequestContext requestContext) {
+    public Response<ApiResponseGenshinGameRecordCardData> getGameRecordCardWithResponse(String cookie, String uid,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.Game.Genshin.LegacyRecord.LegacyCardApi.getGameRecordCard", requestContext,
-            updatedContext -> this.serviceClient.getGameRecordCardWithResponse(cookie, ds, uid, updatedContext));
+            updatedContext -> this.serviceClient.getGameRecordCardWithResponse(cookie, uid, ds, updatedContext));
     }
 
     /**
      * The getGameRecordCard operation.
      * 
      * @param cookie The cookie parameter.
+     * @param uid The uid parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseGenshinGameRecordCardData getGameRecordCard(String cookie, String uid, String ds) {
+        return getGameRecordCardWithResponse(cookie, uid, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getGameRecordCard operation.
+     * 
+     * @param cookie The cookie parameter.
      * @param uid The uid parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -68,7 +84,8 @@ public final class LegacyCardApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseGenshinGameRecordCardData getGameRecordCard(String cookie, String ds, String uid) {
-        return getGameRecordCardWithResponse(cookie, ds, uid, RequestContext.none()).getValue();
+    public ApiResponseGenshinGameRecordCardData getGameRecordCard(String cookie, String uid) {
+        final String ds = null;
+        return getGameRecordCardWithResponse(cookie, uid, ds, RequestContext.none()).getValue();
     }
 }

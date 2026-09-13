@@ -4,13 +4,21 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface CultivationApiSyncAvatarListOptionalParams extends OperationOptions {}
+export interface CultivationApiSyncAvatarListOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface CultivationApiListWeaponsOptionalParams extends OperationOptions {}
+export interface CultivationApiListWeaponsOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface CultivationApiListAvatarsOptionalParams extends OperationOptions {}
+export interface CultivationApiListAvatarsOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface CultivationApiBatchComputeOptionalParams extends OperationOptions {}
+export interface CultivationApiBatchComputeOptionalParams extends OperationOptions {
+  ds?: string;
+}

@@ -78,10 +78,10 @@ public final class MobileForumApisImpl {
     /**
      * The getDiscussionByGame operation.
      * 
-     * @param ds The ds parameter.
      * @param gids The gids parameter.
      * @param version The version parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -89,8 +89,8 @@ public final class MobileForumApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileDiscussionData> getDiscussionByGameWithResponse(String ds, int gids, int version,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileDiscussionData> getDiscussionByGameWithResponse(int gids, int version,
+        String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileForumApi.getDiscussionByGame", requestContext, updatedContext -> {
                 final String accept = "application/json";

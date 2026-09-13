@@ -37,8 +37,8 @@ public final class MobileChatApiClient {
     /**
      * The getUserSettings operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -47,32 +47,17 @@ public final class MobileChatApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileUserSettingsData> getUserSettingsWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileUserSettingsData> getUserSettingsWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobileChatApi.getUserSettings",
             requestContext,
-            updatedContext -> this.serviceClient.getUserSettingsWithResponse(ds, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getUserSettingsWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getUserSettings operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileUserSettingsData getUserSettings(String ds, String cookie) {
-        return getUserSettingsWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getUserSettings operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -81,8 +66,22 @@ public final class MobileChatApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileUserSettingsData getUserSettings(String ds) {
+    public ApiResponseMobileUserSettingsData getUserSettings(String cookie, String ds) {
+        return getUserSettingsWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getUserSettings operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileUserSettingsData getUserSettings() {
         final String cookie = null;
-        return getUserSettingsWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getUserSettingsWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 }

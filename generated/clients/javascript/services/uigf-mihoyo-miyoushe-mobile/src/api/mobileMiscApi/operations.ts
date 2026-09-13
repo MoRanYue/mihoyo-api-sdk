@@ -16,7 +16,6 @@ import {
 
 export function _getRecentEmoticonsSend(
   context: Client,
-  ds: string,
   options: MobileMiscApiGetRecentEmoticonsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -25,7 +24,7 @@ export function _getRecentEmoticonsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -45,9 +44,8 @@ export async function _getRecentEmoticonsDeserialize(
 
 export async function getRecentEmoticons(
   context: Client,
-  ds: string,
   options: MobileMiscApiGetRecentEmoticonsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseMobileEmoticonData> {
-  const result = await _getRecentEmoticonsSend(context, ds, options);
+  const result = await _getRecentEmoticonsSend(context, options);
   return _getRecentEmoticonsDeserialize(result);
 }

@@ -9,7 +9,6 @@ import { ApiResponseMobileDiscussionData } from "../../models/uigf/mihoyo/models
 /** Interface representing a MobileForumApi operations. */
 export interface MobileForumApiOperations {
   getDiscussionByGame: (
-    ds: string,
     gids: number,
     version: number,
     options?: MobileForumApiGetDiscussionByGameOptionalParams,
@@ -19,11 +18,10 @@ export interface MobileForumApiOperations {
 function _getMobileForumApi(context: MihoyoMiYouSheMobileContext) {
   return {
     getDiscussionByGame: (
-      ds: string,
       gids: number,
       version: number,
       options?: MobileForumApiGetDiscussionByGameOptionalParams,
-    ) => getDiscussionByGame(context, ds, gids, version, options),
+    ) => getDiscussionByGame(context, gids, version, options),
   };
 }
 

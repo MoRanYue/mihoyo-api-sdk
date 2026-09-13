@@ -48,16 +48,16 @@ class LegacyCardApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_game_record_card(
-        self, *, cookie: str, ds: str, uid: str, **kwargs: Any
+        self, *, cookie: str, uid: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models5.ApiResponseGenshinGameRecordCardData:
         """get_game_record_card.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword uid: Required.
         :paramtype uid: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseGenshinGameRecordCardData. The ApiResponseGenshinGameRecordCardData is
          compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseGenshinGameRecordCardData
@@ -78,8 +78,8 @@ class LegacyCardApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_legacy_card_api_get_game_record_card_request(
             cookie=cookie,
-            ds=ds,
             uid=uid,
+            ds=ds,
             headers=_headers,
             params=_params,
         )

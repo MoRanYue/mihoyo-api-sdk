@@ -37,9 +37,9 @@ public final class PassportStaticClient {
     /**
      * The getSwitchStatus operation.
      * 
-     * @param ds The ds parameter.
      * @param appId The appId parameter.
      * @param platform The platform parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -48,17 +48,33 @@ public final class PassportStaticClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponsePassportSwitchStatusData> getSwitchStatusWithResponse(String ds, String appId,
-        int platform, RequestContext requestContext) {
+    public Response<ApiResponsePassportSwitchStatusData> getSwitchStatusWithResponse(String appId, int platform,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.PassportStatic.SwitchApi.getSwitchStatus",
             requestContext,
-            updatedContext -> this.serviceClient.getSwitchStatusWithResponse(ds, appId, platform, updatedContext));
+            updatedContext -> this.serviceClient.getSwitchStatusWithResponse(appId, platform, ds, updatedContext));
     }
 
     /**
      * The getSwitchStatus operation.
      * 
+     * @param appId The appId parameter.
+     * @param platform The platform parameter.
      * @param ds The ds parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponsePassportSwitchStatusData getSwitchStatus(String appId, int platform, String ds) {
+        return getSwitchStatusWithResponse(appId, platform, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getSwitchStatus operation.
+     * 
      * @param appId The appId parameter.
      * @param platform The platform parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -68,7 +84,8 @@ public final class PassportStaticClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponsePassportSwitchStatusData getSwitchStatus(String ds, String appId, int platform) {
-        return getSwitchStatusWithResponse(ds, appId, platform, RequestContext.none()).getValue();
+    public ApiResponsePassportSwitchStatusData getSwitchStatus(String appId, int platform) {
+        final String ds = null;
+        return getSwitchStatusWithResponse(appId, platform, ds, RequestContext.none()).getValue();
     }
 }

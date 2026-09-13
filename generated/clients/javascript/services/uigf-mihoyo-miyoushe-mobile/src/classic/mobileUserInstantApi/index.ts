@@ -9,7 +9,6 @@ import { ApiResponseMobileEntityReviewData } from "../../models/uigf/mihoyo/mode
 /** Interface representing a MobileUserInstantApi operations. */
 export interface MobileUserInstantApiOperations {
   getEntityReview: (
-    ds: string,
     offset: number,
     size: number,
     options?: MobileUserInstantApiGetEntityReviewOptionalParams,
@@ -19,11 +18,10 @@ export interface MobileUserInstantApiOperations {
 function _getMobileUserInstantApi(context: MihoyoMiYouSheMobileContext) {
   return {
     getEntityReview: (
-      ds: string,
       offset: number,
       size: number,
       options?: MobileUserInstantApiGetEntityReviewOptionalParams,
-    ) => getEntityReview(context, ds, offset, size, options),
+    ) => getEntityReview(context, offset, size, options),
   };
 }
 

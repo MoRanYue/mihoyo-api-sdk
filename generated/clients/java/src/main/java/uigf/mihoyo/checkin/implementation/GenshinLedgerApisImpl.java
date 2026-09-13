@@ -91,9 +91,9 @@ public final class GenshinLedgerApisImpl {
      * The getMonthInfo operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
+     * @param ds The ds parameter.
      * @param month The month parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -102,8 +102,8 @@ public final class GenshinLedgerApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getMonthInfoWithResponse(String cookie, String ds, String bindUid,
-        String bindRegion, Integer month, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getMonthInfoWithResponse(String cookie, String bindUid, String bindRegion,
+        String ds, Integer month, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Ledger.LedgerApi.getMonthInfo",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -116,12 +116,12 @@ public final class GenshinLedgerApisImpl {
      * The getMonthDetail operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param month The month parameter.
      * @param page The page parameter.
      * @param type The type parameter.
      * @param bindUid The bindUid parameter.
      * @param bindRegion The bindRegion parameter.
+     * @param ds The ds parameter.
      * @param limit The limit parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -130,8 +130,8 @@ public final class GenshinLedgerApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getMonthDetailWithResponse(String cookie, String ds, int month, int page,
-        int type, String bindUid, String bindRegion, Integer limit, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getMonthDetailWithResponse(String cookie, int month, int page, int type,
+        String bindUid, String bindRegion, String ds, Integer limit, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Game.Genshin.Ledger.LedgerApi.getMonthDetail",
             requestContext, updatedContext -> {
                 final String accept = "application/json";

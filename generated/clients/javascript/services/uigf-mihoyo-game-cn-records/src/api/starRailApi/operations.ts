@@ -26,7 +26,6 @@ import {
 export function _getChallengePeakSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetChallengePeakOptionalParams = { requestOptions: {} },
@@ -50,7 +49,7 @@ export function _getChallengePeakSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -71,19 +70,17 @@ export async function _getChallengePeakDeserialize(
 export async function getChallengePeak(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetChallengePeakOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getChallengePeakSend(context, cookie, ds, server, roleId, options);
+  const result = await _getChallengePeakSend(context, cookie, server, roleId, options);
   return _getChallengePeakDeserialize(result);
 }
 
 export function _getSimulatedUniverseSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetSimulatedUniverseOptionalParams = { requestOptions: {} },
@@ -107,7 +104,7 @@ export function _getSimulatedUniverseSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -128,19 +125,17 @@ export async function _getSimulatedUniverseDeserialize(
 export async function getSimulatedUniverse(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetSimulatedUniverseOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getSimulatedUniverseSend(context, cookie, ds, server, roleId, options);
+  const result = await _getSimulatedUniverseSend(context, cookie, server, roleId, options);
   return _getSimulatedUniverseDeserialize(result);
 }
 
 export function _getApocalypticShadowSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetApocalypticShadowOptionalParams = { requestOptions: {} },
@@ -164,7 +159,7 @@ export function _getApocalypticShadowSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -185,19 +180,17 @@ export async function _getApocalypticShadowDeserialize(
 export async function getApocalypticShadow(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetApocalypticShadowOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getApocalypticShadowSend(context, cookie, ds, server, roleId, options);
+  const result = await _getApocalypticShadowSend(context, cookie, server, roleId, options);
   return _getApocalypticShadowDeserialize(result);
 }
 
 export function _getPureFictionSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetPureFictionOptionalParams = { requestOptions: {} },
@@ -221,7 +214,7 @@ export function _getPureFictionSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -242,19 +235,17 @@ export async function _getPureFictionDeserialize(
 export async function getPureFiction(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetPureFictionOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getPureFictionSend(context, cookie, ds, server, roleId, options);
+  const result = await _getPureFictionSend(context, cookie, server, roleId, options);
   return _getPureFictionDeserialize(result);
 }
 
 export function _getForgottenHallSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetForgottenHallOptionalParams = { requestOptions: {} },
@@ -278,7 +269,7 @@ export function _getForgottenHallSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -299,19 +290,17 @@ export async function _getForgottenHallDeserialize(
 export async function getForgottenHall(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetForgottenHallOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getForgottenHallSend(context, cookie, ds, server, roleId, options);
+  const result = await _getForgottenHallSend(context, cookie, server, roleId, options);
   return _getForgottenHallDeserialize(result);
 }
 
 export function _getDailyNoteSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetDailyNoteOptionalParams = { requestOptions: {} },
@@ -332,7 +321,7 @@ export function _getDailyNoteSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -353,19 +342,17 @@ export async function _getDailyNoteDeserialize(
 export async function getDailyNote(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetDailyNoteOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getDailyNoteSend(context, cookie, ds, server, roleId, options);
+  const result = await _getDailyNoteSend(context, cookie, server, roleId, options);
   return _getDailyNoteDeserialize(result);
 }
 
 export function _getIndexSend(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetIndexOptionalParams = { requestOptions: {} },
@@ -386,7 +373,7 @@ export function _getIndexSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -407,11 +394,10 @@ export async function _getIndexDeserialize(
 export async function getIndex(
   context: Client,
   cookie: string,
-  ds: string,
   server: string,
   roleId: string,
   options: StarRailApiGetIndexOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseJsonObject> {
-  const result = await _getIndexSend(context, cookie, ds, server, roleId, options);
+  const result = await _getIndexSend(context, cookie, server, roleId, options);
   return _getIndexDeserialize(result);
 }

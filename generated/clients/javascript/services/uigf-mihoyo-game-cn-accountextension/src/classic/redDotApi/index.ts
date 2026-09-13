@@ -9,7 +9,6 @@ import { ApiResponseRedDotBatchData } from "../../models/uigf/mihoyo/models.js";
 /** Interface representing a RedDotApi operations. */
 export interface RedDotApiOperations {
   getBatch: (
-    ds: string,
     authkey: string,
     authkeyVer: number,
     gameBiz: string,
@@ -22,14 +21,13 @@ export interface RedDotApiOperations {
 function _getRedDotApi(context: MihoyoGameCNAccountExtensionContext) {
   return {
     getBatch: (
-      ds: string,
       authkey: string,
       authkeyVer: number,
       gameBiz: string,
       signType: number,
       users: string,
       options?: RedDotApiGetBatchOptionalParams,
-    ) => getBatch(context, ds, authkey, authkeyVer, gameBiz, signType, users, options),
+    ) => getBatch(context, authkey, authkeyVer, gameBiz, signType, users, options),
   };
 }
 

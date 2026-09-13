@@ -17,7 +17,6 @@ import {
 
 export function _getLatestReleaseSend(
   context: Client,
-  ds: string,
   deviceCpuBitType: number,
   options: ReleaseApiGetLatestReleaseOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -34,7 +33,11 @@ export function _getLatestReleaseSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { ds: ds, accept: "application/json", ...options.requestOptions?.headers },
+      headers: {
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -51,10 +54,9 @@ export async function _getLatestReleaseDeserialize(
 
 export async function getLatestRelease(
   context: Client,
-  ds: string,
   deviceCpuBitType: number,
   options: ReleaseApiGetLatestReleaseOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseReleaseData> {
-  const result = await _getLatestReleaseSend(context, ds, deviceCpuBitType, options);
+  const result = await _getLatestReleaseSend(context, deviceCpuBitType, options);
   return _getLatestReleaseDeserialize(result);
 }

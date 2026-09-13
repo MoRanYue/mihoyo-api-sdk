@@ -16,7 +16,6 @@ import {
 
 export function _getAllResourceVersionsSend(
   context: Client,
-  ds: string,
   options: StaticMiscApiGetAllResourceVersionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -25,7 +24,7 @@ export function _getAllResourceVersionsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.cookie !== undefined ? { cookie: options?.cookie } : {}),
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -45,9 +44,8 @@ export async function _getAllResourceVersionsDeserialize(
 
 export async function getAllResourceVersions(
   context: Client,
-  ds: string,
   options: StaticMiscApiGetAllResourceVersionsOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseStaticResourceVersionsData> {
-  const result = await _getAllResourceVersionsSend(context, ds, options);
+  const result = await _getAllResourceVersionsSend(context, options);
   return _getAllResourceVersionsDeserialize(result);
 }

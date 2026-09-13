@@ -18,21 +18,18 @@ import { ApiResponseJsonObject } from "../../models/uigf/mihoyo/models.js";
 export interface GenshinChallengeApiOperations {
   getStygianOnslaught: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GenshinChallengeApiGetStygianOnslaughtOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getImaginariumTheater: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GenshinChallengeApiGetImaginariumTheaterOptionalParams,
   ) => Promise<ApiResponseJsonObject>;
   getSpiralAbyss: (
     cookie: string,
-    ds: string,
     server: string,
     roleId: string,
     options?: GenshinChallengeApiGetSpiralAbyssOptionalParams,
@@ -43,25 +40,22 @@ function _getGenshinChallengeApi(context: MihoyoGameGlobalCommunityRecordsContex
   return {
     getStygianOnslaught: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GenshinChallengeApiGetStygianOnslaughtOptionalParams,
-    ) => getStygianOnslaught(context, cookie, ds, server, roleId, options),
+    ) => getStygianOnslaught(context, cookie, server, roleId, options),
     getImaginariumTheater: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GenshinChallengeApiGetImaginariumTheaterOptionalParams,
-    ) => getImaginariumTheater(context, cookie, ds, server, roleId, options),
+    ) => getImaginariumTheater(context, cookie, server, roleId, options),
     getSpiralAbyss: (
       cookie: string,
-      ds: string,
       server: string,
       roleId: string,
       options?: GenshinChallengeApiGetSpiralAbyssOptionalParams,
-    ) => getSpiralAbyss(context, cookie, ds, server, roleId, options),
+    ) => getSpiralAbyss(context, cookie, server, roleId, options),
   };
 }
 

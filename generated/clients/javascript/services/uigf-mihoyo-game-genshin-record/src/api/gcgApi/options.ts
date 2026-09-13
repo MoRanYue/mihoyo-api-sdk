@@ -4,25 +4,41 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface GcgApiGetMatchListOptionalParams extends OperationOptions {}
+export interface GcgApiGetMatchListOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetCoversOptionalParams extends OperationOptions {}
+export interface GcgApiGetCoversOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetDeckListOptionalParams extends OperationOptions {}
+export interface GcgApiGetDeckListOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetChallengeScheduleOptionalParams extends OperationOptions {}
+export interface GcgApiGetChallengeScheduleOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetChallengeRecordOptionalParams extends OperationOptions {}
+export interface GcgApiGetChallengeRecordOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetCardListOptionalParams extends OperationOptions {}
+export interface GcgApiGetCardListOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetCardBackListOptionalParams extends OperationOptions {}
+export interface GcgApiGetCardBackListOptionalParams extends OperationOptions {
+  ds?: string;
+}
 
 /** Optional parameters. */
-export interface GcgApiGetBasicInfoOptionalParams extends OperationOptions {}
+export interface GcgApiGetBasicInfoOptionalParams extends OperationOptions {
+  ds?: string;
+}

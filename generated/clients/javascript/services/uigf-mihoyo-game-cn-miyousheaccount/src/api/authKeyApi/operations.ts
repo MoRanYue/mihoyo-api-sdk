@@ -18,7 +18,6 @@ import {
 export function _generateSend(
   context: Client,
   cookie: string,
-  ds: string,
   body: AuthKeyRequest,
   options: AuthKeyApiGenerateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -29,7 +28,7 @@ export function _generateSend(
       contentType: "application/json",
       headers: {
         cookie: cookie,
-        ds: ds,
+        ...(options?.ds !== undefined ? { ds: options?.ds } : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
@@ -51,10 +50,9 @@ export async function _generateDeserialize(
 export async function generate(
   context: Client,
   cookie: string,
-  ds: string,
   body: AuthKeyRequest,
   options: AuthKeyApiGenerateOptionalParams = { requestOptions: {} },
 ): Promise<ApiResponseAuthKeyData> {
-  const result = await _generateSend(context, cookie, ds, body, options);
+  const result = await _generateSend(context, cookie, body, options);
   return _generateDeserialize(result);
 }

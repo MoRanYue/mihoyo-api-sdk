@@ -51,9 +51,9 @@ def build_user_api_get_full_info_request(*, cookie: str, ds: Optional[str] = Non
 def build_genshin_challenge_api_get_spiral_abyss_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -79,7 +79,8 @@ def build_genshin_challenge_api_get_spiral_abyss_request(  # pylint: disable=nam
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -88,9 +89,9 @@ def build_genshin_challenge_api_get_spiral_abyss_request(  # pylint: disable=nam
 def build_genshin_challenge_api_get_imaginarium_theater_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -116,7 +117,8 @@ def build_genshin_challenge_api_get_imaginarium_theater_request(  # pylint: disa
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -125,9 +127,9 @@ def build_genshin_challenge_api_get_imaginarium_theater_request(  # pylint: disa
 def build_genshin_challenge_api_get_stygian_onslaught_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -153,7 +155,8 @@ def build_genshin_challenge_api_get_stygian_onslaught_request(  # pylint: disabl
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -162,9 +165,9 @@ def build_genshin_challenge_api_get_stygian_onslaught_request(  # pylint: disabl
 def build_star_rail_challenge_api_get_forgotten_hall_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -190,7 +193,8 @@ def build_star_rail_challenge_api_get_forgotten_hall_request(  # pylint: disable
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -199,9 +203,9 @@ def build_star_rail_challenge_api_get_forgotten_hall_request(  # pylint: disable
 def build_star_rail_challenge_api_get_pure_fiction_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -227,7 +231,8 @@ def build_star_rail_challenge_api_get_pure_fiction_request(  # pylint: disable=n
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -236,9 +241,9 @@ def build_star_rail_challenge_api_get_pure_fiction_request(  # pylint: disable=n
 def build_star_rail_challenge_api_get_apocalyptic_shadow_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -264,7 +269,8 @@ def build_star_rail_challenge_api_get_apocalyptic_shadow_request(  # pylint: dis
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -273,9 +279,9 @@ def build_star_rail_challenge_api_get_apocalyptic_shadow_request(  # pylint: dis
 def build_star_rail_challenge_api_get_simulated_universe_request(  # pylint: disable=name-too-long
     *,
     cookie: str,
-    ds: str,
     server: str,
     role_id: str,
+    ds: Optional[str] = None,
     schedule_type: Optional[int] = None,
     need_detail: Optional[bool] = None,
     need_all: Optional[bool] = None,
@@ -301,7 +307,8 @@ def build_star_rail_challenge_api_get_simulated_universe_request(  # pylint: dis
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -457,9 +464,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -469,12 +476,12 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -500,9 +507,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_genshin_challenge_api_get_spiral_abyss_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -543,9 +550,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -555,12 +562,12 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -586,9 +593,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_genshin_challenge_api_get_imaginarium_theater_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -629,9 +636,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -641,12 +648,12 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -672,9 +679,9 @@ class GenshinChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_genshin_challenge_api_get_stygian_onslaught_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -733,9 +740,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -745,12 +752,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -776,9 +783,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_forgotten_hall_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -819,9 +826,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -831,12 +838,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -862,9 +869,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_pure_fiction_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -905,9 +912,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -917,12 +924,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -948,9 +955,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_apocalyptic_shadow_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,
@@ -991,9 +998,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         server: str,
         role_id: str,
+        ds: Optional[str] = None,
         schedule_type: Optional[int] = None,
         need_detail: Optional[bool] = None,
         need_all: Optional[bool] = None,
@@ -1003,12 +1010,12 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword server: Required.
         :paramtype server: str
         :keyword role_id: Required.
         :paramtype role_id: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword schedule_type: Default value is None.
         :paramtype schedule_type: int
         :keyword need_detail: Default value is None.
@@ -1034,9 +1041,9 @@ class StarRailChallengeApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_star_rail_challenge_api_get_simulated_universe_request(
             cookie=cookie,
-            ds=ds,
             server=server,
             role_id=role_id,
+            ds=ds,
             schedule_type=schedule_type,
             need_detail=need_detail,
             need_all=need_all,

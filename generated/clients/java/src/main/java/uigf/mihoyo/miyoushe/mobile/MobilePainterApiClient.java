@@ -39,7 +39,6 @@ public final class MobilePainterApiClient {
     /**
      * The getFeedPosts operation.
      * 
-     * @param ds The ds parameter.
      * @param algorithmType The algorithmType parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
@@ -50,6 +49,7 @@ public final class MobilePainterApiClient {
      * @param isTriggeredByResource The isTriggeredByResource parameter.
      * @param lastId The lastId parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -58,19 +58,18 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileFeedPostsData> getFeedPostsWithResponse(String ds, int algorithmType, String cpu,
+    public Response<ApiResponseMobileFeedPostsData> getFeedPostsWithResponse(int algorithmType, String cpu,
         String device, String filter, int freshAction, int gids, boolean isFirstInitialize,
-        boolean isTriggeredByResource, String lastId, String cookie, RequestContext requestContext) {
+        boolean isTriggeredByResource, String lastId, String cookie, String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.MiYouShe.Mobile.MobilePainterApi.getFeedPosts",
             requestContext,
-            updatedContext -> this.serviceClient.getFeedPostsWithResponse(ds, algorithmType, cpu, device, filter,
-                freshAction, gids, isFirstInitialize, isTriggeredByResource, lastId, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getFeedPostsWithResponse(algorithmType, cpu, device, filter,
+                freshAction, gids, isFirstInitialize, isTriggeredByResource, lastId, cookie, ds, updatedContext));
     }
 
     /**
      * The getFeedPosts operation.
      * 
-     * @param ds The ds parameter.
      * @param algorithmType The algorithmType parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
@@ -81,6 +80,7 @@ public final class MobilePainterApiClient {
      * @param isTriggeredByResource The isTriggeredByResource parameter.
      * @param lastId The lastId parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -88,17 +88,16 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileFeedPostsData getFeedPosts(String ds, int algorithmType, String cpu, String device,
-        String filter, int freshAction, int gids, boolean isFirstInitialize, boolean isTriggeredByResource,
-        String lastId, String cookie) {
-        return getFeedPostsWithResponse(ds, algorithmType, cpu, device, filter, freshAction, gids, isFirstInitialize,
-            isTriggeredByResource, lastId, cookie, RequestContext.none()).getValue();
+    public ApiResponseMobileFeedPostsData getFeedPosts(int algorithmType, String cpu, String device, String filter,
+        int freshAction, int gids, boolean isFirstInitialize, boolean isTriggeredByResource, String lastId,
+        String cookie, String ds) {
+        return getFeedPostsWithResponse(algorithmType, cpu, device, filter, freshAction, gids, isFirstInitialize,
+            isTriggeredByResource, lastId, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getFeedPosts operation.
      * 
-     * @param ds The ds parameter.
      * @param algorithmType The algorithmType parameter.
      * @param cpu The cpu parameter.
      * @param device The device parameter.
@@ -115,18 +114,17 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileFeedPostsData getFeedPosts(String ds, int algorithmType, String cpu, String device,
-        String filter, int freshAction, int gids, boolean isFirstInitialize, boolean isTriggeredByResource,
-        String lastId) {
+    public ApiResponseMobileFeedPostsData getFeedPosts(int algorithmType, String cpu, String device, String filter,
+        int freshAction, int gids, boolean isFirstInitialize, boolean isTriggeredByResource, String lastId) {
         final String cookie = null;
-        return getFeedPostsWithResponse(ds, algorithmType, cpu, device, filter, freshAction, gids, isFirstInitialize,
-            isTriggeredByResource, lastId, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getFeedPostsWithResponse(algorithmType, cpu, device, filter, freshAction, gids, isFirstInitialize,
+            isTriggeredByResource, lastId, cookie, ds, RequestContext.none()).getValue();
     }
 
     /**
      * The getUserInstantList operation.
      * 
-     * @param ds The ds parameter.
      * @param gameRegion The gameRegion parameter.
      * @param gameUid The gameUid parameter.
      * @param offset The offset parameter.
@@ -134,6 +132,7 @@ public final class MobilePainterApiClient {
      * @param uid The uid parameter.
      * @param viewType The viewType parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -142,18 +141,18 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileUserInstantListData> getUserInstantListWithResponse(String ds, String gameRegion,
-        long gameUid, int offset, int size, long uid, int viewType, String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileUserInstantListData> getUserInstantListWithResponse(String gameRegion,
+        long gameUid, int offset, int size, long uid, int viewType, String cookie, String ds,
+        RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobilePainterApi.getUserInstantList", requestContext,
-            updatedContext -> this.serviceClient.getUserInstantListWithResponse(ds, gameRegion, gameUid, offset, size,
-                uid, viewType, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getUserInstantListWithResponse(gameRegion, gameUid, offset, size, uid,
+                viewType, cookie, ds, updatedContext));
     }
 
     /**
      * The getUserInstantList operation.
      * 
-     * @param ds The ds parameter.
      * @param gameRegion The gameRegion parameter.
      * @param gameUid The gameUid parameter.
      * @param offset The offset parameter.
@@ -161,6 +160,7 @@ public final class MobilePainterApiClient {
      * @param uid The uid parameter.
      * @param viewType The viewType parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -168,16 +168,15 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileUserInstantListData getUserInstantList(String ds, String gameRegion, long gameUid,
-        int offset, int size, long uid, int viewType, String cookie) {
-        return getUserInstantListWithResponse(ds, gameRegion, gameUid, offset, size, uid, viewType, cookie,
+    public ApiResponseMobileUserInstantListData getUserInstantList(String gameRegion, long gameUid, int offset,
+        int size, long uid, int viewType, String cookie, String ds) {
+        return getUserInstantListWithResponse(gameRegion, gameUid, offset, size, uid, viewType, cookie, ds,
             RequestContext.none()).getValue();
     }
 
     /**
      * The getUserInstantList operation.
      * 
-     * @param ds The ds parameter.
      * @param gameRegion The gameRegion parameter.
      * @param gameUid The gameUid parameter.
      * @param offset The offset parameter.
@@ -191,18 +190,19 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileUserInstantListData getUserInstantList(String ds, String gameRegion, long gameUid,
-        int offset, int size, long uid, int viewType) {
+    public ApiResponseMobileUserInstantListData getUserInstantList(String gameRegion, long gameUid, int offset,
+        int size, long uid, int viewType) {
         final String cookie = null;
-        return getUserInstantListWithResponse(ds, gameRegion, gameUid, offset, size, uid, viewType, cookie,
+        final String ds = null;
+        return getUserInstantListWithResponse(gameRegion, gameUid, offset, size, uid, viewType, cookie, ds,
             RequestContext.none()).getValue();
     }
 
     /**
      * The getVillaSitePush operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -211,32 +211,17 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileVillaSitePushData> getVillaSitePushWithResponse(String ds, String cookie,
+    public Response<ApiResponseMobileVillaSitePushData> getVillaSitePushWithResponse(String cookie, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobilePainterApi.getVillaSitePush", requestContext,
-            updatedContext -> this.serviceClient.getVillaSitePushWithResponse(ds, cookie, updatedContext));
+            updatedContext -> this.serviceClient.getVillaSitePushWithResponse(cookie, ds, updatedContext));
     }
 
     /**
      * The getVillaSitePush operation.
      * 
-     * @param ds The ds parameter.
      * @param cookie The cookie parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws HttpResponseException thrown if the service returns an error.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
-     */
-    @Metadata(properties = { MetadataProperties.GENERATED })
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileVillaSitePushData getVillaSitePush(String ds, String cookie) {
-        return getVillaSitePushWithResponse(ds, cookie, RequestContext.none()).getValue();
-    }
-
-    /**
-     * The getVillaSitePush operation.
-     * 
      * @param ds The ds parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -245,8 +230,22 @@ public final class MobilePainterApiClient {
      */
     @Metadata(properties = { MetadataProperties.GENERATED })
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiResponseMobileVillaSitePushData getVillaSitePush(String ds) {
+    public ApiResponseMobileVillaSitePushData getVillaSitePush(String cookie, String ds) {
+        return getVillaSitePushWithResponse(cookie, ds, RequestContext.none()).getValue();
+    }
+
+    /**
+     * The getVillaSitePush operation.
+     * 
+     * @throws HttpResponseException thrown if the service returns an error.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return common response wrapper returned by MiHoYo and HoYoLAB services.
+     */
+    @Metadata(properties = { MetadataProperties.GENERATED })
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiResponseMobileVillaSitePushData getVillaSitePush() {
         final String cookie = null;
-        return getVillaSitePushWithResponse(ds, cookie, RequestContext.none()).getValue();
+        final String ds = null;
+        return getVillaSitePushWithResponse(cookie, ds, RequestContext.none()).getValue();
     }
 }

@@ -160,7 +160,15 @@ def build_collection_api_get_detail_request(
 
 
 def build_coin_record_api_list_request(
-    *, cookie: str, ds: str, app_id: str, point_sn: str, time: str, action: Literal["1", "2"], size: int, **kwargs: Any
+    *,
+    cookie: str,
+    app_id: str,
+    point_sn: str,
+    time: str,
+    action: Literal["1", "2"],
+    size: int,
+    ds: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -179,7 +187,8 @@ def build_coin_record_api_list_request(
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -391,7 +400,7 @@ def build_post_api_search_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_post_api_set_favorite_request(*, cookie: str, ds: str, **kwargs: Any) -> HttpRequest:
+def build_post_api_set_favorite_request(*, cookie: str, ds: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -402,7 +411,8 @@ def build_post_api_set_favorite_request(*, cookie: str, ds: str, **kwargs: Any) 
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -600,7 +610,9 @@ def build_api_hub_get_game_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_api_hub_get_missions_request(*, cookie: str, ds: str, point_sn: str, **kwargs: Any) -> HttpRequest:
+def build_api_hub_get_missions_request(
+    *, cookie: str, point_sn: str, ds: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -614,14 +626,15 @@ def build_api_hub_get_missions_request(*, cookie: str, ds: str, point_sn: str, *
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_api_hub_get_share_config_request(
-    *, cookie: str, ds: str, entity_id: str, entity_type: int, **kwargs: Any
+    *, cookie: str, entity_id: str, entity_type: int, ds: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -637,13 +650,16 @@ def build_api_hub_get_share_config_request(
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_hub_get_mission_state_request(*, cookie: str, ds: str, point_sn: str, **kwargs: Any) -> HttpRequest:
+def build_api_hub_get_mission_state_request(
+    *, cookie: str, point_sn: str, ds: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -657,7 +673,8 @@ def build_api_hub_get_mission_state_request(*, cookie: str, ds: str, point_sn: s
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -746,7 +763,7 @@ def build_api_hub_get_home_request(
 
 
 def build_api_hub_sign_in_request(
-    *, cookie: str, ds: str, challenge: Optional[str] = None, **kwargs: Any
+    *, cookie: str, ds: Optional[str] = None, challenge: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -758,7 +775,8 @@ def build_api_hub_sign_in_request(
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if challenge is not None:
         _headers["x-rpc-challenge"] = _SERIALIZER.header("challenge", challenge, "str")
     if content_type is not None:
@@ -768,7 +786,7 @@ def build_api_hub_sign_in_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_api_hub_set_post_vote_request(*, cookie: str, ds: str, **kwargs: Any) -> HttpRequest:
+def build_api_hub_set_post_vote_request(*, cookie: str, ds: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -779,7 +797,8 @@ def build_api_hub_set_post_vote_request(*, cookie: str, ds: str, **kwargs: Any) 
 
     # Construct headers
     _headers["Cookie"] = _SERIALIZER.header("cookie", cookie, "str")
-    _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
+    if ds is not None:
+        _headers["DS"] = _SERIALIZER.header("ds", ds, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1398,20 +1417,18 @@ class CoinRecordApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         app_id: str,
         point_sn: str,
         time: str,
         action: Literal["1", "2"],
         size: int,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """Returns MiYouShe coin earnings or spending records.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword app_id: Required.
         :paramtype app_id: str
         :keyword point_sn: Required.
@@ -1422,6 +1439,8 @@ class CoinRecordApiOperations:  # pylint: disable=docstring-missing-param
         :paramtype action: str or str
         :keyword size: Required.
         :paramtype size: int
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1441,12 +1460,12 @@ class CoinRecordApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_coin_record_api_list_request(
             cookie=cookie,
-            ds=ds,
             app_id=app_id,
             point_sn=point_sn,
             time=time,
             action=action,
             size=size,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2023,7 +2042,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
         body: _models1.FavoritePostRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
@@ -2033,7 +2052,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.community.models.FavoritePostRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2049,7 +2068,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
         body: _types_models1.FavoritePostRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
@@ -2059,7 +2078,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.community.types.FavoritePostRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2071,7 +2090,13 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     def set_favorite(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """set_favorite.
 
@@ -2079,7 +2104,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2094,7 +2119,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models1.FavoritePostRequest, _types_models1.FavoritePostRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """set_favorite.
@@ -2104,7 +2129,7 @@ class PostApiOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.community.types.FavoritePostRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
@@ -2802,15 +2827,17 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
 
         return deserialized  # type: ignore
 
-    def get_missions(self, *, cookie: str, ds: str, point_sn: str, **kwargs: Any) -> _models2.ApiResponseJsonObject:
+    def get_missions(
+        self, *, cookie: str, point_sn: str, ds: Optional[str] = None, **kwargs: Any
+    ) -> _models2.ApiResponseJsonObject:
         """get_missions.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword point_sn: Required.
         :paramtype point_sn: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2830,8 +2857,8 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_api_hub_get_missions_request(
             cookie=cookie,
-            ds=ds,
             point_sn=point_sn,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2866,18 +2893,18 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_share_config(
-        self, *, cookie: str, ds: str, entity_id: str, entity_type: int, **kwargs: Any
+        self, *, cookie: str, entity_id: str, entity_type: int, ds: Optional[str] = None, **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """get_share_config.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword entity_id: Required.
         :paramtype entity_id: str
         :keyword entity_type: Required.
         :paramtype entity_type: int
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2897,9 +2924,9 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_api_hub_get_share_config_request(
             cookie=cookie,
-            ds=ds,
             entity_id=entity_id,
             entity_type=entity_type,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -2934,16 +2961,16 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         return deserialized  # type: ignore
 
     def get_mission_state(
-        self, *, cookie: str, ds: str, point_sn: str, **kwargs: Any
+        self, *, cookie: str, point_sn: str, ds: Optional[str] = None, **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """get_mission_state.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword point_sn: Required.
         :paramtype point_sn: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2963,8 +2990,8 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_api_hub_get_mission_state_request(
             cookie=cookie,
-            ds=ds,
             point_sn=point_sn,
+            ds=ds,
             headers=_headers,
             params=_params,
         )
@@ -3211,7 +3238,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: _models1.SignInRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         challenge: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
@@ -3222,7 +3249,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.community.models.SignInRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword challenge: Default value is None.
         :paramtype challenge: str
@@ -3240,7 +3267,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: _types_models1.SignInRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         challenge: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
@@ -3251,7 +3278,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.community.types.SignInRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword challenge: Default value is None.
         :paramtype challenge: str
@@ -3269,7 +3296,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: IO[bytes],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         challenge: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
@@ -3280,7 +3307,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword challenge: Default value is None.
         :paramtype challenge: str
@@ -3297,7 +3324,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models1.SignInRequest, _types_models1.SignInRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         challenge: Optional[str] = None,
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
@@ -3308,7 +3335,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.community.types.SignInRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword challenge: Default value is None.
         :paramtype challenge: str
@@ -3382,7 +3409,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: _models1.LikePostRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
@@ -3392,7 +3419,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.community.models.LikePostRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -3408,7 +3435,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: _types_models1.LikePostRequest,
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
@@ -3418,7 +3445,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         :type body: ~uigf.mihoyo.community.types.LikePostRequest
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -3430,7 +3457,13 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
 
     @overload
     def set_post_vote(
-        self, body: IO[bytes], *, cookie: str, ds: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: IO[bytes],
+        *,
+        cookie: str,
+        ds: Optional[str] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """set_post_vote.
 
@@ -3438,7 +3471,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         :type body: IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -3453,7 +3486,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
         body: Union[_models1.LikePostRequest, _types_models1.LikePostRequest, IO[bytes]],
         *,
         cookie: str,
-        ds: str,
+        ds: Optional[str] = None,
         **kwargs: Any
     ) -> _models2.ApiResponseJsonObject:
         """set_post_vote.
@@ -3463,7 +3496,7 @@ class ApiHubOperations:  # pylint: disable=docstring-missing-param
          ~uigf.mihoyo.community.types.LikePostRequest or IO[bytes]
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
+        :keyword ds: Default value is None.
         :paramtype ds: str
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
         :rtype: ~uigf.mihoyo.models.ApiResponseJsonObject

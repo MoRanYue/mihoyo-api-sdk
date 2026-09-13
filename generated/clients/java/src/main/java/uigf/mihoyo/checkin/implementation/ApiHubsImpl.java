@@ -227,8 +227,8 @@ public final class ApiHubsImpl {
      * The getMissions operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param pointSn The pointSn parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -236,7 +236,7 @@ public final class ApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getMissionsWithResponse(String cookie, String ds, String pointSn,
+    public Response<ApiResponseJsonObject> getMissionsWithResponse(String cookie, String pointSn, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.ApiHub.getMissions", requestContext,
             updatedContext -> {
@@ -249,9 +249,9 @@ public final class ApiHubsImpl {
      * The getShareConfig operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param entityId The entityId parameter.
      * @param entityType The entityType parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -259,8 +259,8 @@ public final class ApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getShareConfigWithResponse(String cookie, String ds, String entityId,
-        int entityType, RequestContext requestContext) {
+    public Response<ApiResponseJsonObject> getShareConfigWithResponse(String cookie, String entityId, int entityType,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.ApiHub.getShareConfig",
             requestContext, updatedContext -> {
                 final String accept = "application/json";
@@ -273,8 +273,8 @@ public final class ApiHubsImpl {
      * The getMissionState operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param pointSn The pointSn parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -282,7 +282,7 @@ public final class ApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> getMissionStateWithResponse(String cookie, String ds, String pointSn,
+    public Response<ApiResponseJsonObject> getMissionStateWithResponse(String cookie, String pointSn, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.ApiHub.getMissionState",
             requestContext, updatedContext -> {
@@ -365,8 +365,8 @@ public final class ApiHubsImpl {
      * The signIn operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param challenge The challenge parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -375,7 +375,7 @@ public final class ApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> signInWithResponse(String cookie, String ds, SignInRequest body,
+    public Response<ApiResponseJsonObject> signInWithResponse(String cookie, SignInRequest body, String ds,
         String challenge, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.ApiHub.signIn", requestContext,
             updatedContext -> {
@@ -390,8 +390,8 @@ public final class ApiHubsImpl {
      * The setPostVote operation.
      * 
      * @param cookie The cookie parameter.
-     * @param ds The ds parameter.
      * @param body The body parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -399,7 +399,7 @@ public final class ApiHubsImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseJsonObject> setPostVoteWithResponse(String cookie, String ds, LikePostRequest body,
+    public Response<ApiResponseJsonObject> setPostVoteWithResponse(String cookie, LikePostRequest body, String ds,
         RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse("UIGF.Mihoyo.Community.ApiHub.setPostVote", requestContext,
             updatedContext -> {

@@ -11,7 +11,6 @@ export interface CoinRecordApiOperations {
   /** Returns MiYouShe coin earnings or spending records. */
   list: (
     cookie: string,
-    ds: string,
     appId: string,
     pointSn: string,
     time: string,
@@ -25,14 +24,13 @@ function _getCoinRecordApi(context: MihoyoCommunityContext) {
   return {
     list: (
       cookie: string,
-      ds: string,
       appId: string,
       pointSn: string,
       time: string,
       action: "1" | "2",
       size: number,
       options?: CoinRecordApiListOptionalParams,
-    ) => list(context, cookie, ds, appId, pointSn, time, action, size, options),
+    ) => list(context, cookie, appId, pointSn, time, action, size, options),
   };
 }
 

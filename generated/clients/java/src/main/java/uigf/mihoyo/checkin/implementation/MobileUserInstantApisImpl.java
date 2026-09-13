@@ -78,10 +78,10 @@ public final class MobileUserInstantApisImpl {
     /**
      * The getEntityReview operation.
      * 
-     * @param ds The ds parameter.
      * @param offset The offset parameter.
      * @param size The size parameter.
      * @param cookie The cookie parameter.
+     * @param ds The ds parameter.
      * @param requestContext The context to configure the HTTP request before HTTP client sends it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the service returns an error.
@@ -89,8 +89,8 @@ public final class MobileUserInstantApisImpl {
      * @return common response wrapper returned by MiHoYo and HoYoLAB services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiResponseMobileEntityReviewData> getEntityReviewWithResponse(String ds, int offset, int size,
-        String cookie, RequestContext requestContext) {
+    public Response<ApiResponseMobileEntityReviewData> getEntityReviewWithResponse(int offset, int size, String cookie,
+        String ds, RequestContext requestContext) {
         return this.instrumentation.instrumentWithResponse(
             "UIGF.Mihoyo.MiYouShe.Mobile.MobileUserInstantApi.getEntityReview", requestContext, updatedContext -> {
                 final String accept = "application/json";

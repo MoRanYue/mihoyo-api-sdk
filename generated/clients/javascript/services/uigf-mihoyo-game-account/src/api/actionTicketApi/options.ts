@@ -4,4 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ActionTicketApiGetBySTokenOptionalParams extends OperationOptions {}
+export interface ActionTicketApiGetBySTokenOptionalParams extends OperationOptions {
+  ds?: string;
+}

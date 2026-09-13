@@ -45,18 +45,25 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_month_info(
-        self, *, cookie: str, ds: str, bind_uid: str, bind_region: str, month: Optional[int] = None, **kwargs: Any
+        self,
+        *,
+        cookie: str,
+        bind_uid: str,
+        bind_region: str,
+        ds: Optional[str] = None,
+        month: Optional[int] = None,
+        **kwargs: Any
     ) -> _models5.ApiResponseJsonObject:
         """get_month_info.
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword bind_uid: Required.
         :paramtype bind_uid: str
         :keyword bind_region: Required.
         :paramtype bind_region: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword month: Default value is None.
         :paramtype month: int
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
@@ -78,9 +85,9 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_ledger_api_get_month_info_request(
             cookie=cookie,
-            ds=ds,
             bind_uid=bind_uid,
             bind_region=bind_region,
+            ds=ds,
             month=month,
             headers=_headers,
             params=_params,
@@ -119,12 +126,12 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
         self,
         *,
         cookie: str,
-        ds: str,
         month: int,
         page: int,
         type: int,
         bind_uid: str,
         bind_region: str,
+        ds: Optional[str] = None,
         limit: Optional[int] = None,
         **kwargs: Any
     ) -> _models5.ApiResponseJsonObject:
@@ -132,8 +139,6 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
 
         :keyword cookie: Required.
         :paramtype cookie: str
-        :keyword ds: Required.
-        :paramtype ds: str
         :keyword month: Required.
         :paramtype month: int
         :keyword page: Required.
@@ -144,6 +149,8 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
         :paramtype bind_uid: str
         :keyword bind_region: Required.
         :paramtype bind_region: str
+        :keyword ds: Default value is None.
+        :paramtype ds: str
         :keyword limit: Default value is None.
         :paramtype limit: int
         :return: ApiResponseJsonObject. The ApiResponseJsonObject is compatible with MutableMapping
@@ -165,12 +172,12 @@ class LedgerApiOperations:  # pylint: disable=docstring-missing-param
 
         _request = build_ledger_api_get_month_detail_request(
             cookie=cookie,
-            ds=ds,
             month=month,
             page=page,
             type=type,
             bind_uid=bind_uid,
             bind_region=bind_region,
+            ds=ds,
             limit=limit,
             headers=_headers,
             params=_params,
