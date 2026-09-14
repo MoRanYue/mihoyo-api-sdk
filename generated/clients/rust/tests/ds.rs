@@ -90,6 +90,33 @@ fn invalid_input_is_rejected() {
     assert!(matches!(DsSigner::create_policy(""), Err(DsError::MissingSalt)));
 }
 
+#[test]
+fn debug_output_never_reveals_the_salt() {
+    // A dedicated value, so the assertion cannot pass because of an unrelated string.
+    const SECRET: &str = "s3cret-salt-material-6f2a";
+
+    let options = DsSigningOptions::new(SECRET, DsGeneration::V2)
+        .with_body(r#"{"token":"placeholder"}"#)
+        .with_query("a=1")
+        .with_timestamp(1_700_000_000)
+        .with_nonce("123456");
+    let rendered = format!("{options:?}");
+    assert!(!rendered.contains(SECRET), "DsSigningOptions leaked: {rendered}");
+    assert!(rendered.contains("<redacted>"), "salt is not marked: {rendered}");
+
+    let signature = create(&options).expect("V2 signing");
+    // The payload starts with `salt=`, so hiding the field alone would not be enough.
+    assert!(signature.payload.contains(SECRET));
+    let rendered = format!("{signature:?}");
+    assert!(!rendered.contains(SECRET), "DsSignature leaked: {rendered}");
+    assert!(rendered.contains(&signature.digest), "digest should stay visible: {rendered}");
+
+    // `Policy` requires `Debug`, and the pipeline may print its policies.
+    let policy = DsSigner::create_policy(SECRET).expect("create policy");
+    let rendered = format!("{policy:?}");
+    assert!(!rendered.contains(SECRET), "DsSigningPolicy leaked: {rendered}");
+}
+
 #[tokio::test]
 async fn clients_sign_omitted_ds_headers_without_replacing_explicit_ones() {
     let (endpoint, recorded) = start_mock_server();

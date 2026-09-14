@@ -14,7 +14,7 @@ test("Rust client automatically signs omitted V1 and V2 DS headers", { skip: !ca
   const result = await run("cargo", ["test", "--test", "ds"], crate);
   assert.equal(result.error, undefined, result.error?.message);
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
-  assert.match(result.stdout, /test result: ok\. 5 passed; 0 failed/);
+  assert.match(result.stdout, /test result: ok\. 6 passed; 0 failed/);
 });
 
 test("generated crate keeps the packaged manifest and DS modules", async () => {

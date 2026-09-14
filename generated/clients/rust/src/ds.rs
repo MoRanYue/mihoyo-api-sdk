@@ -7,6 +7,9 @@
 //!
 //! V1 signs `salt={salt}&t={timestamp}&r={nonce}`; V2 adds the exact serialized
 //! request body and the sorted query string as `&b={body}&q={query}`.
+//!
+//! Salt material is redacted from every `Debug` implementation in this module, so
+//! diagnostics and panic messages cannot leak it.
 
 use std::sync::Arc;
 
@@ -64,11 +67,14 @@ impl std::fmt::Display for DsError {
 
 impl std::error::Error for DsError {}
 
+/// Replaces secret signing material in `Debug` output.
+const REDACTED: &str = "<redacted>";
+
 /// Input to the Dynamic Secret algorithm.
 ///
 /// `salt` is supplied by the caller; this crate never contains vendor salts or
 /// discovers them at runtime.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct DsSigningOptions {
     salt: String,
     generation: DsGeneration,
@@ -76,6 +82,22 @@ pub struct DsSigningOptions {
     query: Option<String>,
     timestamp: Option<u64>,
     nonce: Option<String>,
+}
+
+// The salt is secret signing material, so a derived `Debug` implementation would copy
+// it into logs and panic messages.
+impl std::fmt::Debug for DsSigningOptions {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter
+            .debug_struct("DsSigningOptions")
+            .field("salt", &REDACTED)
+            .field("generation", &self.generation)
+            .field("body", &self.body)
+            .field("query", &self.query)
+            .field("timestamp", &self.timestamp)
+            .field("nonce", &self.nonce)
+            .finish()
+    }
 }
 
 impl DsSigningOptions {
@@ -117,7 +139,7 @@ impl DsSigningOptions {
 }
 
 /// A generated Dynamic Secret header and its signing inputs.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct DsSignature {
     /// The value to send in the HTTP `DS` header.
     pub value: String,
@@ -127,8 +149,24 @@ pub struct DsSignature {
     pub nonce: String,
     /// The lowercase MD5 digest of [`DsSignature::payload`].
     pub digest: String,
-    /// The unsigned Dynamic Secret payload. Do not log it when it carries sensitive data.
+    /// The unsigned Dynamic Secret payload. It embeds the caller's salt, so it is
+    /// redacted from `Debug` output; do not log this field.
     pub payload: String,
+}
+
+// `payload` is the MD5 preimage and starts with `salt=`, so a derived `Debug`
+// implementation would leak the salt that `DsSigningOptions` redacts.
+impl std::fmt::Debug for DsSignature {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter
+            .debug_struct("DsSignature")
+            .field("value", &self.value)
+            .field("timestamp", &self.timestamp)
+            .field("nonce", &self.nonce)
+            .field("digest", &self.digest)
+            .field("payload", &REDACTED)
+            .finish()
+    }
 }
 
 /// Creates a Dynamic Secret header and exposes its deterministic signing details.
@@ -208,9 +246,19 @@ impl DsSigner {
     }
 }
 
-#[derive(Debug)]
 struct DsSigningPolicy {
     salt: String,
+}
+
+// `Policy` requires `Debug`, and the pipeline can print its policies, so the salt is
+// redacted instead of derived.
+impl std::fmt::Debug for DsSigningPolicy {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter
+            .debug_struct("DsSigningPolicy")
+            .field("salt", &REDACTED)
+            .finish()
+    }
 }
 
 #[async_trait::async_trait]
